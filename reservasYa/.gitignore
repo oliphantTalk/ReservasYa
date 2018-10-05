@@ -1,2 +1,5 @@
 .idea/*
 reservasYa.iml
+srckato/
+target/
+logClass.log

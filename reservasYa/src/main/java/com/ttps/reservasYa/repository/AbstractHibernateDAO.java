@@ -1,7 +1,6 @@
-package com.reservasYa.repository;
+package com.ttps.reservasYa.repository;
 
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.Session;
 
 import javax.transaction.Transactional;

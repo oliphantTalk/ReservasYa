@@ -1,9 +1,7 @@
-package com.reservasYa.models.dao;
+package com.ttps.reservasYa.models.dao;
 
-import com.reservasYa.models.User;
-import com.reservasYa.repository.AbstractHibernateDAO;
-import com.reservasYa.repository.GenericHibernateDao;
-import com.reservasYa.repository.IGenericDao;
+import com.ttps.reservasYa.models.User;
+import com.ttps.reservasYa.repository.GenericHibernateDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

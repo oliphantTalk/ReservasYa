@@ -47,3 +47,109 @@
 2018-10-20:30:23.872 [Thread-9] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed drop of schema as part of SessionFactory shut-down'
 2018-10-20:30:23.874 [Thread-9] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2018-10-20:30:23.876 [Thread-9] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2018-11-18:49:30.440 [main] INFO  c.t.reservasYa.ReservasYaApplication - Starting ReservasYaApplication on lpitn010051 with PID 25567 (/home/nahuelbarrena/ReservasYa/reservasYa/target/classes started by root in /home/nahuelbarrena/ReservasYa/reservasYa)
+2018-11-18:49:30.444 [main] INFO  c.t.reservasYa.ReservasYaApplication - No active profile set, falling back to default profiles: default
+2018-11-18:49:30.517 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@c267ef4: startup date [Thu Oct 11 18:49:30 ART 2018]; root of context hierarchy
+2018-11-18:49:31.720 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4ea527a6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-11-18:49:32.031 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2018-11-18:49:32.040 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2018-11-18:49:32.045 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2018-11-18:49:32.046 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-11-18:49:32.049 [localhost-startStop-1] INFO  o.a.c.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib]
+2018-11-18:49:32.096 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2018-11-18:49:32.096 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1582 ms
+2018-11-18:49:32.127 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean - Servlet dispatcherServlet mapped to [/]
+2018-11-18:49:32.130 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-11-18:49:32.130 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-11-18:49:32.130 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-11-18:49:32.130 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2018-11-18:49:32.223 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2018-11-18:49:32.306 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2018-11-18:49:32.344 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-18:49:32.353 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-18:49:32.395 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-18:49:32.396 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2018-11-18:49:32.518 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-18:49:32.620 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-11-18:49:32.859 [main] INFO  org.hibernate.tuple.PojoInstantiator - HHH000182: No default (no-argument) constructor for class: com.ttps.reservasYa.models.User (class must be instantiated by Interceptor)
+2018-11-18:49:32.943 [main] INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@1f1ff879'
+2018-11-18:49:32.946 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-18:49:32.960 [main] INFO  o.s.aop.framework.CglibAopProxy - Final method [public final void com.ttps.reservasYa.repository.AbstractHibernateDAO.setClazz(java.lang.Class)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-11-18:49:32.961 [main] INFO  o.s.aop.framework.CglibAopProxy - Final method [protected final org.hibernate.Session com.ttps.reservasYa.repository.AbstractHibernateDAO.getCurrentSession()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-11-18:49:33.028 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-18:49:33.281 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@c267ef4: startup date [Thu Oct 11 18:49:30 ART 2018]; root of context hierarchy
+2018-11-18:49:33.304 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-11-18:49:33.333 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-11-18:49:33.333 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-11-18:49:33.357 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-18:49:33.357 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-18:49:33.652 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2018-11-18:49:33.654 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-18:49:33.664 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-18:49:33.680 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2018-11-18:49:33.685 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+2018-11-18:49:33.705 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2018-11-18:49:33.709 [main] INFO  c.t.reservasYa.ReservasYaApplication - Started ReservasYaApplication in 3.817 seconds (JVM running for 4.768)
+2018-11-18:56:22.126 [Thread-10] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@c267ef4: startup date [Thu Oct 11 18:49:30 ART 2018]; root of context hierarchy
+2018-11-18:56:22.128 [Thread-10] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2018-11-18:56:22.129 [Thread-10] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2018-11-18:56:22.130 [Thread-10] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-18:56:22.130 [Thread-10] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed drop of schema as part of SessionFactory shut-down'
+2018-11-18:56:22.134 [Thread-10] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2018-11-18:56:22.136 [Thread-10] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2018-11-18:56:28.935 [main] INFO  c.t.reservasYa.ReservasYaApplication - Starting ReservasYaApplication on lpitn010051 with PID 26686 (/home/nahuelbarrena/ReservasYa/reservasYa/target/classes started by root in /home/nahuelbarrena/ReservasYa/reservasYa)
+2018-11-18:56:28.938 [main] INFO  c.t.reservasYa.ReservasYaApplication - No active profile set, falling back to default profiles: default
+2018-11-18:56:28.996 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@15ff3e9e: startup date [Thu Oct 11 18:56:28 ART 2018]; root of context hierarchy
+2018-11-18:56:30.153 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$620b254d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-11-18:56:30.453 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2018-11-18:56:30.465 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2018-11-18:56:30.471 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2018-11-18:56:30.471 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-11-18:56:30.474 [localhost-startStop-1] INFO  o.a.c.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib]
+2018-11-18:56:30.526 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2018-11-18:56:30.527 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1534 ms
+2018-11-18:56:30.576 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean - Servlet dispatcherServlet mapped to [/]
+2018-11-18:56:30.577 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean - Servlet webServlet mapped to [/h2-console/*]
+2018-11-18:56:30.580 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-11-18:56:30.580 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-11-18:56:30.580 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-11-18:56:30.580 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2018-11-18:56:30.696 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2018-11-18:56:30.752 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2018-11-18:56:30.777 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-18:56:30.786 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-18:56:30.828 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-18:56:30.828 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+2018-11-18:56:30.849 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-18:56:30.975 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-11-18:56:31.173 [main] INFO  org.hibernate.tuple.PojoInstantiator - HHH000182: No default (no-argument) constructor for class: com.ttps.reservasYa.models.User (class must be instantiated by Interceptor)
+2018-11-18:56:31.304 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-18:56:31.320 [main] INFO  o.s.aop.framework.CglibAopProxy - Final method [public final void com.ttps.reservasYa.repository.AbstractHibernateDAO.setClazz(java.lang.Class)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-11-18:56:31.321 [main] INFO  o.s.aop.framework.CglibAopProxy - Final method [protected final org.hibernate.Session com.ttps.reservasYa.repository.AbstractHibernateDAO.getCurrentSession()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-11-18:56:31.381 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-18:56:31.562 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@15ff3e9e: startup date [Thu Oct 11 18:56:28 ART 2018]; root of context hierarchy
+2018-11-18:56:31.586 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-11-18:56:31.613 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-11-18:56:31.614 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-11-18:56:31.634 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-18:56:31.634 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-18:56:31.894 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2018-11-18:56:31.895 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-18:56:31.900 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-18:56:31.909 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2018-11-18:56:31.912 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+2018-11-18:56:31.920 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2018-11-18:56:31.922 [main] INFO  c.t.reservasYa.ReservasYaApplication - Started ReservasYaApplication in 3.313 seconds (JVM running for 4.125)
+2018-11-18:56:47.253 [http-nio-8080-exec-5] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-11-18:56:47.253 [http-nio-8080-exec-5] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2018-11-18:56:47.274 [http-nio-8080-exec-5] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 21 ms
+2018-11-19:20:12.363 [Thread-11] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@15ff3e9e: startup date [Thu Oct 11 18:56:28 ART 2018]; root of context hierarchy
+2018-11-19:20:12.365 [Thread-11] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2018-11-19:20:12.366 [Thread-11] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2018-11-19:20:12.366 [Thread-11] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-19:20:12.367 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2018-11-19:20:12.369 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

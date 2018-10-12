@@ -1,4 +1,4 @@
-package com.reservasYa.models;
+package com.ttps.reservasYa.models;
 
 
 import javax.persistence.*;
@@ -37,7 +37,7 @@ public class User implements Serializable {
         return id;
     }
 
-    public void setId(long id) {
+    private void setId(long id) {
         this.id = id;
     }
 
@@ -45,7 +45,8 @@ public class User implements Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    public void editName(String name) { this.name = name; } //todo que haga validaciones 
+    private void setName(String name) {
         this.name = name;
     }
 
@@ -53,7 +54,8 @@ public class User implements Serializable {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void editUserName(String username) { this.username = username; }
+    private void setUsername(String username) {
         this.username = username;
     }
 
@@ -61,7 +63,8 @@ public class User implements Serializable {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void editEmail(String email) { this.email = email; }
+    private void setEmail(String email) {
         this.email = email;
     }
 
@@ -69,7 +72,10 @@ public class User implements Serializable {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void editPassword(String password) {
+        this.password = password;
+    }
+    private void setPassword(String password) {
         this.password = password;
     }
 }

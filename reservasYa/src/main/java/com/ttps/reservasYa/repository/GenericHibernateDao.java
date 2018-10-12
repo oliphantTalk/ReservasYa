@@ -1,4 +1,4 @@
-package com.reservasYa.repository;
+package com.ttps.reservasYa.repository;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;

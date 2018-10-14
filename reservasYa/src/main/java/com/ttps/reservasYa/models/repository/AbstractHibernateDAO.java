@@ -1,4 +1,4 @@
-package com.ttps.reservasYa.repository;
+package com.ttps.reservasYa.models.repository;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;

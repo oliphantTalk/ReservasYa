@@ -2,6 +2,8 @@ package com.ttps.reservasYa.models;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -16,10 +18,11 @@ public class User implements Serializable {
     @Column(name="name", nullable = false, length = 45)
     private String name;
 
-    @Column(name="userName", nullable = false, length = 100)
+    @Column(name="userName", nullable = false, length = 100, unique = true)
     private String username;
 
-    @Column(name="email", nullable = false, length = 50)
+    @Column(name="email", nullable = false, length = 50, unique = true)
+    @Email
     private String email;
 
     @Column(name="password", nullable = false, length = 50)
@@ -45,7 +48,7 @@ public class User implements Serializable {
         return name;
     }
 
-    public void editName(String name) { this.name = name; } //todo que haga validaciones 
+    public void editName(@NotNull String name) { this.name = name; } //todo que haga validaciones
     private void setName(String name) {
         this.name = name;
     }
@@ -54,7 +57,7 @@ public class User implements Serializable {
         return username;
     }
 
-    public void editUserName(String username) { this.username = username; }
+    public void editUserName(@NotNull String username) { this.username = username; }
     private void setUsername(String username) {
         this.username = username;
     }
@@ -63,7 +66,7 @@ public class User implements Serializable {
         return email;
     }
 
-    public void editEmail(String email) { this.email = email; }
+    public void editEmail(@Email String email) { this.email = email; }
     private void setEmail(String email) {
         this.email = email;
     }

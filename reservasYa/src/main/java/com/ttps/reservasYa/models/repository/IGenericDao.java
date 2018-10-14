@@ -1,4 +1,4 @@
-package com.ttps.reservasYa.repository;
+package com.ttps.reservasYa.models.repository;
 
 import java.io.Serializable;
 import java.util.List;

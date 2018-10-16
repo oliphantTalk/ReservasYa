@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Nano",
+    "userName": "Chapu1",
+    "email": "abc@xyza",
+    "password": "easyPass"
+  },
+  {
+    "name": "Nano",
+    "userName": "Chapu2",
+    "email": "abc@xyzb",
+    "password": "easyPass"
+  },
+  {
+    "name": "Nano",
+    "userName": "Chapu3",
+    "email": "abc@xyzc",
+    "password": "easyPass"
+  },
+  {
+    "name": "Nano",
+    "userName": "Chapu4",
+    "email": "abc@xyzd",
+    "password": "easyPass"
+  },
+  {
+    "name": "willFailOnUpdate",
+    "userName": "willFailOnUpdate",
+    "email": "willFail@OnUpdate",
+    "password": "easyPass"
+  }
+]

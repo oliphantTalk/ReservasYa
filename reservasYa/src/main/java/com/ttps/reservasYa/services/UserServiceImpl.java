@@ -3,13 +3,11 @@ package com.ttps.reservasYa.services;
 import com.ttps.reservasYa.models.User;
 import com.ttps.reservasYa.models.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
-@Repository
-@Transactional
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -17,24 +15,34 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
 
-    @Override
-    public User getUser(Long id) {
-        return this.userRepository.getOne(id);
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public UserRepository getUserRepository() {
+        return userRepository;
     }
 
     @Override
-    public User updateUser(User user) {
-        return null;
+    public List<User> findAll() {
+        return this.userRepository.findAll();
     }
 
     @Override
-    public User deleteUser(User user) {
-        return null;
+    public Optional<User> findOne(Long id) {
+        return this.userRepository.findById(id);
+    }
+
+    @Override
+    public User updateUser(User user) { return this.userRepository.save(user); }
+
+    @Override
+    public void deleteUser(User user) {
+        this.userRepository.delete(user);
     }
 
     @Override
     public User createUser(User user) {
-        return null;
+        return this.userRepository.save(user);
     }
-
 }

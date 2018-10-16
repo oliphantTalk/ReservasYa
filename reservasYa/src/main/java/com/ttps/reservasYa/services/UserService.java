@@ -1,14 +1,16 @@
 package com.ttps.reservasYa.services;
 
 import com.ttps.reservasYa.models.User;
-import com.ttps.reservasYa.models.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
-    public User getUser(Long id);
+    public Optional<User> findOne(Long id);
+    public List<User> findAll();
     public User updateUser(User user);
-    public User deleteUser(User user);
+    public void deleteUser(User user);
     public User createUser(User user);
 
 }

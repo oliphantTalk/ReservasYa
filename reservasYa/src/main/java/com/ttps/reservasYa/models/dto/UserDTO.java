@@ -1,5 +1,8 @@
 package com.ttps.reservasYa.models.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ttps.reservasYa.models.User;
+
 public class UserDTO {
 
     private long id;
@@ -13,6 +16,13 @@ public class UserDTO {
         this.setUsername(username);
         this.setEmail(email);
         this.setPassword(password);
+    }
+
+    public UserDTO(User user){
+        this.setName(user.getName());
+        this.setUsername(user.getUsername());
+        this.setEmail(user.getEmail());
+        this.setPassword(user.getPassword());
     }
 
     public long getId() {
@@ -35,6 +45,7 @@ public class UserDTO {
         return username;
     }
 
+    @JsonProperty(value="user_name")
     public void setUsername(String username) {
         this.username = username;
     }

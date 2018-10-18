@@ -18,7 +18,7 @@ public class User implements Serializable {
     @Column(name="name", nullable = false, length = 45)
     private String name;
 
-    @Column(name="userName", nullable = false, length = 100, unique = true)
+    @Column(name="username", nullable = false, length = 100, unique = true)
     private String username;
 
     @Column(name="email", nullable = false, length = 50, unique = true)
@@ -50,7 +50,7 @@ public class User implements Serializable {
         return name;
     }
 
-    public void editName(@NotNull String name) { this.name = name; } //todo que haga validaciones
+    public void editName(@NotNull String name) { this.name = name; }
     private void setName(String name) {
         this.name = name;
     }

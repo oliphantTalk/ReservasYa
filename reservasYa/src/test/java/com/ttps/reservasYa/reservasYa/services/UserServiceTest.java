@@ -53,7 +53,7 @@ public class UserServiceTest extends AbstractConfigurationTest {
 
     @Test(expected = TransactionSystemException.class)
     public void userServiceTest_ValidationOnUpdateFails(){
-        User userWillFail = this.userService.findOne(5L).get(); // crear en el repository un findByName, asi no hardcodeo este id
+        User userWillFail = this.userService.findOne(5L).get();
         userWillFail.editEmail("bad_email");
         this.userService.updateUser(userWillFail);
     }
@@ -69,6 +69,18 @@ public class UserServiceTest extends AbstractConfigurationTest {
     public void userServiceTest_findAll() {
         assertThat("Se espera que haiga 5 usuarios en la base", this.userService.findAll().size(), equalTo(5));
         this.userService.findAll().forEach(this::userEquals);
+    }
+
+    @Test
+    public void userServiceTest_findByEmail(){
+        User userByEmail = this.userService.findByEmail("abc@xyzc");
+        this.userEquals(userByEmail);
+    }
+
+    @Test
+    public void userServiceTest_findByUserName(){
+        User userByUserName = this.userService.findByUserName("Chapu1");
+        this.userEquals(userByUserName);
     }
 
     private User createUser() {

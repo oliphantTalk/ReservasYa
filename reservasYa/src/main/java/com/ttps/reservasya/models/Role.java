@@ -1,0 +1,27 @@
+package com.ttps.reservasya.models;
+
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
+
+@Entity
+@Table(name ="Role")
+public class Role implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "users", nullable = false)
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> user;
+
+
+
+
+
+}

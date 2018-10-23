@@ -1,6 +1,6 @@
-package com.ttps.reservasYa.services;
+package com.ttps.reservasya.services;
 
-import com.ttps.reservasYa.models.User;
+import com.ttps.reservasya.models.User;
 
 import javax.validation.constraints.Email;
 import java.util.List;

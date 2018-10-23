@@ -1,15 +1,23 @@
-package com.ttps.reservasYa.models.dto;
+package com.ttps.reservasya.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.ttps.reservasYa.models.User;
+import com.ttps.reservasya.models.User;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 public class UserDTO {
 
-    private long id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String username;
+    @Email
     private String email;
+    @NotEmpty
     private String password;
+
+    public UserDTO(){}
 
     public UserDTO(String name, String username, String email, String password){
         this.setName(name);
@@ -25,13 +33,6 @@ public class UserDTO {
         this.setPassword(user.getPassword());
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

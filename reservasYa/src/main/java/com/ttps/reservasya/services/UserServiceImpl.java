@@ -1,7 +1,8 @@
-package com.ttps.reservasYa.services;
+package com.ttps.reservasya.services;
 
-import com.ttps.reservasYa.models.User;
-import com.ttps.reservasYa.models.repository.UserRepository;
+import com.ttps.reservasya.exceptions.UserNotFoundException;
+import com.ttps.reservasya.models.User;
+import com.ttps.reservasya.models.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +34,12 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findByEmail(@Email String email){
-        return this.userRepository.findByEmail(email);
+
+        return this.userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
     }
 
     public User findByUserName(String userName){
-        return this.userRepository.findByUserName(userName);
+        return this.userRepository.findByUserName(userName).orElseThrow(UserNotFoundException::new);
     }
 
     public User updateUser(User user) { return this.userRepository.save(user); }

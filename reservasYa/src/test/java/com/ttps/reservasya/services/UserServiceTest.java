@@ -1,11 +1,10 @@
-package com.ttps.reservasYa.reservasYa.services;
+package com.ttps.reservasya.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.ttps.reservasYa.models.User;
-import com.ttps.reservasYa.reservasYa.AbstractConfigurationTest;
-import com.ttps.reservasYa.services.UserService;
-import com.ttps.reservasYa.utils.CustomObjectMapper;
+import com.ttps.reservasya.models.User;
+import com.ttps.reservasya.AbstractConfigurationTest;
+import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

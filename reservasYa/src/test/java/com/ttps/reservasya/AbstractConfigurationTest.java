@@ -1,11 +1,11 @@
-package com.ttps.reservasYa.reservasYa;
+package com.ttps.reservasya;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.config.ObjectMapperConfig;
 import com.jayway.restassured.config.RestAssuredConfig;
 import com.jayway.restassured.mapper.factory.Jackson2ObjectMapperFactory;
-import com.ttps.reservasYa.utils.CustomObjectMapper;
+import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import org.junit.Before;

@@ -1,9 +1,9 @@
-package com.ttps.reservasYa;
+package com.ttps.reservasya;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.ttps.reservasYa.models.User;
-import com.ttps.reservasYa.services.UserService;
-import com.ttps.reservasYa.utils.CustomObjectMapper;
+import com.ttps.reservasya.models.User;
+import com.ttps.reservasya.services.UserService;
+import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

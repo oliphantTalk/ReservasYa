@@ -1,4 +1,5 @@
-package com.ttps.reservasYa.utils;
+package com.ttps.reservasya.utils;
+
 import com.fasterxml.jackson.databind.*;
 
 public class CustomObjectMapper {

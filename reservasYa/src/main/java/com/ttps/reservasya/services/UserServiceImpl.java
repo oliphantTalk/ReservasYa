@@ -1,14 +1,20 @@
 package com.ttps.reservasya.services;
 
+
 import com.ttps.reservasya.exceptions.UserNotFoundException;
+import com.ttps.reservasya.models.Role;
 import com.ttps.reservasya.models.User;
+import com.ttps.reservasya.models.repository.RoleRepository;
 import com.ttps.reservasya.models.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.Email;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -16,6 +22,32 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    public RoleRepository getRoleRepository() {
+        return roleRepository;
+    }
+
+    public void setRoleRepository(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
+
+    public BCryptPasswordEncoder getbCryptPasswordEncoder() {
+        return bCryptPasswordEncoder;
+    }
+
+    public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -49,6 +81,13 @@ public class UserServiceImpl implements UserService {
     }
 
     public User createUser(User user) {
+
+        user.editPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(new HashSet<>(roleRepository.findAll()));
         return this.userRepository.save(user);
     }
+
+
+
+
 }

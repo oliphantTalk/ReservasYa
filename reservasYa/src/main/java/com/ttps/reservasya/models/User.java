@@ -2,7 +2,7 @@ package com.ttps.reservasya.models;
 
 
 
-import org.apache.catalina.Role;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -20,19 +20,18 @@ public class User implements Serializable {
     @Column(name="id")
     private long id;
 
-    @Column(name="name", nullable = false, length = 45)
-    @NotEmpty
+    @Column(name="name", length = 20)
     private String name;
 
-    @Column(name="username", nullable = false, length = 100, unique = true)
+    @Column(name="username", nullable = false, length = 20, unique = true)
     @NotEmpty
     private String username;
 
-    @Column(name="email", nullable = false, length = 50, unique = true)
+    @Column(name="email", nullable = false, length = 20, unique = true)
     @Email
     private String email;
 
-    @Column(name="password", nullable = false, length = 50)
+    @Column(name="password", nullable = false)
     @NotEmpty
     private String password;
 
@@ -40,6 +39,16 @@ public class User implements Serializable {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @Transient
+    private String passwordConfirm;
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
 
     public User(){}
 
@@ -54,7 +63,7 @@ public class User implements Serializable {
         return id;
     }
 
-    private void setId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -64,7 +73,7 @@ public class User implements Serializable {
 
     public void editName(@NotNull String name) { this.name = name; }
 
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
     public String getUsername() {
@@ -73,7 +82,7 @@ public class User implements Serializable {
 
     public void editUserName(@NotNull String username) { this.username = username; }
 
-    private void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
     public String getEmail() {
@@ -82,7 +91,7 @@ public class User implements Serializable {
 
     public void editEmail(@Email String email) { this.email = email; }
 
-    private void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
     public String getPassword() {
@@ -93,7 +102,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

@@ -1,11 +1,17 @@
 package com.ttps.reservasya.controllers;
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
+import com.ttps.reservasya.models.User;
 import com.ttps.reservasya.models.dto.UserDTO;
+import com.ttps.reservasya.services.SecurityService;
 import com.ttps.reservasya.services.UserService;
 import com.ttps.reservasya.transformers.UserTransformer;
+import com.ttps.reservasya.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,8 +22,11 @@ import java.util.stream.Collectors;
 @RestController
 public class UserController {
 
+
+
     @Autowired
     private UserService userService;
+
 
     @GetMapping(value = "/users")
     @ResponseBody

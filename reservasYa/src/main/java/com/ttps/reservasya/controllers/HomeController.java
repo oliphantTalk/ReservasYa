@@ -1,8 +1,10 @@
 package com.ttps.reservasya.controllers;
 
 import com.ttps.reservasya.models.User;
+import com.ttps.reservasya.models.dto.UserDTO;
 import com.ttps.reservasya.services.SecurityService;
 import com.ttps.reservasya.services.UserService;
+import com.ttps.reservasya.transformers.UserTransformer;
 import com.ttps.reservasya.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,34 +13,38 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class WelcomeController {
+public class HomeController {
+
+    private final UserService userService;
+
+    private final SecurityService securityService;
+
+    private final UserValidator userValidator;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private SecurityService securityService;
-
-    @Autowired
-    private UserValidator userValidator;
+    public HomeController(UserService userService, SecurityService securityService, UserValidator userValidator) {
+        this.userService = userService;
+        this.securityService = securityService;
+        this.userValidator = userValidator;
+    }
 
     @GetMapping(value = "/registration")
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+        model.addAttribute("userForm", new UserDTO());
 
         return "registration";
     }
 
 
     @PostMapping(value = "/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String registration(@ModelAttribute("userForm") UserDTO userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "registration";
         }
 
-        userService.createUser(userForm);
+        userService.createUser(UserTransformer.toUser(userForm));
 
         securityService.autologin(userForm.getUsername(), userForm.getPassword());
 
@@ -48,15 +54,15 @@ public class WelcomeController {
     @GetMapping(value = "/login")
     public String login(Model model, String error, String logout) {
         if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+            model.addAttribute("error", "Nombre de usuario y password son invalidos");
 
         if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
+            model.addAttribute("message", "La sesion se cerro correctamente");
 
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    @GetMapping(value = {"/", "/welcome"})
     public String welcome(Model model) {
         return "welcome";
     }

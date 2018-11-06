@@ -39,7 +39,7 @@ public class UserServiceTest extends AbstractConfigurationTest {
             URL url = new URL("file:src/test/resources/users_h2.json");
             List<User> users = CustomObjectMapper.getMapper().readValue(url, new TypeReference<List<User>>() {
             });
-            users.forEach(val -> this.userService.createUser(val));
+            users.forEach(val -> {if(!this.userService.findByEmail(val.getEmail()).isPresent()) this.userService.createUser(val);});
             setUpIsDone = true;
         }
     }
@@ -72,7 +72,7 @@ public class UserServiceTest extends AbstractConfigurationTest {
 
     @Test
     public void userServiceTest_findByEmail(){
-        User userByEmail = this.userService.findByEmail("abc@xyzc");
+        User userByEmail = this.userService.findByEmail("abc@xyzc.aaa").get();
         this.userEquals(userByEmail);
     }
 

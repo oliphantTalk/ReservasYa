@@ -2,7 +2,6 @@ package com.ttps.reservasya.services;
 
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
-import com.ttps.reservasya.models.Role;
 import com.ttps.reservasya.models.User;
 import com.ttps.reservasya.models.repository.RoleRepository;
 import com.ttps.reservasya.models.repository.UserRepository;
@@ -19,13 +18,11 @@ import java.util.*;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+
     private UserRepository userRepository;
 
-    @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Bean
@@ -37,6 +34,9 @@ public class UserServiceImpl implements UserService {
         return roleRepository;
     }
 
+
+
+    @Autowired
     public void setRoleRepository(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
@@ -45,10 +45,12 @@ public class UserServiceImpl implements UserService {
         return bCryptPasswordEncoder;
     }
 
+    @Autowired
     public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -65,9 +67,9 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findById(id);
     }
 
-    public User findByEmail(@Email String email){
+    public Optional<User> findByEmail(@Email String email){
 
-        return this.userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+        return this.userRepository.findByEmail(email);
     }
 
     public User findByUserName(String userName){

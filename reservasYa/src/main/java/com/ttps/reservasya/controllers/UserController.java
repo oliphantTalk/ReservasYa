@@ -1,17 +1,11 @@
 package com.ttps.reservasya.controllers;
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
-import com.ttps.reservasya.models.User;
 import com.ttps.reservasya.models.dto.UserDTO;
-import com.ttps.reservasya.services.SecurityService;
 import com.ttps.reservasya.services.UserService;
 import com.ttps.reservasya.transformers.UserTransformer;
-import com.ttps.reservasya.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,9 +17,12 @@ import java.util.stream.Collectors;
 public class UserController {
 
 
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
 
     @GetMapping(value = "/users")
@@ -37,7 +34,7 @@ public class UserController {
     @GetMapping(value = "/users/email/{email}")
     @ResponseBody
     public UserDTO getUserByEmail(@PathVariable("email") @Email String email) {
-        return new UserDTO(this.userService.findByEmail(email));
+        return new UserDTO(this.userService.findByEmail(email).get());
     }
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "El usuario no se encontro en el sistema")

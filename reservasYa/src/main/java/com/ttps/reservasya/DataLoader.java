@@ -15,19 +15,21 @@ import java.util.List;
 @Component
 public class DataLoader implements ApplicationRunner {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    public void setUserService(UserService userService) {
+    @Autowired
+    public DataLoader(UserService userService) {
         this.userService = userService;
     }
+
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         URL url = new URL("file:src/test/resources/users_h2.json");
         List<User> users = CustomObjectMapper.getMapper().readValue(url, new TypeReference<List<User>>() {
         });
-        users.forEach(val -> this.userService.createUser(val));
+        users.forEach(this.userService::createUser);
     }
 }
 

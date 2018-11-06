@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 
 public class UserDTO {
 
-    @NotEmpty
+
     private String name;
     @NotEmpty
     private String username;
@@ -16,6 +16,7 @@ public class UserDTO {
     private String email;
     @NotEmpty
     private String password;
+    private String passwordConfirm;
 
     public UserDTO(){}
 
@@ -33,6 +34,13 @@ public class UserDTO {
         this.setPassword(user.getPassword());
     }
 
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
 
     public String getName() {
         return name;

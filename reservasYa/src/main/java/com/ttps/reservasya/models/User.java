@@ -9,10 +9,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name="user")
+@Table(name="User")
 public class User implements Serializable {
 
     @Id
@@ -27,7 +28,7 @@ public class User implements Serializable {
     @NotEmpty
     private String username;
 
-    @Column(name="email", nullable = false, length = 20, unique = true)
+    @Column(name="email", nullable = false, length = 30, unique = true)
     @Email
     private String email;
 
@@ -113,5 +114,25 @@ public class User implements Serializable {
     public void setRoles(Set<Role> roles){
         this.roles = roles;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        // self check
+        if (this == o)
+            return true;
+        // null check
+        if (o == null)
+            return false;
+        // type check and cast
+        if (getClass() != o.getClass())
+            return false;
+        User user = (User) o;
+        // field comparison
+        return Objects.equals(id, user.id)
+                && Objects.equals(email, user.email)
+                && Objects.equals(username, user.username);
+    }
+
 
 }

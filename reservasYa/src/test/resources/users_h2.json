@@ -2,31 +2,31 @@
   {
     "name": "Nano",
     "userName": "Chapu1",
-    "email": "abc@xyza",
+    "email": "abc@xyza.aaa",
     "password": "easyPass"
   },
   {
     "name": "Nano",
     "userName": "Chapu2",
-    "email": "abc@xyzb",
+    "email": "abc@xyzb.aaa",
     "password": "easyPass"
   },
   {
     "name": "Nano",
     "userName": "Chapu3",
-    "email": "abc@xyzc",
+    "email": "abc@xyzc.aaa",
     "password": "easyPass"
   },
   {
     "name": "Nano",
     "userName": "Chapu4",
-    "email": "abc@xyzd",
+    "email": "abc@xyzd.aaa",
     "password": "easyPass"
   },
   {
     "name": "willFailOnUpdate",
     "userName": "willFailOnUpdate",
-    "email": "willFail@OnUpdate",
+    "email": "willFail@OnUpdate.aaa",
     "password": "easyPass"
   }
 ]

@@ -2,6 +2,7 @@ package com.ttps.reservasya.validator;
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.User;
+import com.ttps.reservasya.models.dto.UserDTO;
 import com.ttps.reservasya.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
 
-        User user = (User) o;
+        UserDTO user = (UserDTO) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
         if (user.getUsername().length() < 3 || user.getUsername().length() > 32) {
@@ -47,6 +48,5 @@ public class UserValidator implements Validator {
             }
         }
     }
-
 
 }

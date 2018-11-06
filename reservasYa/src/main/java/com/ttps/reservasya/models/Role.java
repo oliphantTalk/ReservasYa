@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name ="Role")
+
 public class Role implements Serializable {
 
     @Id
@@ -14,6 +15,7 @@ public class Role implements Serializable {
     private Long id;
 
     @Column(name = "name", nullable = false)
+
     private String name;
 
     @Column(name = "users", nullable = false)

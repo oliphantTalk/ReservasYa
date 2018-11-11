@@ -5,15 +5,14 @@ import com.ttps.reservasya.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.User;
 import com.ttps.reservasya.models.repository.RoleRepository;
 import com.ttps.reservasya.models.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.Email;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -83,9 +82,10 @@ public class UserServiceImpl implements UserService {
     }
 
     public User createUser(User user) {
-
-        user.editPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(roleRepository.findAll()));
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if (user.getRole() == null) {
+            user.setRole(this.roleRepository.getOne(1L));
+        }
         return this.userRepository.save(user);
     }
 

@@ -1,6 +1,5 @@
 package com.ttps.reservasya.controllers;
 
-import com.ttps.reservasya.models.User;
 import com.ttps.reservasya.models.dto.UserDTO;
 import com.ttps.reservasya.services.SecurityService;
 import com.ttps.reservasya.services.UserService;
@@ -10,15 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
 
     private final UserService userService;
-
     private final SecurityService securityService;
-
     private final UserValidator userValidator;
 
     @Autowired
@@ -31,23 +30,17 @@ public class HomeController {
     @GetMapping(value = "/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new UserDTO());
-
         return "registration";
     }
-
 
     @PostMapping(value = "/registration")
     public String registration(@ModelAttribute("userForm") UserDTO userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
-
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-
         userService.createUser(UserTransformer.toUser(userForm));
-
         securityService.autologin(userForm.getUsername(), userForm.getPassword());
-
         return "redirect:/welcome";
     }
 
@@ -55,10 +48,8 @@ public class HomeController {
     public String login(Model model, String error, String logout) {
         if (error != null)
             model.addAttribute("error", "Nombre de usuario y password son invalidos");
-
         if (logout != null)
             model.addAttribute("message", "La sesion se cerro correctamente");
-
         return "login";
     }
 
@@ -66,7 +57,5 @@ public class HomeController {
     public String welcome(Model model) {
         return "welcome";
     }
-
-
 
 }

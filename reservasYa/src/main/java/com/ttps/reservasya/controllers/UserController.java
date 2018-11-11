@@ -24,6 +24,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping(value = "/user/{id}")
+    @ResponseBody
+    public UserDTO getUser(@PathVariable("id") Long id) {
+        return new UserDTO(this.userService.findOne(id).orElseThrow(UserNotFoundException::new));
+    }
 
     @GetMapping(value = "/users")
     @ResponseBody
@@ -34,7 +39,7 @@ public class UserController {
     @GetMapping(value = "/users/email/{email}")
     @ResponseBody
     public UserDTO getUserByEmail(@PathVariable("email") @Email String email) {
-        return new UserDTO(this.userService.findByEmail(email).get());
+        return new UserDTO(this.userService.findByEmail(email).orElseThrow(UserNotFoundException::new));
     }
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "El usuario no se encontro en el sistema")
@@ -55,7 +60,7 @@ public class UserController {
         return new UserDTO(this.userService.findByUserName(userName));
     }
 
-    @PutMapping(value = "/user/add/")
+    @PutMapping(value = "/user")
     public void addUser(@RequestBody @Valid final UserDTO userDTO){
         this.userService.createUser(UserTransformer.toUser(userDTO));
     }

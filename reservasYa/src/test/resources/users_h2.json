@@ -1,32 +1,52 @@
 [
   {
     "name": "Nano",
-    "userName": "Chapu1",
+    "user_name": "Chapu1",
     "email": "abc@xyza.aaa",
-    "password": "easyPass"
+    "password": "easyPass",
+    "role": {
+      "id": 1,
+      "name": "ROLE_USER"
+    }
   },
   {
     "name": "Nano",
-    "userName": "Chapu2",
+    "user_name": "Chapu2",
     "email": "abc@xyzb.aaa",
-    "password": "easyPass"
+    "password": "easyPass",
+    "role": {
+      "id": 1,
+      "name": "ROLE_USER"
+    }
   },
   {
     "name": "Nano",
-    "userName": "Chapu3",
+    "user_name": "Chapu3",
     "email": "abc@xyzc.aaa",
-    "password": "easyPass"
+    "password": "easyPass",
+    "role": {
+      "id": 2,
+      "name": "ROLE_USER"
+    }
   },
   {
     "name": "Nano",
-    "userName": "Chapu4",
+    "user_name": "Chapu4",
     "email": "abc@xyzd.aaa",
-    "password": "easyPass"
+    "password": "easyPass",
+    "role": {
+      "id": 1,
+      "name": "ROLE_USER"
+    }
   },
   {
     "name": "willFailOnUpdate",
-    "userName": "willFailOnUpdate",
+    "user_name": "willFailOnUpdate",
     "email": "willFail@OnUpdate.aaa",
-    "password": "easyPass"
+    "password": "easyPass",
+    "role": {
+      "id": 1,
+      "name": "ROLE_USER"
+    }
   }
 ]

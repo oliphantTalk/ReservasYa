@@ -1,7 +1,9 @@
 package com.ttps.reservasya;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.ttps.reservasya.models.Role;
 import com.ttps.reservasya.models.User;
+import com.ttps.reservasya.models.repository.RoleRepository;
 import com.ttps.reservasya.services.UserService;
 import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,23 +18,25 @@ import java.util.List;
 public class DataLoader implements ApplicationRunner {
 
     private final UserService userService;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public DataLoader(UserService userService) {
+    public DataLoader(UserService userService, RoleRepository roleRepository) {
         this.userService = userService;
+        this.roleRepository = roleRepository;
     }
 
 
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        URL url = new URL("file:src/test/resources/users_h2.json");
-        List<User> users = CustomObjectMapper.getMapper().readValue(url, new TypeReference<List<User>>() {
+        List<User> users = CustomObjectMapper.getMapper().readValue(new URL("file:src/test/resources/users_h2.json"), new TypeReference<List<User>>() {
         });
+        List<Role> roles = CustomObjectMapper.getMapper().readValue(new URL("file:src/test/resources/roles_h2.json"), new TypeReference<List<Role>>() {
+        });
+        roles.forEach(this.roleRepository::save);
         users.forEach(this.userService::createUser);
+
     }
+
 }
-
-
-//todo i can also check this first posibility
-// https://stackoverflow.com/questions/38040572/spring-boot-loading-initial-data

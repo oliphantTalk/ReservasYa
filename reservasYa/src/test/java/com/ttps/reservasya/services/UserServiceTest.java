@@ -2,8 +2,8 @@ package com.ttps.reservasya.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.ttps.reservasya.models.User;
 import com.ttps.reservasya.AbstractConfigurationTest;
+import com.ttps.reservasya.models.User;
 import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,10 +16,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
 
 import javax.validation.ConstraintViolationException;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
 
@@ -53,7 +53,7 @@ public class UserServiceTest extends AbstractConfigurationTest {
     @Test(expected = TransactionSystemException.class)
     public void userServiceTest_ValidationOnUpdateFails(){
         User userWillFail = this.userService.findOne(5L).get();
-        userWillFail.editEmail("bad_email");
+        userWillFail.setEmail("bad_email");
         this.userService.updateUser(userWillFail);
     }
 
@@ -90,9 +90,9 @@ public class UserServiceTest extends AbstractConfigurationTest {
     }
 
     private void updateUser(User user) {
-        user.editName("Nahuel");
-        user.editEmail("xyz@abc.com");
-        user.editUserName("Messi");
+        user.setName("Nahuel");
+        user.setEmail("xyz@abc.com");
+        user.setUsername("Messi");
         this.userService.updateUser(user);
         userEquals(user);
     }

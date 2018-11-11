@@ -1,5 +1,5 @@
 /target/
-!.mvn/wrapper/maven-wrapper.jar
+
 
 ### STS ###
 .apt_generated
@@ -26,3 +26,6 @@
 
 ### logFile
 logClass.log
+/.mvn/
+/mvnw
+/mvnw.cmd

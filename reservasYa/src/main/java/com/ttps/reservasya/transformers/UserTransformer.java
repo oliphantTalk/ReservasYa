@@ -9,10 +9,10 @@ public class UserTransformer {
 
     public static User toUser(UserDTO userDTO){
         User user = new User();
-        user.editName(userDTO.getName());
-        user.editUserName(userDTO.getUsername());
-        user.editEmail(userDTO.getEmail());
-        user.editPassword(userDTO.getPassword());
+        user.setName(userDTO.getName());
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
         return user;
     }
 

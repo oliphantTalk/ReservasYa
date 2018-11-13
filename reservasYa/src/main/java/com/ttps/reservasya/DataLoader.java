@@ -3,7 +3,7 @@ package com.ttps.reservasya;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.ttps.reservasya.models.Role;
 import com.ttps.reservasya.models.User;
-import com.ttps.reservasya.models.repository.RoleRepository;
+import com.ttps.reservasya.repository.RoleRepository;
 import com.ttps.reservasya.services.UserService;
 import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

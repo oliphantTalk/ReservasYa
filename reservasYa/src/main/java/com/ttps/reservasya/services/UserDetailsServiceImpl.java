@@ -2,7 +2,7 @@ package com.ttps.reservasya.services;
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.User;
-import com.ttps.reservasya.models.repository.UserRepository;
+import com.ttps.reservasya.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) {
 
-            User user = userRepository.findByUserName(username).orElseThrow(UserNotFoundException::new);
+            User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
 
             Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 

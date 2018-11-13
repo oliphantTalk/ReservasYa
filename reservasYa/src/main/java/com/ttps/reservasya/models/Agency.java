@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name="agency")
-public class Agency implements Serializable {
+public class Agency extends BusinessEntity implements Serializable {
 
 
     private long id;
@@ -17,7 +17,6 @@ public class Agency implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
     public long getId() {
         return id;
     }
@@ -26,7 +25,6 @@ public class Agency implements Serializable {
         this.id = id;
     }
 
-    @Column(name="name")
     public String getName() {
         return name;
     }

@@ -17,8 +17,6 @@ public class Role implements Serializable {
     public Role() {
     }
 
-    ;
-
     public Role(String name) {
         this.name = name;
     }
@@ -33,7 +31,6 @@ public class Role implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "name")
     public String getName() {
         return name;
     }

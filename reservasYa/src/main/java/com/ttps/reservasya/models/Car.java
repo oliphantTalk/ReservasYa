@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "CAR")
-public class Car implements Serializable {
+public class Car extends BusinessEntityItem implements Serializable {
 
     private Long id;
     private String name;

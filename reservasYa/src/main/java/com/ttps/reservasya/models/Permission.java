@@ -21,7 +21,7 @@ public class Permission implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "NAME")
+
     public String getName() {
         return name;
     }

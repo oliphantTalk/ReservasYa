@@ -3,8 +3,8 @@ package com.ttps.reservasya.services;
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.User;
-import com.ttps.reservasya.models.repository.RoleRepository;
-import com.ttps.reservasya.models.repository.UserRepository;
+import com.ttps.reservasya.repository.RoleRepository;
+import com.ttps.reservasya.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findByUserName(String userName){
-        return this.userRepository.findByUserName(userName).orElseThrow(UserNotFoundException::new);
+        return this.userRepository.findByUsername(userName).orElseThrow(UserNotFoundException::new);
     }
 
     public User updateUser(User user) { return this.userRepository.save(user); }

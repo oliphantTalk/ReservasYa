@@ -1,6 +1,6 @@
-package com.ttps.reservasya.models.businessItem;
+package com.ttps.reservasya.models.businessitem;
 
-import com.ttps.reservasya.models.businessEntity.Airline;
+import com.ttps.reservasya.models.businessentity.Airline;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "FLIGTH")
-public class Fligth implements Serializable {
+public class Fligth extends BusinessItem implements Serializable {
 
     private Long id;
     private String flyCode;
@@ -21,7 +21,8 @@ public class Fligth implements Serializable {
     private LocalDate arrivalDate;
     private LocalTime departureTime;
     private LocalTime arrivalTime;
-    private int scales;
+    private LocalTime duration;
+    private int scales = 1;
     private Double price;
     private Airline airline;
     private List<FlightSeat> seats;
@@ -98,6 +99,15 @@ public class Fligth implements Serializable {
 
     public void setArrivalTime(LocalTime arrivalTime) {
         this.arrivalTime = arrivalTime;
+    }
+
+
+    public LocalTime getDuration() {
+        return duration;
+    }
+
+    public void setDuration(LocalTime duration) {
+        this.duration = duration;
     }
 
     public int getScales() {

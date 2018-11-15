@@ -1,6 +1,6 @@
-package com.ttps.reservasya.models.businessItem;
+package com.ttps.reservasya.models.businessitem;
 
-import com.ttps.reservasya.models.businessEntity.Hotel;
+import com.ttps.reservasya.models.businessentity.Hotel;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "ROOM")
-public class Room implements Serializable {
+public class Room extends BusinessItem implements Serializable {
 
     private Long id;
     private String roomId;

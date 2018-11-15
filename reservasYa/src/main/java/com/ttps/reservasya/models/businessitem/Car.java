@@ -1,13 +1,13 @@
-package com.ttps.reservasya.models.businessItem;
+package com.ttps.reservasya.models.businessitem;
 
-import com.ttps.reservasya.models.businessEntity.Agency;
+import com.ttps.reservasya.models.businessentity.Agency;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "CAR")
-public class Car implements Serializable {
+public class Car extends BusinessItem implements Serializable {
 
     private Long id;
     private String model;

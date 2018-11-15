@@ -3,6 +3,7 @@ package com.ttps.reservasya.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.ttps.reservasya.AbstractConfigurationTest;
+import com.ttps.reservasya.models.users.Role;
 import com.ttps.reservasya.models.users.User;
 import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.junit.Before;
@@ -39,7 +40,7 @@ public class UserServiceTest extends AbstractConfigurationTest {
             URL url = new URL("file:src/test/resources/users_h2.json");
             List<User> users = CustomObjectMapper.getMapper().readValue(url, new TypeReference<List<User>>() {
             });
-            users.forEach(val -> {if(!this.userService.findByEmail(val.getEmail()).isPresent()) this.userService.createUser(val);});
+            users.forEach(val -> {if(!this.userService.findByEmail(val.getEmail()).isPresent()) this.userService.createOne(val);});
             setUpIsDone = true;
         }
     }
@@ -47,14 +48,14 @@ public class UserServiceTest extends AbstractConfigurationTest {
     @Test(expected = ConstraintViolationException.class)
     public void userServiceTest_ValidationOnCreateFails(){
         User userBadEmail = new User("nano", "asdf", "asdfoj", "fdsjio");
-        this.userService.createUser(userBadEmail);
+        this.userService.createOne(userBadEmail);
     }
 
     @Test(expected = TransactionSystemException.class)
     public void userServiceTest_ValidationOnUpdateFails(){
         User userWillFail = this.userService.findOne(5L).get();
         userWillFail.setEmail("bad_email");
-        this.userService.updateUser(userWillFail);
+        this.userService.updateOne(userWillFail);
     }
 
     @Test
@@ -66,8 +67,8 @@ public class UserServiceTest extends AbstractConfigurationTest {
 
     @Test
     public void userServiceTest_findAll() {
-        assertThat("Se espera que haiga 5 usuarios en la base", this.userService.findAll().size(), equalTo(5));
-        this.userService.findAll().forEach(this::userEquals);
+        assertThat("Se espera que haiga 5 usuarios en la base", this.userService.findAll().get().size(), equalTo(5));
+        this.userService.findAll().get().forEach(this::userEquals);
     }
 
     @Test
@@ -84,7 +85,7 @@ public class UserServiceTest extends AbstractConfigurationTest {
 
     private User createUser() {
         User user = new User("Nano", "Chapu", "abc@xyz.com", "fdsjio");
-        this.userService.createUser(user);
+        this.userService.createOne(user);
         userEquals(user);
         return user;
     }
@@ -93,12 +94,12 @@ public class UserServiceTest extends AbstractConfigurationTest {
         user.setName("Nahuel");
         user.setEmail("xyz@abc.com");
         user.setUsername("Messi");
-        this.userService.updateUser(user);
+        this.userService.updateOne(user);
         userEquals(user);
     }
 
     private void deleteUser(User user){
-        this.userService.deleteUser(user);
+        this.userService.deleteOne(user.getId());
         userWasDeleted(user.getId());
     }
 

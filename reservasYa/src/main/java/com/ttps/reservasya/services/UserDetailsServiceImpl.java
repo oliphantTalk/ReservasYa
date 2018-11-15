@@ -19,8 +19,6 @@ import java.util.Set;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserDetailsService.class);
-
     private final UserRepository userRepository;
 
     @Autowired
@@ -31,15 +29,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) {
-
-            User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-
-            Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-
+        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
-
-            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
-
-
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
 }

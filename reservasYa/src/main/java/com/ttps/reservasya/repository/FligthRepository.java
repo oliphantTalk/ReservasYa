@@ -1,6 +1,6 @@
 package com.ttps.reservasya.repository;
 
-import com.ttps.reservasya.models.businessItem.Car;
+import com.ttps.reservasya.models.businessitem.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

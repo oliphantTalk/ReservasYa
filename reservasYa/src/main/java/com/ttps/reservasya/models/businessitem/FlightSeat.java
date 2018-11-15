@@ -1,4 +1,4 @@
-package com.ttps.reservasya.models.businessItem;
+package com.ttps.reservasya.models.businessitem;
 
 
 

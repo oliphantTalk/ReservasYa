@@ -39,7 +39,7 @@ public class HomeController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-        userService.createUser(UserTransformer.toUser(userForm));
+        userService.createOne(UserTransformer.toUser(userForm));
         securityService.autologin(userForm.getUsername(), userForm.getPassword());
         return "redirect:/welcome";
     }

@@ -1,4 +1,4 @@
-package com.ttps.reservasya;
+package com.ttps.reservasya.config;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.ttps.reservasya.models.users.Role;
@@ -35,7 +35,7 @@ public class DataLoader implements ApplicationRunner {
         List<Role> roles = CustomObjectMapper.getMapper().readValue(new URL("file:src/test/resources/roles_h2.json"), new TypeReference<List<Role>>() {
         });
         roles.forEach(this.roleService::createOne);
-        users.forEach(this.userService::createUser);
+        users.forEach(this.userService::createOne);
 
     }
 

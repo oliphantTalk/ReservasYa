@@ -33,7 +33,7 @@ public class UserController {
     @GetMapping(value = "/users")
     @ResponseBody
     public List<UserDTO> getUsers(){
-        return this.userService.findAll().stream().map(UserDTO::new).collect(Collectors.toList());
+        return this.userService.findAll().orElseThrow(UserNotFoundException::new).stream().map(UserDTO::new).collect(Collectors.toList());
     }
 
     @GetMapping(value = "/users/email/{email}")
@@ -62,6 +62,6 @@ public class UserController {
 
     @PutMapping(value = "/user")
     public void addUser(@RequestBody @Valid final UserDTO userDTO){
-        this.userService.createUser(UserTransformer.toUser(userDTO));
+        this.userService.createOne(UserTransformer.toUser(userDTO));
     }
 }

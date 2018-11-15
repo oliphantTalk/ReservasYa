@@ -118,5 +118,8 @@ public class User implements Serializable {
                 && Objects.equals(username, user.username);
     }
 
-
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

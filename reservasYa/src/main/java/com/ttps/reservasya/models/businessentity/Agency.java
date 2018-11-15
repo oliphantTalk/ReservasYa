@@ -1,6 +1,6 @@
-package com.ttps.reservasya.models.businessEntity;
+package com.ttps.reservasya.models.businessentity;
 
-import com.ttps.reservasya.models.businessItem.Car;
+import com.ttps.reservasya.models.businessitem.Car;
 
 import javax.persistence.*;
 import java.io.Serializable;

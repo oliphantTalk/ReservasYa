@@ -1,0 +1,18 @@
+order_manager:
+  '/orders':
+  - 'GET'
+  - 'POST'
+  - 'PUT'
+  - 'DELETE'
+order_editor:
+  '/orders':
+  - 'GET'
+  - 'POST'
+  - 'PUT'
+order_inspector:
+  '/orders':
+  - 'GET'
+
+  #https://cloudify.co/2016/04/15/simple-secure-role-based-access-control-rest-api-rbac-server-devops-cloud-orchestration.html
+  #https://dzone.com/articles/weekly-api-security-newsletter-launched
+  #https://docs.spring.io/autorepo/docs/spring-security/4.2.x/reference/html/el-access.html#el-access-web-path-variables

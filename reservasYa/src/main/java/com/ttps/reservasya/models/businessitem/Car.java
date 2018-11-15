@@ -10,10 +10,12 @@ import java.io.Serializable;
 public class Car extends BusinessItem implements Serializable {
 
     private Long id;
+    private String description;
     private String model;
     private int year;
     private String patent;
     private Agency agency;
+    private Double price;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +27,21 @@ public class Car extends BusinessItem implements Serializable {
         this.id = id;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
     public String getModel() {
         return model;

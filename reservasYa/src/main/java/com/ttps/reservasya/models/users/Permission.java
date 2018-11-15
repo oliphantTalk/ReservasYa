@@ -10,6 +10,7 @@ public class Permission implements Serializable {
 
     private Long id;
     private String name;
+    private String description;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +31,11 @@ public class Permission implements Serializable {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
-
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

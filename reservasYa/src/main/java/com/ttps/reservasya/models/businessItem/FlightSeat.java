@@ -1,4 +1,4 @@
-package com.ttps.reservasya.models;
+package com.ttps.reservasya.models.businessItem;
 
 
 
@@ -6,8 +6,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Embeddable
 public class FlightSeat implements Serializable {
-
-
 
     private String seatId;
     private SeatClass seatClass;

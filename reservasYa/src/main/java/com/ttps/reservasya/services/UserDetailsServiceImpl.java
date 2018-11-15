@@ -1,7 +1,7 @@
 package com.ttps.reservasya.services;
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
-import com.ttps.reservasya.models.User;
+import com.ttps.reservasya.models.users.User;
 import com.ttps.reservasya.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -3,7 +3,7 @@ package com.ttps.reservasya.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.ttps.reservasya.AbstractConfigurationTest;
-import com.ttps.reservasya.models.User;
+import com.ttps.reservasya.models.users.User;
 import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.junit.Before;
 import org.junit.Test;

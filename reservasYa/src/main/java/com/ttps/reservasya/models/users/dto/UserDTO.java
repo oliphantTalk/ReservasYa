@@ -1,7 +1,7 @@
-package com.ttps.reservasya.models.dto;
+package com.ttps.reservasya.models.users.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.ttps.reservasya.models.User;
+import com.ttps.reservasya.models.users.User;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

@@ -1,4 +1,4 @@
-package com.ttps.reservasya.models;
+package com.ttps.reservasya.models.transaction;
 
 public class FinishedTransaction extends StateTransaction {
 }

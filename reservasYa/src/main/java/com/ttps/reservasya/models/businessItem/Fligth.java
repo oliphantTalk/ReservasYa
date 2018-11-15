@@ -1,17 +1,20 @@
-package com.ttps.reservasya.models;
+package com.ttps.reservasya.models.businessItem;
+
+import com.ttps.reservasya.models.businessEntity.Airline;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "FLIGTH")
-public class Fligth extends BusinessEntityItem implements Serializable {
+public class Fligth implements Serializable {
 
-    private long id;
+    private Long id;
+    private String flyCode;
     private String from;
     private String to;
     private LocalDate departureDate;
@@ -24,13 +27,23 @@ public class Fligth extends BusinessEntityItem implements Serializable {
     private List<FlightSeat> seats;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    public long getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    @NaturalId
+    @Column(name = "FLY_CODE")
+    public String getFlyCode() {
+        return flyCode;
+    }
+
+    public void setFlyCode(String flyCode) {
+        this.flyCode = flyCode;
     }
 
     @Column(name = "CITY_FROM")

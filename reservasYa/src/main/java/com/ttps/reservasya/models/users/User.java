@@ -1,4 +1,4 @@
-package com.ttps.reservasya.models;
+package com.ttps.reservasya.models.users;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -82,7 +82,7 @@ public class User implements Serializable {
     }
 
     @JoinColumn(name = "ROLE_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     public Role getRole() {
         return role;
     }

@@ -1,15 +1,17 @@
-package com.ttps.reservasya.models;
+package com.ttps.reservasya.models.businessItem;
+
+import com.ttps.reservasya.models.businessEntity.Agency;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "CAR")
-public class Car extends BusinessEntityItem implements Serializable {
+public class Car implements Serializable {
 
     private Long id;
-    private String name;
     private String model;
+    private int year;
     private String patent;
     private Agency agency;
 
@@ -23,13 +25,6 @@ public class Car extends BusinessEntityItem implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getModel() {
         return model;
@@ -37,6 +32,14 @@ public class Car extends BusinessEntityItem implements Serializable {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public String getPatent() {

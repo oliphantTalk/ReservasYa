@@ -1,7 +1,7 @@
 package com.ttps.reservasya.controllers;
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
-import com.ttps.reservasya.models.dto.UserDTO;
+import com.ttps.reservasya.models.users.dto.UserDTO;
 import com.ttps.reservasya.services.UserService;
 import com.ttps.reservasya.transformers.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;

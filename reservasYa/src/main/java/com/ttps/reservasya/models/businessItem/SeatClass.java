@@ -1,4 +1,4 @@
-package com.ttps.reservasya.models;
+package com.ttps.reservasya.models.businessItem;
 
 public enum SeatClass {
     ECONOMIC, BUSINESS, FIRST

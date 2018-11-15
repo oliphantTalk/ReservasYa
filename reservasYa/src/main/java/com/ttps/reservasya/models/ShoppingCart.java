@@ -4,6 +4,6 @@ import java.util.List;
 
 public class ShoppingCart {
 
-    private List<BusinessEntityItem> items;
+    private List<BusinessItem> items;
 
 }

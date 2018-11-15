@@ -1,19 +1,18 @@
-package com.ttps.reservasya.models;
+package com.ttps.reservasya.models.businessEntity;
+
+import com.ttps.reservasya.models.businessItem.Fligth;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="agency")
-public class Agency extends BusinessEntity implements Serializable {
-
+@Table(name = "AIRLINE")
+public class Airline implements Serializable {
 
     private long id;
     private String name;
-    private List<Car> cars = new ArrayList<>();
-
+    private List<Fligth> fligths;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -33,15 +32,16 @@ public class Agency extends BusinessEntity implements Serializable {
         this.name = name;
     }
 
-    @ElementCollection(targetClass = Car.class)
-    @Column(name = "cars_available")
-    public List<Car> getCars() {
-        return cars;
+    @ElementCollection(targetClass = Fligth.class)
+    public List<Fligth> getFligths() {
+        return fligths;
     }
 
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
+    public void setFligths(List<Fligth> fligths) {
+        this.fligths = fligths;
     }
+
+
 
 
 }

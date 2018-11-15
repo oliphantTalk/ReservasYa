@@ -2,8 +2,8 @@ package com.ttps.reservasya.services;
 
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
-import com.ttps.reservasya.models.User;
-import com.ttps.reservasya.repository.RoleRepository;
+import com.ttps.reservasya.models.users.Role;
+import com.ttps.reservasya.models.users.User;
 import com.ttps.reservasya.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,46 +17,14 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-
-    private UserRepository userRepository;
-
-    private RoleRepository roleRepository;
-
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    public RoleRepository getRoleRepository() {
-        return roleRepository;
-    }
-
-
-
-    @Autowired
-    public void setRoleRepository(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
-
-    public BCryptPasswordEncoder getbCryptPasswordEncoder() {
-        return bCryptPasswordEncoder;
-    }
-
-    @Autowired
-    public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
-
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public UserRepository getUserRepository() {
-        return userRepository;
-    }
+    private  UserRepository userRepository;
+    private  RoleService roleService;
+    private  BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public List<User> findAll() {
         return this.userRepository.findAll();
@@ -84,12 +52,39 @@ public class UserServiceImpl implements UserService {
     public User createUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         if (user.getRole() == null) {
-            user.setRole(this.roleRepository.getOne(1L));
+            // FIXME esto no se si sirve asi...
+            user.setRole(this.roleService.findOne(user.getId()).orElse(new Role()));
         }
         return this.userRepository.save(user);
     }
 
 
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
 
 
+    public RoleService getRoleService() {
+        return roleService;
+    }
+
+
+    public BCryptPasswordEncoder getbCryptPasswordEncoder() {
+        return bCryptPasswordEncoder;
+    }
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
+    }
+
+    @Autowired
+    public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 }

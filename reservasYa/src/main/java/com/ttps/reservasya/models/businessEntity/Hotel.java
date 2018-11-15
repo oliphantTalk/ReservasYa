@@ -1,6 +1,6 @@
-package com.ttps.reservasya.models;
+package com.ttps.reservasya.models.businessEntity;
 
-import org.springframework.data.jpa.repository.Query;
+import com.ttps.reservasya.models.businessItem.Room;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "HOTEL")
-public class Hotel extends BusinessEntity implements Serializable {
+public class Hotel implements Serializable {
 
     private long id;
     private String name;

@@ -3,8 +3,8 @@ package com.ttps.reservasya.config;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.ttps.reservasya.models.users.Role;
 import com.ttps.reservasya.models.users.User;
-import com.ttps.reservasya.services.RoleService;
-import com.ttps.reservasya.services.UserService;
+import com.ttps.reservasya.services.modelcrud.RoleService;
+import com.ttps.reservasya.services.modelcrud.UserService;
 import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -34,8 +34,9 @@ public class DataLoader implements ApplicationRunner {
         });
         List<Role> roles = CustomObjectMapper.getMapper().readValue(new URL("file:src/test/resources/roles_h2.json"), new TypeReference<List<Role>>() {
         });
-        roles.forEach(this.roleService::createOne);
-        users.forEach(this.userService::createOne);
+
+        roleService.createAll(roles);
+        userService.createAll(users);
 
     }
 

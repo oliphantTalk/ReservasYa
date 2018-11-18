@@ -1,4 +1,4 @@
-package com.ttps.reservasya.services;
+package com.ttps.reservasya.services.nonModel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

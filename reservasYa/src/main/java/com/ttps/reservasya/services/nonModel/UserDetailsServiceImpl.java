@@ -1,4 +1,4 @@
-package com.ttps.reservasya.services;
+package com.ttps.reservasya.services.nonModel;
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.users.User;

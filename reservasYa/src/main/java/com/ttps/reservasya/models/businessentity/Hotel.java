@@ -1,6 +1,7 @@
 package com.ttps.reservasya.models.businessentity;
 
 import com.ttps.reservasya.models.businessitem.Room;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,11 +27,9 @@ public class Hotel implements Serializable {
         this.id = id;
     }
 
-    @Column(unique = true)
-    public String getName() {
+    @NaturalId(mutable = true)    public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }

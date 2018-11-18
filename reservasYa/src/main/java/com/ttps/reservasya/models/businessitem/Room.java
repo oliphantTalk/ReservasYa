@@ -26,7 +26,7 @@ public class Room extends BusinessItem implements Serializable {
         this.id = id;
     }
 
-    @NaturalId
+
     public String getRoomId() {
         return roomId;
     }

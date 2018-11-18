@@ -1,6 +1,7 @@
 package com.ttps.reservasya.models.businessentity;
 
 import com.ttps.reservasya.models.businessitem.Car;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,6 +28,7 @@ public class Agency implements Serializable {
         this.id = id;
     }
 
+    @NaturalId(mutable = true)
     public String getName() {
         return name;
     }

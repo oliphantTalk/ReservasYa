@@ -1,9 +1,8 @@
-package com.ttps.reservasya.services;
+package com.ttps.reservasya.services.modelcrud;
 
 
 import com.ttps.reservasya.exceptions.NoElementInDBException;
 import com.ttps.reservasya.exceptions.UserNotFoundException;
-import com.ttps.reservasya.models.users.Role;
 import com.ttps.reservasya.models.users.User;
 import com.ttps.reservasya.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,54 +11,39 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.Email;
-import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements BasicCrudService<User> {
+public class UserService extends BasicCrudService<User, UserRepository> {
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    private  UserRepository userRepository;
     private  RoleService roleService;
     private  BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public Optional<User> findOne(Long id) {
-        return this.userRepository.findById(id);
+    
+    public UserService(UserRepository userRepository){
+        super(userRepository);
     }
-
-    public Optional<List<User>> findAll() {
-        return Optional.of(this.userRepository.findAll());
-    }
-
+    
+    @Override
     public User createOne(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         if (user.getRole() == null) {
-            user.setRole(this.roleService.findOne(1L).orElseThrow(NoElementInDBException::new));
+            user.setRole(this.roleService.findById(1L).orElseThrow(NoElementInDBException::new));
         }
-        return this.userRepository.save(user);
-    }
-
-    public User updateOne(User user) { return this.userRepository.save(user); }
-
-    public void deleteOne(Long id) {
-        this.userRepository.deleteById(id);
+        return repository.save(user);
     }
 
     public Optional<User> findByEmail(@Email String email){
-        return this.userRepository.findByEmail(email);
+        return repository.findByEmail(email);
     }
 
     public User findByUserName(String userName){
-        return this.userRepository.findByUsername(userName).orElseThrow(UserNotFoundException::new);
-    }
-
-
-    public UserRepository getUserRepository() {
-        return userRepository;
+        return repository.findByUsername(userName).orElseThrow(UserNotFoundException::new);
     }
 
     public RoleService getRoleService() {
@@ -68,11 +52,6 @@ public class UserService implements BasicCrudService<User> {
 
     public BCryptPasswordEncoder getbCryptPasswordEncoder() {
         return bCryptPasswordEncoder;
-    }
-
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
     }
 
     @Autowired

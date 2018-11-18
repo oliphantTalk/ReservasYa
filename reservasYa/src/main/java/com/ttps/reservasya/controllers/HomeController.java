@@ -1,8 +1,8 @@
 package com.ttps.reservasya.controllers;
 
 import com.ttps.reservasya.models.users.dto.UserDTO;
-import com.ttps.reservasya.services.SecurityService;
-import com.ttps.reservasya.services.UserService;
+import com.ttps.reservasya.services.nonModel.SecurityService;
+import com.ttps.reservasya.services.modelcrud.UserService;
 import com.ttps.reservasya.transformers.UserTransformer;
 import com.ttps.reservasya.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;

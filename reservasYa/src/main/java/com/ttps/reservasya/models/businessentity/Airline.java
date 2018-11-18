@@ -1,6 +1,8 @@
 package com.ttps.reservasya.models.businessentity;
 
-import com.ttps.reservasya.models.businessitem.Fligth;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ttps.reservasya.models.businessitem.Flight;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +14,9 @@ public class Airline implements Serializable {
 
     private long id;
     private String name;
-    private List<Fligth> fligths;
+    @JsonProperty("short_name")
+    private String shortName;
+    private List<Flight> flights;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -24,6 +28,7 @@ public class Airline implements Serializable {
         this.id = id;
     }
 
+    @NaturalId(mutable = true)
     public String getName() {
         return name;
     }
@@ -32,13 +37,21 @@ public class Airline implements Serializable {
         this.name = name;
     }
 
-    @ElementCollection(targetClass = Fligth.class)
-    public List<Fligth> getFligths() {
-        return fligths;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setFligths(List<Fligth> fligths) {
-        this.fligths = fligths;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    @ElementCollection(targetClass = Flight.class)
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
     }
 
 

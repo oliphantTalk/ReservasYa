@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "FLIGTH")
-public class Fligth extends BusinessItem implements Serializable {
+public class Flight extends BusinessItem implements Serializable {
 
     private Long id;
     private String flyCode;

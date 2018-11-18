@@ -58,20 +58,4 @@ public class Role implements Serializable {
         this.permissions = permissions;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        // self check
-        if (this == o)
-            return true;
-        // null check
-        if (o == null)
-            return false;
-        // type check and cast
-        if (getClass() != o.getClass())
-            return false;
-        Role role = (Role) o;
-        // field comparison
-        return Objects.equals(name, role.name);
-    }
-
 }

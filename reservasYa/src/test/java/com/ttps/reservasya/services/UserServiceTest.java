@@ -3,8 +3,9 @@ package com.ttps.reservasya.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.ttps.reservasya.AbstractConfigurationTest;
-import com.ttps.reservasya.models.users.Role;
+
 import com.ttps.reservasya.models.users.User;
+import com.ttps.reservasya.services.modelcrud.UserService;
 import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,7 +54,7 @@ public class UserServiceTest extends AbstractConfigurationTest {
 
     @Test(expected = TransactionSystemException.class)
     public void userServiceTest_ValidationOnUpdateFails(){
-        User userWillFail = this.userService.findOne(5L).get();
+        User userWillFail = this.userService.findById(5L).get();
         userWillFail.setEmail("bad_email");
         this.userService.updateOne(userWillFail);
     }
@@ -67,8 +68,8 @@ public class UserServiceTest extends AbstractConfigurationTest {
 
     @Test
     public void userServiceTest_findAll() {
-        assertThat("Se espera que haiga 5 usuarios en la base", this.userService.findAll().get().size(), equalTo(5));
-        this.userService.findAll().get().forEach(this::userEquals);
+        assertThat("Se espera que haiga 5 usuarios en la base", this.userService.findAll().size(), equalTo(5));
+        this.userService.findAll().forEach(this::userEquals);
     }
 
     @Test
@@ -99,12 +100,12 @@ public class UserServiceTest extends AbstractConfigurationTest {
     }
 
     private void deleteUser(User user){
-        this.userService.deleteOne(user.getId());
+        this.userService.deleteById(user.getId());
         userWasDeleted(user.getId());
     }
 
     private void userWasDeleted(long id){
-        assertFalse(this.userService.findOne(id).isPresent());
+        assertFalse(this.userService.findById(id).isPresent());
     }
 
     private void userEquals(User user)  {
@@ -114,10 +115,10 @@ public class UserServiceTest extends AbstractConfigurationTest {
             LOGGER.info("Excepcion", e);
         }
         long id = user.getId();
-        assertTrue(this.userService.findOne(id).isPresent());
-        assertEquals(String.format("Se espera que el nombre del usuario sea%s", user.getName()), user.getName(), this.userService.findOne(id).get().getName());
-        assertEquals(String.format("Se espera que el UserName sea %s", user.getUsername()), user.getUsername(), this.userService.findOne(id).get().getUsername());
-        assertEquals(String.format("Se espera que el email sea %s", user.getEmail()), user.getEmail(), this.userService.findOne(id).get().getEmail());
+        assertTrue(this.userService.findById(id).isPresent());
+        assertEquals(String.format("Se espera que el nombre del usuario sea%s", user.getName()), user.getName(), this.userService.findById(id).get().getName());
+        assertEquals(String.format("Se espera que el UserName sea %s", user.getUsername()), user.getUsername(), this.userService.findById(id).get().getUsername());
+        assertEquals(String.format("Se espera que el email sea %s", user.getEmail()), user.getEmail(), this.userService.findById(id).get().getEmail());
     }
 
 

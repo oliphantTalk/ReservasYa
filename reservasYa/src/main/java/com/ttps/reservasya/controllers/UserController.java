@@ -2,7 +2,7 @@ package com.ttps.reservasya.controllers;
 
 import com.ttps.reservasya.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.users.dto.UserDTO;
-import com.ttps.reservasya.services.UserService;
+import com.ttps.reservasya.services.modelcrud.UserService;
 import com.ttps.reservasya.transformers.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,13 +27,13 @@ public class UserController {
     @GetMapping(value = "/user/{id}")
     @ResponseBody
     public UserDTO getUser(@PathVariable("id") Long id) {
-        return new UserDTO(this.userService.findOne(id).orElseThrow(UserNotFoundException::new));
+        return new UserDTO(this.userService.findById(id).orElseThrow(UserNotFoundException::new));
     }
 
     @GetMapping(value = "/users")
     @ResponseBody
     public List<UserDTO> getUsers(){
-        return this.userService.findAll().orElseThrow(UserNotFoundException::new).stream().map(UserDTO::new).collect(Collectors.toList());
+        return this.userService.findAll().stream().map(UserDTO::new).collect(Collectors.toList());
     }
 
     @GetMapping(value = "/users/email/{email}")

@@ -3,7 +3,7 @@ package com.ttps.reservasya.validator;
 import com.ttps.reservasya.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.users.User;
 import com.ttps.reservasya.models.users.dto.UserDTO;
-import com.ttps.reservasya.services.UserService;
+import com.ttps.reservasya.services.modelcrud.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

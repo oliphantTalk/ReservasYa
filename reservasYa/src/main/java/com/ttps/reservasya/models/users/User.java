@@ -82,7 +82,7 @@ public class User implements Serializable {
     }
 
     @JoinColumn(name = "ROLE_ID")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER)
     public Role getRole() {
         return role;
     }

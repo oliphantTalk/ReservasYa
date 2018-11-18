@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,9 +15,9 @@ public class UserSettings implements Serializable {
 
     private Long id;
     private User user;
-    private List<UserHistory> historyList;
-    private LocalDateTime lastLogin;
-    private BigDecimal pointsToUse;
+    private List<UserHistory> historyList = new ArrayList<>();
+    private LocalDateTime lastLogin = LocalDateTime.now();
+    private BigDecimal pointsToUse = BigDecimal.valueOf(0);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

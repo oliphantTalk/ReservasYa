@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "description": "Este auto es malisimo",
+    "model": "Toyota Corolla",
+    "year": 2018,
+    "patent": "asd123",
+    "agency": {
+    },
+    "price": 1234.0
+  }
+]

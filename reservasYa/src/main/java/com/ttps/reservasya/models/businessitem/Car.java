@@ -67,8 +67,7 @@ public class Car extends BusinessItem implements Serializable {
         this.patent = patent;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "agency_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     public Agency getAgency() {
         return agency;
     }

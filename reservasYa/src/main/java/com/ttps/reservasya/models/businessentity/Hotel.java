@@ -27,14 +27,17 @@ public class Hotel implements Serializable {
         this.id = id;
     }
 
-    @NaturalId(mutable = true)    public String getName() {
+    @NaturalId(mutable = true)
+    public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    @ElementCollection(targetClass = Room.class)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "hotel")
+    @ElementCollection(targetClass = Room.class, fetch = FetchType.EAGER)
     public List<Room> getRooms() {
         return rooms;
     }

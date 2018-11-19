@@ -27,6 +27,8 @@ public class Flight extends BusinessItem implements Serializable {
     private Airline airline;
     private List<FlightSeat> seats;
 
+    public Flight(){}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -126,8 +128,7 @@ public class Flight extends BusinessItem implements Serializable {
         this.price = price;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "AIRLINE_ID")
+    @ManyToOne(cascade = CascadeType.ALL)
     public Airline getAirline() {
         return airline;
     }

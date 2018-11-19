@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "roomId": "2a",
+    "beds": 3,
+    "hotel": {
+      "id": 1,
+      "name": "Hotel Carisimo",
+      "stars": 4,
+      "roomsAvailable": 10
+    },
+    "price": 1400.0
+  },
+  {
+    "id": 2,
+    "roomId": "3a",
+    "beds": 3,
+    "hotel": {
+      "id": 1,
+      "name": "Hotel Carisimo",
+      "stars": 4,
+      "roomsAvailable": 10
+    },
+    "price": 1400.0
+  }
+]

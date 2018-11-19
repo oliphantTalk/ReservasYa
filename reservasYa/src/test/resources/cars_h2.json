@@ -6,6 +6,8 @@
     "year": 2018,
     "patent": "asd123",
     "agency": {
+      "id": 1,
+      "name": "AVIS"
     },
     "price": 1234.0
   }

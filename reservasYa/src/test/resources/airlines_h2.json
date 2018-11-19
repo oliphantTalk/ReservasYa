@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Aerolineas Argentinas",
+    "short_name": "AA"
+  },
+  {
+    "id": 2,
+    "name": "Lan Chile",
+    "short_name": "LAN"
+  },
+  {
+    "id": 3,
+    "name": "Lufthansa",
+    "short_name": "LTH"
+  }
+]

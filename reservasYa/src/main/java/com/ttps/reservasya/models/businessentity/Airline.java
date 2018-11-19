@@ -45,6 +45,7 @@ public class Airline implements Serializable {
         this.shortName = shortName;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "airline")
     @ElementCollection(targetClass = Flight.class)
     public List<Flight> getFlights() {
         return flights;

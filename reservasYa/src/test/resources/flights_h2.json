@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "flyCode": "a67123jh",
+    "from": "bs",
+    "to": "mia",
+    "departureDate": "2018-12-12",
+    "arrivalDate": "2018-12-20",
+    "departureTime": "10:30:39.884",
+    "arrivalTime": "12:30:39.884",
+    "duration": null,
+    "scales": 1,
+    "price": 5000.34,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  }
+]

@@ -59,7 +59,7 @@ public class DataLoader implements ApplicationRunner {
         });
 
         roleService.createAll(roles);
-        userService.createAll(users);
+        users.forEach(userService::createOne);
         airlineService.createFlights(flights);
         airlineService.createAll(airlines);
         agencyService.createCars(cars);

@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Entity
-@Table(name = "FLIGTH")
+@Table(name = "FLIGHT")
 public class Flight extends BusinessItem implements Serializable {
 
     private Long id;

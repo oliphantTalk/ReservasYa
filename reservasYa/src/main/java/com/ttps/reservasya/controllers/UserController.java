@@ -6,6 +6,7 @@ import com.ttps.reservasya.services.modelcrud.UserService;
 import com.ttps.reservasya.transformers.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,6 +31,7 @@ public class UserController {
         return new UserDTO(this.userService.findById(id).orElseThrow(UserNotFoundException::new));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/users")
     @ResponseBody
     public List<UserDTO> getUsers(){

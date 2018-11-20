@@ -5,8 +5,7 @@
     "email": "abc@xyza.aaa",
     "password": "easyPass",
     "role": {
-      "id": 1,
-      "name": "ROLE_USER"
+      "id": 1
     }
   },
   {
@@ -15,8 +14,7 @@
     "email": "abc@xyzb.aaa",
     "password": "easyPass",
     "role": {
-      "id": 1,
-      "name": "ROLE_USER"
+      "id": 1
     }
   },
   {
@@ -25,8 +23,7 @@
     "email": "abc@xyzc.aaa",
     "password": "easyPass",
     "role": {
-      "id": 2,
-      "name": "ROLE_USER"
+      "id": 2
     }
   },
   {
@@ -35,8 +32,7 @@
     "email": "abc@xyzd.aaa",
     "password": "easyPass",
     "role": {
-      "id": 1,
-      "name": "ROLE_USER"
+      "id": 1
     }
   },
   {
@@ -45,8 +41,7 @@
     "email": "willFail@OnUpdate.aaa",
     "password": "easyPass",
     "role": {
-      "id": 1,
-      "name": "ROLE_USER"
+      "id": 1
     }
   }
 ]

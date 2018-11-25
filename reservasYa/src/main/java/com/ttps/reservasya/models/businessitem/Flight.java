@@ -1,11 +1,13 @@
 package com.ttps.reservasya.models.businessitem;
 
 import com.ttps.reservasya.models.businessentity.Airline;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -17,17 +19,17 @@ public class Flight extends BusinessItem implements Serializable {
     private String flyCode;
     private String from;
     private String to;
-    private LocalDate departureDate;
-    private LocalDate arrivalDate;
-    private LocalTime departureTime;
-    private LocalTime arrivalTime;
-    private LocalTime duration;
+    private LocalDateTime departureDate;
+    private LocalDateTime arrivalDate;
+    private String duration;
     private int scales = 1;
     private Double price;
     private Airline airline;
     private List<FlightSeat> seats;
 
-    public Flight(){}
+    public Flight() {
+    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,47 +70,29 @@ public class Flight extends BusinessItem implements Serializable {
     }
 
     @Column(name = "DEPARTURE_DATE")
-    public LocalDate getDepartureDate() {
+    public LocalDateTime getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(LocalDate departureDate) {
+    public void setDepartureDate(LocalDateTime departureDate) {
         this.departureDate = departureDate;
     }
 
     @Column(name = "ARRIVAL_DATE")
-    public LocalDate getArrivalDate() {
+    public LocalDateTime getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(LocalDate arrivalDate) {
+    public void setArrivalDate(LocalDateTime arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    @Column(name = "DEPARTURE_TIME")
-    public LocalTime getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(LocalTime departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    @Column(name = "ARRIVAL_TIME")
-    public LocalTime getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(LocalTime arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
-
-
-    public LocalTime getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(LocalTime duration) {
+
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -145,5 +129,11 @@ public class Flight extends BusinessItem implements Serializable {
 
     public void setSeats(List<FlightSeat> seats) {
         this.seats = seats;
+    }
+
+    @PrePersist
+    public void configDuration(){
+        String duration = Duration.between(this.departureDate, this.arrivalDate).toString();
+        this.setDuration(duration.split("PT")[1]);
     }
 }

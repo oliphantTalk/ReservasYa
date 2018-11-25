@@ -38,7 +38,7 @@ public class SecurityService {
 
         if (usernamePasswordAuthenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            LOGGER.info(String.format("Auto login %s successfully!", username));
+            LOGGER.info("Auto login {} successfully!", username);
         }
         else{
             LOGGER.info("No se pudo loguear");

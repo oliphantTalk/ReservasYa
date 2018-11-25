@@ -16,6 +16,7 @@ public class AgencyService extends BasicCrudService<Agency, AgencyRepository> {
     private CarRepository carRepository;
 
     public AgencyService(){};
+
     @Autowired
     public AgencyService(AgencyRepository agencyRepository, CarRepository carRepository) {
         super(agencyRepository);

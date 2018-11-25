@@ -1,0 +1,21 @@
+[
+  {
+
+    "type": "PENDING"
+  },
+  {
+    "type": "STARTED"
+  },
+  {
+    "type": "FINISHED"
+  },
+  {
+    "type": "CANCELLED"
+  },
+  {
+    "type": "ROLLBACKED"
+  },
+  {
+    "type": "PAUSED"
+  }
+]

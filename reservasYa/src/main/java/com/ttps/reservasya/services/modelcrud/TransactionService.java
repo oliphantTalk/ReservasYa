@@ -1,35 +1,56 @@
 package com.ttps.reservasya.services.modelcrud;
 
+import com.ttps.reservasya.models.transaction.StateTransaction;
 import com.ttps.reservasya.models.transaction.Transaction;
 import com.ttps.reservasya.repository.TransactionRepository;
+import com.ttps.reservasya.repository.TransactionStateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TransactionService extends BasicCrudService<Transaction, TransactionRepository> {
 
-    private final TransactionRepository transactionRepository;
+    private TransactionStateRepository transactionStateRepository;
+
+    public TransactionService(){};
 
     @Autowired
-    public TransactionService(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
+    public TransactionService(TransactionRepository transactionRepository, TransactionStateRepository transactionStateRepository) {
+        super(transactionRepository);
+        this.transactionStateRepository = transactionStateRepository;
     }
 
     public void start(Transaction transaction){
-        transaction.getState().doStart(transaction);
+        transaction.start();
+        updateOne(transaction);
     }
 
     public void cancel(Transaction transaction){
-        transaction.getState().doCancel(transaction);
+        transaction.cancel();
+        updateOne(transaction);
     }
 
     public void pause(Transaction transaction){
-        transaction.getState().doPause(transaction);
+        transaction.pause();
+        updateOne(transaction);
     }
 
     public void finish(Transaction transaction){
-        transaction.getState().doFinish(transaction);
+        transaction.finish();
+        updateOne(transaction);
     }
 
+
+    public List<StateTransaction> createStates(List<StateTransaction> transactionStates){
+        return this.transactionStateRepository.saveAll(transactionStates);
+    }
+
+    @Override
+    public Transaction createOne(Transaction transaction){
+        transaction.getState().setId(this.transactionStateRepository.findByType(transaction.getState().getType()).getId());
+        return this.repository.save(transaction);
+    }
 
 }

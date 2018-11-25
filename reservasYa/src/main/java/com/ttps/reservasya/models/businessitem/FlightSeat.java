@@ -1,7 +1,4 @@
 package com.ttps.reservasya.models.businessitem;
-
-
-
 import javax.persistence.*;
 import java.io.Serializable;
 @Embeddable

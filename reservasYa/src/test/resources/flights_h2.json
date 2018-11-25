@@ -4,11 +4,8 @@
     "flyCode": "a67123jh",
     "from": "bs",
     "to": "mia",
-    "departureDate": "2018-12-12",
-    "arrivalDate": "2018-12-20",
-    "departureTime": "10:30:39.884",
-    "arrivalTime": "12:30:39.884",
-    "duration": null,
+    "departureDate": "2018-12-19T10:10:29",
+    "arrivalDate": "2018-12-20T12:30:39",
     "scales": 1,
     "price": 5000.34,
     "airline": {

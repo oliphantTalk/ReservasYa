@@ -2,12 +2,14 @@ package com.ttps.reservasya.models.transaction;
 
 import com.ttps.reservasya.models.users.User;
 
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
-public class Transaction {
+@Table(name = "TRANSACTION")
+public class Transaction implements Serializable {
 
     private Long id;
     private User user;
@@ -34,10 +36,11 @@ public class Transaction {
         this.user = user;
     }
 
-    @Embedded
+    @ManyToOne
     public StateTransaction getState() {
         return state;
     }
+
 
     public void setState(StateTransaction state) {
         this.state = state;
@@ -59,6 +62,21 @@ public class Transaction {
         this.transactionDate = transactionDate;
     }
 
+    public void start(){
+        state.doStart(this);
+    }
+
+    public void cancel(){
+        state.doCancel(this);
+    }
+
+    public void pause(){
+        state.doPause(this);
+    }
+
+    public void finish(){
+        state.doFinish(this);
+    }
 
 
 }

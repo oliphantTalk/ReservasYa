@@ -2,7 +2,7 @@ package com.ttps.reservasya.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.ttps.reservasya.AbstractConfigurationTest;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.ttps.reservasya.models.users.User;
 import com.ttps.reservasya.services.modelcrud.UserService;
@@ -28,9 +28,11 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserServiceTest extends AbstractConfigurationTest {
+public class UserServiceTest  {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceTest.class);
+    @Autowired
+    public ObjectMapper jsonMapper;
     @Autowired
     public UserService userService;
     private static Boolean setUpIsDone = false;
@@ -39,7 +41,7 @@ public class UserServiceTest extends AbstractConfigurationTest {
     public void populateH2() throws IOException {
         if(!setUpIsDone) {
             URL url = new URL("file:src/test/resources/users_h2.json");
-            List<User> users = CustomObjectMapper.getMapper().readValue(url, new TypeReference<List<User>>() {
+            List<User> users = jsonMapper.readValue(url, new TypeReference<List<User>>() {
             });
             users.forEach(val -> {if(!this.userService.findByEmail(val.getEmail()).isPresent()) this.userService.createOne(val);});
             setUpIsDone = true;
@@ -110,7 +112,7 @@ public class UserServiceTest extends AbstractConfigurationTest {
 
     private void userEquals(User user)  {
         try {
-            LOGGER.info(String.format("Se comprueba que el usuario %s sea el mismo de la base", CustomObjectMapper.getMapper().writeValueAsString(user)));
+            LOGGER.info("Se comprueba que el usuario {} sea el mismo de la base", jsonMapper.writeValueAsString(user));
         } catch (JsonProcessingException e) {
             LOGGER.info("Excepcion", e);
         }

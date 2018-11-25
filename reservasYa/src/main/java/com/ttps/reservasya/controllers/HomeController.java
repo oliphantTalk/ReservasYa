@@ -30,18 +30,18 @@ public class HomeController {
     @GetMapping(value = "/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new UserDTO());
-        return "registration";
+        return "registration.jsp";
     }
 
     @PostMapping(value = "/registration")
     public String registration(@ModelAttribute("userForm") UserDTO userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "registration.jsp";
         }
         userService.createOne(UserTransformer.toUser(userForm));
         securityService.autologin(userForm.getUsername(), userForm.getPassword());
-        return "redirect:/welcome";
+        return "redirect:/welcome.jsp";
     }
 
     @GetMapping(value = "/login")
@@ -50,12 +50,12 @@ public class HomeController {
             model.addAttribute("error", "Nombre de usuario y password son invalidos");
         if (logout != null)
             model.addAttribute("message", "La sesion se cerro correctamente");
-        return "login";
+        return "login.jsp";
     }
 
     @GetMapping(value = {"/", "/welcome"})
     public String welcome(Model model) {
-        return "welcome";
+        return "welcome.jsp";
     }
 
 }

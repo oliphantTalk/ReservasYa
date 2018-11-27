@@ -1,6 +1,8 @@
 package com.ttps.reservasya.models.transaction;
 
 
+import com.ttps.reservasya.exceptions.ForbiddenTransactionException;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.io.Serializable;
@@ -17,7 +19,7 @@ public class PendingTransaction extends StateTransaction implements Serializable
 
     @Override
     public void doStart(Transaction transaction) {
-        transaction.setState(this);
+        transaction.setState(new StartedTransaction());
     }
 
     @Override
@@ -27,16 +29,21 @@ public class PendingTransaction extends StateTransaction implements Serializable
 
     @Override
     public void doFinish(Transaction transaction) {
-        transaction.setState(new FinishedTransaction());
-    }
-
-    @Override
-    public void doPause(Transaction transaction) {
-        transaction.setState(new PausedTransaction());
+        throw new ForbiddenTransactionException();
     }
 
     @Override
     public void doRollBack(Transaction transaction) {
-        transaction.setState(new RollbackedTransaction());
+        transaction.setState(new RolledbackTransaction());
+    }
+
+    @Override
+    public void doPending(Transaction transaction) {
+        transaction.setState(this);
+    }
+
+    @Override
+    public void doApprove(Transaction transaction) {
+        throw new ForbiddenTransactionException();
     }
 }

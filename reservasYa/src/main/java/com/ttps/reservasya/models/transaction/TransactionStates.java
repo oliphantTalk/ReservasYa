@@ -1,7 +1,7 @@
 package com.ttps.reservasya.models.transaction;
 
 public enum TransactionStates {
-    PENDING, STARTED, FINISHED, ROLLBACKED, PAUSED, CANCELLED;
+    PENDING, STARTED, FINISHED, ROLLEDBACK, CANCELLED, APPROVED;
 
     TransactionStates(){}
 

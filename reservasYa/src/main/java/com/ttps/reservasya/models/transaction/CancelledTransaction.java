@@ -1,5 +1,7 @@
 package com.ttps.reservasya.models.transaction;
 
+import com.ttps.reservasya.exceptions.ForbiddenTransactionException;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.io.Serializable;
@@ -15,26 +17,31 @@ public class CancelledTransaction extends StateTransaction implements Serializab
 
     @Override
     public void doStart(Transaction transaction) {
-
+        throw new ForbiddenTransactionException();
     }
 
     @Override
     public void doCancel(Transaction transaction) {
-
+        transaction.setState(this);
     }
 
     @Override
     public void doFinish(Transaction transaction) {
-
-    }
-
-    @Override
-    public void doPause(Transaction transaction) {
-
+        throw new ForbiddenTransactionException();
     }
 
     @Override
     public void doRollBack(Transaction transaction) {
+        throw new ForbiddenTransactionException();
+    }
 
+    @Override
+    public void doPending(Transaction transaction) {
+        throw new ForbiddenTransactionException();
+    }
+
+    @Override
+    public void doApprove(Transaction transaction) {
+        throw new ForbiddenTransactionException();
     }
 }

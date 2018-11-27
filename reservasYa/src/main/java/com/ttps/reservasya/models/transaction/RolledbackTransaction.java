@@ -7,21 +7,17 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 
 @Entity
-@DiscriminatorValue(value = "STARTED")
-public class StartedTransaction extends StateTransaction implements Serializable {
+@DiscriminatorValue(value = "ROLLEDBACK")
+public class RolledbackTransaction extends StateTransaction implements Serializable {
 
-
-    public StartedTransaction(){
+    public RolledbackTransaction(){
         super();
-        this.type = TransactionStates.STARTED;
+        this.type = TransactionStates.ROLLEDBACK;
     }
 
     @Override
-    public void doPending(Transaction transaction) { throw new ForbiddenTransactionException();}
-
-    @Override
     public void doStart(Transaction transaction) {
-        transaction.setState(this);
+        throw new ForbiddenTransactionException();
     }
 
     @Override
@@ -36,11 +32,16 @@ public class StartedTransaction extends StateTransaction implements Serializable
 
     @Override
     public void doRollBack(Transaction transaction) {
-        transaction.setState(new RolledbackTransaction());
+        transaction.setState(this);
+    }
+
+    @Override
+    public void doPending(Transaction transaction) {
+        throw new ForbiddenTransactionException();
     }
 
     @Override
     public void doApprove(Transaction transaction) {
-        transaction.setState(new ApprovedTransaction());
+        throw new ForbiddenTransactionException();
     }
 }

@@ -1,6 +1,7 @@
 package com.ttps.reservasya.models.transaction;
 
 import com.ttps.reservasya.models.users.User;
+import com.ttps.reservasya.models.users.UserSettings;
 
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ public class Transaction implements Serializable {
 
     private Long id;
     private User user;
-    private StateTransaction state = StateTransaction.start();
+    private StateTransaction state = new PendingTransaction();
     private Double amount;
     private LocalDateTime transactionDate;
 
@@ -70,13 +71,14 @@ public class Transaction implements Serializable {
         state.doCancel(this);
     }
 
-    public void pause(){
-        state.doPause(this);
-    }
-
     public void finish(){
         state.doFinish(this);
     }
 
+    public void rollBack(){ state.doRollBack(this);}
+
+    public void begin(){ state.doPending(this);}
+
+    public void approve(){ state.doApprove(this);}
 
 }

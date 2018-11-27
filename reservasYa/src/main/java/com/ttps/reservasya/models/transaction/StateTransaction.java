@@ -21,8 +21,9 @@ import java.io.Serializable;
         @JsonSubTypes.Type(value = StartedTransaction.class, name= "STARTED"),
         @JsonSubTypes.Type(value = FinishedTransaction.class, name= "FINISHED"),
         @JsonSubTypes.Type(value = CancelledTransaction.class, name= "CANCELLED"),
-        @JsonSubTypes.Type(value = RollbackedTransaction.class, name= "ROLLBACKED"),
-        @JsonSubTypes.Type(value = PausedTransaction.class, name= "PAUSED"),
+        @JsonSubTypes.Type(value = RolledbackTransaction.class, name= "ROLLEDBACK"),
+        @JsonSubTypes.Type(value = ApprovedTransaction.class, name= "APPROVED"),
+
 })
 public abstract class StateTransaction implements Serializable {
 
@@ -48,14 +49,11 @@ public abstract class StateTransaction implements Serializable {
         this.type = type;
     }
 
-    public static StateTransaction start(){
-        return new PendingTransaction();
-    }
-
-    public  void doStart(Transaction transaction){};
-    public  void doCancel(Transaction transaction){};
-    public  void doFinish(Transaction transaction){};
-    public  void doPause(Transaction transaction){};
-    public  void doRollBack(Transaction transaction){};
+    public abstract void doPending(Transaction transaction);
+    public abstract void doStart(Transaction transaction);
+    public abstract void doCancel(Transaction transaction);
+    public abstract void doFinish(Transaction transaction);
+    public abstract void doRollBack(Transaction transaction);
+    public abstract void doApprove(Transaction transaction);
 }
 

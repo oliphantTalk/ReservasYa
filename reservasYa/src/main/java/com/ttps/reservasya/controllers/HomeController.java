@@ -1,7 +1,7 @@
 package com.ttps.reservasya.controllers;
 
 import com.ttps.reservasya.models.users.dto.UserDTO;
-import com.ttps.reservasya.services.nonModel.SecurityService;
+import com.ttps.reservasya.services.nonmodel.SecurityService;
 import com.ttps.reservasya.services.modelcrud.UserService;
 import com.ttps.reservasya.transformers.UserTransformer;
 import com.ttps.reservasya.validator.UserValidator;
@@ -30,18 +30,18 @@ public class HomeController {
     @GetMapping(value = "/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new UserDTO());
-        return "registration.jsp";
+        return "jsp/registration";
     }
 
     @PostMapping(value = "/registration")
     public String registration(@ModelAttribute("userForm") UserDTO userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "registration.jsp";
+            return "jsp/registration.jsp";
         }
         userService.createOne(UserTransformer.toUser(userForm));
         securityService.autologin(userForm.getUsername(), userForm.getPassword());
-        return "redirect:/welcome.jsp";
+        return "redirect:/welcome";
     }
 
     @GetMapping(value = "/login")
@@ -50,12 +50,13 @@ public class HomeController {
             model.addAttribute("error", "Nombre de usuario y password son invalidos");
         if (logout != null)
             model.addAttribute("message", "La sesion se cerro correctamente");
-        return "login.jsp";
+        return "jsp/login";
+
     }
 
     @GetMapping(value = {"/", "/welcome"})
     public String welcome(Model model) {
-        return "welcome.jsp";
+        return "jsp/welcome";
     }
 
 }

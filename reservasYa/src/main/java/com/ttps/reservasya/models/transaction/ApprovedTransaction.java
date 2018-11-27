@@ -7,21 +7,22 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 
 @Entity
-@DiscriminatorValue(value = "STARTED")
-public class StartedTransaction extends StateTransaction implements Serializable {
+@DiscriminatorValue(value = "APPROVED")
+public class ApprovedTransaction extends StateTransaction implements Serializable {
 
-
-    public StartedTransaction(){
+    public ApprovedTransaction(){
         super();
-        this.type = TransactionStates.STARTED;
+        this.type = TransactionStates.APPROVED;
     }
 
     @Override
-    public void doPending(Transaction transaction) { throw new ForbiddenTransactionException();}
+    public void doPending(Transaction transaction) {
+        throw new ForbiddenTransactionException();
+    }
 
     @Override
     public void doStart(Transaction transaction) {
-        transaction.setState(this);
+        throw new ForbiddenTransactionException();
     }
 
     @Override
@@ -31,7 +32,7 @@ public class StartedTransaction extends StateTransaction implements Serializable
 
     @Override
     public void doFinish(Transaction transaction) {
-        throw new ForbiddenTransactionException();
+        transaction.setState(new FinishedTransaction());
     }
 
     @Override
@@ -41,6 +42,6 @@ public class StartedTransaction extends StateTransaction implements Serializable
 
     @Override
     public void doApprove(Transaction transaction) {
-        transaction.setState(new ApprovedTransaction());
+        transaction.setState(this);
     }
 }

@@ -32,8 +32,8 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
         updateOne(transaction);
     }
 
-    public void pause(Transaction transaction){
-        transaction.pause();
+    public void approve(Transaction transaction){
+        transaction.approve();
         updateOne(transaction);
     }
 
@@ -42,6 +42,15 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
         updateOne(transaction);
     }
 
+    public void rollback(Transaction transaction){
+        transaction.rollBack();
+        updateOne(transaction);
+    }
+
+    public void begin(Transaction transaction){
+        transaction.begin();
+        updateOne(transaction);
+    }
 
     public List<StateTransaction> createStates(List<StateTransaction> transactionStates){
         return this.transactionStateRepository.saveAll(transactionStates);
@@ -49,7 +58,9 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
 
     @Override
     public Transaction createOne(Transaction transaction){
-        transaction.getState().setId(this.transactionStateRepository.findByType(transaction.getState().getType()).getId());
+        if (transaction.getState().getId() == null){
+            transaction.getState().setId(this.transactionStateRepository.findByType(transaction.getState().getType()).getId());
+        }
         return this.repository.save(transaction);
     }
 

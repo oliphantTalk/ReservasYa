@@ -72,7 +72,7 @@ public class Car extends BusinessItem implements Serializable {
         this.patent = patent;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     public Agency getAgency() {
         return agency;
     }

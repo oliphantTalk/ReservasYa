@@ -37,7 +37,7 @@ public class Agency implements Serializable {
         this.name = name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "agency")
+    @OneToMany(mappedBy = "agency", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ElementCollection(targetClass = Car.class)
     public List<Car> getCars() {
         return cars;

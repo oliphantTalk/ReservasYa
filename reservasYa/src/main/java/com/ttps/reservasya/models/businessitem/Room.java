@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ROOM")
 @DiscriminatorValue("ROOM")
+
 public class Room extends BusinessItem implements Serializable {
 
     private Long id;
@@ -48,7 +49,7 @@ public class Room extends BusinessItem implements Serializable {
         this.beds = beds;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     public Hotel getHotel() {
         return hotel;
     }

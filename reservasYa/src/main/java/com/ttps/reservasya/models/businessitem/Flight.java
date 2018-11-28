@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "FLIGHT")
 @DiscriminatorValue("FLIGHT")
+
 public class Flight extends BusinessItem implements Serializable {
 
     private Long id;
@@ -114,7 +115,7 @@ public class Flight extends BusinessItem implements Serializable {
         this.price = price;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     public Airline getAirline() {
         return airline;
     }

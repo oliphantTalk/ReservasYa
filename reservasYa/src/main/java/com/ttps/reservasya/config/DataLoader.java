@@ -76,19 +76,16 @@ public class DataLoader implements ApplicationRunner {
         localParametersRepository.save(new LocalParameters());
         roleService.createAll(roles);
         users.forEach(userService::createOne);
-        agencyService.createCars(cars);
         agencyService.createAll(agencies);
+        agencyService.createCars(cars);
         airlineService.createAll(airlines);
         airlineService.createFlights(flights);
-        hotelService.createRooms(rooms);
         hotelService.createAll(hotels);
+        hotelService.createRooms(rooms);
         transactionService.createStates(stateTransactions);
         Transaction transaction = new Transaction();
         transactionService.createOne(transaction);
-        Car car = agencyService.findCars().get(0);
-        Flight flight = airlineService.findFligths().get(0);
-        Room room = hotelService.findRooms().get(0);
-        transaction.getItems().addAll(Arrays.asList(car, flight, room));
+        transaction.getItems().addAll(Arrays.asList(cars.get(0), flights.get(0), rooms.get(0)));
         transactionService.updateOne(transaction);
 
     }

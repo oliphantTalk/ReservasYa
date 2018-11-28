@@ -16,7 +16,7 @@ public class Transaction implements Serializable {
     private Long id;
     private User user;
     private StateTransaction state = new PendingTransaction();
-    private Double amount;
+    private Double amount = 0.;
 
 
     private List<BusinessItem> items = new ArrayList<>();
@@ -31,6 +31,7 @@ public class Transaction implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     @OneToOne(targetEntity = User.class)
     public User getUser() {
@@ -51,6 +52,7 @@ public class Transaction implements Serializable {
         this.state = state;
     }
 
+    @Column(updatable = false)
     public Double getAmount() {
         return amount;
     }
@@ -59,7 +61,7 @@ public class Transaction implements Serializable {
         this.amount = amount;
     }
 
-
+    @Column(updatable = false)
     @ElementCollection(targetClass = BusinessItem.class, fetch = FetchType.EAGER)
     public List<BusinessItem> getItems() {
         return items;
@@ -94,5 +96,13 @@ public class Transaction implements Serializable {
     public void begin(){ state.doPending(this);}
 
     public void approve(){ state.doApprove(this);}
+
+    @PrePersist
+    public void prePersist(){
+        this.getItems().forEach(i -> this.setAmount(this.getAmount() + i.getPrice()));
+        this.setTransactionDate(LocalDateTime.now());
+    }
+
+
 
 }

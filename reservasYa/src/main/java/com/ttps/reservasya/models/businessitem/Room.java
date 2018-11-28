@@ -16,7 +16,7 @@ public class Room extends BusinessItem implements Serializable {
     private String roomId;
     private int beds;
     private Hotel hotel;
-    private Double price;
+
 
     public Room(){
         super();
@@ -58,11 +58,4 @@ public class Room extends BusinessItem implements Serializable {
         this.hotel = hotel;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
 }

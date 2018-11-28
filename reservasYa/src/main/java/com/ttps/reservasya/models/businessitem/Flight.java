@@ -25,7 +25,6 @@ public class Flight extends BusinessItem implements Serializable {
     private LocalDateTime arrivalDate;
     private String duration;
     private int scales = 1;
-    private Double price;
     private Airline airline;
     @Embedded
     private List<FlightSeat> seats;
@@ -105,14 +104,6 @@ public class Flight extends BusinessItem implements Serializable {
 
     public void setScales(int scales) {
         this.scales = scales;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     @ManyToOne

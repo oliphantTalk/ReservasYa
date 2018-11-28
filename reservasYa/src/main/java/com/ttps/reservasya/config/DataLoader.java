@@ -84,8 +84,8 @@ public class DataLoader implements ApplicationRunner {
         hotelService.createRooms(rooms);
         transactionService.createStates(stateTransactions);
         Transaction transaction = new Transaction();
-        transactionService.createOne(transaction);
         transaction.getItems().addAll(Arrays.asList(cars.get(0), flights.get(0), rooms.get(0)));
+        transactionService.createOne(transaction);
         transactionService.updateOne(transaction);
 
     }

@@ -16,7 +16,6 @@ public class Car extends BusinessItem implements Serializable {
     private int year;
     private String patent;
     private Agency agency;
-    private Double price;
 
     public Car(){
         super();
@@ -38,14 +37,6 @@ public class Car extends BusinessItem implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public String getModel() {

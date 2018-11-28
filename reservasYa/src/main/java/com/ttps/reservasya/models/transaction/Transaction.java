@@ -1,12 +1,13 @@
 package com.ttps.reservasya.models.transaction;
 
+import com.ttps.reservasya.models.businessitem.BusinessItem;
 import com.ttps.reservasya.models.users.User;
-import com.ttps.reservasya.models.users.UserSettings;
-
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "TRANSACTION")
@@ -16,6 +17,9 @@ public class Transaction implements Serializable {
     private User user;
     private StateTransaction state = new PendingTransaction();
     private Double amount;
+
+
+    private List<BusinessItem> items = new ArrayList<>();
     private LocalDateTime transactionDate;
 
     @Id
@@ -53,6 +57,16 @@ public class Transaction implements Serializable {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+
+    @ElementCollection(targetClass = BusinessItem.class, fetch = FetchType.EAGER)
+    public List<BusinessItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<BusinessItem> items) {
+        this.items = items;
     }
 
     public LocalDateTime getTransactionDate() {

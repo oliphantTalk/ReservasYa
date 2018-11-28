@@ -13,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "FLIGHT")
+@DiscriminatorValue("FLIGHT")
 public class Flight extends BusinessItem implements Serializable {
 
     private Long id;
@@ -25,14 +26,16 @@ public class Flight extends BusinessItem implements Serializable {
     private int scales = 1;
     private Double price;
     private Airline airline;
+    @Embedded
     private List<FlightSeat> seats;
 
     public Flight() {
+        super();
     }
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -41,7 +44,6 @@ public class Flight extends BusinessItem implements Serializable {
         this.id = id;
     }
 
-    @NaturalId
     @Column(name = "FLY_CODE")
     public String getFlyCode() {
         return flyCode;
@@ -122,7 +124,7 @@ public class Flight extends BusinessItem implements Serializable {
     }
 
 
-    @ElementCollection(targetClass = FlightSeat.class)
+    @ElementCollection(targetClass = FlightSeat.class, fetch = FetchType.EAGER)
     public List<FlightSeat> getSeats() {
         return seats;
     }

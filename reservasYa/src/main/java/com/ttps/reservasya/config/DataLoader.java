@@ -23,6 +23,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -75,14 +76,20 @@ public class DataLoader implements ApplicationRunner {
         localParametersRepository.save(new LocalParameters());
         roleService.createAll(roles);
         users.forEach(userService::createOne);
-        airlineService.createFlights(flights);
-        airlineService.createAll(airlines);
         agencyService.createCars(cars);
         agencyService.createAll(agencies);
+        airlineService.createAll(airlines);
+        airlineService.createFlights(flights);
         hotelService.createRooms(rooms);
         hotelService.createAll(hotels);
         transactionService.createStates(stateTransactions);
-
+        Transaction transaction = new Transaction();
+        transactionService.createOne(transaction);
+        Car car = agencyService.findCars().get(0);
+        Flight flight = airlineService.findFligths().get(0);
+        Room room = hotelService.findRooms().get(0);
+        transaction.getItems().addAll(Arrays.asList(car, flight, room));
+        transactionService.updateOne(transaction);
 
     }
 

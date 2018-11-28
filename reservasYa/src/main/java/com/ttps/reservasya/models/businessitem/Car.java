@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "CAR")
+@DiscriminatorValue("CAR")
 public class Car extends BusinessItem implements Serializable {
 
     private Long id;
@@ -17,8 +18,12 @@ public class Car extends BusinessItem implements Serializable {
     private Agency agency;
     private Double price;
 
+    public Car(){
+        super();
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }

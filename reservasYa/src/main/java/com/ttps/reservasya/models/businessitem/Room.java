@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "ROOM")
+@DiscriminatorValue("ROOM")
 public class Room extends BusinessItem implements Serializable {
 
     private Long id;
@@ -16,8 +17,12 @@ public class Room extends BusinessItem implements Serializable {
     private Hotel hotel;
     private Double price;
 
+    public Room(){
+        super();
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }

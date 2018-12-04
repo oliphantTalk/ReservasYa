@@ -1,4 +1,4 @@
-package com.ttps.reservasya.config;
+package com.ttps.reservasya.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -1,4 +1,4 @@
-package com.ttps.reservasya.config;
+package com.ttps.reservasya.conf;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

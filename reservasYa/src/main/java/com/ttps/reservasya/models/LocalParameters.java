@@ -1,10 +1,13 @@
 package com.ttps.reservasya.models;
 
 import javax.persistence.*;
+import java.security.Principal;
 
 @Entity
 @Table
 public class LocalParameters {
+
+
 
     private Long id;
     private int gapMax = 2;

@@ -37,7 +37,7 @@ public class HomeController {
     public String registration(@ModelAttribute("userForm") UserDTO userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "jsp/registration.jsp";
+            return "jsp/registration";
         }
         userService.createOne(UserTransformer.toUser(userForm));
         securityService.autologin(userForm.getUsername(), userForm.getPassword());

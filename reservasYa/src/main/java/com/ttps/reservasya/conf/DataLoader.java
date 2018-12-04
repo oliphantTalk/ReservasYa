@@ -1,4 +1,4 @@
-package com.ttps.reservasya.config;
+package com.ttps.reservasya.conf;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,14 +9,12 @@ import com.ttps.reservasya.models.businessentity.Hotel;
 import com.ttps.reservasya.models.businessitem.Car;
 import com.ttps.reservasya.models.businessitem.Flight;
 import com.ttps.reservasya.models.businessitem.Room;
-import com.ttps.reservasya.models.transaction.StartedTransaction;
 import com.ttps.reservasya.models.transaction.StateTransaction;
 import com.ttps.reservasya.models.transaction.Transaction;
 import com.ttps.reservasya.models.users.Role;
 import com.ttps.reservasya.models.users.User;
 import com.ttps.reservasya.repository.LocalParametersRepository;
 import com.ttps.reservasya.services.modelcrud.*;
-import com.ttps.reservasya.utils.CustomObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

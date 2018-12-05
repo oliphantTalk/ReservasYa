@@ -1,6 +1,4 @@
-package com.ttps.reservasya.models.users;
-
-import com.ttps.reservasya.models.UserHistory;
+package com.ttps.reservasya.user;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,7 +1,7 @@
 package com.ttps.reservasya.models.transaction;
 
 import com.ttps.reservasya.models.businessitem.BusinessItem;
-import com.ttps.reservasya.models.users.User;
+import com.ttps.reservasya.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;

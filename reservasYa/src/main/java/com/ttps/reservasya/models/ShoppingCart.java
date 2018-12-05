@@ -1,9 +1,8 @@
 package com.ttps.reservasya.models;
 
 import com.ttps.reservasya.models.businessitem.BusinessItem;
-import com.ttps.reservasya.models.users.User;
+import com.ttps.reservasya.user.User;
 
-import javax.persistence.*;
 import java.util.List;
 
 public class ShoppingCart {

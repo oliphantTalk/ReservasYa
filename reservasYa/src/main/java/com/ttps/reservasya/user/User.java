@@ -1,4 +1,4 @@
-package com.ttps.reservasya.models.users;
+package com.ttps.reservasya.user;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,6 +23,12 @@ public class User implements Serializable {
     private String passwordConfirm;
 
     public User(){}
+
+    public User(String email, String password){
+        setEmail(email);
+        setPassword(password);
+    }
+
 
     public User(String name, String username, String email, String password){
         this.setName(name);

@@ -1,6 +1,6 @@
 package com.ttps.reservasya.services.modelcrud;
 
-import com.ttps.reservasya.models.users.Role;
+import com.ttps.reservasya.user.Role;
 import com.ttps.reservasya.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

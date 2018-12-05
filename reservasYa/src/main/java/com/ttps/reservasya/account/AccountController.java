@@ -1,4 +1,4 @@
-package com.ttps.reservasya.account;
+/*package com.ttps.reservasya.account;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -25,7 +25,7 @@ public class AccountController {
     public Account currentAccount(Principal principal) {
         Assert.notNull(principal);
         return accountRepository.findOneByEmail(principal.getName());
-    }
+    }*/
 
     /*@GetMapping("account/{id}")
     @ResponseStatus(value = HttpStatus.OK)
@@ -33,4 +33,4 @@ public class AccountController {
     public Account account(@PathVariable("id") Long id) {
         return accountRepository.findOne(id);
     }*/
-}
+

@@ -1,8 +1,7 @@
 package com.ttps.reservasya.services.modelcrud;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,18 +24,22 @@ public abstract class BasicCrudService<U, T extends JpaRepository> {
         return repository.findAll();
     }
 
+    @Transactional
     public U createOne(U u) {
         return (U) repository.save(u);
     }
 
+    @Transactional
     public U updateOne(U u) {
         return (U) repository.save(u);
     }
 
+    @Transactional
     public <S extends U> List<S> createAll(List<S> uList){
         return repository.saveAll(uList);
     }
 
+    @Transactional
     public void deleteById(Long id) {
         repository.deleteById(id);
     }

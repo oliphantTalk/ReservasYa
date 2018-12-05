@@ -1,6 +1,6 @@
 package com.ttps.reservasya.repository;
 
-import com.ttps.reservasya.models.users.User;
+import com.ttps.reservasya.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

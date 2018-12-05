@@ -1,4 +1,4 @@
-package com.ttps.reservasya.models.users;
+package com.ttps.reservasya.user;
 
 
 import javax.persistence.*;

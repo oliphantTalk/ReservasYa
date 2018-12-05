@@ -1,6 +1,6 @@
 package com.ttps.reservasya.signup;
 
-import com.ttps.reservasya.account.Account;
+import com.ttps.reservasya.user.User;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -32,7 +32,7 @@ public class SignupForm {
 		this.password = password;
 	}
 
-	public Account createAccount() {
-        return new Account(getEmail(), getPassword(), "ROLE_USER");
+	public User createAccount() {
+        return new User(getEmail(), getPassword());
 	}
 }

@@ -1,7 +1,7 @@
 package com.ttps.reservasya.signup;
 
-import com.ttps.reservasya.account.Account;
-import com.ttps.reservasya.account.AccountService;
+import com.ttps.reservasya.user.User;
+import com.ttps.reservasya.user.UserService;
 import com.ttps.reservasya.web.AjaxUtils;
 import com.ttps.reservasya.web.MessageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ class SignupController {
 	private static final String SIGNUP_VIEW_NAME = "signup/signup";
 
 	@Autowired
-	private AccountService accountService;
+	private UserService userService;
 
-	@GetMapping("signup")
+	@GetMapping(value = "signup")
 	String signup(Model model, @RequestHeader(value = "X-Requested-With", required = false) String requestedWith) {
 		model.addAttribute(new SignupForm());
 		if (AjaxUtils.isAjaxRequest(requestedWith)) {
@@ -33,13 +33,13 @@ class SignupController {
 		return SIGNUP_VIEW_NAME;
 	}
 
-	@PostMapping("signup")
+	@PostMapping(value = "signup")
 	public String signup(@Valid @ModelAttribute SignupForm signupForm, Errors errors, RedirectAttributes ra) {
 		if (errors.hasErrors()) {
 			return SIGNUP_VIEW_NAME;
 		}
-		Account account = accountService.save(signupForm.createAccount());
-		accountService.signin(account);
+		User user = userService.createOne(signupForm.createAccount());
+		userService.signin(user);
         // see /WEB-INF/i18n/messages.properties and /WEB-INF/views/homeSignedIn.html
         MessageHelper.addSuccessAttribute(ra, "signup.success");
 		return "redirect:/";

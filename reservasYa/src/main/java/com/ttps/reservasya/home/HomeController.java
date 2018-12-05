@@ -7,15 +7,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.security.Principal;
 
 @Controller
-class HomeController {
+public class HomeController {
 
-    @ModelAttribute("module")
+    @ModelAttribute(value = "module")
     String module() {
         return "home";
     }
 
-    @GetMapping("/")
+    @GetMapping(value = "/")
     String index(Principal principal) {
         return principal != null ? "home/homeSignedIn" : "home/homeNotSignedIn";
     }
+
 }

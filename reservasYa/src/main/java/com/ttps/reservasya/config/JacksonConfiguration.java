@@ -1,4 +1,4 @@
-package com.ttps.reservasya.conf;
+package com.ttps.reservasya.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;

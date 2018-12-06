@@ -9,6 +9,7 @@
     <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
 <body>
+<div th:replace="~{fragments/header :: header}">Header</div>
 <div class="container">
 <form class="form-narrow form-horizontal" method="post" th:action="@{/signup}" th:object="${signupForm}" th:fragment="signupForm">
     <!--/* Show general error message when form contains errors */-->
@@ -20,20 +21,31 @@
         <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
             <label for="email" class="col-lg-2 control-label">Email</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="email" placeholder="Email address" th:field="*{email}" />
+                <input type="text" class="form-control" id="email" placeholder="Email" th:field="*{email}" />
                 <span class="help-block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email incorrecto</span>
             </div>
+
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('username')}? 'has-error'">
+            <label for="email" class="col-lg-2 control-label">Usuario</label>
+            <div class="col-lg-10">
+                    <input type="text" class="form-control" id="username" placeholder="Nombre de Usuario" th:field="*{username}" />
+                <span class="help-block" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Nombre de usuario incorrecto</span>
+            </div>
+
+
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
             <label for="password" class="col-lg-2 control-label">Password</label>
             <div class="col-lg-10">
-                <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}"/>
+                    <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}"/>
                 <span class="help-block" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Contraseña incorrecta</span>
             </div>
+
         </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-default">Sign up</button>
+                <button type="submit" class="btn btn-default">Continuar</button>
             </div>
         </div>
         <div class="form-group">

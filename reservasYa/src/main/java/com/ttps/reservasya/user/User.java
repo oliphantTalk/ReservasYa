@@ -2,6 +2,7 @@ package com.ttps.reservasya.user;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ttps.reservasya.user.role.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -24,7 +25,8 @@ public class User implements Serializable {
 
     public User(){}
 
-    public User(String email, String password){
+    public User(String email, String username, String password){
+        setUsername(username);
         setEmail(email);
         setPassword(password);
     }
@@ -57,7 +59,6 @@ public class User implements Serializable {
     }
 
     @Column(name = "user_name", nullable = false, length = 20, unique = true)
-    @NotEmpty
     @JsonProperty(value = "user_name")
     public String getUsername() {
         return username;

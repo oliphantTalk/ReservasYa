@@ -21,21 +21,7 @@
     </div>
     <div th:insert="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
 </div>
-<script th:inline="javascript" type="text/javascript">
-/* Fill in modal with content loaded with Ajax */
-$(document).ready(function () {
-    $('#signup').on('click', function (e) {
-        $("#myModal").modal();
-        $("#myModalBody").text("");
-        $.ajax({
-            url: "signup",
-            cache: false
-        }).done(function (html) {
-            $("#myModalBody").append(html);
-        });
-    })
-});
-</script>
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -53,5 +39,20 @@ $(document).ready(function () {
 </div><!-- /.modal -->
 <script  th:src="@{~/resources/js/jquery.min.js}"></script>
 <script  th:src="@{~/resources/js/bootstrap.min.js}"></script>
+<script th:inline="javascript" type="text/javascript">
+    /* Fill in modal with content loaded with Ajax */
+    $(document).ready(function () {
+        $('#signup').on('click', function (e) {
+            $("#myModal").modal();
+            $("#myModalBody").text("");
+            $.ajax({
+                url: "signup",
+                cache: false
+            }).done(function (html) {
+                $("#myModalBody").append(html);
+            });
+        })
+    });
+</script>
 </body>
 </html>

@@ -1,16 +1,15 @@
 package com.ttps.reservasya.controllers;
 
-import com.ttps.reservasya.models.businessentity.Agency;
-import com.ttps.reservasya.models.businessentity.Airline;
-import com.ttps.reservasya.models.businessentity.Hotel;
-import com.ttps.reservasya.services.modelcrud.AgencyService;
-import com.ttps.reservasya.services.modelcrud.AirlineService;
-import com.ttps.reservasya.services.modelcrud.HotelService;
+import com.ttps.reservasya.agencies.Agency;
+import com.ttps.reservasya.airlines.Airline;
+import com.ttps.reservasya.hotels.Hotel;
+import com.ttps.reservasya.agencies.AgencyService;
+import com.ttps.reservasya.airlines.AirlineService;
+import com.ttps.reservasya.hotels.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller

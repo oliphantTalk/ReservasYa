@@ -1,6 +1,6 @@
 package com.ttps.reservasya.validator;
 
-import com.ttps.reservasya.exceptions.UserNotFoundException;
+import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.user.User;
 import com.ttps.reservasya.user.dto.UserDTO;
 import com.ttps.reservasya.user.UserService;

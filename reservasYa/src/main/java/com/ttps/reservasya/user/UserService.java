@@ -1,11 +1,10 @@
 package com.ttps.reservasya.user;
 
 
-import com.ttps.reservasya.exceptions.NoElementInDBException;
-import com.ttps.reservasya.exceptions.UserNotFoundException;
-import com.ttps.reservasya.repository.UserRepository;
+import com.ttps.reservasya.error.exceptions.NoElementInDBException;
+import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.services.modelcrud.BasicCrudService;
-import com.ttps.reservasya.services.modelcrud.RoleService;
+import com.ttps.reservasya.user.role.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -72,11 +71,13 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) {
-        User user = repository.findByUsername(username).orElseThrow(UserNotFoundException::new);
+        User user = repository.findByUsername(username).orElseGet(() -> repository.findByEmail(username).orElseThrow(UserNotFoundException::new));
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
+
+
 
     private GrantedAuthority createAuthority(User user) {
         return new SimpleGrantedAuthority(user.getRole().getName());

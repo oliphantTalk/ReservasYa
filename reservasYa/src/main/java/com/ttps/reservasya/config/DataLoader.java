@@ -2,24 +2,24 @@ package com.ttps.reservasya.config;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ttps.reservasya.agencies.AgencyService;
-import com.ttps.reservasya.airlines.AirlineService;
-import com.ttps.reservasya.hotels.HotelService;
+import com.ttps.reservasya.services.agencies.AgencyService;
+import com.ttps.reservasya.services.airlines.AirlineService;
+import com.ttps.reservasya.services.hotel.HotelService;
 import com.ttps.reservasya.models.LocalParameters;
-import com.ttps.reservasya.agencies.Agency;
-import com.ttps.reservasya.airlines.Airline;
-import com.ttps.reservasya.hotels.Hotel;
-import com.ttps.reservasya.agencies.cars.Car;
-import com.ttps.reservasya.airlines.flights.Flight;
-import com.ttps.reservasya.hotels.room.Room;
+import com.ttps.reservasya.models.businessitem.agency.Agency;
+import com.ttps.reservasya.models.businessitem.airline.Airline;
+import com.ttps.reservasya.models.businessitem.hotel.Hotel;
+import com.ttps.reservasya.models.businessitem.agency.cars.Car;
+import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
+import com.ttps.reservasya.models.businessitem.hotel.Room;
 import com.ttps.reservasya.models.transaction.StateTransaction;
 import com.ttps.reservasya.models.transaction.Transaction;
-import com.ttps.reservasya.user.role.Role;
-import com.ttps.reservasya.user.role.RoleService;
-import com.ttps.reservasya.user.User;
+import com.ttps.reservasya.services.transaction.TransactionService;
+import com.ttps.reservasya.models.user.role.Role;
+import com.ttps.reservasya.services.user.RoleService;
+import com.ttps.reservasya.models.user.User;
 import com.ttps.reservasya.repository.LocalParametersRepository;
-import com.ttps.reservasya.services.modelcrud.*;
-import com.ttps.reservasya.user.UserService;
+import com.ttps.reservasya.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -90,6 +90,9 @@ public class DataLoader implements ApplicationRunner {
         transaction.getItems().addAll(Arrays.asList(cars.get(0), flights.get(0), rooms.get(0)));
         transactionService.createOne(transaction);
         transactionService.updateOne(transaction);
+
+
+
 
     }
 

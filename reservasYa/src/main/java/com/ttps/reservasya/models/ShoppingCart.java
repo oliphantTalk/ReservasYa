@@ -1,7 +1,7 @@
 package com.ttps.reservasya.models;
 
 import com.ttps.reservasya.models.businessitem.BusinessItem;
-import com.ttps.reservasya.user.User;
+import com.ttps.reservasya.models.user.User;
 
 import java.util.List;
 

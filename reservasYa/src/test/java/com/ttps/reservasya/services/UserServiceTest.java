@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.ttps.reservasya.user.User;
-import com.ttps.reservasya.user.UserService;
+import com.ttps.reservasya.models.user.User;
+import com.ttps.reservasya.services.user.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

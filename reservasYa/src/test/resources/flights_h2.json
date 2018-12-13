@@ -3,8 +3,44 @@
     "flyCode": "a67123jh",
     "from": "bs",
     "to": "mia",
+    "departureDate": "2018-12-19",
+    "arrivalDate": "2018-12-20",
+    "departureTime": "2018-12-19T10:10:29",
+    "arrivalTime": "2018-12-20T12:30:39",
+    "scales": 1,
+    "price": 5000.34,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  },
+  {
+    "flyCode": "fewqf",
+    "from": "bs",
+    "to": "mia",
     "departureDate": "2018-12-19T10:10:29",
     "arrivalDate": "2018-12-20T12:30:39",
+    "departureTime": "2018-12-19T10:10:29",
+    "arrivalTime": "2018-12-20T12:30:39",
+    "scales": 1,
+    "price": 5000.34,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  },
+  {
+    "flyCode": "few234",
+    "from": "bue",
+    "to": "mia",
+    "departureDate": "2018-12-19T10:10:29",
+    "arrivalDate": "2018-12-20T12:30:39",
+    "departureTime": "2018-12-19T10:10:29",
+    "arrivalTime": "2018-12-20T12:30:39",
     "scales": 1,
     "price": 5000.34,
     "airline": {

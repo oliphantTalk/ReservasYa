@@ -1,0 +1,213 @@
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVA DEMO</title>
+  <style>
+    .demo-component-container {
+      margin: 40px;
+      border: 5px dashed #eee;
+      padding: 20px;
+      position: relative;
+    }
+
+    .demo-item {
+      display: flex;
+      margin: 40px;
+    }
+
+    .demo-item .eva-3-table,
+    .demo-item .eva-3-filters-horizontal {
+      width: 100%;
+    }
+
+    .eva-3-table .table-tag {
+      width: 100%
+    }
+
+    .demo-component-container.tooltip .demo-item,
+    .demo-component-container.tooltip-coachmark .demo-item {
+      justify-content: center;
+      margin: 150px;
+    }
+
+    .demo-component-container.booking-as .demo-item {
+      flex-direction: column;
+    }
+
+    div[class^='-eva-3-shadow'] {
+      width: 200px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+      color: gray;
+    }
+    .nav-li{
+      display: inline-block;
+    }
+    .header-stiky{
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 5;
+      box-shadow: 0 5px 10px 0px #ddd;
+      padding: 20px;
+      text-align: center;
+    }
+    .demo-icon-container{
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 24%;
+      margin: 25px 5px;
+      box-sizing: border-box;
+      font-size: 24px;
+    }
+    .demo-icon-container i{
+        font-size: 48px;
+    }
+
+  </style>
+  <link rel='stylesheet' href='eva-core.min.css'>
+  <link rel='stylesheet' href='eva.min.css'>
+</head>
+
+<body style='overflow-y:auto; overflow-x:hidden'>
+  <div class='header-stiky'>
+    <div class="eva-logo">
+      <a href="./#/" style="text-decoration:none;">
+      <svg width="70px" height="40px" viewBox="1855 1228 71 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="header-logo">
+            <g id="Group-5" stroke="none" stroke-width="1" fill="#666" fill-rule="evenodd" transform="translate(1855.000000, 1228.000000)">
+              <path id="Line-Copy-5" d="M2,5 L16,5 C17.1045695,5 18,4.1045695 18,3 C18,1.8954305 17.1045695,1 16,1 L2,1 C0.8954305,1 0,1.8954305 0,3 C0,4.1045695 0.8954305,5 2,5 L2,5 Z"></path>
+              <g id="Group-4-Copy-2" transform="translate(23.000000, 1.000000)">
+                <path id="Line-Copy-3" d="M0.211145618,2.89442719 L10.2111456,22.8944272 C10.7051241,23.8823842 11.9064702,24.2828329 12.8944272,23.7888544 C13.8823842,23.2948759 14.2828329,22.0935298 13.7888544,21.1055728 L3.78885438,1.10557281 C3.29487588,0.117615814 2.0935298,-0.282832879 1.10557281,0.211145618 C0.117615814,0.705124115 -0.282832879,1.9064702 0.211145618,2.89442719 L0.211145618,2.89442719 Z"></path>
+                <path id="Line-Copy-4" d="M20.2111456,1.10557281 L10.2111456,21.1055728 C9.71716712,22.0935298 10.1176158,23.2948759 11.1055728,23.7888544 C12.0935298,24.2828329 13.2948759,23.8823842 13.7888544,22.8944272 L23.7888544,2.89442719 C24.2828329,1.9064702 23.8823842,0.705124115 22.8944272,0.211145618 C21.9064702,-0.282832879 20.7051241,0.117615814 20.2111456,1.10557281 L20.2111456,1.10557281 Z"></path>
+              </g>
+              <g id="Group-4-Copy-3" transform="translate(58.500000, 12.500000) scale(1, -1) translate(-58.500000, -12.500000) translate(46.000000, 0.000000)">
+                <path id="Line-Copy-3" d="M0.211145618,2.89442719 L10.2111456,22.8944272 C10.7051241,23.8823842 11.9064702,24.2828329 12.8944272,23.7888544 C13.8823842,23.2948759 14.2828329,22.0935298 13.7888544,21.1055728 L3.78885438,1.10557281 C3.29487588,0.117615814 2.0935298,-0.282832879 1.10557281,0.211145618 C0.117615814,0.705124115 -0.282832879,1.9064702 0.211145618,2.89442719 L0.211145618,2.89442719 Z"></path>
+                <path id="Line-Copy-4" d="M20.2111456,1.10557281 L10.2111456,21.1055728 C9.71716712,22.0935298 10.1176158,23.2948759 11.1055728,23.7888544 C12.0935298,24.2828329 13.2948759,23.8823842 13.7888544,22.8944272 L23.7888544,2.89442719 C24.2828329,1.9064702 23.8823842,0.705124115 22.8944272,0.211145618 C21.9064702,-0.282832879 20.7051241,0.117615814 20.2111456,1.10557281 L20.2111456,1.10557281 Z"></path>
+              </g>
+              <path id="Line-Copy-6" d="M2,25 L18,25 C19.1045695,25 20,24.1045695 20,23 C20,21.8954305 19.1045695,21 18,21 L2,21 C0.8954305,21 0,21.8954305 0,23 C0,24.1045695 0.8954305,25 2,25 L2,25 Z"></path>
+              <path id="Line-Copy-7" d="M2,15 L14,15 C15.1045695,15 16,14.1045695 16,13 C16,11.8954305 15.1045695,11 14,11 L2,11 C0.8954305,11 0,11.8954305 0,13 C0,14.1045695 0.8954305,15 2,15 L2,15 Z"></path>
+            </g>
+          </svg>
+        </a>
+
+    </div>
+    <nav>
+      <ul>
+        <li class="nav-li"><a class="eva-3-link" onClick="scrollIt('components')" >Components</a></li>
+        |
+        <li class="nav-li"><a class="eva-3-link" onClick="scrollIt('icons')">Iconos</a></li>
+        |
+        <li class="nav-li"><a class="eva-3-link" onClick="scrollIt('utilites')">Utilidades</a></li>
+      </ul>
+    </nav>
+  </div>
+  <section id="components">
+      <div class='demo-component-container checkbox '><h1 class='eva-3-h1'>checkbox</h1><a class='eva-3-link' href='https://backoffice.despegar.com/eva/#/dist/3.0.0/checkbox/docs'>Ver documentación en eva</a><div class='demo-item'>
+<!-- Checkbox normal--><span class="eva-3-checkbox">
+  <label class="checkbox-label">
+    <input type="checkbox" class="checkbox-tag"/><i class="checkbox-check eva-3-icon-checkmark"></i>
+  </label></span></div><div class='demo-item'>
+<!-- Checkbox Disabled--><span class="eva-3-checkbox">
+  <label class="checkbox-label">
+    <input type="checkbox" disabled="disabled" class="checkbox-tag"/><i class="checkbox-check eva-3-icon-checkmark"></i>
+  </label></span></div><div class='demo-item'>
+<!-- Checkbox Invalid--><span class="eva-3-checkbox -invalid">
+  <label class="checkbox-label">
+    <input type="checkbox" class="checkbox-tag"/><i class="checkbox-check eva-3-icon-checkmark"></i>
+  </label></span></div><div class='demo-item'>
+<!-- Dependencias-->
+<link rel="stylesheet" href="./dist/3.0.0/components/positioning/positioning.css"/>
+<!-- Componente--><span class="eva-3-checkbox -lg">
+  <label class="checkbox-label eva-3-label-form -md">
+    <input type="checkbox" class="checkbox-tag"/><i class="checkbox-check eva-3-icon-checkmark -eva-3-mr-sm"></i>Label de checkbox
+  </label></span></div><div class='demo-item'>
+<!-- Checkbox Medium--><span class="eva-3-checkbox -md">
+  <label class="checkbox-label">
+    <input type="checkbox" class="checkbox-tag"/><i class="checkbox-check eva-3-icon-checkmark"></i>
+  </label></span></div></div><div class='demo-component-container radio-button '><h1 class='eva-3-h1'>radio-button</h1><a class='eva-3-link' href='https://backoffice.despegar.com/eva/#/dist/3.0.0/radio-button/docs'>Ver documentación en eva</a><div class='demo-item'>
+<!-- Radio button normal--><span class="eva-3-radio">
+  <label class="radio-label-container">
+    <input type="radio" name="eva-radio" class="radio-tag"/><i class="radio-circle"></i>
+  </label></span></div><div class='demo-item'>
+<!-- Radio button Disabled		--><span class="eva-3-radio">
+  <label class="radio-label-container">
+    <input type="radio" name="eva-radio" disabled="disabled" class="radio-tag"/><i class="radio-circle"></i>
+  </label></span></div><div class='demo-item'>
+<!-- Checkbox Medium--><span class="eva-3-radio -md">
+  <label class="radio-label-container">
+    <input type="radio" name="eva-radio" class="radio-tag"/><i class="radio-circle"></i>
+  </label></span></div></div><div class='demo-component-container validation '><h1 class='eva-3-h1'>validation</h1><a class='eva-3-link' href='https://backoffice.despegar.com/eva/#/dist/3.0.0/validation/docs'>Ver documentación en eva</a><div class='demo-item'>
+<!-- Validation in position top left--><span class="eva-3-checkbox  -invalid">
+  <label class="checkbox-label eva-3-validation -top-left -invalid">
+    <input type="checkbox" class="checkbox-tag"/><i class="checkbox-check eva-3-icon-checkmark"></i>
+    <!--Validation message--><span class="validation-msg">Campo invalido</span>
+    <label class="eva-3-label-form eva-label-form -lg">Label</label>
+  </label></span></div><div class='demo-item'>
+<link rel="stylesheet" href="./dist/{{config.version}}/components/input/input.css"/>
+<link rel="stylesheet" href="./dist/{{config.version}}/components/select/select.css"/>
+<link rel="stylesheet" href="./dist/{{config.version}}/components/textarea/textarea.css"/>
+<link rel="stylesheet" href="./dist/{{config.version}}/components/label-form/label-form.css"/>
+<link rel="stylesheet" href="./dist/{{config.version}}/components/checkbox/checkbox.css"/>
+<link rel="stylesheet" href="./dist/{{config.version}}/components/radio-button/radio-button.css"/></div><div class='demo-item'>
+<!-- Validation in position top left-->
+<div class="eva-3-input eva-3-validation -lg -invalid -top-left">
+  <div class="input-container">
+    <input id="eva-input" type="text" placeholder="Placeholder" class="input-tag"/>
+    <!--Validation message--><span class="validation-msg">Campo invalido</span>
+  </div>
+</div></div><div class='demo-item'>
+<!-- Validation in position top left--><span class="eva-3-radio -md -invalid">
+  <label class="eva-3-validation radio-label-container -top-left -invalid">
+    <input type="radio" name="eva-radio" class="radio-tag"/>
+    <!--Validation message--><span class="validation-msg">Campo invalido</span><i class="radio-circle"></i>
+    <label class="eva-label-form eva-3-label-form -lg">Radio</label>
+  </label></span></div><div class='demo-item'>
+<!-- Validation in position bottom center-->
+<div class="eva-3-select eva-3-validation -lg -bottom-center -invalid">
+  <div class="select-container">
+    <select id="eva-select" class="select-tag">
+      <option value="" disabled="disabled" selected="selected" class="select-option">Select an option</option>
+      <option value="1" class="select-option">Option 1</option>
+      <option value="2" class="select-option">Option 2</option>
+      <option value="3" class="select-option">Option 3</option>
+    </select>
+    <!--Validation message--><span class="validation-msg">Campo invalido</span>
+  </div>
+</div></div><div class='demo-item'>
+<!-- Validation in position top right-->
+<div class="eva-3-textarea eva-3-validation -lg -invalid -top-right">
+  <div class="textarea-container">
+    <textarea id="eva-textarea" type="text" placeholder="Placeholder" rows="3" class="textarea-tag"></textarea>
+    <!--Validation message--><span class="validation-msg">El texto no debe ser vacío</span>
+  </div>
+</div></div></div><div class='demo-component-container cluster-basic '><h1 class='eva-3-h1'>cluster-basic</h1><a class='eva-3-link' href='https://backoffice.despegar.com/eva/#/dist/3.0.0/cluster-basic/docs'>Ver documentación en eva</a></div></div></div>
+  </section>
+  <section id="icons">
+      <div class='demo-component-container'>
+        <h1 class='eva-3-h1'>Iconos</h1>
+        <div class='demo-icon-container'><i class='eva-3-icon-close'></i><h5 class='eva-3-p'>eva-3-icon-close</h5></div><div class='demo-icon-container'><i class='eva-3-icon-airplane-going'></i><h5 class='eva-3-p'>eva-3-icon-airplane-going</h5></div><div class='demo-icon-container'><i class='eva-3-icon-airplane-return'></i><h5 class='eva-3-p'>eva-3-icon-airplane-return</h5></div><div class='demo-icon-container'><i class='eva-3-icon-bag'></i><h5 class='eva-3-p'>eva-3-icon-bag</h5></div><div class='demo-icon-container'><i class='eva-3-icon-calendar'></i><h5 class='eva-3-p'>eva-3-icon-calendar</h5></div><div class='demo-icon-container'><i class='eva-3-icon-checkmark'></i><h5 class='eva-3-p'>eva-3-icon-checkmark</h5></div><div class='demo-icon-container'><i class='eva-3-icon-flights'></i><h5 class='eva-3-p'>eva-3-icon-flights</h5></div>
+      </div>
+  </section>
+  <section id="utilites">
+      <div class='demo-component-container'>
+          <h1 class='eva-3-h1'>Utilidades</h1>
+          <li><a href='https://backoffice.despegar.com/eva/#/dist/3.0.0/borders/docs' class='eva-3-link'>borders</a></li><li><a href='https://backoffice.despegar.com/eva/#/dist/3.0.0/colours/docs' class='eva-3-link'>colours</a></li>
+      </div>
+  </section>
+  <script>
+    function scrollIt(id){
+        var element = document.getElementById(id);
+        window.scrollTo({
+          'behavior': 'smooth',
+          'left': 0,
+          'top': element.offsetTop
+        });
+      }
+  </script>
+</body>
+</html>

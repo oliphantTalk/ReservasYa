@@ -1,7 +1,7 @@
 package com.ttps.reservasya.transformers;
 
-import com.ttps.reservasya.user.User;
-import com.ttps.reservasya.user.dto.UserDTO;
+import com.ttps.reservasya.models.user.User;
+import com.ttps.reservasya.models.user.dto.UserDTO;
 
 public class UserTransformer {
 

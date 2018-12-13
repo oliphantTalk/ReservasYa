@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>bar chart</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Iconos" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-514.000000, -6081.000000)">
+        <g id="ico-bar-chart" transform="translate(502.000000, 6081.000000)" fill="#666666">
+            <path d="M15,9.5 L21.7407407,9.5 L21.7407407,29 L15,29 L15,9.5 Z M24.6296296,15.0714286 L31.3703704,15.0714286 L31.3703704,29 L24.6296296,29 L24.6296296,15.0714286 Z M34.2592593,3 L41,3 L41,29 L34.2592593,29 L34.2592593,3 Z" id="bar-chart"></path>
+        </g>
+    </g>
+</svg>

@@ -23,8 +23,8 @@
 }
 
 .input-border-separator {
-    border-right: 5px solid #fff157;
-    border-bottom: 5px solid #fff157;
+    border-right: 5px solid #cccccc;
+    border-bottom: 5px solid #cccccc;
 }
 
 .box-title {
@@ -48,7 +48,7 @@
 }
 
 .home-body {
-    background-color: #EEE;
+    background-color: #EEEEEE;
 }
 
 
@@ -317,7 +317,7 @@ hr.-blue-line {
 
 @media (min-width: 768px) {
     .yellow-rectangle {
-        background-color: #fff157;
+        background-color: #cccccc;
         min-width: 280px;
         width: 100%;
         margin-top: 16px;
@@ -326,6 +326,7 @@ hr.-blue-line {
         height: 362px;
         object-fit: contain;
         vertical-align: baseline;
+        border-color: #0050D0;
     }
     .fly-time .time {
         font-size: 16px;
@@ -466,7 +467,7 @@ hr.-blue-line {
 
 @media (min-width: 1px) and (max-width: 767px) {
     .yellow-rectangle {
-        background-color: #fff157;
+        background-color: #cccccc;
         min-width: 280px;
         width: 100%;
         margin-top: 16px;
@@ -475,6 +476,7 @@ hr.-blue-line {
         min-height: 281px;
         object-fit: contain;
         vertical-align: baseline;
+        border-color: #0050D0;
     }
     .itinerary-container {
         display: flex;

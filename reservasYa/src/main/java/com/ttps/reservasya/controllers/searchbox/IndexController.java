@@ -50,7 +50,7 @@ public class IndexController {
             return "/index";
         }
         airlineService.findOneWayFlights(searchFlyForm.getDepartureDate(), searchFlyForm.getFrom(), searchFlyForm.getTo());
-        return "lala";
+        return "/index";
     }
 
 

@@ -5,7 +5,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
     <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />    <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+    <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
 
 </head>
 <body>
@@ -25,7 +26,7 @@
                     <a href="#" th:href="@{/}">ReservasYa!</a>
                 </li>
                 <li class="header-product-item">
-                    <a class="eva-3-button-circle">
+                    <a class="eva-3-button-circle" th:href="@{/hoteles}" id="link-hoteles">
                         <div class="button-circle-icon">
                             <i class="eva-3-icon-hotels"></i>
                         </div>
@@ -34,7 +35,7 @@
                     </a>
                 </li>
                 <li class="header-product-item">
-                    <a class="eva-3-button-circle">
+                    <a class="eva-3-button-circle"  id="link-vuelos">
                         <div class="button-circle-icon">
                             <i class="eva-3-icon-flights"></i>
                         </div>
@@ -44,25 +45,12 @@
                 </li>
 
                 <li class="header-product-item">
-                    <a class="eva-3-button-circle">
+                    <a class="eva-3-button-circle" id="link-autos">
                         <div class="button-circle-icon">
                             <i class="eva-3-icon-cars"></i>
                         </div>
 
                         <label class="button-circle-label">Autos</label>
-                    </a>
-                </li>
-                <li class="header-autogestion-item header-autogestion-flag -header-separation">
-                    <a class="header-autogestion-link">
-                                <span class="header-image-container">
-                                    <span class="flag-container">
-                                        <span class="-ar eva-3-flag"></span>
-                                </span>
-                                </span>
-
-                        <span class="header-container-text -eva-3-hide-medium -eva-3-hide-small">
-                                    <span class="header-autogestion-title">Español</span>
-                                </span>
                     </a>
                 </li>
                 <!--
@@ -93,6 +81,5 @@
     </div>
 </nav>
 </div>
-
 </body>
 </html>

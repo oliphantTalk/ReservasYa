@@ -10,21 +10,21 @@
     <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
     <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
     <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
-
-
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}">Header</div>
 <div class="container">
     <div class="text-center">
         
-        <h1>Bienvenido a ReservasYa! </h1>
+        <h1>Bienvenido a ReservasYa!</h1>
         <p>
             <a id="signup" class="btn btn-success btn-lg">Registrate!</a>
         </p>
     </div>
-    <div th:insert="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
 </div>
+
+<div th:replace="searchbox/searchbox :: fly-searchbox"></div>
+<div th:replace="searchbox/searchbox :: car-searchbox"></div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -41,6 +41,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<div th:insert="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
 <script  th:src="@{~/resources/js/jquery.min.js}"></script>
 <script  th:src="@{~/resources/js/bootstrap.min.js}"></script>
 <script th:inline="javascript" type="text/javascript">
@@ -57,6 +58,27 @@
             });
         })
     });
+
+</script>
+<script>
+    function displayCarBox() {
+        document.getElementById("fly-searchbox").style.display = "none";
+        document.getElementById("car-searchbox").style.display = "inherit";
+        document.getElementById("hotel-searchbox").style.display = "none";
+    }
+    /*function displayHotelBox() {
+        document.getElementById("fly-searchbox").style.display = "none";
+        document.getElementById("hotel-searchbox").style.display = "inherit";
+        document.getElementById("car-searchbox").style.display = "none";
+    }*/
+    function displayFlyBox() {
+        document.getElementById("fly-searchbox").style.display = "inherit";
+        document.getElementById("car-searchbox").style.display = "none";
+        document.getElementById("hotel-searchbox").style.display = "none";
+    }
+    document.getElementById("link-autos").addEventListener("click", displayCarBox);
+    /*document.getElementById("link-hoteles").addEventListener("click", displayHotelBox);*/
+    document.getElementById("link-vuelos").addEventListener("click", displayFlyBox);
 </script>
 </body>
 </html>

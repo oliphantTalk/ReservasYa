@@ -8,8 +8,10 @@ import com.ttps.reservasya.services.BasicCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AgencyService extends BasicCrudService<Agency, AgencyRepository> {
@@ -44,5 +46,21 @@ public class AgencyService extends BasicCrudService<Agency, AgencyRepository> {
 
     public void deleteCar(Long id){
         this.carRepository.deleteById(id);
+    }
+
+    public List<Car> searchCarForDestination(String city, int passenger){
+        List<Car> carList = new ArrayList<>();
+        repository.findAgenciesByCity(city)
+                .orElse(new ArrayList<>())
+                .forEach( cars ->  carList.addAll(
+                        cars.getCars()
+                                .stream()
+                                .filter(car -> passenger >= car.getCapacity())
+                                .collect(Collectors.toList()
+                                )
+                )
+                );
+        return carList;
+
     }
 }

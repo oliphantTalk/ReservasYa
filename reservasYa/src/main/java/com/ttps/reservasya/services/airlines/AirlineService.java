@@ -2,6 +2,7 @@ package com.ttps.reservasya.services.airlines;
 
 import com.ttps.reservasya.models.businessitem.airline.Airline;
 import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
+import com.ttps.reservasya.models.businessitem.airline.flights.SeatClass;
 import com.ttps.reservasya.repository.airline.AirlineRepository;
 import com.ttps.reservasya.repository.airline.FlightRepository;
 import com.ttps.reservasya.services.BasicCrudService;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class AirlineService extends BasicCrudService<Airline, AirlineRepository> {
@@ -49,8 +52,11 @@ public class AirlineService extends BasicCrudService<Airline, AirlineRepository>
         flightRepository.deleteById(id);
     }
 
-    public List<Flight> findOneWayFlights(String departureDate, String from, String to){
-        return this.flightRepository.findFlightsByDepartureDateGreaterThanEqualAndFromAndTo(DateParser.parse(departureDate), from, to).orElse(new ArrayList<>());
+    public List<Flight> findOneWayFlights(String departureDate, String from, String to, SeatClass seatClass){
+        List<Flight> flights = this.flightRepository.findFlightsByDepartureDateGreaterThanEqualAndFromAndToOrderByAirline(DateParser.parse(departureDate), from, to).orElse(new ArrayList<>());
+        flights.forEach(f -> f.setSeats(f.getSeats().stream().filter(s -> s.getSeatClass().equals(seatClass)).collect(Collectors.toList())));
+        return flights;
+
     }
 
     public List<Flight> findFlightFromAndTo(String from, String to){

@@ -24,7 +24,7 @@
     "arrivalDate": "2018-12-20T12:30:39",
     "departureTime": "2018-12-19T10:10:29",
     "arrivalTime": "2018-12-20T12:30:39",
-    "scales": 1,
+    "scales": 2,
     "price": 5000.34,
     "airline": {
       "id": 1,
@@ -41,7 +41,7 @@
     "arrivalDate": "2018-12-20T12:30:39",
     "departureTime": "2018-12-19T10:10:29",
     "arrivalTime": "2018-12-20T12:30:39",
-    "scales": 1,
+    "scales": 3,
     "price": 5000.34,
     "airline": {
       "id": 1,

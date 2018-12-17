@@ -11,6 +11,7 @@ import java.util.List;
 public class Hotel implements Serializable {
 
     private long id;
+    private String city;
     private String name;
     private List<Room> rooms;
     private int stars;
@@ -51,6 +52,14 @@ public class Hotel implements Serializable {
 
     public void setStars(int stars) {
         this.stars = stars;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Column(name = "ROOMS_AVAILABLE")

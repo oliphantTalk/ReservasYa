@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/eva.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.css"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+</head>
+<body>
+
+<!--/*  Multiple fragments may be defined in one file */-->
+    <div class="eva-3-container" >
+        <div class="eva-3-cluster-basic">
+
+            <div class="cluster-container cluster-white-background" id="fly-cluster" th:fragment="fly-cluster">
+                <table class="table table-condensed table-hover table-striped">
+                    <thead class="fly-way-header">
+                      <tr>
+                        <th>
+                            <span class="fly-way">
+                                <i class="eva-3-icon-airplane-going"></i>
+                                IDA
+                            </span>
+                         <span th:text="${flights[0].departureDate}"></span>
+                        </th>
+                        <th th:text="${#strings.capitalize(flights[0].from)}">Origen</th>
+                        <th>Escala</th>
+                        <th th:text="${#strings.capitalize(flights[0].to)}">Destino</th>
+                        <th>DURACION</th>
+                        <th>PRECIO p/ pasajero</th>
+                        <th>LUGARES</th>
+                        <th>CLASE</th>
+                        <th>DETALLE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="f: ${flights}">
+                      <tr>
+                        <td th:text="${f.airline.name}">John</td>
+                        <td th:text="${#strings.substring(f.departureTime, 11, 16)}">Doe</td>
+                        <th:block th:switch="${f.scales}">
+                           <td th:case="0">Directo</td>
+                           <td th:case="1" th:text="${f.scales +' escala'}"></td>
+                           <td th:case="*" th:text="${f.scales +' escalas'}"></td>
+                        </th:block>
+                        <td th:text="${#strings.substring(f.arrivalTime, 11, 16)}">Horario Arrivo</td>
+                        <td>
+                                                                    <span th:text="${f.duration}"></span>
+                                                                    <span class="plus-time" th:text="${'+' + f.days }"></span>
+                                                                </td>
+                        <td><span class="current-price">$8000</span></td>
+                        <td th:text="${#arrays.length(f.seats)}"></td>
+                        <td th:text="${seatClass}"></td>
+                        <td class="button-container">
+                            <a class="eva-3-btn -primary -sm" th:href="@{'fly/' + ${f.id} + '/' + ${seatClass}}">
+                                <em class="btn-text">Ver</em>
+                            </a>
+                        </td>
+                      </tr>
+                    </th:block>
+                    </tbody>
+                  </table>
+                <th:block th:if="${flightsReturn != null }">
+                <table class="table table-condensed table-hover table-striped">
+                                    <thead class="fly-way-header">
+                                      <tr>
+                                        <th>
+                                            <span class="fly-way">
+                                                <i class="eva-3-icon-airplane-return"></i>
+                                                VUELTA
+                                            </span>
+                                         <span th:text="${flightsReturn[0].departureDate}"></span>
+                                        </th>
+                                        <th th:text="${#strings.capitalize(flightsReturn[0].from)}">Origen</th>
+                                        <th>Escala</th>
+                                        <th th:text="${#strings.capitalize(flightsReturn[0].to)}">Destino</th>
+                                        <th>DURACION</th>
+                                        <th>PRECIO p/ pasajero</th>
+                                        <th>LUGARES</th>
+                                        <th>CLASE</th>
+                                        <th>DETALLE</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    <th:block th:each="f: ${flightsReturn}">
+                                      <tr>
+                                        <td th:text="${f.airline.name}">John</td>
+                                        <td th:text="${#strings.substring(f.departureTime, 11, 16)}">Doe</td>
+                                        <th:block th:switch="${f.scales}">
+                                           <td th:case="0">Directo</td>
+                                           <td th:case="1" th:text="${f.scales +' escala'}"></td>
+                                           <td th:case="*" th:text="${f.scales +' escalas'}"></td>
+                                        </th:block>
+                                        <td th:text="${#strings.substring(f.arrivalTime, 11, 16)}">Horario Arribo</td>
+                                        <td>
+                                            <span th:text="${f.duration}"></span>
+                                            <span class="plus-time" th:text="${'+' + f.days }"></span>
+                                        </td>
+                                        <td><span class="current-price">$8000</span></td>
+                                        <td th:text="${#arrays.length(f.seats)}"></td>
+                                        <td th:text="${seatClass}"></td>
+                                        <td class="button-container">
+                                            <a class="eva-3-btn -primary -sm" th:href="@{'fly/' + ${f.id} + '/' + ${seatClass}}">
+                                                <em class="btn-text">Ver</em>
+                                            </a>
+                                        </td>
+                                      </tr>
+                                    </th:block>
+                                    </tbody>
+                                  </table>
+                </th:block>
+            </div>
+            <div class="cluster-container cluster-white-background" id="fly-cluster" th:fragment="car-cluster">
+
+                            <div class="cluster-content">
+                                <div class="cluster-description fix-eva-heigth">
+                                    <div class="eva-3-row -no-gutter -eva-3-center">
+
+                                        <!-- BEGIN Cluster ida -->
+                                        <div class="col -sm-12 -md-12">
+
+                                            <div class="eva-3-row -no-gutter">
+                                                <div class="col -sm-12 -md-3 max-width-label">
+                                                    <div class="fly-way-header">
+                                                        <span class="fly-way-wrapper">
+                                                            <span class="fly-way">
+                                                                <i class="eva-3-icon-airplane-going"></i>
+                                                                    IDA
+                                                            </span>
+
+                                                            <span class="fly-way" th:text="${flights[0].departureDate}">Dom. 12 Sep. 18</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col -md-3 ">
+                                                        <div class="fly-way-header">
+                                                    <span class="fly-info -eva-3-hide-small">
+                                                        <span class="fly-departure">
+                                                            <span class="fly-info-airport" th:text="${#strings.substring(flights[0].from,0,1)}">MIA</span>
+
+                                                            <span class="fly-info-city" th:text="${flights[0].from}">Miami</span>
+                                                        </span>
+                                                    </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col -md-6">
+                                                        <div class="fly-way-header">
+                                                    <span class="fly-info -eva-3-hide-small">
+                                                        <span class="fly-arrival">
+                                                            <span class="fly-info-airport" th:text="${#strings.substring(flights[0].to,0,1)}">BUE</span>
+                                                                <span class="fly-info-city" th:text="${flights[0].to}">Buenos Aires</span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="fly-detail-container">
+                                                <ul>
+                                                    <th:block th:each="f: ${flights}">
+                                                    <li>
+                                                        <div class="itinerary-container">
+                                                            <div class="eva-3-row -no-gutter  -eva-3-center">
+                                                                <div class="col -sm-1 -md-1 max-circle">
+                                                                    <span class="eva-3-radio">
+                                                                        <label class="radio-label-container">
+                                                                            <input
+                                                                                type="radio"
+                                                                                name="fly-way"
+                                                                                class="radio-tag"
+                                                                            />
+
+                                                                            <i class="radio-circle no-margin-right"></i>
+                                                                        </label>
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="col -sm-9 -md-8">
+                                                                    <div class="eva-3-row -no-gutter padding-center">
+                                                                        <div class="col -sm-12 -md-2 min-width-label">
+                                                                            <div class="airline-spot ">
+                                                                                <span class="airline-name" th:text="${f.airline.name}">Aerolineas Argentinas</span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!--<div class="middle-row-container">-->
+                                                                            <div class="col -sm-3 -md-2 ">
+                                                                                <span class="fly-departure -eva-3-hide-medium -eva-3-hide-large">
+                                                                                    <span class="fly-info-airport" th:text="${#strings.substring(flights[0].from,0,1)}">MIA</span>
+                                                                                </span>
+
+                                                                                <span class="fly-time">
+                                                                                    <span class="time" th:text="${#strings.substring(f.departureTime, 11, 16)}">06:30</span>
+                                                                                </span>
+                                                                            </div>
+
+                                                                            <div class="col -sm-3 -md-2">
+                                                                                <div class="fly-way-connector" th:switch="${f.scales}">
+                                                                                    <span th:case="0">Directo</span>
+                                                                                    <span th:case="1" th:text="${f.scales +' escala'}"></span>
+                                                                                    <span th:case="*" th:text="${f.scales +' escalas'}"></span>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col -sm-6 -md-3">
+                                                                                <span class="fly-departure -eva-3-hide-medium -eva-3-hide-large">
+                                                                                    <span class="fly-info-airport" th:text="${#strings.substring(flights[0].to,0,1)}">BUE</span>
+                                                                                </span>
+
+                                                                                <span class="fly-time">
+                                                                                    <span class="time" th:text="${#strings.substring(f.arrivalTime, 11, 16)}">
+                                                                                        09:30
+
+                                                                                        <span class="plus-time">+1</span>
+                                                                                    </span>
+                                                                                </span>
+                                                                            </div>
+
+                                                                            <div class="col -sm-12 -md-2 ">
+                                                                                <span class="fly-duration">
+                                                                                    <span class="time" th:text="${f.duration}"><span class="-eva-3-hide-medium -eva-3-hide-large">Duracion: </span>22h 45m</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        <!--</div>-->
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col -sm-2 -md-3">
+                                                                    <div class="eva-3-row -no-gutter">
+                                                                        <div class="col -sm-12">
+                                                                            <div class="-eva-3-hide-medium -eva-3-hide-large">
+                                                                                <span class="icon-info-blue">
+                                                                                    <a class="info eva-3-icon-info-circle-outline"></a>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col -sm-12 -md-10 column-flex">
+                                                                            <span class="baggage">
+                                                                                <span class="baggage-item">
+                                                                                    <span class="baggage-img">
+                                                                                        <i class="-eva-3-icon-sm eva-3-icon-handbag"></i>
+                                                                                    </span>
+
+                                                                                    <span class="baggage-img">
+                                                                                        <i class="-eva-3-icon-sm eva-3-icon-single"></i>
+                                                                                    </span>
+                                                                                </span>
+                                                                            </span>
+                                                                        </div>
+
+                                                                        <div class="col -md-2">
+                                                                            <div class="-eva-3-hide-small">
+                                                                                    <span class="">
+                                                                                        <i class="-eva-3-icon-sm eva-3-icon-arrow-down"></i>
+                                                                                    </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    </th:block>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- END Cluster ida -->
+                                    <!-- BEGIN Cluster vuelta -->
+                                    <th:block th:if="${flightsReturn != null }">
+                                    <div class="eva-3-row -no-gutter -eva-3-center">
+
+                                        <!-- BEGIN Cluster ida -->
+                                        <div class="col -sm-12 -md-12">
+
+                                            <div class="eva-3-row -no-gutter">
+                                                <div class="col -sm-12 -md-3 max-width-label">
+                                                    <div class="fly-way-header">
+                                                        <span class="fly-way-wrapper">
+                                                            <span class="fly-way">
+                                                                <i class="eva-3-icon-airplane-return"></i>
+                                                                    VUELTA
+                                                            </span>
+
+                                                            <span class="fly-way" th:text="${flightsReturn[0].arrivalDate}">Dom. 12 Sep. 18</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col -md-3">
+                                                    <div class="fly-way-header">
+                                                        <span class="fly-info -eva-3-hide-small">
+                                                            <span class="fly-arrival">
+                                                                <span class="fly-info-airport" th:text="${#strings.substring(flightsReturn[0].to,0,1)}">BUE</span>
+                                                                <span class="fly-info-city" th:text="${flightsReturn[0].to}">Buenos Aires</span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col -md-6 ">
+                                                    <div class="fly-way-header">
+                                                <span class="fly-info -eva-3-hide-small">
+                                                    <span class="fly-departure">
+                                                        <span class="fly-info-airport" th:Text="${#strings.substring(flightsReturn[0].from,0,1)}">MIA</span>
+
+                                                        <span class="fly-info-city" th:text="${flightsReturn[0].from}">Miami</span>
+                                                    </span>
+                                                </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                            <div class="fly-detail-container">
+                                                <ul>
+                                                    <th:block th:each="f: ${flightsReturn}">
+                                                        <li>
+                                                                <div class="itinerary-container">
+                                                                    <div class="eva-3-row -no-gutter  -eva-3-center">
+                                                                        <div class="col -sm-1 -md-1 max-circle">
+                                                                            <span class="eva-3-radio">
+                                                                                <label class="radio-label-container">
+                                                                                    <input
+                                                                                        type="radio"
+                                                                                        name="fly-way"
+                                                                                        class="radio-tag"
+                                                                                    />
+
+                                                                                    <i class="radio-circle no-margin-right"></i>
+                                                                                </label>
+                                                                            </span>
+                                                                        </div>
+
+                                                                        <div class="col -sm-9 -md-8">
+                                                                            <div class="eva-3-row -no-gutter padding-center">
+                                                                                <div class="col -sm-12 -md-2 min-width-label">
+                                                                                    <div class="airline-spot ">
+                                                                                        <span class="airline-name" th:text="${f.airline.name}">Aerolineas Argentinas</span>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <!--<div class="middle-row-container">-->
+                                                                                    <div class="col -sm-3 -md-2 ">
+                                                                                        <span class="fly-departure -eva-3-hide-medium -eva-3-hide-large">
+                                                                                            <span class="fly-info-airport" th:text="${#strings.substring(flights[0].from,0,1)}">MIA</span>
+                                                                                        </span>
+
+                                                                                        <span class="fly-time">
+                                                                                            <span class="time" th:text="${#strings.substring(f.departureTime, 11, 16)}">06:30</span>
+                                                                                        </span>
+                                                                                    </div>
+
+                                                                                   <div class="col -sm-3 -md-2">
+                                                                                          <div class="fly-way-connector" th:switch="${f.scales}">
+                                                                                               <span th:case="0">Directo</span>
+                                                                                                 <span th:case="1" th:text="${f.scales +' escala'}"></span>
+                                                                                                         <span th:case="*" th:text="${f.scales +' escalas'}"></span>
+                                                                                                                                                        </div>
+                                                                                                                                                   </div>
+
+                                                                                    <div class="col -sm-6 -md-3">
+                                                                                        <span class="fly-departure -eva-3-hide-medium -eva-3-hide-large">
+                                                                                            <span class="fly-info-airport" th:text="${#strings.substring(flights[0].to,0,1)}">BUE</span>
+                                                                                        </span>
+
+                                                                                        <span class="fly-time">
+                                                                                            <span class="time" th:text="${#strings.substring(f.arrivalTime, 11, 16)}">
+                                                                                                09:30
+
+                                                                                                <span class="plus-time">+1</span>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                    </div>
+
+                                                                                    <div class="col -sm-12 -md-2 ">
+                                                                                        <span class="fly-duration">
+                                                                                            <span class="time" th:text="${f.duration}"><span class="-eva-3-hide-medium -eva-3-hide-large">Duracion: </span>22h 45m</span>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                <!--</div>-->
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col -sm-2 -md-3">
+                                                                            <div class="eva-3-row -no-gutter">
+                                                                                <div class="col -sm-12">
+                                                                                    <div class="-eva-3-hide-medium -eva-3-hide-large">
+                                                                                        <span class="icon-info-blue">
+                                                                                            <a class="info eva-3-icon-info-circle-outline"></a>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col -sm-12 -md-10 column-flex">
+                                                                                    <span class="baggage">
+                                                                                        <span class="baggage-item">
+                                                                                            <span class="baggage-img-grey">
+                                                                                                <i class="-eva-3-icon-sm eva-3-icon-handbag"></i>
+                                                                                            </span>
+
+                                                                                            <span class="baggage-img">
+                                                                                                <i class="-eva-3-icon-sm eva-3-icon-single"></i>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+
+                                                                                <div class="col -md-2">
+                                                                                    <div class="-eva-3-hide-small">
+                                                                                            <span class="">
+                                                                                                <i class="-eva-3-icon-sm eva-3-icon-arrow-down"></i>
+                                                                                            </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- END Cluster vuelta -->
+                                    </th:block>
+                                </div>
+                            </div>
+
+                            <!-- BEGIN PRICE-BOX -->
+
+                            <div class="cluster-pricebox-container fare-box">
+                                <div class="eva-3-row -no-gutter">
+                                    <div class="col -sm-6 -md-12">
+                                        <div class="fare-text-wrapper">
+                                            <div class="fare-legend">Precio por adulto</div>
+
+                                            <div class="fare-legend -all-inclusive">Todo incluido</div>
+
+                                            <div class="fare-price">
+                                                <em>
+                                                    <span class="pesos-sign">$</span>
+
+                                                    <span class="current-price">7000</span>
+                                                </em>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col -sm-6 -md-12">
+                                        <div class="fare-button-wrapper">
+                                        <div class="button-container">
+                                            <a class="eva-3-btn -primary -md">
+                                                <em class="btn-text">Seleccionar</em>
+                                            </a>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="eva-3-row -no-gutter">
+                                    <div class="col -sm-12">
+                                        <div class="payment-container">
+                                            <em class="payment-text">
+                                                <span class="payment-block">
+                                                    <i class="-eva-3-icon-xsm eva-3-icon-card"></i>
+                                                    ¡Pagá en 12 cuotas!
+                                                </span>
+
+                                                <span class="payment-show-banks">Ver bancos y tarjetas</span>
+                                            </em>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- END PRICE-BOX -->
+                            </th:block>
+                        </div>
+            <div class="cluster-container cluster-white-background" id="fly-cluster" th:fragment="hotel-cluster">
+
+                                        <div class="cluster-content">
+                                            <div class="cluster-description fix-eva-heigth">
+                                                <div class="eva-3-row -no-gutter -eva-3-center">
+
+                                                    <!-- BEGIN Cluster ida -->
+                                                    <div class="col -sm-12 -md-12">
+
+                                                        <div class="eva-3-row -no-gutter">
+                                                            <div class="col -sm-12 -md-3 max-width-label">
+                                                                <div class="fly-way-header">
+                                                                    <span class="fly-way-wrapper">
+                                                                        <span class="fly-way">
+                                                                            <i class="eva-3-icon-airplane-going"></i>
+                                                                                IDA
+                                                                        </span>
+
+                                                                        <span class="fly-way" th:text="${flights[0].departureDate}">Dom. 12 Sep. 18</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col -md-3 ">
+                                                                    <div class="fly-way-header">
+                                                                <span class="fly-info -eva-3-hide-small">
+                                                                    <span class="fly-departure">
+                                                                        <span class="fly-info-airport" th:text="${#strings.substring(flights[0].from,0,1)}">MIA</span>
+
+                                                                        <span class="fly-info-city" th:text="${flights[0].from}">Miami</span>
+                                                                    </span>
+                                                                </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col -md-6">
+                                                                    <div class="fly-way-header">
+                                                                <span class="fly-info -eva-3-hide-small">
+                                                                    <span class="fly-arrival">
+                                                                        <span class="fly-info-airport" th:text="${#strings.substring(flights[0].to,0,1)}">BUE</span>
+                                                                            <span class="fly-info-city" th:text="${flights[0].to}">Buenos Aires</span>
+                                                                        </span>
+                                                                    </span>
+                                                                </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <div class="fly-detail-container">
+                                                            <ul>
+                                                                <th:block th:each="f: ${flights}">
+                                                                <li>
+                                                                    <div class="itinerary-container">
+                                                                        <div class="eva-3-row -no-gutter  -eva-3-center">
+                                                                            <div class="col -sm-1 -md-1 max-circle">
+                                                                                <span class="eva-3-radio">
+                                                                                    <label class="radio-label-container">
+                                                                                        <input
+                                                                                            type="radio"
+                                                                                            name="fly-way"
+                                                                                            class="radio-tag"
+                                                                                        />
+
+                                                                                        <i class="radio-circle no-margin-right"></i>
+                                                                                    </label>
+                                                                                </span>
+                                                                            </div>
+
+                                                                            <div class="col -sm-9 -md-8">
+                                                                                <div class="eva-3-row -no-gutter padding-center">
+                                                                                    <div class="col -sm-12 -md-2 min-width-label">
+                                                                                        <div class="airline-spot ">
+                                                                                            <span class="airline-name" th:text="${f.airline.name}">Aerolineas Argentinas</span>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <!--<div class="middle-row-container">-->
+                                                                                        <div class="col -sm-3 -md-2 ">
+                                                                                            <span class="fly-departure -eva-3-hide-medium -eva-3-hide-large">
+                                                                                                <span class="fly-info-airport" th:text="${#strings.substring(flights[0].from,0,1)}">MIA</span>
+                                                                                            </span>
+
+                                                                                            <span class="fly-time">
+                                                                                                <span class="time" th:text="${#strings.substring(f.departureTime, 11, 16)}">06:30</span>
+                                                                                            </span>
+                                                                                        </div>
+
+                                                                                        <div class="col -sm-3 -md-2">
+                                                                                            <div class="fly-way-connector" th:switch="${f.scales}">
+                                                                                                <span th:case="0">Directo</span>
+                                                                                                <span th:case="1" th:text="${f.scales +' escala'}"></span>
+                                                                                                <span th:case="*" th:text="${f.scales +' escalas'}"></span>
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col -sm-6 -md-3">
+                                                                                            <span class="fly-departure -eva-3-hide-medium -eva-3-hide-large">
+                                                                                                <span class="fly-info-airport" th:text="${#strings.substring(flights[0].to,0,1)}">BUE</span>
+                                                                                            </span>
+
+                                                                                            <span class="fly-time">
+                                                                                                <span class="time" th:text="${#strings.substring(f.arrivalTime, 11, 16)}">
+                                                                                                    09:30
+
+                                                                                                    <span class="plus-time">+1</span>
+                                                                                                </span>
+                                                                                            </span>
+                                                                                        </div>
+
+                                                                                        <div class="col -sm-12 -md-2 ">
+                                                                                            <span class="fly-duration">
+                                                                                                <span class="time" th:text="${f.duration}"><span class="-eva-3-hide-medium -eva-3-hide-large">Duracion: </span>22h 45m</span>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    <!--</div>-->
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col -sm-2 -md-3">
+                                                                                <div class="eva-3-row -no-gutter">
+                                                                                    <div class="col -sm-12">
+                                                                                        <div class="-eva-3-hide-medium -eva-3-hide-large">
+                                                                                            <span class="icon-info-blue">
+                                                                                                <a class="info eva-3-icon-info-circle-outline"></a>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col -sm-12 -md-10 column-flex">
+                                                                                        <span class="baggage">
+                                                                                            <span class="baggage-item">
+                                                                                                <span class="baggage-img">
+                                                                                                    <i class="-eva-3-icon-sm eva-3-icon-handbag"></i>
+                                                                                                </span>
+
+                                                                                                <span class="baggage-img">
+                                                                                                    <i class="-eva-3-icon-sm eva-3-icon-single"></i>
+                                                                                                </span>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                    </div>
+
+                                                                                    <div class="col -md-2">
+                                                                                        <div class="-eva-3-hide-small">
+                                                                                                <span class="">
+                                                                                                    <i class="-eva-3-icon-sm eva-3-icon-arrow-down"></i>
+                                                                                                </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                </th:block>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- END Cluster ida -->
+                                                <!-- BEGIN Cluster vuelta -->
+                                                <th:block th:if="${flightsReturn != null }">
+                                                <div class="eva-3-row -no-gutter -eva-3-center">
+
+                                                    <!-- BEGIN Cluster ida -->
+                                                    <div class="col -sm-12 -md-12">
+
+                                                        <div class="eva-3-row -no-gutter">
+                                                            <div class="col -sm-12 -md-3 max-width-label">
+                                                                <div class="fly-way-header">
+                                                                    <span class="fly-way-wrapper">
+                                                                        <span class="fly-way">
+                                                                            <i class="eva-3-icon-airplane-return"></i>
+                                                                                VUELTA
+                                                                        </span>
+
+                                                                        <span class="fly-way" th:text="${flightsReturn[0].arrivalDate}">Dom. 12 Sep. 18</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col -md-3">
+                                                                <div class="fly-way-header">
+                                                                    <span class="fly-info -eva-3-hide-small">
+                                                                        <span class="fly-arrival">
+                                                                            <span class="fly-info-airport" th:text="${#strings.substring(flightsReturn[0].to,0,1)}">BUE</span>
+                                                                            <span class="fly-info-city" th:text="${flightsReturn[0].to}">Buenos Aires</span>
+                                                                        </span>
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col -md-6 ">
+                                                                <div class="fly-way-header">
+                                                            <span class="fly-info -eva-3-hide-small">
+                                                                <span class="fly-departure">
+                                                                    <span class="fly-info-airport" th:Text="${#strings.substring(flightsReturn[0].from,0,1)}">MIA</span>
+
+                                                                    <span class="fly-info-city" th:text="${flightsReturn[0].from}">Miami</span>
+                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                        <div class="fly-detail-container">
+                                                            <ul>
+                                                                <th:block th:each="f: ${flightsReturn}">
+                                                                    <li>
+                                                                            <div class="itinerary-container">
+                                                                                <div class="eva-3-row -no-gutter  -eva-3-center">
+                                                                                    <div class="col -sm-1 -md-1 max-circle">
+                                                                                        <span class="eva-3-radio">
+                                                                                            <label class="radio-label-container">
+                                                                                                <input
+                                                                                                    type="radio"
+                                                                                                    name="fly-way"
+                                                                                                    class="radio-tag"
+                                                                                                />
+
+                                                                                                <i class="radio-circle no-margin-right"></i>
+                                                                                            </label>
+                                                                                        </span>
+                                                                                    </div>
+
+                                                                                    <div class="col -sm-9 -md-8">
+                                                                                        <div class="eva-3-row -no-gutter padding-center">
+                                                                                            <div class="col -sm-12 -md-2 min-width-label">
+                                                                                                <div class="airline-spot ">
+                                                                                                    <span class="airline-name" th:text="${f.airline.name}">Aerolineas Argentinas</span>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <!--<div class="middle-row-container">-->
+                                                                                                <div class="col -sm-3 -md-2 ">
+                                                                                                    <span class="fly-departure -eva-3-hide-medium -eva-3-hide-large">
+                                                                                                        <span class="fly-info-airport" th:text="${#strings.substring(flights[0].from,0,1)}">MIA</span>
+                                                                                                    </span>
+
+                                                                                                    <span class="fly-time">
+                                                                                                        <span class="time" th:text="${#strings.substring(f.departureTime, 11, 16)}">06:30</span>
+                                                                                                    </span>
+                                                                                                </div>
+
+                                                                                               <div class="col -sm-3 -md-2">
+                                                                                                      <div class="fly-way-connector" th:switch="${f.scales}">
+                                                                                                           <span th:case="0">Directo</span>
+                                                                                                             <span th:case="1" th:text="${f.scales +' escala'}"></span>
+                                                                                                                     <span th:case="*" th:text="${f.scales +' escalas'}"></span>
+                                                                                                                                                                    </div>
+                                                                                                                                                               </div>
+
+                                                                                                <div class="col -sm-6 -md-3">
+                                                                                                    <span class="fly-departure -eva-3-hide-medium -eva-3-hide-large">
+                                                                                                        <span class="fly-info-airport" th:text="${#strings.substring(flights[0].to,0,1)}">BUE</span>
+                                                                                                    </span>
+
+                                                                                                    <span class="fly-time">
+                                                                                                        <span class="time" th:text="${#strings.substring(f.arrivalTime, 11, 16)}">
+                                                                                                            09:30
+
+                                                                                                            <span class="plus-time">+1</span>
+                                                                                                        </span>
+                                                                                                    </span>
+                                                                                                </div>
+
+                                                                                                <div class="col -sm-12 -md-2 ">
+                                                                                                    <span class="fly-duration">
+                                                                                                        <span class="time" th:text="${f.duration}"><span class="-eva-3-hide-medium -eva-3-hide-large">Duracion: </span>22h 45m</span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            <!--</div>-->
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col -sm-2 -md-3">
+                                                                                        <div class="eva-3-row -no-gutter">
+                                                                                            <div class="col -sm-12">
+                                                                                                <div class="-eva-3-hide-medium -eva-3-hide-large">
+                                                                                                    <span class="icon-info-blue">
+                                                                                                        <a class="info eva-3-icon-info-circle-outline"></a>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="col -sm-12 -md-10 column-flex">
+                                                                                                <span class="baggage">
+                                                                                                    <span class="baggage-item">
+                                                                                                        <span class="baggage-img-grey">
+                                                                                                            <i class="-eva-3-icon-sm eva-3-icon-handbag"></i>
+                                                                                                        </span>
+
+                                                                                                        <span class="baggage-img">
+                                                                                                            <i class="-eva-3-icon-sm eva-3-icon-single"></i>
+                                                                                                        </span>
+                                                                                                    </span>
+                                                                                                </span>
+                                                                                            </div>
+
+                                                                                            <div class="col -md-2">
+                                                                                                <div class="-eva-3-hide-small">
+                                                                                                        <span class="">
+                                                                                                            <i class="-eva-3-icon-sm eva-3-icon-arrow-down"></i>
+                                                                                                        </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- END Cluster vuelta -->
+                                                </th:block>
+                                            </div>
+                                        </div>
+
+                                        <!-- BEGIN PRICE-BOX -->
+
+                                        <div class="cluster-pricebox-container fare-box">
+                                            <div class="eva-3-row -no-gutter">
+                                                <div class="col -sm-6 -md-12">
+                                                    <div class="fare-text-wrapper">
+                                                        <div class="fare-legend">Precio por adulto</div>
+
+                                                        <div class="fare-legend -all-inclusive">Todo incluido</div>
+
+                                                        <div class="fare-price">
+                                                            <em>
+                                                                <span class="pesos-sign">$</span>
+
+                                                                <span class="current-price">7000</span>
+                                                            </em>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col -sm-6 -md-12">
+                                                    <div class="fare-button-wrapper">
+                                                    <div class="button-container">
+                                                        <a class="eva-3-btn -primary -md">
+                                                            <em class="btn-text">Seleccionar</em>
+                                                        </a>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="eva-3-row -no-gutter">
+                                                <div class="col -sm-12">
+                                                    <div class="payment-container">
+                                                        <em class="payment-text">
+                                                            <span class="payment-block">
+                                                                <i class="-eva-3-icon-xsm eva-3-icon-card"></i>
+                                                                ¡Pagá en 12 cuotas!
+                                                            </span>
+
+                                                            <span class="payment-show-banks">Ver bancos y tarjetas</span>
+                                                        </em>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- END PRICE-BOX -->
+                                        </th:block>
+                                    </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

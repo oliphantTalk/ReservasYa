@@ -1,0 +1,13 @@
+flyFrom.addEventListener("blur", myCheckIATA("fly-from").checkIata);
+focusIn(flyFrom, flyFromInput);
+flyTo.addEventListener("blur", myCheckIATA("fly-to").checkIata);
+focusIn(flyTo, flyToInput);
+dateGo.addEventListener("blur", myCheckDate().dateIsValid);
+focusIn(dateGo, dateGoInput);
+dateReturn.addEventListener("blur", myCheckDate().dateIsValid);
+focusIn(dateReturn, dateReturnInput);
+wayGoReturn.addEventListener("click", myCheckFlyWay("fly-way-goReturn").checkFlyWay);
+wayGo.addEventListener("click", myCheckFlyWay("fly-way-go").checkFlyWay);
+wayMulti.addEventListener("click", myCheckFlyWay("fly-way-multi").checkFlyWay);
+dontKnowDate.addEventListener("click", myCheckUnknownDates("fly-dontKnowDate").checkU);
+flyButton.addEventListener("click", myCheckButton(event).checkButton);

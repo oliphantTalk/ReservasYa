@@ -2,6 +2,7 @@ package com.ttps.reservasya.config;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ttps.reservasya.models.businessitem.airline.flights.FlightSeat;
 import com.ttps.reservasya.services.agencies.AgencyService;
 import com.ttps.reservasya.services.airlines.AirlineService;
 import com.ttps.reservasya.services.hotel.HotelService;
@@ -26,6 +27,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -75,7 +77,9 @@ public class DataLoader implements ApplicationRunner {
         });
         List<StateTransaction> stateTransactions = jsonMapper.readValue(new URL("file:src/test/resources/transactionStates_h2.json"), new TypeReference<List<StateTransaction>>() {
         });
+        List<FlightSeat> flightSeats = jsonMapper.readValue(new URL("file:src/test/resources/fligthSeat_h2.json"), new TypeReference<List<FlightSeat>>(){});
 
+        flights.forEach(f -> f.setSeats(flightSeats));
         localParametersRepository.save(new LocalParameters());
         roleService.createAll(roles);
         users.forEach(userService::createOne);
@@ -83,6 +87,7 @@ public class DataLoader implements ApplicationRunner {
         agencyService.createCars(cars);
         airlineService.createAll(airlines);
         airlineService.createFlights(flights);
+
         hotelService.createAll(hotels);
         hotelService.createRooms(rooms);
         transactionService.createStates(stateTransactions);

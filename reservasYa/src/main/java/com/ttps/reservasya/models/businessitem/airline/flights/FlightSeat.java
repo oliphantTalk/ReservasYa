@@ -8,6 +8,8 @@ public class FlightSeat implements Serializable {
     private SeatClass seatClass;
     private Double priceClass;
 
+
+
     public String getSeatId() {
         return seatId;
     }

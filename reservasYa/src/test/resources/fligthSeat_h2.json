@@ -3,5 +3,45 @@
     "seatId": "someId",
     "seatClass": "ECONOMIC",
     "priceClass": 2300.3
+  },
+  {
+    "seatId": "someId2",
+    "seatClass": "ECONOMIC",
+    "priceClass": 2300.3
+  },
+  {
+    "seatId": "someId3",
+    "seatClass": "ECONOMIC",
+    "priceClass": 2300.3
+  },
+  {
+    "seatId": "someId",
+    "seatClass": "BUSINESS",
+    "priceClass": 2300.3
+  },
+  {
+    "seatId": "someId",
+    "seatClass": "FIRST",
+    "priceClass": 2300.3
+  },
+  {
+    "seatId": "someId",
+    "seatClass": "FIRST",
+    "priceClass": 2300.3
+  },
+  {
+    "seatId": "someId",
+    "seatClass": "ECONOMIC",
+    "priceClass": 2300.3
+  },
+  {
+    "seatId": "someId",
+    "seatClass": "ECONOMIC",
+    "priceClass": 2300.3
+  },
+  {
+    "seatId": "someId",
+    "seatClass": "ECONOMIC",
+    "priceClass": 2300.3
   }
 ]

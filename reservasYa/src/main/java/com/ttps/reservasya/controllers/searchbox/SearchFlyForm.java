@@ -1,5 +1,7 @@
 package com.ttps.reservasya.controllers.searchbox;
 
+import com.ttps.reservasya.models.businessitem.airline.flights.SeatClass;
+
 public class SearchFlyForm {
 
     private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
@@ -8,8 +10,17 @@ public class SearchFlyForm {
     private String to;
     private String departureDate;
     private String arrivalDate;
-    private String dateTo;
+    private String clase;
     private int passenger;
+
+
+    public String getClase() {
+        return clase;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
 
     public String getFrom() {
         return from;
@@ -41,14 +52,6 @@ public class SearchFlyForm {
 
     public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
-    }
-
-    public String getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(String dateTo) {
-        this.dateTo = dateTo;
     }
 
     public int getPassenger() {

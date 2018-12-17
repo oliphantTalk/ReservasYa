@@ -15,6 +15,7 @@ public class Car extends BusinessItem implements Serializable {
     private String description;
     private String model;
     private int year;
+    private int capacity;
     private String patent;
     private Agency agency;
 
@@ -71,5 +72,13 @@ public class Car extends BusinessItem implements Serializable {
 
     public void setAgency(Agency agency) {
         this.agency = agency;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 }

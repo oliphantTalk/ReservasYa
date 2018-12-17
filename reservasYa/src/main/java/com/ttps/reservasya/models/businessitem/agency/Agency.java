@@ -15,6 +15,7 @@ public class Agency implements Serializable {
 
     private Long id;
     private String name;
+    private String city;
     private List<Car> cars = new ArrayList<>();
 
 
@@ -47,5 +48,11 @@ public class Agency implements Serializable {
         this.cars = cars;
     }
 
+    public String getCity() {
+        return city;
+    }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

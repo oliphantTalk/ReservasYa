@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>flag</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Átomos" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Iconos" transform="translate(-586.000000, -6001.000000)" fill="#666666">
+            <g id="ico-flag" transform="translate(586.000000, 6001.000000)">
+                <path d="M6.38576786,18.8757287 C8.74472082,17.6860398 12.4293948,16.5435348 15.4518929,18.7961786 C24.5661786,25.5718214 27.8587143,19.8935179 27.8587143,19.8935179 L27.8587143,4.33916071 C20.6542857,6.62705357 21.5351607,6.244875 17.075375,3.67008929 C12.6970336,1.16627298 8.76791,2.15808495 6.38576786,3.29788469 L6.38576786,2 L4,2 L4,30.63025 L6.38576786,30.63025 L6.38576786,18.8757287 Z"></path>
+            </g>
+        </g>
+    </g>
+</svg>

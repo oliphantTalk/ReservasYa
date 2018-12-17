@@ -25,6 +25,7 @@ public class Flight extends BusinessItem implements Serializable {
     private LocalDate arrivalDate;
     private LocalDateTime arrivalTime;
     private String duration;
+    private String days;
     private int scales = 1;
     private Airline airline;
     @Embedded
@@ -142,10 +143,19 @@ public class Flight extends BusinessItem implements Serializable {
         this.duration = duration;
     }
 
+    public String getDays() {
+        return days;
+    }
+
+    public void setDays(String days) {
+        this.days = days;
+    }
 
     @PrePersist
     public void configDuration(){
         String dur = Duration.between(this.departureTime, this.arrivalTime).toString();
-        this.setDuration(dur.split("PT")[1]);
+        String duracion = dur.split("PT")[1].substring(0, 6);
+        this.setDuration(duracion.substring(0, 2) + "h " + duracion.substring(3, 5) + "m" );
+        this.setDays(String.valueOf((Integer.valueOf(duracion.substring(0, 2)) / 24)));
     }
 }

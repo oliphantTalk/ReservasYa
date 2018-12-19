@@ -6,8 +6,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.io.Serializable;
 
-@Entity
-@DiscriminatorValue(value = "CANCELLED")
+/*@Entity
+@DiscriminatorValue(value = "CANCELLED")*/
 public class CancelledTransaction extends StateTransaction implements Serializable {
 
    public CancelledTransaction(){
@@ -22,7 +22,7 @@ public class CancelledTransaction extends StateTransaction implements Serializab
 
     @Override
     public void doCancel(Transaction transaction) {
-        transaction.setState(this);
+        transaction.setTransactionState(CANCELLED);
     }
 
     @Override

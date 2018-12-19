@@ -1,68 +1,67 @@
 package com.ttps.reservasya.services.transaction;
 
-import com.ttps.reservasya.models.transaction.StateTransaction;
+import com.ttps.reservasya.models.transaction.PaymentData;
 import com.ttps.reservasya.models.transaction.Transaction;
 import com.ttps.reservasya.repository.transaction.TransactionRepository;
-import com.ttps.reservasya.repository.transaction.TransactionStateRepository;
 import com.ttps.reservasya.services.BasicCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class TransactionService extends BasicCrudService<Transaction, TransactionRepository> {
 
-    private TransactionStateRepository transactionStateRepository;
 
     public TransactionService(){};
 
     @Autowired
-    public TransactionService(TransactionRepository transactionRepository, TransactionStateRepository transactionStateRepository) {
+    public TransactionService(TransactionRepository transactionRepository) {
         super(transactionRepository);
-        this.transactionStateRepository = transactionStateRepository;
     }
 
     public void start(Transaction transaction){
         transaction.start();
-        updateOne(transaction);
+        transaction.buildStateTransaction();
+        transaction.setPaymentData(new PaymentData());
+        createOne(transaction);
     }
 
     public void cancel(Transaction transaction){
         transaction.cancel();
+        transaction.buildStateTransaction();
+        transaction.getPaymentData().reject();
         updateOne(transaction);
     }
 
-    public void approve(Transaction transaction){
+    public void approve(Transaction transaction, int pointsToConvert){
         transaction.approve();
+        transaction.buildStateTransaction();
+        transaction.setConvertedPoints(pointsToConvert);
+        transaction.getPaymentData().setCashAmount(transaction.getAmount().toString());
         updateOne(transaction);
     }
 
-    public void finish(Transaction transaction){
+    public void finish(Transaction transaction, PaymentData paymentData){
         transaction.finish();
+        transaction.buildStateTransaction();
+        transaction.getPaymentData().approve();
+        transaction.getPaymentData().setPassengerName(paymentData.getPassengerName());
+        transaction.getPaymentData().setPassengerLastName(paymentData.getPassengerLastName());
+        transaction.getPaymentData().setCreditCard(paymentData.getCreditCard());
+        transaction.getPaymentData().setDni(paymentData.getDni());
         updateOne(transaction);
     }
 
     public void rollback(Transaction transaction){
         transaction.rollBack();
+        transaction.buildStateTransaction();
         updateOne(transaction);
     }
 
     public void begin(Transaction transaction){
         transaction.begin();
+        transaction.buildStateTransaction();
         updateOne(transaction);
     }
 
-    public List<StateTransaction> createStates(List<StateTransaction> transactionStates){
-        return this.transactionStateRepository.saveAll(transactionStates);
-    }
-
-    @Override
-    public Transaction createOne(Transaction transaction){
-        if (transaction.getState().getId() == null){
-            transaction.getState().setId(this.transactionStateRepository.findByType(transaction.getState().getType()).getId());
-        }
-        return this.repository.save(transaction);
-    }
 
 }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ReservasYa!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+    <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
+</head>
+<body class="home-body">
+<div th:replace="~{fragments/header :: header}">Header</div>
+
+
+
+
+<div class="container yellow-rectangle">
+<form class="form-narrow form-horizontal" method="post" th:action="@{/checkout/fly}" th:object="${checkoutForm}" th:fragment="checkoutForm">
+    <!--/* Show general error message when form contains errors */-->
+
+    <fieldset>
+        <legend>Por favor, completa el formulario</legend>
+
+        <div class="form-group" >
+            <label for="passengerName">Nombre Pasajero</label>
+                <input type="text" class="form-control" id="passengerName" placeholder="Nombre Pasajero" th:field="*{passengerName}" />
+        </div>
+
+        <div class="form-group" >
+            <label for="passengerLastName" >Apellido Pasajero</label>
+                    <input type="text" class="form-control" id="passengerLastName" placeholder="Apellido" th:field="*{passengerLastName}" />
+        </div>
+
+        <div class="form-group" >
+            <label for="dni" >Dni</label>
+                    <input type="number" class="form-control" id="dni" placeholder="Numero de dni" th:field="*{dni}"/>
+        </div>
+
+        <div class="form-group" >
+            <label for="creditCardNumber" >Numero de tarjeta de credito</label>
+                    <input type="number" class="form-control" id="creditCardNumber" placeholder="Numero de tarjeta" th:field="*{creditCard}"/>
+        </div>
+
+        <div class="form-group" >
+            <label for="expirationDate" >Fecha Expiracion</label>
+                    <input type="number" class="form-control" id="expirationDate" placeholder="Fecha expiracion" th:field="*{expirationDate}"/>
+        </div>
+
+        <div class="form-group" >
+            <label for="securityCode" >Codigo de seguridad</label>
+                    <input type="number" th:min="0" th:max="999" class="form-control" id="securityCode" placeholder="Numero de seguridad" th:field="*{securityCode}"/>
+        </div>
+
+        <div class="form-group" >
+            <label for="points" >Puntos a convertir</label>
+                    <input type="range" th:min="0" th:max="9999" class="form-control" id="slider" placeholder="Puntos a convertir" th:field="*{pointsToConvert}"/>
+                    <output id="output"></output>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-lg-offset-4 col-lg-10 -eva-3-center">
+                <button type="submit" class="btn btn-primary">Finalizar Compra</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+</div>
+
+
+
+
+<footer class="eva-3-footer bottom-footer" th:insert="~{fragments/footer :: footer}">&copy; 2018 The Static Templates</footer>
+<script  th:src="@{~/resources/js/jquery.min.js}"></script>
+<script  th:src="@{~/resources/js/bootstrap.min.js}"></script>
+<script>
+    function displayCarBox() {
+        document.getElementById("fly-searchbox").style.display = "none";
+        document.getElementById("car-searchbox").style.display = "inherit";
+        document.getElementById("hotel-searchbox").style.display = "none";
+    }
+    function displayHotelBox() {
+        document.getElementById("fly-searchbox").style.display = "none";
+        document.getElementById("hotel-searchbox").style.display = "inherit";
+        document.getElementById("car-searchbox").style.display = "none";
+    }
+    function displayFlyBox() {
+        document.getElementById("fly-searchbox").style.display = "inherit";
+        document.getElementById("car-searchbox").style.display = "none";
+        document.getElementById("hotel-searchbox").style.display = "none";
+    }
+    document.getElementById("link-autos").addEventListener("click", displayCarBox);
+    document.getElementById("link-hoteles").addEventListener("click", displayHotelBox);
+    document.getElementById("link-vuelos").addEventListener("click", displayFlyBox);
+    document.getElementById("slider").oninput = function() {
+        sliderVal()
+    };
+    function sliderVal() {
+       let val = document.getElementById("slider").value //gets the oninput value
+       document.getElementById('output').innerHTML = val //displays this value to the html page
+       //console.log(val)
+    }
+</script>
+</body>
+</html>

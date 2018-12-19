@@ -48,10 +48,13 @@
                         </th:block>
                         <td th:text="${#strings.substring(f.arrivalTime, 11, 16)}">Horario Arrivo</td>
                         <td>
-                                                                    <span th:text="${f.duration}"></span>
-                                                                    <span class="plus-time" th:text="${'+' + f.days }"></span>
-                                                                </td>
-                        <td><span class="current-price">$8000</span></td>
+                            <span th:text="${f.duration}"></span>
+                            <span class="plus-time" th:text="${'+' + f.days }"></span>
+                        </td>
+                        <td>
+                            <span class="pesos-sign">$</span>
+                            <span class="current-price" th:text="${f.seats[0].priceClass}">$8000</span>
+                        </td>
                         <td th:text="${#arrays.length(f.seats)}"></td>
                         <td th:text="${seatClass}"></td>
                         <td class="button-container">
@@ -99,7 +102,10 @@
                                             <span th:text="${f.duration}"></span>
                                             <span class="plus-time" th:text="${'+' + f.days }"></span>
                                         </td>
-                                        <td><span class="current-price">$8000</span></td>
+                                        <td>
+                                            <span class="pesos-sign">$</span>
+                                            <span class="current-price" th:text="${f.seats[0].priceClass}">$8000</span>
+                                        </td>
                                         <td th:text="${#arrays.length(f.seats)}"></td>
                                         <td th:text="${seatClass}"></td>
                                         <td class="button-container">
@@ -292,7 +298,7 @@
                                                                     VUELTA
                                                             </span>
 
-                                                            <span class="fly-way" th:text="${flightsReturn[0].arrivalDate}">Dom. 12 Sep. 18</span>
+                                                            <span class="fly-way" th:text="${flightsReturn[0].returnDate}">Dom. 12 Sep. 18</span>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -668,7 +674,7 @@
                                                                                 VUELTA
                                                                         </span>
 
-                                                                        <span class="fly-way" th:text="${flightsReturn[0].arrivalDate}">Dom. 12 Sep. 18</span>
+                                                                        <span class="fly-way" th:text="${flightsReturn[0].returnDate}">Dom. 12 Sep. 18</span>
                                                                     </span>
                                                                 </div>
                                                             </div>

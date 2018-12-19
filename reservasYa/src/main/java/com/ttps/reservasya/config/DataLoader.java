@@ -75,8 +75,6 @@ public class DataLoader implements ApplicationRunner {
         });
         List<Car> cars = jsonMapper.readValue(new URL("file:src/test/resources/cars_h2.json"), new TypeReference<List<Car>>() {
         });
-        List<StateTransaction> stateTransactions = jsonMapper.readValue(new URL("file:src/test/resources/transactionStates_h2.json"), new TypeReference<List<StateTransaction>>() {
-        });
         List<FlightSeat> flightSeats = jsonMapper.readValue(new URL("file:src/test/resources/fligthSeat_h2.json"), new TypeReference<List<FlightSeat>>(){});
 
         flights.forEach(f -> f.setSeats(flightSeats));
@@ -90,7 +88,6 @@ public class DataLoader implements ApplicationRunner {
 
         hotelService.createAll(hotels);
         hotelService.createRooms(rooms);
-        transactionService.createStates(stateTransactions);
         Transaction transaction = new Transaction();
         transaction.getItems().addAll(Arrays.asList(cars.get(0), flights.get(0), rooms.get(0)));
         transactionService.createOne(transaction);

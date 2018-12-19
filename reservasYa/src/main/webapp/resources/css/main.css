@@ -29,7 +29,7 @@
 }
 
 .button-container {
-    padding: 13px 0 5px 0;
+    padding-top: 10px;
 }
 
 .common-row-container {
@@ -372,8 +372,9 @@ hr.-blue-line {
 }
 
 .cluster-container {
-    margin-top: 8px;
+    margin-top: 35px;
     margin-left: 25px;
+    margin-right: 25px;
 }
 
 .fly-way-wrapper {
@@ -499,9 +500,11 @@ hr.-blue-line {
         padding: 9px 10px;
         box-sizing: border-box;
     }
-    .button-container .search-button {
-        width: auto;
+
+    .table-striped > tbody > tr:nth-of-type(even) {
+        background-color: #c4dff6;
     }
+
     .fly-time .time {
         font-size: 16px;
         text-align: left;
@@ -535,7 +538,7 @@ hr.-blue-line {
         padding-bottom: 15px;
     }
     .cluster-container {
-        max-width: 724px;
+        max-width: 100%;
     }
     .itinerary-container {
         display: inherit;

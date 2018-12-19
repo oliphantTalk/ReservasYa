@@ -10,14 +10,14 @@ public class LocalParameters {
 
 
     private Long id;
-    private int gapMax = 2;
-    private int factorServicioVuelo = 10;
-    private double factorVueloEscala = 0.5;
-    private double factorDevolucion = 0.1;
-    private double pesosPorPunto = 0.5;
-    private double puntosPorPeso = 0.75;
-    private double firstClassRate = 0.5;
-    private double businessClassRate = 0.25;
+    private static int gapMax = 4;
+    private static int factorServicioVuelo = 10;
+    private static double factorVueloEscala = 0.5;
+    private static double factorDevolucion = 0.1;
+    private static double pesosPorPunto = 0.5;
+    private static double puntosPorPeso = 0.75;
+    private static double firstClassRate = 0.5;
+    private static double businessClassRate = 0.25;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

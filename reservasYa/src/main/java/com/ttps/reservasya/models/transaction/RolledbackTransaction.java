@@ -6,8 +6,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.io.Serializable;
 
-@Entity
-@DiscriminatorValue(value = "ROLLEDBACK")
+/*@Entity
+@DiscriminatorValue(value = "ROLLEDBACK")*/
 public class RolledbackTransaction extends StateTransaction implements Serializable {
 
     public RolledbackTransaction(){
@@ -22,7 +22,7 @@ public class RolledbackTransaction extends StateTransaction implements Serializa
 
     @Override
     public void doCancel(Transaction transaction) {
-        transaction.setState(new CancelledTransaction());
+        transaction.setTransactionState(CANCELLED);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class RolledbackTransaction extends StateTransaction implements Serializa
 
     @Override
     public void doRollBack(Transaction transaction) {
-        transaction.setState(this);
+        transaction.setTransactionState(ROLLEDBACK);
     }
 
     @Override

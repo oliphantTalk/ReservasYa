@@ -7,6 +7,7 @@ import com.ttps.reservasya.models.businessitem.hotel.Hotel;
 import com.ttps.reservasya.services.agencies.AgencyService;
 import com.ttps.reservasya.services.airlines.AirlineService;
 import com.ttps.reservasya.services.hotel.HotelService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @RequestMapping(value = "/search")
@@ -31,12 +33,14 @@ public class SearchController {
     private AgencyService agencyService;
 
     @PostMapping(value = "/fly")
-    public String searchFly(@Valid @ModelAttribute SearchFlyForm searchFlyForm, Errors errors, RedirectAttributes ra, Model model){
+    public String searchFly(@NotEmpty @Valid @ModelAttribute SearchFlyForm searchFlyForm, Errors errors, RedirectAttributes ra, Model model){
         if (errors.hasErrors()) {
             return "/";
         }
         model.addAttribute("flights", airlineService.findOneWayFlights(searchFlyForm.getDepartureDate(), searchFlyForm.getFrom().toLowerCase(), searchFlyForm.getTo().toLowerCase(), SeatClass.valueOf(searchFlyForm.getClase())));
-        model.addAttribute("flightsReturn", airlineService.findOneWayFlights(searchFlyForm.getDepartureDate(), searchFlyForm.getFrom(), searchFlyForm.getTo(), SeatClass.valueOf(searchFlyForm.getClase())));
+        if(!StringUtils.isBlank(searchFlyForm.getReturnDate())) {
+            model.addAttribute("flightsReturn", airlineService.findOneWayFlights(searchFlyForm.getReturnDate(), searchFlyForm.getTo(), searchFlyForm.getFrom(), SeatClass.valueOf(searchFlyForm.getClase())));
+        }
         model.addAttribute("seatClass", searchFlyForm.getClase());
         return "/result/result";
     }

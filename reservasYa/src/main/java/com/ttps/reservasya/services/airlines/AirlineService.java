@@ -1,5 +1,6 @@
 package com.ttps.reservasya.services.airlines;
 
+import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.businessitem.airline.Airline;
 import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
 import com.ttps.reservasya.models.businessitem.airline.flights.SeatClass;
@@ -9,7 +10,9 @@ import com.ttps.reservasya.services.BasicCrudService;
 import com.ttps.reservasya.utils.DateParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +31,9 @@ public class AirlineService extends BasicCrudService<Airline, AirlineRepository>
         this.flightRepository = flightRepository;
     }
 
-    public Optional<Flight> findFligth(Long id){
-        return flightRepository.findById(id);
+    public Flight findFligth(Long id){
+        // esta mal esta excepcion
+        return flightRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
     public List<Flight> findFligths(){
@@ -59,8 +63,10 @@ public class AirlineService extends BasicCrudService<Airline, AirlineRepository>
 
     }
 
-    public List<Flight> findFlightFromAndTo(String from, String to){
-        return this.flightRepository.findFlightsByFromAndTo(from, to).orElse(new ArrayList<>());
+    public Flight getFlightBySeatClass(Long id,  String seatClass) {
+        Flight flight = this.findFligth(id);
+        flight.setSeats(flight.getSeats().stream().filter(s -> SeatClass.valueOf(seatClass).equals(s.getSeatClass())).collect(Collectors.toList()));
+        return flight;
     }
 
 }

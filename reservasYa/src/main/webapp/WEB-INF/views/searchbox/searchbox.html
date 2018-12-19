@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
 </head>
 <body>
 
@@ -13,223 +13,221 @@
 <div class="eva-3-container" id="fly-searchbox" th:fragment="fly-searchbox" >
     <!-- BEGIN SEARCH BOX ++++++++++++++++++++++++++++++++++ -->
     <div class="eva-3-row -no-gutter">
-        <div class="col -sm-12 -md-6 -xlg-6">
+        <div class="col -sm-12 -md-12 -xlg-12">
             <section>
                 <article class="yellow-rectangle">
-            <form method="post" action="#" th:action="@{/search/fly}" id="flyBox">
-                <div class="eva-3-h3 box-title">Buscá tu vuelo</div>
-                <div class="eva-3-row -no-gutter common-row-container">
-                    <div class="col -sm-12 -md-12">
-                                    <span class="eva-3-radio">
-                                        <label class="radio-label-container">
-                                            <input
-                                                    type="radio"
-                                                    name="fly-way"
-                                                    class="radio-tag"
-                                                    id="fly-way-goReturn"
-                                                    checked="checked"
-                                            />
+                    <form method="post" action="#" th:action="@{/search/fly}" id="flyBox">
+                        <div class="eva-3-h3 box-title">Buscá tu vuelo</div>
+                        <div class="eva-3-row -no-gutter common-row-container">
+                            <div class="col -sm-12 -md-12">
+                                            <span class="eva-3-radio">
+                                                <label class="radio-label-container">
+                                                    <input
+                                                            type="radio"
+                                                            name="fly-way"
+                                                            class="radio-tag"
+                                                            id="fly-way-goReturn"
+                                                            checked="checked"
+                                                    />
 
-                                            <i class="radio-circle no-margin-right"></i>
+                                                    <i class="radio-circle no-margin-right"></i>
 
-                                            <span class="radio-tag-font-size">Ida y vuelta</span>
-                                    </label>
-                                    </span>
+                                                    <span class="radio-tag-font-size">Ida y vuelta</span>
+                                            </label>
+                                            </span>
 
-                        <span class="eva-3-radio">
-                                        <label class="radio-label-container">
-                                            <input
-                                                    type="radio"
-                                                    name="fly-way"
-                                                    class="radio-tag"
-                                                    id="fly-way-go"
-                                            />
+                                <span class="eva-3-radio">
+                                                <label class="radio-label-container">
+                                                    <input
+                                                            type="radio"
+                                                            name="fly-way"
+                                                            class="radio-tag"
+                                                            id="fly-way-go"
+                                                    />
 
-                                            <i class="radio-circle no-margin-right"></i>
+                                                    <i class="radio-circle no-margin-right"></i>
 
-                                            <span class="radio-tag-font-size">Solo ida</span>
-                                    </label>
-                                </span>
-                    </div>
-                </div>
-
-                <div class="eva-3-row -no-gutter common-row-container">
-                    <div class="col -sm-12 -md-6">
-                        <label class="eva-3-label-form label-form-block -md">
-                                        <span class="label-container">
-                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Origen</span>
+                                                    <span class="radio-tag-font-size">Solo ida</span>
+                                            </label>
                                         </span>
-
-                            <div
-                                    class="eva-3-input -no-border  input-border-separator -lg eva-3-validation -top-right"
-                                    id="fly-from-input"
-                            >
-                                <div class="input-container">
-                                    <input
-                                            type="text"
-                                            placeholder="Desde donde viajas"
-                                            id="fly-from"
-                                            name="from"
-                                            class="input-tag"
-                                    />
-
-                                    <span
-                                            class="validation-msg"
-                                            id="fly-from-msg"
-                                    ></span>
-                                </div>
                             </div>
-                        </label>
-                    </div>
+                        </div>
 
-                    <div class="col -sm-12 -md-6">
-                        <label class="eva-3-label-form label-form-block -md">
-                                        <span class="label-container">
-                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Destino</span>
-                                        </span>
+                        <div class="eva-3-row -no-gutter common-row-container">
+                            <div class="col -sm-12 -md-3">
+                                <label class="eva-3-label-form label-form-block -md" for="fly-from">
+                                    <span class="label-container">
+                                        <span class="-eva-3-bold -eva-3-tc-black label-text">Origen</span>
+                                    </span>
+                                </label>
+                                    <div
+                                            class="eva-3-input -no-border  input-border-separator -lg eva-3-validation -top-right"
+                                            id="fly-from-input"
+                                    >
+                                        <div class="input-container">
+                                            <input
+                                                    type="text"
+                                                    placeholder="Desde donde viajas"
+                                                    id="fly-from"
+                                                    name="from"
+                                                    class="input-tag"
+                                            />
 
-                            <div
+                                            <span
+                                                    class="validation-msg"
+                                                    id="fly-from-msg"
+                                            ></span>
+                                        </div>
+                                    </div>
+
+                            </div>
+
+                            <div class="col -sm-12 -md-3">
+                                <label class="eva-3-label-form label-form-block -md" for="fly-to">
+                                    <span class="label-container">
+                                        <span class="-eva-3-bold -eva-3-tc-black label-text">Destino</span>
+                                    </span>
+                                </label>
+                                <div
                                     class="eva-3-input -no-border  input-border-separator  -lg eva-3-validation  -top-right"
                                     id="fly-to-input"
-                            >
-                                <div class="input-container">
-                                    <input
-                                            type="text"
-                                            placeholder="Hacia donde viajas"
-                                            id="fly-to"
-                                            name="to"
-                                            class="input-tag"
-                                    />
+                                >
+                                    <div class="input-container">
+                                        <input
+                                                type="text"
+                                                placeholder="Hacia donde viajas"
+                                                id="fly-to"
+                                                name="to"
+                                                class="input-tag"
+                                        />
 
-                                    <span
-                                            class="validation-msg"
-                                            id="fly-to-msg"
-                                    ></span>
+                                        <span
+                                                class="validation-msg"
+                                                id="fly-to-msg"
+                                        ></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col -sm-12 -md-3 ">
+                                 <label class="eva-3-label-form label-form-block -md" for="fly-dateGo">
+                                    <span class="label-container">
+                                        <span class="-eva-3-bold -eva-3-tc-black label-text">Fecha Ida</span>
+                                    </span>
+                                 </label>
+                                 <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
+                                         id="fly-dateGo-input">
+                                     <div class="input-container">
+                                        <input type="text" placeholder="dd/mm/yyyy - Ida" id="fly-dateGo" name="departureDate"
+                                                   class="input-tag"/>
+                                            <span class="validation-msg" id="fly-dateGo-msg"></span>
+                                            <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
+                                     </div>
+                                 </div>
+                            </div>
+
+                            <div class="col -sm-12 -md-3 ">
+                                <label class="eva-3-label-form label-form-block -md" for="fly-dateReturn">
+                                    <span class="label-container">
+                                        <span class="-eva-3-bold -eva-3-tc-black label-text">Fecha Vuelta</span>
+                                    </span>
+                                </label>
+                                <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
+                                     id="fly-dateReturn-input">
+                                    <div class="input-container">
+                                        <input type="text" placeholder="dd/mm/yyyy - Vuelta" id="fly-dateReturn"
+                                               name="returnDate" class="input-tag"/>
+                                        <span class="validation-msg" id="fly-dateReturn-msg"></span>
+
+                                        <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </label>
-                    </div>
-                </div>
+                        </div>
 
-                <div class="eva-3-row -no-gutter common-row-container">
-                    <div class="col -sm-12 -md-12 no-padding">
-                        <label class="col -sm-8 -md-8 no-padding eva-3-label-form label-form-block  -md">
-                                        <span class="label-container">
-                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Fechas</span>
-                                        </span>
-                        </label>
+                        <div class="eva-3-row common-row-container">
+                            <div class="col -sm-12 -md-4">
+                                <label for="select-passenger" class="eva-3-label-form  label-form-block -md">
+                                    <span class="label-container">
+                                        <span class="-eva-3-bold -eva-3-tc-black label-text">Pasajeros</span>
+                                    </span>
+                                </label>
 
-                        <div class="col -sm-6 -md-6  no-padding">
-                            <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
-                                 id="fly-dateGo-input">
-                                <div class="input-container">
-                                    <input type="text" placeholder="dd/mm/yyyy - Ida" id="fly-dateGo" name="departureDate"
-                                           class="input-tag"
-/>
-                                    <span class="validation-msg" id="fly-dateGo-msg"></span>
+                                <div class="eva-3-select -no-border -lg input-border-separator -icon-left eva-3-validation  -bottom-right"
+                                     id="persons-select">
+                                    <div class="select-container">
+                                        <select id="select-passenger" name="passenger" class="select-tag">
 
-                                    <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
+                                            <option
+                                                    value="1"
+                                                    class="select-option"
+                                            >1 Persona
+                                            </option>
+
+                                            <option
+                                                    value="2"
+                                                    selected="selected"
+                                                    class="select-option"
+                                            >2 Personas
+                                            </option>
+
+                                            <option
+                                                    value="3"
+                                                    class="select-option"
+                                            >3 Personas
+                                            </option>
+
+                                            <option
+                                                    value="2"
+                                                    class="select-option"
+                                            >4 Personas
+                                            </option>
+
+                                            <option
+                                                    value="3"
+                                                    class="select-option"
+                                            >5 Personas
+                                            </option>
+                                        </select>
+
+                                        <span class="validation-msg">Campo invalido</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col -sm-6 -md-6 no-padding">
-                            <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
-                                 id="fly-dateReturn-input">
-                                <div class="input-container">
-                                    <input type="text" placeholder="dd/mm/yyyy - Vuelta" id="fly-dateReturn"
-                                           name="arrivalDate" class="input-tag"
-/>
-                                    <span class="validation-msg" id="fly-dateReturn-msg"></span>
-
-                                    <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
+                            <div class="col -sm-12 -md-4">
+                                 <label for="clase" class="eva-3-label-form  label-form-block -md">
+                                    <span class="label-container">
+                                        <span class="-eva-3-bold -eva-3-tc-black label-text">Clase</span>
+                                    </span>
+                                </label>
+                                <div class="eva-3-select -no-border -lg input-border-separator -icon-left eva-3-validation  -bottom-right"
+                                                             id="persons-select">
+                                    <div class="select-container">
+                                    <select id="clase" name="clase" class="select-tag">
+                                        <option class="select-option" selected=selected th:value="'ECONOMIC'">ECONOMICA</option>
+                                        <option th:value="'BUSINESS'">BUSINESS</option>
+                                        <option th:value="'FIRST'">PRIMERA</option>
+                                    </select>
+                                        <span class="validation-msg">Campo invalido</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col -sm-12 -md-12">
-                        <label for="" class="eva-3-label-form  label-form-block -md">
-                                        <span class="label-container">
-                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Pasajeros</span>
-                                        </span>
-                        </label>
-
-                        <div class="eva-3-select -no-border -lg input-border-separator -icon-left eva-3-validation  -bottom-right"
-                             id="persons-select">
-                            <div class="select-container">
-                                <select id="select-passenger" name="passenger" class="select-tag">
-
-                                    <option
-                                            value="1"
-                                            class="select-option"
-                                    >1 Persona
-                                    </option>
-
-                                    <option
-                                            value="2"
-                                            selected="selected"
-                                            class="select-option"
-                                    >2 Personas
-                                    </option>
-
-                                    <option
-                                            value="3"
-                                            class="select-option"
-                                    >3 Personas
-                                    </option>
-
-                                    <option
-                                            value="2"
-                                            class="select-option"
-                                    >4 Personas
-                                    </option>
-
-                                    <option
-                                            value="3"
-                                            class="select-option"
-                                    >5 Personas
-                                    </option>
-                                </select>
-
-                                <span class="validation-msg">Campo invalido</span>
+                            <div class="col -sm-12 -md-4 ">
+                                 <label class="eva-3-label-form label-form-block -md" for="">
+                                </label>
+                                <div class="button-container -eva-3-center">
+                                    <button class="search-button eva-3-btn -secondary -lg" id="fly-button">
+                                        <em class="btn-text">Buscar</em>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col -sm-12 -md-12 center-loader" id="loaderSpot">
                             </div>
                         </div>
-                    </div>
-                    <div class="col -sm-12 -md-12">
-                     <label for="" class="eva-3-label-form  label-form-block -md">
-                                                            <span class="label-container">
-                                                                <span class="-eva-3-bold -eva-3-tc-black label-text">Clase</span>
-                                                            </span>
-                                            </label>
-                        <div class="eva-3-select -no-border -lg input-border-separator -icon-left eva-3-validation  -bottom-right"
-                                                     id="persons-select">
-                            <div class="select-container">
-                            <select id="clase" name="clase" class="select-tag">
-                                <option class="select-option" selected=selected th:value="'ECONOMIC'">ECONOMICA</option>
-                                <option th:value="'BUSINESS'">BUSINESS</option>
-                                <option th:value="'FIRST'">PRIMERA</option>
-                            </select>
-                                <span class="validation-msg">Campo invalido</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="eva-3-row -no-gutter common-row-container">
-                    <div class="col -sm-12 -md-12">
-                        <div class="button-container">
-                            <button class="search-button eva-3-btn -secondary -md" id="fly-button">
-                                <em class="btn-text">Buscar</em>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col -sm-12 -md-12 center-loader" id="loaderSpot">
 
-                    </div>
-                </div>
-            </form>
+                    </form>
                 </article>
             </section>
         </div>
@@ -335,7 +333,7 @@
                                          id="fly-dateReturn-input">
                                         <div class="input-container">
                                             <input type="text" placeholder="dd/mm/yyyy" id="fly-dateReturn"
-                                                   name="arrivalDate" class="input-tag"
+                                                   name="returnDate" class="input-tag"
 />
                                             <span class="validation-msg" id="fly-dateReturn-msg"></span>
 
@@ -500,7 +498,7 @@
                                          id="hotel-dateReturn-input">
                                         <div class="input-container">
                                             <input type="text" placeholder="dd/mm/yyyy" id="hotel-dateReturn"
-                                                   name="arrivalDate" class="input-tag"/>
+                                                   name="returnDate" class="input-tag"/>
                                             <span class="validation-msg" id="hotel-dateReturn-msg"></span>
 
                                             <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>

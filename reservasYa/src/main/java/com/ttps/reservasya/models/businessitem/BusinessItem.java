@@ -28,4 +28,5 @@ public abstract class BusinessItem implements Serializable {
     public void setPrice(Double price) {
         this.price = price;
     }
+
 }

@@ -11,7 +11,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
+import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
 
 
 @Configuration
@@ -37,6 +40,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new TokenBasedRememberMeServices("remember-me-key", userService);
     }
 
+    @Bean(name = "redirecter")
+    public SimpleUrlAuthenticationSuccessHandler redirecter(){
+        SimpleUrlAuthenticationSuccessHandler redirecter = new SimpleUrlAuthenticationSuccessHandler();
+        redirecter.setAlwaysUseDefaultTargetUrl(true);
+        redirecter.setDefaultTargetUrl("http://localhost:8080/");
+        return redirecter;
+    }
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
           auth
@@ -58,12 +70,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .failureUrl("/signin?error=1")
                 .loginProcessingUrl("/authenticate")
+
+                .successHandler(redirecter())
                 .and()
+
             .csrf()
-                .ignoringAntMatchers("/h2-console/**")
+                .ignoringAntMatchers("/h2-console/**", "/**")
                 .and()
             .headers()
                 .frameOptions().sameOrigin()
+                .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.ORIGIN_WHEN_CROSS_ORIGIN)
+                .and()
                 .and()
             .logout()
                 .logoutUrl("/logout")

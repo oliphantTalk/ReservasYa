@@ -4,7 +4,9 @@ package com.ttps.reservasya.services.user;
 import com.ttps.reservasya.error.exceptions.NoElementInDBException;
 import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.user.User;
+import com.ttps.reservasya.models.user.settings.UserSettings;
 import com.ttps.reservasya.repository.user.UserRepository;
+import com.ttps.reservasya.repository.user.UserSettingsRepository;
 import com.ttps.reservasya.services.BasicCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,6 +35,9 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    private UserSettingsRepository settingsRepository;
+
     private RoleService roleService;
     private  BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -58,7 +63,14 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         if (user.getRole() == null) {
             user.setRole(this.roleService.findById(1L).orElseThrow(NoElementInDBException::new));
         }
+        createUserSettings(user);
         return repository.save(user);
+    }
+
+    private void createUserSettings(User user) {
+        UserSettings userSettings = new UserSettings();
+        userSettings.setUser(user);
+        settingsRepository.save(userSettings);
     }
 
     public Optional<User> findByEmail(@Email String email){

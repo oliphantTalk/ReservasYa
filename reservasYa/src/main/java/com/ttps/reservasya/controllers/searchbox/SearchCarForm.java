@@ -1,7 +1,5 @@
 package com.ttps.reservasya.controllers.searchbox;
 
-import com.ttps.reservasya.models.businessitem.agency.Agency;
-
 public class SearchCarForm {
 
     private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";

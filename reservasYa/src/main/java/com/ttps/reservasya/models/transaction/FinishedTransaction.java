@@ -5,8 +5,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.io.Serializable;
 
-@Entity
-@DiscriminatorValue(value = "FINISHED")
+/*Entity
+@DiscriminatorValue(value = "FINISHED")*/
 public class FinishedTransaction extends StateTransaction implements Serializable {
 
 
@@ -27,7 +27,7 @@ public class FinishedTransaction extends StateTransaction implements Serializabl
 
     @Override
     public void doFinish(Transaction transaction) {
-        transaction.setState(this);
+        transaction.setTransactionState(FINISHED);
     }
 
     @Override

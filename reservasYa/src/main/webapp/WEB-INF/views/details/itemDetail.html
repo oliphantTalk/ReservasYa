@@ -12,13 +12,165 @@
 <body>
 
 <div th:fragment="fly-detail">
-    Vuelo hay
-    <div th:text="${flight}"></div>
-    <div th:text="${flight.from}"></div>
-    <div th:each="s: ${flight.seats}">
-    <span th:text="${s.seatId}"></span>
-    <span th:text="${s.seatClass}"></span>
-    <span th:text="${s.priceClass}"></span>
+    <div class="cluster-container cluster-white-background" id="fly-cluster">
+       <table class="table table-hover ">
+           <thead class="">
+             <tr>
+               <th>
+                 <span>Detalles Vuelo</span>
+                   <span class="fly-way">
+                     <i class="eva-3-icon-airplane-going"></i>
+                       IDA
+                   </span>
+                </th>
+
+             </tr>
+           </thead>
+           <tbody>
+             <tr>
+               <td>Aerolinea</td>
+               <td th:text="${flight.airline.name}">John</td>
+             </tr>
+             <tr>
+               <td>ORIGEN</td>
+               <td th:text="${#strings.capitalize(flight.from)}">Origen</td>
+             </tr>
+             <tr>
+                <td>Datos salida</td>
+                <td>
+                    <span th:text="${flight.departureDate} + '        '"></span>
+                    <span th:text="${#strings.substring(flight.departureTime, 11, 16)}"></span>
+                </td>
+             </tr>
+             <tr>
+                <td>DESTINO</td>
+                <td th:text="${#strings.capitalize(flight.to)}">Destino</td>
+             </tr>
+             <tr>
+               <td>Datos llegada</td>
+               <td>
+                 <span th:text="${flight.arrivalDate} + '        '"></span>
+                 <span th:text="${#strings.substring(flight.arrivalTime, 11, 16)}"></span>
+               </td>
+             </tr>
+             <tr>
+               <td>Duracion</td>
+               <td>
+                   <span th:text="${flight.duration}"></span>
+                   <span class="plus-time" th:text="${'+' + flight.days }"></span>
+               </td>
+             </tr>
+             <tr>
+                <td>Precio</td>
+                <td>
+                   <span class="pesos-sign">$</span>
+                   <span class="current-price" th:text="${flight.seats[0].priceClass}">$8000</span>
+               </td>
+             </tr>
+             <tr>
+                <td>Escalas</td>
+               <th:block th:switch="${flight.scales}">
+                  <td th:case="0">Directo</td>
+                  <td th:case="1" th:text="${flight.scales +' escala'}"></td>
+                  <td th:case="*" th:text="${flight.scales +' escalas'}"></td>
+               </th:block>
+             </tr>
+             <tr>
+               <td>CLASE</td>
+               <td th:text="${seatClass}"></td>
+             </tr>
+             <tr th:if="${flightReturn == null}">
+               <td class="button-container">
+                   <span >
+                      <a class="eva-3-btn -primary -sm" th:href="@{/checkout/fly(flight_id=${flight.id})}">
+                        <em class="btn-text">COMPRAR</em>
+                      </a>
+                  </span>
+               </td>
+             </tr>
+
+           </tbody>
+         </table>
+       <th:block th:if="${flightReturn != null}">
+       <table class="table table-hover ">
+                   <thead class="">
+                     <tr>
+                       <th>
+                         <span>Detalles Vuelo</span>
+                           <span class="fly-way">
+                             <i class="eva-3-icon-airplane-return"></i>
+                               VUELTA
+                           </span>
+                        </th>
+
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr>
+                       <td>Aerolinea</td>
+                       <td th:text="${flightReturn.airline.name}">John</td>
+                     </tr>
+                     <tr>
+                       <td>ORIGEN</td>
+                       <td th:text="${#strings.capitalize(flightReturn.from)}">Origen</td>
+                     </tr>
+                     <tr>
+                        <td>Datos salida</td>
+                        <td>
+                            <span th:text="${flightReturn.departureDate} + '        '"></span>
+                            <span th:text="${#strings.substring(flightReturn.departureTime, 11, 16)}"></span>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>DESTINO</td>
+                        <td th:text="${#strings.capitalize(flightReturn.to)}">Destino</td>
+                     </tr>
+                     <tr>
+                       <td>Datos llegada</td>
+                       <td>
+                         <span th:text="${flightReturn.arrivalDate} + '        '"></span>
+                         <span th:text="${#strings.substring(flightReturn.arrivalTime, 11, 16)}"></span>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Duracion</td>
+                       <td>
+                           <span th:text="${flightReturn.duration}"></span>
+                           <span class="plus-time" th:text="${'+' + flightReturn.days }"></span>
+                       </td>
+                     </tr>
+                     <tr>
+                        <td>Precio</td>
+                        <td>
+                           <span class="pesos-sign">$</span>
+                           <span class="current-price" th:text="${flightReturn.seats[0].priceClass}">$8000</span>
+                       </td>
+                     </tr>
+                     <tr>
+                        <td>Escalas</td>
+                       <th:block th:switch="${flightReturn.scales}">
+                          <td th:case="0">Directo</td>
+                          <td th:case="1" th:text="${flightReturn.scales +' escala'}"></td>
+                          <td th:case="*" th:text="${flightReturn.scales +' escalas'}"></td>
+                       </th:block>
+                     </tr>
+                     <tr>
+                       <td>CLASE</td>
+                       <td th:text="${seatClass}"></td>
+                     </tr>
+                     <tr>
+                       <td class="button-container">
+                           <span >
+                              <a class="eva-3-btn -primary -sm" th:href="@{/checkout/fly(flight_id=${flight.id})(flight_return_id=${flightReturn.id})}">
+                                <em class="btn-text">COMPRAR</em>
+                              </a>
+                          </span>
+                       </td>
+                     </tr>
+
+                   </tbody>
+                 </table>
+       </th:block>
     </div>
 </div>
 

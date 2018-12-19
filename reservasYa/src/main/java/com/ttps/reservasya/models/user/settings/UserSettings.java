@@ -1,24 +1,18 @@
 package com.ttps.reservasya.models.user.settings;
 
 import com.ttps.reservasya.models.user.User;
-import com.ttps.reservasya.models.user.history.UserHistory;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "USER_SETTINGS")
 public class UserSettings implements Serializable {
 
     private Long id;
     private User user;
-    private List<UserHistory> historyList = new ArrayList<>();
     private LocalDateTime lastLogin = LocalDateTime.now();
-    private BigDecimal pointsToUse = BigDecimal.valueOf(0);
+    private int pointsToUse = 0;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,15 +34,6 @@ public class UserSettings implements Serializable {
         this.user = user;
     }
 
-    @ElementCollection(targetClass = UserHistory.class)
-    public List<UserHistory> getHistoryList() {
-        return historyList;
-    }
-
-    public void setHistoryList(List<UserHistory> historyList) {
-        this.historyList = historyList;
-    }
-
 
     public LocalDateTime getLastLogin() {
         return lastLogin;
@@ -58,11 +43,11 @@ public class UserSettings implements Serializable {
         this.lastLogin = lastLogin;
     }
 
-    public BigDecimal getPointsToUse() {
+    public int getPointsToUse() {
         return pointsToUse;
     }
 
-    public void setPointsToUse(BigDecimal pointsToUse) {
+    public void setPointsToUse(int pointsToUse) {
         this.pointsToUse = pointsToUse;
     }
 }

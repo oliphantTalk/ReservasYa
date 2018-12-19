@@ -6,8 +6,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.io.Serializable;
 
-@Entity
-@DiscriminatorValue(value = "STARTED")
+/*@Entity
+@DiscriminatorValue(value = "STARTED")*/
 public class StartedTransaction extends StateTransaction implements Serializable {
 
 
@@ -21,12 +21,12 @@ public class StartedTransaction extends StateTransaction implements Serializable
 
     @Override
     public void doStart(Transaction transaction) {
-        transaction.setState(this);
+        transaction.setTransactionState(STARTED);
     }
 
     @Override
     public void doCancel(Transaction transaction) {
-        transaction.setState(new CancelledTransaction());
+        transaction.setTransactionState(CANCELLED);
     }
 
     @Override
@@ -36,11 +36,11 @@ public class StartedTransaction extends StateTransaction implements Serializable
 
     @Override
     public void doRollBack(Transaction transaction) {
-        transaction.setState(new RolledbackTransaction());
+        transaction.setTransactionState(ROLLEDBACK);
     }
 
     @Override
     public void doApprove(Transaction transaction) {
-        transaction.setState(new ApprovedTransaction());
+        transaction.setTransactionState(APPROVED);
     }
 }

@@ -1,6 +1,7 @@
 package com.ttps.reservasya.services.checkout;
 
 import com.ttps.reservasya.controllers.checkout.CheckoutForm;
+import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.businessitem.BusinessItem;
 import com.ttps.reservasya.models.transaction.PaymentData;
 import com.ttps.reservasya.models.transaction.Transaction;
@@ -34,10 +35,11 @@ public class CheckoutService {
     @Autowired
     private UserSettingsRepository userSettingsRepository;
 
-    public void startTransaction(String loggedUserName, List<BusinessItem> items) {
+    public void startTransaction(String loggedUserName, List<BusinessItem> items, int passengers) {
         User loggedUser = userService.findByUserName(loggedUserName);
-        Transaction transaction = createTransaction(loggedUser, items);
+        Transaction transaction = createTransaction(loggedUser, items, passengers);
         createTransactionHistory(loggedUser, transaction);
+
     }
 
 
@@ -56,6 +58,17 @@ public class CheckoutService {
         finishSuccesfulTransaction(loggedUser, lastTransaction.get(), paymentData);
     }
 
+    public void cancelTransaction(String loggedUserName, Transaction transaction){
+        User loggedUser = getLoggedUser(loggedUserName);
+        if(transaction == null)
+        {
+            UserTransactionHistory history = this.getUserTransactionHistory(loggedUser);
+            transaction = transactionService.findById(history.getLastTransactionId()).get();
+        }
+        transactionService.cancel(transaction);
+        updateUserPointsAfterTransaction(loggedUser, transaction.getConvertedPoints() * LocalParameters.factorDevolucion, false);
+    }
+
     private PaymentData createPaymentDataFromCheckout(CheckoutForm form) {
         PaymentData paymentData = new PaymentData();
         paymentData.setPassengerName(form.getPassengerName());
@@ -69,14 +82,27 @@ public class CheckoutService {
     private void finishSuccesfulTransaction(User loggedUser, Transaction lastTransaction, PaymentData paymentData){
         try {
             transactionService.finish(lastTransaction, paymentData);
-            UserSettings userSettings = userSettingsRepository.findByUser(loggedUser).get();
-            int previousPoints = userSettings.getPointsToUse();
-            userSettings.setPointsToUse(lastTransaction.getConvertedPoints() - previousPoints);
+            double pointsToSubstract = lastTransaction.getConvertedPoints() + Double.valueOf(paymentData.getCashAmount()) * LocalParameters.puntosPorPeso;
+            updateUserPointsAfterTransaction(loggedUser, pointsToSubstract, true);
         }
         catch (Exception e){
             //CANCELAR
         }
     }
+
+    private void updateUserPointsAfterTransaction(User loggedUser, double pointsToChange, boolean isSubstract) {
+        UserSettings userSettings = userSettingsRepository.findByUser(loggedUser).get();
+        int previousPoints = userSettings.getPointsToUse();
+        int newPoints = 0;
+        if(isSubstract) {
+            newPoints = (int) Math.round(previousPoints - pointsToChange);
+        }
+        else {
+            newPoints = (int) Math.round(previousPoints + pointsToChange);
+        }
+        userSettings.setPointsToUse(newPoints);
+    }
+
 
     private void createTransactionHistory(User loggedUser, Transaction transaction) {
         UserTransactionHistory transactionHistory = getUserTransactionHistory(loggedUser);
@@ -89,9 +115,14 @@ public class CheckoutService {
         return historyRepository.findByUser(loggedUser).orElseGet(() -> new UserTransactionHistory(loggedUser));
     }
 
-    private Transaction createTransaction(User loggedUser, List<BusinessItem> items) {
+    private Transaction createTransaction(User loggedUser, List<BusinessItem> items, int passengers) {
         Transaction transaction = new Transaction();
         transaction.setUser(loggedUser);
+        if(passengers == 0){
+            passengers = 1;
+        }
+        int finalPassengers = passengers;
+        items.forEach(i -> i.setPrice(i.getPrice() * finalPassengers));
         transaction.getItems().addAll(items);
         transactionService.createOne(transaction);
         try {

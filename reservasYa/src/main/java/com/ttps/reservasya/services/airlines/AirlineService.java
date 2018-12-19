@@ -1,6 +1,7 @@
 package com.ttps.reservasya.services.airlines;
 
 import com.ttps.reservasya.error.exceptions.UserNotFoundException;
+import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.businessitem.airline.Airline;
 import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
 import com.ttps.reservasya.models.businessitem.airline.flights.SeatClass;
@@ -57,7 +58,7 @@ public class AirlineService extends BasicCrudService<Airline, AirlineRepository>
     }
 
     public List<Flight> findOneWayFlights(String departureDate, String from, String to, SeatClass seatClass){
-        List<Flight> flights = this.flightRepository.findFlightsByDepartureDateGreaterThanEqualAndFromAndToOrderByAirline(DateParser.parse(departureDate), from, to).orElse(new ArrayList<>());
+        List<Flight> flights = this.flightRepository.findFlightsByDepartureDateGreaterThanEqualAndFromAndToAndGapMaxLessThanOrderByAirline(DateParser.parse(departureDate), from, to, LocalParameters.gapMax).orElse(new ArrayList<>());
         flights.forEach(f -> f.setSeats(f.getSeats().stream().filter(s -> s.getSeatClass().equals(seatClass)).collect(Collectors.toList())));
         return flights;
 

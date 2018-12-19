@@ -60,5 +60,192 @@
       "id": 3
     },
     "seats": null
+  },
+    {
+    "flyCode": "test1",
+    "from": "Buenos Aires",
+    "to": "Lisboa",
+    "departureDate": "2018-01-10",
+    "arrivalDate": "2018-01-11",
+    "departureTime": "2018-01-10T13:00:00",
+    "arrivalTime": "2018-01-11T03:00:00",
+    "scales": 1,
+    "gapMax": 4,
+    "price": 30000,
+    "economicCapacity":100,
+    "businessCapacity":20,
+    "firstCapacity": 10,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  },
+  {
+    "flyCode": "test2",
+    "from": "Buenos Aires",
+    "to": "Montevideo",
+    "departureDate": "2018-01-10",
+    "arrivalDate": "2018-01-10",
+    "departureTime": "2018-01-10T13:00:00",
+    "arrivalTime": "2018-01-10T15:00:00",
+    "scales": 0,
+    "gapMax": 0,
+    "price": 2000,
+    "economicCapacity":50,
+    "businessCapacity":10,
+    "firstCapacity": 0,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  },
+  {
+    "flyCode": "test3",
+    "from": "Montevideo",
+    "to": "Lisboa",
+    "departureDate": "2018-01-10",
+    "arrivalDate": "2018-01-11",
+    "departureTime": "2018-01-10T13:00:00",
+    "arrivalTime": "2018-01-11T01:00:00",
+    "gapMax": 0,
+    "scales": 0,
+    "price": 28000,
+    "economicCapacity":90,
+    "businessCapacity":10,
+    "firstCapacity": 10,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  },
+  {
+    "flyCode": "test4",
+    "from": "Montevideo",
+    "to": "Lisboa",
+    "departureDate": "2018-01-10",
+    "arrivalDate": "2018-01-11",
+    "departureTime": "2018-01-10T19:00:00",
+    "arrivalTime": "2018-01-11T03:00:00",
+    "scales": 0,
+    "price": 28000,
+    "economicCapacity":90,
+    "businessCapacity":10,
+    "firstCapacity": 10,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  },
+  {
+    "flyCode": "test5",
+    "from": "Lisboa",
+    "to": "Madrid",
+    "departureDate": "2018-01-11",
+    "arrivalDate": "2018-01-11",
+    "departureTime": "2018-01-10T04:00:00",
+    "arrivalTime": "2018-01-11T07:00:00",
+    "scales": 0,
+    "price": 5800,
+    "economicCapacity":50,
+    "businessCapacity":10,
+    "firstCapacity": 20,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  },
+  {
+    "flyCode": "test6",
+    "from": "Lisboa",
+    "to": "Madrid",
+    "departureDate": "2018-01-10",
+    "arrivalDate": "2018-01-11",
+    "departureTime": "2018-01-10T08:00:00",
+    "arrivalTime": "2018-01-11T11:00:00",
+    "scales": 0,
+    "price": 6500,
+    "economicCapacity":50,
+    "businessCapacity":10,
+    "firstCapacity": 20,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  },
+  {
+    "flyCode": "test7",
+    "from": "Buenos Aires",
+    "to": "Madrid",
+    "departureDate": "2018-04-15",
+    "arrivalDate": "2018-04-15",
+    "departureTime": "2018-01-15T05:00:00",
+    "arrivalTime": "2018-01-15T18:00:00",
+    "scales": 1,
+    "gapMax": 5,
+    "price": 25000,
+    "economicCapacity":10,
+    "businessCapacity":0,
+    "firstCapacity": 0,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  },
+  {
+    "flyCode": "test8",
+    "from": "Buenos Aires",
+    "to": "Madrid",
+    "departureDate": "2018-04-15",
+    "arrivalDate": "2018-04-15",
+    "departureTime": "2018-01-15T07:00:00",
+    "arrivalTime": "2018-01-15T21:00:00",
+    "scales": 1,
+    "gapMax": 2,
+    "price": 19000,
+    "economicCapacity":20,
+    "businessCapacity":20,
+    "firstCapacity": 22,
+    "airline": {
+      "id": 2,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
+  },
+  {
+    "flyCode": "test9",
+    "from": "Buenos Aires",
+    "to": "Madrid",
+    "departureDate": "2018-04-15",
+    "arrivalDate": "2018-04-16",
+    "departureTime": "2018-01-10T12:00:00",
+    "arrivalTime": "2018-01-11T06:00:00",
+    "scales": 1,
+    "price": 22000,
+    "economicCapacity":15,
+    "businessCapacity":18,
+    "firstCapacity": 13,
+    "airline": {
+      "id": 1,
+      "name": "Aerolineas Argentinas",
+      "short_name": "AA"
+    },
+    "seats": null
   }
+
+
 ]

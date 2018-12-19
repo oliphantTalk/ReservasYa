@@ -1,5 +1,6 @@
 package com.ttps.reservasya.controllers.airline;
 
+import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
 import com.ttps.reservasya.services.airlines.AirlineService;
 import org.apache.commons.lang3.StringUtils;
@@ -20,15 +21,29 @@ public class AirlineController {
         @Autowired
         private AirlineService airlineService;
 
-        @GetMapping(value = "/{id}/{seatClass}")
-        public String flyDetails(@Valid @PathVariable("id") Long id, @PathVariable("seatClass") String seatClass, @RequestParam(value = "return_id", required = false) String returnId, Model model){
+        @GetMapping(value = "/{id}/{seatClass}/{passengers}")
+        public String flyDetails(
+                @Valid @PathVariable("id") Long id,
+                @PathVariable("seatClass") String seatClass,
+                @PathVariable("passengers") int passengers,
+                @RequestParam(value = "return_id", required = false) String returnId, Model model) {
             Flight flight = airlineService.getFlightBySeatClass(id, seatClass);
             model.addAttribute("flight", flight);
             model.addAttribute("seatClass", seatClass);
+            model.addAttribute("passengers", passengers);
             if(!StringUtils.isBlank(returnId)){
                 Flight flightReturn = airlineService.getFlightBySeatClass(Long.valueOf(returnId), seatClass);
                 model.addAttribute("flightReturn", flightReturn);
             }
+            double precioClase = 1;
+            if (seatClass.equalsIgnoreCase("BUSINESS")) {
+                precioClase = 1 + LocalParameters.getBusinessClassRate();
+            }
+            if (seatClass.equalsIgnoreCase("FIRST")) {
+                precioClase = 1 + LocalParameters.getFirstClassRate();
+            }
+            model.addAttribute("precioClase", precioClase);
+
             return "/details/details";
         }
 

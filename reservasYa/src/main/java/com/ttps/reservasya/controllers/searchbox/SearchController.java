@@ -1,7 +1,9 @@
 package com.ttps.reservasya.controllers.searchbox;
 
+import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.businessitem.agency.Agency;
 import com.ttps.reservasya.models.businessitem.airline.Airline;
+import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
 import com.ttps.reservasya.models.businessitem.airline.flights.SeatClass;
 import com.ttps.reservasya.models.businessitem.hotel.Hotel;
 import com.ttps.reservasya.services.agencies.AgencyService;
@@ -37,11 +39,23 @@ public class SearchController {
         if (errors.hasErrors()) {
             return "/";
         }
-        model.addAttribute("flights", airlineService.findOneWayFlights(searchFlyForm.getDepartureDate(), searchFlyForm.getFrom().toLowerCase(), searchFlyForm.getTo().toLowerCase(), SeatClass.valueOf(searchFlyForm.getClase())));
+        model.addAttribute("flights", airlineService.findOneWayFlights(searchFlyForm.getDepartureDate(), searchFlyForm.getFrom(), searchFlyForm.getTo(), SeatClass.valueOf(searchFlyForm.getClase())));
         if(!StringUtils.isBlank(searchFlyForm.getReturnDate())) {
-            model.addAttribute("flightsReturn", airlineService.findOneWayFlights(searchFlyForm.getReturnDate(), searchFlyForm.getTo(), searchFlyForm.getFrom(), SeatClass.valueOf(searchFlyForm.getClase())));
+            List<Flight> flightsReturn = airlineService.findOneWayFlights(searchFlyForm.getReturnDate(), searchFlyForm.getTo(), searchFlyForm.getFrom(), SeatClass.valueOf(searchFlyForm.getClase()));
+            if(!flightsReturn.isEmpty()){
+            model.addAttribute("flightsReturn", flightsReturn);}
         }
+        double precioClase = 1;
+        if (searchFlyForm.getClase().equalsIgnoreCase("BUSINESS")) {
+            precioClase = 1 + LocalParameters.getBusinessClassRate();
+        }
+        if (searchFlyForm.getClase().equalsIgnoreCase("FIRST")) {
+            precioClase = 1 + LocalParameters.getFirstClassRate();
+        }
+        model.addAttribute("precioClase", precioClase);
+        model.addAttribute("form", searchFlyForm);
         model.addAttribute("seatClass", searchFlyForm.getClase());
+        model.addAttribute("passengers", searchFlyForm.getPassenger());
         return "/result/result";
     }
 

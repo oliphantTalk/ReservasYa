@@ -9,6 +9,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "FLIGHT")
@@ -27,9 +28,14 @@ public class Flight extends BusinessItem implements Serializable {
     private String duration;
     private String days;
     private int scales = 1;
+    private int gapMax = 1;
     private Airline airline;
     @Embedded
     private List<FlightSeat> seats;
+    private int economicCapacity;
+    private int businessCapacity;
+    private int firstCapacity;
+
 
     public Flight() {
         super();
@@ -151,11 +157,61 @@ public class Flight extends BusinessItem implements Serializable {
         this.days = days;
     }
 
+    public int getEconomicCapacity() {
+        return economicCapacity;
+    }
+
+    public void setEconomicCapacity(int economicCapacity) {
+        this.economicCapacity = economicCapacity;
+    }
+
+    public int getBusinessCapacity() {
+        return businessCapacity;
+    }
+
+    public void setBusinessCapacity(int businessCapacity) {
+        this.businessCapacity = businessCapacity;
+    }
+
+    public int getFirstCapacity() {
+        return firstCapacity;
+    }
+
+    public void setFirstCapacity(int firstCapacity) {
+
+        this.firstCapacity = firstCapacity;
+    }
+
+    public int getGapMax() {
+        return gapMax;
+    }
+
+    public void setGapMax(int gapMax) {
+        this.gapMax = gapMax;
+    }
+
     @PrePersist
     public void configDuration(){
         String dur = Duration.between(this.departureTime, this.arrivalTime).toString();
-        String duracion = dur.split("PT")[1].substring(0, 6);
-        this.setDuration(duracion.substring(0, 2) + "h " + duracion.substring(3, 5) + "m" );
-        this.setDays(String.valueOf((Integer.valueOf(duracion.substring(0, 2)) / 24)));
+        String duracion = dur.split("PT")[1];
+        String horas = duracion.substring(0, 2);
+        if(duracion.contains("M")){
+            duracion = duracion.substring(0, 6);
+            this.setDuration(duracion.substring(0, 2) + "h " + duracion.substring(3, 5) + "m" );
+        }
+        else if (duracion.length() > 2){
+            this.setDuration(duracion.substring(0, 2) + "h " + "00m" );
+        }
+        else {
+            this.setDuration(duracion.substring(0, 1) + "h " + "00m" );
+            horas = duracion.substring(0, 1);
+        }
+        this.setDays(String.valueOf((Integer.valueOf(horas) / 24)));
+        if(getEconomicCapacity() == 0 && getBusinessCapacity() == 0 && getFirstCapacity() == 0) {
+            setEconomicCapacity(this.seats.stream().filter(s -> s.getSeatClass().equals(SeatClass.ECONOMIC)).collect(Collectors.toList()).size());
+            setBusinessCapacity(this.seats.stream().filter(s -> s.getSeatClass().equals(SeatClass.BUSINESS)).collect(Collectors.toList()).size());
+            setFirstCapacity(this.seats.stream().filter(s -> s.getSeatClass().equals(SeatClass.ECONOMIC)).collect(Collectors.toList()).size());
+        }
     }
+
 }

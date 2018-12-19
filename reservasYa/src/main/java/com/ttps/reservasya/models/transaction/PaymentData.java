@@ -11,6 +11,7 @@ public class PaymentData implements Serializable {
     private String passengerLastName;
     private String dni;
     private String cashAmount;
+    private String cashByPoints;
     private String creditCard;
     private String paymentDate = LocalDateTime.now().toString();
     private String paymentStatus = PaymentStatus.PENDING.toString();
@@ -29,6 +30,14 @@ public class PaymentData implements Serializable {
 
     public void setPassengerLastName(String passengerLastName) {
         this.passengerLastName = passengerLastName;
+    }
+
+    public String getCashByPoints() {
+        return cashByPoints;
+    }
+
+    public void setCashByPoints(String cashByPoints) {
+        this.cashByPoints = cashByPoints;
     }
 
     public String getDni() {

@@ -37,9 +37,13 @@ public class CheckoutController {
 
     @GetMapping(value = "/fly")
     public String createTransactionForOneFly(Model model, Principal principal,
-                                             @RequestParam("flight_id") Long flightId, @RequestParam(value = "flight_return_id", required = false) Long flightReturnId ){
+                                             @RequestParam("flight_id") Long flightId,
+                                             @RequestParam("passengers") int passengers,
+                                             @RequestParam("price") double price,
+                                             @RequestParam(value = "flight_return_id", required = false) Long flightReturnId ){
         List<BusinessItem> items = findFlights(flightId, flightReturnId);
-        checkoutService.startTransaction(principal.getName(), items);
+        items.forEach(i -> i.setPrice(price));
+        checkoutService.startTransaction(principal.getName(), items, passengers);
         model.addAttribute(new CheckoutForm() );
         return "checkout/checkout";
     }
@@ -50,7 +54,7 @@ public class CheckoutController {
             return "/";
         }
         checkoutService.approveTransaction(principal.getName(), form.getPointsToConvert(), form);
-        return "lala";
+        return "thanks/thanks";
     }
 
     private List<BusinessItem> findFlights(Long flightId, Long flightReturnId) {

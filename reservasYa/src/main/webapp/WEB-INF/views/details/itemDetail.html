@@ -61,12 +61,19 @@
                </td>
              </tr>
              <tr>
-                <td>Precio</td>
+                <td>Precio por pasajero</td>
                 <td>
                    <span class="pesos-sign">$</span>
-                   <span class="current-price" th:text="${flight.seats[0].priceClass}">$8000</span>
+                   <span class="current-price" th:text="${flight.price * precioClase}">$8000</span>
                </td>
              </tr>
+             <tr>
+                 <td>Precio total</td>
+                 <td>
+                    <span class="pesos-sign">$</span>
+                    <span class="current-price" th:text="${flight.price * precioClase * passengers}">$8000</span>
+                </td>
+              </tr>
              <tr>
                 <td>Escalas</td>
                <th:block th:switch="${flight.scales}">
@@ -82,7 +89,7 @@
              <tr th:if="${flightReturn == null}">
                <td class="button-container">
                    <span >
-                      <a class="eva-3-btn -primary -sm" th:href="@{/checkout/fly(flight_id=${flight.id})}">
+                      <a class="eva-3-btn btn-danger -sm" th:href="@{/checkout/fly(flight_id=${flight.id}, passengers=${passengers}, price=${flight.price * precioClase})}">
                         <em class="btn-text">COMPRAR</em>
                       </a>
                   </span>
@@ -143,7 +150,7 @@
                         <td>Precio</td>
                         <td>
                            <span class="pesos-sign">$</span>
-                           <span class="current-price" th:text="${flightReturn.seats[0].priceClass}">$8000</span>
+                           <span class="current-price" th:text="${flightReturn.price * precioClase}">$8000</span>
                        </td>
                      </tr>
                      <tr>
@@ -161,7 +168,7 @@
                      <tr>
                        <td class="button-container">
                            <span >
-                              <a class="eva-3-btn -primary -sm" th:href="@{/checkout/fly(flight_id=${flight.id})(flight_return_id=${flightReturn.id})}">
+                              <a class="eva-3-btn btn-danger -sm" th:href="@{/checkout/fly(flight_id=${flight.id})(passengers=${passengers},flight_return_id=${flightReturn.id}, price=${flight.price * precioClase})}">
                                 <em class="btn-text">COMPRAR</em>
                               </a>
                           </span>

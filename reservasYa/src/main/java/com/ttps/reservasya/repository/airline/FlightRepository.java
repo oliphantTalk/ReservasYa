@@ -14,6 +14,6 @@ import java.util.Optional;
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Long> {
 
-    Optional<List<Flight>> findFlightsByDepartureDateGreaterThanEqualAndFromAndToOrderByAirline(LocalDate departureDate, String from, String to);
+    Optional<List<Flight>> findFlightsByDepartureDateGreaterThanEqualAndFromAndToAndGapMaxLessThanOrderByAirline(LocalDate departureDate, String from, String to, int gapMax);
     Optional<List<Flight>> findFlightsByFromAndTo(String from, String to);
 }

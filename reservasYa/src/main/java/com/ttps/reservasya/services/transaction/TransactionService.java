@@ -1,5 +1,6 @@
 package com.ttps.reservasya.services.transaction;
 
+import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.transaction.PaymentData;
 import com.ttps.reservasya.models.transaction.Transaction;
 import com.ttps.reservasya.repository.transaction.TransactionRepository;
@@ -29,6 +30,7 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
         transaction.cancel();
         transaction.buildStateTransaction();
         transaction.getPaymentData().reject();
+
         updateOne(transaction);
     }
 
@@ -36,19 +38,29 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
         transaction.approve();
         transaction.buildStateTransaction();
         transaction.setConvertedPoints(pointsToConvert);
-        transaction.getPaymentData().setCashAmount(transaction.getAmount().toString());
+        usePointsToPay(transaction, pointsToConvert);
         updateOne(transaction);
+    }
+
+    private void usePointsToPay(Transaction transaction, int pointsToConvert) {
+        double cashByPoints = pointsToConvert * LocalParameters.pesosPorPunto;
+        transaction.getPaymentData().setCashByPoints(String.valueOf(cashByPoints));
+        transaction.getPaymentData().setCashAmount(String.valueOf(transaction.getAmount() - cashByPoints));
     }
 
     public void finish(Transaction transaction, PaymentData paymentData){
         transaction.finish();
         transaction.buildStateTransaction();
+        finishPaymentData(transaction, paymentData);
+        updateOne(transaction);
+    }
+
+    private void finishPaymentData(Transaction transaction, PaymentData paymentData) {
         transaction.getPaymentData().approve();
         transaction.getPaymentData().setPassengerName(paymentData.getPassengerName());
         transaction.getPaymentData().setPassengerLastName(paymentData.getPassengerLastName());
         transaction.getPaymentData().setCreditCard(paymentData.getCreditCard());
         transaction.getPaymentData().setDni(paymentData.getDni());
-        updateOne(transaction);
     }
 
     public void rollback(Transaction transaction){

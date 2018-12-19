@@ -28,7 +28,7 @@ public class PendingTransaction extends StateTransaction implements Serializable
 
     @Override
     public void doFinish(Transaction transaction) {
-        throw new ForbiddenTransactionException();
+        transaction.setTransactionState(FINISHED);
     }
 
     @Override
@@ -43,6 +43,6 @@ public class PendingTransaction extends StateTransaction implements Serializable
 
     @Override
     public void doApprove(Transaction transaction) {
-        throw new ForbiddenTransactionException();
+        transaction.setTransactionState(APPROVED);
     }
 }

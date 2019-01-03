@@ -1,7 +1,7 @@
 package com.ttps.reservasya.models.businessitem.agency.cars;
 
-import com.ttps.reservasya.models.businessitem.agency.Agency;
 import com.ttps.reservasya.models.businessitem.BusinessItem;
+import com.ttps.reservasya.models.businessitem.agency.Agency;
 
 import javax.persistence.*;
 import java.io.Serializable;

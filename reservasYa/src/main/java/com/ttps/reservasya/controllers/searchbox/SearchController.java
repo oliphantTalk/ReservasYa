@@ -1,11 +1,8 @@
 package com.ttps.reservasya.controllers.searchbox;
 
 import com.ttps.reservasya.models.LocalParameters;
-import com.ttps.reservasya.models.businessitem.agency.Agency;
-import com.ttps.reservasya.models.businessitem.airline.Airline;
 import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
 import com.ttps.reservasya.models.businessitem.airline.flights.SeatClass;
-import com.ttps.reservasya.models.businessitem.hotel.Hotel;
 import com.ttps.reservasya.services.agencies.AgencyService;
 import com.ttps.reservasya.services.airlines.AirlineService;
 import com.ttps.reservasya.services.hotel.HotelService;
@@ -14,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;

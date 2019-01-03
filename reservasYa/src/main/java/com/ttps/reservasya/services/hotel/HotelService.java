@@ -1,9 +1,8 @@
 package com.ttps.reservasya.services.hotel;
 
-import com.ttps.reservasya.models.businessitem.agency.cars.Car;
-import com.ttps.reservasya.repository.hotel.HotelRepository;
 import com.ttps.reservasya.models.businessitem.hotel.Hotel;
 import com.ttps.reservasya.models.businessitem.hotel.Room;
+import com.ttps.reservasya.repository.hotel.HotelRepository;
 import com.ttps.reservasya.repository.hotel.room.RoomRepository;
 import com.ttps.reservasya.services.BasicCrudService;
 import org.springframework.beans.factory.annotation.Autowired;

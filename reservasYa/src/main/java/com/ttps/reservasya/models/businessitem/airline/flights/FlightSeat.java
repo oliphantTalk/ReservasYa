@@ -1,5 +1,6 @@
 package com.ttps.reservasya.models.businessitem.airline.flights;
-import javax.persistence.*;
+
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 @Embeddable
 public class FlightSeat implements Serializable {

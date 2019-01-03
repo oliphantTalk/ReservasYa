@@ -1,10 +1,7 @@
 package com.ttps.reservasya.models.transaction;
 
 
-import java.io.Serializable;
-
-
-public abstract class StateTransaction implements Serializable {
+public abstract class StateTransaction {
 
     public StateTransaction(){};
 

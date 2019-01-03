@@ -2,6 +2,7 @@ package com.ttps.reservasya.models.transaction;
 
 import com.ttps.reservasya.models.businessitem.BusinessItem;
 import com.ttps.reservasya.models.user.User;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -15,7 +16,8 @@ public class Transaction implements Serializable {
     private Long id;
     private User user;
     @Transient
-    private transient StateTransaction state;
+    private transient StateTransaction state = new PendingTransaction();
+    
     private String transactionState = TransactionStates.PENDING.name();
     private Double amount = 0.;
     private int convertedPoints = 0;
@@ -54,12 +56,7 @@ public class Transaction implements Serializable {
         this.state = state;
     }
 
-    @Transient
-    public void setStateTransaction(StateTransaction state) {
-        this.state = state;
-    }
-
-
+   
 
     public String getTransactionState() {
         return transactionState;
@@ -69,7 +66,6 @@ public class Transaction implements Serializable {
         this.transactionState = transactionState;
     }
 
-    @Column(updatable = false)
     public Double getAmount() {
         return amount;
     }
@@ -117,25 +113,25 @@ public class Transaction implements Serializable {
     public void buildStateTransaction(){
         switch (TransactionStates.valueOf(transactionState)){
             case PENDING:
-                setStateTransaction(new PendingTransaction());
+                setState(new PendingTransaction());
                 break;
             case STARTED:
-                setStateTransaction(new StartedTransaction());
+                setState(new StartedTransaction());
                 break;
             case APPROVED:
-                setStateTransaction(new ApprovedTransaction());
+                setState(new ApprovedTransaction());
                 break;
             case FINISHED:
-                setStateTransaction(new FinishedTransaction());
+                setState(new FinishedTransaction());
                 break;
             case CANCELLED:
-                setStateTransaction(new CancelledTransaction());
+                setState(new CancelledTransaction());
                 break;
             case ROLLEDBACK:
-                setStateTransaction(new RolledbackTransaction());
+                setState(new RolledbackTransaction());
                 break;
             default:
-                setStateTransaction(new PendingTransaction());
+                //setState(new PendingTransaction());
                 break;
         }
     }
@@ -144,19 +140,24 @@ public class Transaction implements Serializable {
     public void start(){
         state.doStart(this);
     }
+
     @Transient
     public void cancel(){
         state.doCancel(this);
     }
+
     @Transient
     public void finish(){
         state.doFinish(this);
     }
+
     @Transient
     public void rollBack(){
         state.doRollBack(this);}
+
     @Transient
     public void begin(){ state.doPending(this);}
+
     @Transient
     public void approve(){ state.doApprove(this);}
 

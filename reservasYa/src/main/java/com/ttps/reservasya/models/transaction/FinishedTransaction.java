@@ -1,8 +1,7 @@
 package com.ttps.reservasya.models.transaction;
+
 import com.ttps.reservasya.error.exceptions.ForbiddenTransactionException;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 import java.io.Serializable;
 
 /*Entity

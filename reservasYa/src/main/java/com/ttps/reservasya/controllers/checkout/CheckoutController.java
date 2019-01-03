@@ -1,12 +1,10 @@
 package com.ttps.reservasya.controllers.checkout;
 
 import com.ttps.reservasya.models.businessitem.BusinessItem;
-import com.ttps.reservasya.models.user.User;
 import com.ttps.reservasya.repository.transaction.UserTransactionHistoryRepository;
 import com.ttps.reservasya.services.airlines.AirlineService;
 import com.ttps.reservasya.services.checkout.CheckoutService;
 import com.ttps.reservasya.services.transaction.TransactionService;
-import com.ttps.reservasya.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

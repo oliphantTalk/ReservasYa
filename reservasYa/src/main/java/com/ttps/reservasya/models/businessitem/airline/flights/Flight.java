@@ -1,7 +1,7 @@
 package com.ttps.reservasya.models.businessitem.airline.flights;
 
-import com.ttps.reservasya.models.businessitem.airline.Airline;
 import com.ttps.reservasya.models.businessitem.BusinessItem;
+import com.ttps.reservasya.models.businessitem.airline.Airline;
 
 import javax.persistence.*;
 import java.io.Serializable;

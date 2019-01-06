@@ -4,8 +4,6 @@ import com.ttps.reservasya.error.exceptions.ForbiddenTransactionException;
 
 import java.io.Serializable;
 
-/*@Entity
-@DiscriminatorValue(value = "STARTED")*/
 public class StartedTransaction extends StateTransaction implements Serializable {
 
 

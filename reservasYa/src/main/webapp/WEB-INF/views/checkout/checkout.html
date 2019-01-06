@@ -14,9 +14,6 @@
 <body class="home-body">
 <div th:replace="~{fragments/header :: header}">Header</div>
 
-
-
-
 <div class="container yellow-rectangle">
 <form class="form-narrow form-horizontal" method="post" th:action="@{/checkout/fly}" th:object="${checkoutForm}" th:fragment="checkoutForm">
     <!--/* Show general error message when form contains errors */-->
@@ -55,8 +52,8 @@
         </div>
 
         <div class="form-group" >
-            <label for="points" >Puntos a convertir</label>
-                    <input type="range" th:min="0" th:max="9999" class="form-control" id="slider" placeholder="Puntos a convertir" th:field="*{pointsToConvert}"/>
+            <label for="points" th:text="${'Puntos a convertir ##(usted tiene ' + availablePoints} + ' puntos disponibles)##'">Puntos a convertir</label>
+                    <input type="range" th:min="0" th:max="${availablePoints}" class="form-control" id="slider" placeholder="Puntos a convertir" th:field="*{pointsToConvert}"/>
                     <output id="output"></output>
         </div>
 
@@ -71,40 +68,10 @@
     </fieldset>
 </form>
 </div>
-
-
-
-
 <footer class="eva-3-footer bottom-footer" th:insert="~{fragments/footer :: footer}">&copy; 2018 The Static Templates</footer>
 <script  th:src="@{~/resources/js/jquery.min.js}"></script>
 <script  th:src="@{~/resources/js/bootstrap.min.js}"></script>
-<script>
-    function displayCarBox() {
-        document.getElementById("fly-searchbox").style.display = "none";
-        document.getElementById("car-searchbox").style.display = "inherit";
-        document.getElementById("hotel-searchbox").style.display = "none";
-    }
-    function displayHotelBox() {
-        document.getElementById("fly-searchbox").style.display = "none";
-        document.getElementById("hotel-searchbox").style.display = "inherit";
-        document.getElementById("car-searchbox").style.display = "none";
-    }
-    function displayFlyBox() {
-        document.getElementById("fly-searchbox").style.display = "inherit";
-        document.getElementById("car-searchbox").style.display = "none";
-        document.getElementById("hotel-searchbox").style.display = "none";
-    }
-    document.getElementById("link-autos").addEventListener("click", displayCarBox);
-    document.getElementById("link-hoteles").addEventListener("click", displayHotelBox);
-    document.getElementById("link-vuelos").addEventListener("click", displayFlyBox);
-    document.getElementById("slider").oninput = function() {
-        sliderVal()
-    };
-    function sliderVal() {
-       let val = document.getElementById("slider").value //gets the oninput value
-       document.getElementById('output').innerHTML = val //displays this value to the html page
-       //console.log(val)
-    }
-</script>
+<script  th:src="@{~/resources/js/searchBoxDisplay.js}"> </script>
+<script  th:src="@{~/resources/js/sliderPoints.js}"> </script>
 </body>
 </html>

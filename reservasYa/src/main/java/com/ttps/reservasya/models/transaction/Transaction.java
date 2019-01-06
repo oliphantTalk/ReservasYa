@@ -110,33 +110,6 @@ public class Transaction implements Serializable {
     }
 
     @Transient
-    public void buildStateTransaction(){
-        switch (TransactionStates.valueOf(transactionState)){
-            case PENDING:
-                setState(new PendingTransaction());
-                break;
-            case STARTED:
-                setState(new StartedTransaction());
-                break;
-            case APPROVED:
-                setState(new ApprovedTransaction());
-                break;
-            case FINISHED:
-                setState(new FinishedTransaction());
-                break;
-            case CANCELLED:
-                setState(new CancelledTransaction());
-                break;
-            case ROLLEDBACK:
-                setState(new RolledbackTransaction());
-                break;
-            default:
-                //setState(new PendingTransaction());
-                break;
-        }
-    }
-
-    @Transient
     public void start(){
         state.doStart(this);
     }

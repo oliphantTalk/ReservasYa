@@ -51,6 +51,10 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         SecurityContextHolder.getContext().setAuthentication(authenticate(user));
     }
 
+    public UserSettings getUserSettingsByUserName(String userName){
+        return settingsRepository.findByUser(repository.findByUsername(userName).get()).get();
+    }
+
     private Authentication authenticate(User user) {
         return new UsernamePasswordAuthenticationToken(createOne(user), null, Collections.singleton(createAuthority(user)));
     }

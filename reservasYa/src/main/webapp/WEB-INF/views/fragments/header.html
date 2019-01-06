@@ -4,81 +4,88 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/bootstrap.css" rel="stylesheet" media="screen"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
     <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
     <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
 
 </head>
 <body>
-<div class="header-container-general">
-<nav class="navbar navbar-inverse navbar-fixed-top eva-3-header" th:fragment="header">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li th:classappend="${module == 'home' ? 'active' : ''}">
-                    <a href="#" th:href="@{/}">ReservasYa!</a>
-                </li>
-                <!--th:href="@{/hoteles}"-->
-                <li class="header-product-item">
-                    <a class="eva-3-button-circle"  id="link-hoteles">
-                        <div class="button-circle-icon">
-                            <i class="eva-3-icon-hotels"></i>
-                        </div>
+<div class="header-container-general" th:fragment="header">
+<nav class="navbar navbar-expand eva-3-header navbar-dark bg-dark" >
+    <a class="navbar-brand m-auto" href="#" th:href="@{/}">
+        <img src="../../../resources/images/ry_fav.png" width="100" height="35" class="d-inline-block align-top" alt="">
+        ReservasYa!
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container collapse navbar-collapse ">
+        <ul class="nav navbar-nav m-auto">
+            <li class="nav-item">
+                <a class="eva-3-button-circle"  id="link-vuelos">
+                    <div class="button-circle-icon -eva-3-icon-lg">
+                        <i class="eva-3-icon-flights"></i>
+                    </div>
 
-                        <label class="button-circle-label">Hoteles</label>
-                    </a>
-                </li>
-                <li class="header-product-item">
-                    <a class="eva-3-button-circle"  id="link-vuelos">
-                        <div class="button-circle-icon">
-                            <i class="eva-3-icon-flights"></i>
-                        </div>
+                    <label class="button-circle-label">VUELOS</label>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="eva-3-button-circle -eva-3-icon-lg"  id="link-hoteles">
+                    <div class="button-circle-icon -eva-3-icon-lg">
+                        <i class="eva-3-icon-hotels"></i>
+                    </div>
 
-                        <label class="button-circle-label">Vuelos</label>
-                    </a>
-                </li>
+                    <label class="button-circle-label text-lg-center">HOTELES</label>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="eva-3-button-circle" id="link-autos">
+                    <div class="button-circle-icon -eva-3-icon-lg">
+                        <i class="eva-3-icon-cars"></i>
+                    </div>
 
-                <li class="header-product-item">
-                    <a class="eva-3-button-circle" id="link-autos">
-                        <div class="button-circle-icon">
-                            <i class="eva-3-icon-cars"></i>
-                        </div>
-
-                        <label class="button-circle-label">Autos</label>
-                    </a>
-                </li>
-                <!--
-                <li th:classappend="${module == 'tasks' ? 'active' : ''}">
-                    <a href="#" th:href="@{/task}">Tasks</a>
-                </li>
-                <li th:classappend="${module == 'tasks-ld' ? 'active' : ''}">
-                    <a href="#" th:href="@{/task-ld}">Tasks (Layout Dialect) ??</a>
-                </li>
-                -->
-
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li th:if="${#authorization.expression('!isAuthenticated()')}">
-                    <a href="/signin" th:href="@{/signin}">
-                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Iniciar Sesion
-                    </a>
-                </li>
-                <li th:if="${#authorization.expression('isAuthenticated()')}">
-                    <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
-                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Cerrar Sesion
-                    </a>
-                    <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
-                </li>
-            </ul>
-        </div>
-        <!--/.nav-collapse -->
+                    <label class="button-circle-label">AUTOS</label>
+                </a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0 m-auto">
+              <input class="form-control mr-sm-2" type="search" placeholder="No funciona!" aria-label="Buscar">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+        <ul class="nav navbar-nav m-auto">
+            <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" sec:authentication="name"></a></li>
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+                <a class="nav-link" href="/signin" th:href="@{/signin}">
+                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Iniciar Sesion
+                </a>
+            </li>
+            <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Opciones
+                    <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" sec:authorize="hasRole('ROLE_USER')" href="/localParameters" th:href="@{/localParameters}">
+                          Perfil
+                      </a>
+                      <a class="dropdown-item" sec:authorize="hasRole('ROLE_USER')" href="/panel/user" th:href="@{/panel/user}">
+                            Mi Cuenta
+                      </a>
+                      <a class="dropdown-item" sec:authorize="hasRole('ROLE_COMERCIAL')" href="/panel/comercial" th:href="@{/panel/comercial}">
+                              Panel Comercial
+                      </a>
+                      <a class="dropdown-item" sec:authorize="hasRole('ROLE_ADMIN')" href="/panel/admin" th:href="@{/panel/admin}">
+                            Panel Administrador
+                      </a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="/logout" th:href="@{#}" onclick="$('#formLogout').submit();">
+                          <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Cerrar Sesion
+                          <form style="visibility: hidden" id="formLogout" method="post" action="#" th:action="@{/logout}"></form>
+                      </a>
+                </div>
+        </ul>
     </div>
 </nav>
 </div>

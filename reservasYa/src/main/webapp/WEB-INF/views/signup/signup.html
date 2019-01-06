@@ -3,10 +3,13 @@
 <head>
     <title>Registrate!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-    <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
-    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
+           <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
+           <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
+           <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+           <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+           <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
+
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}">Header</div>
@@ -56,5 +59,7 @@
     </fieldset>
 </form>
 </div>
+  <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
+    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
 </body>
 </html>

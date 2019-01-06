@@ -7,12 +7,15 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/bootstrap.css" rel="stylesheet" media="screen"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
     <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
     <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
 </head>
 <body class="home-body">
 <div th:replace="~{fragments/header :: header}">Header</div>
+
+
 <div class="container">
     <div class="text-center">
         
@@ -61,25 +64,8 @@
     });
 
 </script>
-<script>
-    function displayCarBox() {
-        document.getElementById("fly-searchbox").style.display = "none";
-        document.getElementById("car-searchbox").style.display = "inherit";
-        document.getElementById("hotel-searchbox").style.display = "none";
-    }
-    function displayHotelBox() {
-        document.getElementById("fly-searchbox").style.display = "none";
-        document.getElementById("hotel-searchbox").style.display = "inherit";
-        document.getElementById("car-searchbox").style.display = "none";
-    }
-    function displayFlyBox() {
-        document.getElementById("fly-searchbox").style.display = "inherit";
-        document.getElementById("car-searchbox").style.display = "none";
-        document.getElementById("hotel-searchbox").style.display = "none";
-    }
-    document.getElementById("link-autos").addEventListener("click", displayCarBox);
-    document.getElementById("link-hoteles").addEventListener("click", displayHotelBox);
-    document.getElementById("link-vuelos").addEventListener("click", displayFlyBox);
-</script>
+<script src="../../../resources/js/bootstrap.min.js"></script>
+<script  src="../../../resources/js/displayOrHideFragment.js"> </script>
+<script  th:src="@{~/resources/js/searchBoxDisplay.js}"> </script>
 </body>
 </html>

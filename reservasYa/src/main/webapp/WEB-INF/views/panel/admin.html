@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ReservasYa!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+    <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
+</head>
+<body class="home-body">
+<div th:replace="~{fragments/header :: header}">Header</div>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+          <a class="navbar-brand" href="#">Menu admin</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mr-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Agregar Admin</a>
+                  <a class="dropdown-item" href="#" id="pepitoa">Cambiar rol</a>
+                  <a class="dropdown-item text-info" href="#" id="local-params">Parametros de negocio</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item text-danger" href="#">Eliminar Admin</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Comercial
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Agregar Comercial</a>
+                    <a class="dropdown-item" href="#">Cambiar rol</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="#">Eliminar Comercial</a>
+                  </div>
+                </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Usuario
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Agregar Usuario</a>
+                  <a class="dropdown-item" href="#">Cambiar rol</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item text-danger" href="#">Eliminar Usuario</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Aerolinea
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Agregar Aerolinea</a>
+                  <a class="dropdown-item" href="#">Agregar Vuelo</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item text-danger" href="#">Eliminar Aerolinea</a>
+                  <a class="dropdown-item text-danger" href="#">Eliminar Vuelo</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Agencia
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Agregar Agencia</a>
+                    <a class="dropdown-item" href="#">Agregar Auto</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="#">Eliminar Agencia</a>
+                    <a class="dropdown-item text-danger" href="#">Eliminar Auto</a>
+                  </div>
+                </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Hotel
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Agregar Hotel</a>
+                    <a class="dropdown-item" href="#">Agregar Habitacion</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="#">Eliminar Hotel</a>
+                    <a class="dropdown-item text-danger" href="#">Eliminar Habitacion</a>
+                  </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div th:replace="panel/components/localParameters :: local_params-panel"></div>
+  </div>
+
+<footer class="eva-3-footer bottom-footer" th:insert="~{fragments/footer :: footer}">&copy; 2018 The Static Templates</footer>
+<script  th:src="@{~/resources/js/jquery.min.js}"></script>
+<script  th:src="@{~/resources/js/bootstrap.min.js}"></script>
+<script  src="../../../resources/js/displayOrHideFragment.js"> </script>
+<script  src="../../../resources/js/menu/admin/menuAdmin.js"> </script>
+</body>
+</html>

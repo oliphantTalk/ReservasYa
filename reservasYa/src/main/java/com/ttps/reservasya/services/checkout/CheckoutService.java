@@ -22,24 +22,23 @@ import java.util.Optional;
 @Service
 public class CheckoutService {
 
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private TransactionService transactionService;
-
-    @Autowired
     private UserTransactionHistoryRepository historyRepository;
+    private UserSettingsRepository userSettingsRepository;
 
     @Autowired
-    private UserSettingsRepository userSettingsRepository;
+    public CheckoutService(UserService userService, TransactionService transactionService, UserTransactionHistoryRepository historyRepository, UserSettingsRepository userSettingsRepository) {
+        this.userService = userService;
+        this.transactionService = transactionService;
+        this.historyRepository = historyRepository;
+        this.userSettingsRepository = userSettingsRepository;
+    }
 
     public void startTransaction(String loggedUserName, List<BusinessItem> items, int passengers) {
         User loggedUser = userService.findByUserName(loggedUserName);
         Transaction transaction = createTransaction(loggedUser, items, passengers);
         createTransactionHistory(loggedUser, transaction);
-
     }
 
 
@@ -66,7 +65,8 @@ public class CheckoutService {
             transaction = transactionService.findById(history.getLastTransactionId()).get();
         }
         transactionService.cancel(transaction);
-        updateUserPointsAfterTransaction(loggedUser, transaction.getConvertedPoints() * LocalParameters.factorDevolucion, false);
+        double spentPoints = transaction.getConvertedPoints() * LocalParameters.factorDevolucion;
+        updateUserPointsAfterTransaction(loggedUser, spentPoints,0,  false);
     }
 
     private PaymentData createPaymentDataFromCheckout(CheckoutForm form) {
@@ -82,25 +82,27 @@ public class CheckoutService {
     private void finishSuccesfulTransaction(User loggedUser, Transaction lastTransaction, PaymentData paymentData){
         try {
             transactionService.finish(lastTransaction, paymentData);
-            double pointsToSubstract = lastTransaction.getConvertedPoints() + Double.valueOf(paymentData.getCashAmount()) * LocalParameters.puntosPorPeso;
-            updateUserPointsAfterTransaction(loggedUser, pointsToSubstract, true);
+            double pointsToSubstract = lastTransaction.getConvertedPoints();
+            double pointsToAdd = Double.valueOf(lastTransaction.getPaymentData().getCashAmount()) * LocalParameters.puntosPorPeso;
+            updateUserPointsAfterTransaction(loggedUser, pointsToSubstract, pointsToAdd, true);
         }
         catch (Exception e){
             //CANCELAR
         }
     }
 
-    private void updateUserPointsAfterTransaction(User loggedUser, double pointsToChange, boolean isSubstract) {
+    private void updateUserPointsAfterTransaction(User loggedUser, double spentPoints, double earnedPoints, boolean isSubstract) {
         UserSettings userSettings = userSettingsRepository.findByUser(loggedUser).get();
         int previousPoints = userSettings.getPointsToUse();
         int newPoints = 0;
         if(isSubstract) {
-            newPoints = (int) Math.round(previousPoints - pointsToChange);
+            newPoints = (int) Math.round(previousPoints - spentPoints + earnedPoints);
         }
         else {
-            newPoints = (int) Math.round(previousPoints + pointsToChange);
+            newPoints = (int) Math.round(previousPoints + spentPoints);
         }
         userSettings.setPointsToUse(newPoints);
+        userSettingsRepository.save(userSettings);
     }
 
 

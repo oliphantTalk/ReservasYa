@@ -28,7 +28,6 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
 
     public void cancel(Transaction transaction){
         transaction.cancel();
-        //transaction.buildStateTransaction();
         transaction.getPaymentData().reject();
 
         updateOne(transaction);
@@ -36,7 +35,6 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
 
     public void approve(Transaction transaction, int pointsToConvert){
         transaction.approve();
-        //transaction.buildStateTransaction();
         transaction.setConvertedPoints(pointsToConvert);
         usePointsToPay(transaction, pointsToConvert);
         updateOne(transaction);
@@ -50,7 +48,6 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
 
     public void finish(Transaction transaction, PaymentData paymentData){
         transaction.finish();
-        //transaction.buildStateTransaction();
         finishPaymentData(transaction, paymentData);
         updateOne(transaction);
     }
@@ -65,13 +62,11 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
 
     public void rollback(Transaction transaction){
         transaction.rollBack();
-        //transaction.buildStateTransaction();
         updateOne(transaction);
     }
 
     public void begin(Transaction transaction){
         transaction.begin();
-        //transaction.buildStateTransaction();
         updateOne(transaction);
     }
 

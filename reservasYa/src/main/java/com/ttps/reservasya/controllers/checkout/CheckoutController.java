@@ -5,6 +5,7 @@ import com.ttps.reservasya.repository.transaction.UserTransactionHistoryReposito
 import com.ttps.reservasya.services.airlines.AirlineService;
 import com.ttps.reservasya.services.checkout.CheckoutService;
 import com.ttps.reservasya.services.transaction.TransactionService;
+import com.ttps.reservasya.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,17 +22,24 @@ import java.util.List;
 @RequestMapping(value = "/checkout")
 public class CheckoutController {
 
-    @Autowired
     private CheckoutService checkoutService;
 
-    @Autowired
     private TransactionService transactionService;
 
-    @Autowired
     private AirlineService airlineService;
 
-    @Autowired
     private UserTransactionHistoryRepository historyRepository;
+
+    private final UserService userService;
+
+    @Autowired
+    public CheckoutController(CheckoutService checkoutService, TransactionService transactionService, AirlineService airlineService, UserTransactionHistoryRepository historyRepository, UserService userService) {
+        this.checkoutService = checkoutService;
+        this.transactionService = transactionService;
+        this.airlineService = airlineService;
+        this.historyRepository = historyRepository;
+        this.userService = userService;
+    }
 
     @GetMapping(value = "/fly")
     public String createTransactionForOneFly(Model model, Principal principal,
@@ -43,6 +51,8 @@ public class CheckoutController {
         items.forEach(i -> i.setPrice(price));
         checkoutService.startTransaction(principal.getName(), items, passengers);
         model.addAttribute(new CheckoutForm() );
+        int userAvailbalePoints = userService.getUserSettingsByUserName(principal.getName()).getPointsToUse();
+        model.addAttribute("availablePoints", userAvailbalePoints);
         return "checkout/checkout";
     }
 

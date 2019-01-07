@@ -1,18 +1,133 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
+      <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
+       <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
+       <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
+       <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
+       <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+       <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+       <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
 </head>
 <body>
 
 <!--/*  Multiple fragments may be defined in one file */-->
-<div class="eva-3-container" id="local_params-panel" th:fragment="local_params-panel" style="display: none" >
-    Hola este es el panel de local params
+<div class="container" id="local_params-panel" th:fragment="local_params-panel" style="display: none" >
+
+    <div class="text-center"><h3>Parámetros Locales</h3></div>
+
+      <div id="resultContainer" style="display: none;">
+         <hr/>
+         <h4 style="color: green;">Se ha guardado correctamente. </h4>
+          <pre style="color: green;">
+            <code></code>
+           </pre>
+        </div>
+
+    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
+
+        <div class="form-group">
+            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
+            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
+            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
+            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
+            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="factorServicioVuelo"><strong th:text="${'Factor Servicio Vuelo. Valor actual: ' + params?.factorServicioVuelo}">Factor Servicio Vuelo</strong></label>
+            <input type="text" class="form-control form-control-sm" id="factorServicioVuelo" aria-describedby="factorServicioVueloHelp" th:field="*{factorServicioVuelo}">
+            <small id="factorServicioVueloHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="factorVueloEscala"><strong th:text="${'Factor Vuelo Escala. Valor actual: ' + params?.factorVueloEscala}">Factor Vuelo Escala</strong></label>
+            <input type="text" class="form-control form-control-sm" id="factorVueloEscala" aria-describedby="factorVueloEscalaHelp" th:field="*{factorVueloEscala}">
+            <small id="factorVueloEscalaHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="pesosPorPunto"><strong th:text="${'Pesos Por puntos. Valor actual: ' + params?.pesosPorPunto}">Pesos Por punto</strong></label>
+            <input type="text" class="form-control form-control-sm" id="pesosPorPunto" aria-describedby="pesosPorPuntoHelp" th:field="*{pesosPorPunto}">
+            <small id="pesosPorPuntoHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="puntosPorPeso"><strong th:text="${'Puntos por peso. Valor actual: ' + params?.puntosPorPeso}">Puntos por peso</strong></label>
+            <input type="text" class="form-control form-control-sm" id="puntosPorPeso" aria-describedby="puntosPorPesoHelp" th:field="*{puntosPorPeso}">
+            <small id="puntosPorPesoHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="firstClassRate"><strong th:text="${'Factor primera Clase. Valor actual: ' + params?.firstClassRate}">Factor Primera clase</strong></label>
+            <input type="text" class="form-control form-control-sm" id="firstClassRate" aria-describedby="firstClassRateHelp" th:field="*{firstClassRate}">
+            <small id="firstClassRateHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="businessClassRate"><strong th:text="${'Factor Clase Business. Valor actual: ' + params?.businessClassRate}">Factor Clase Business</strong></label>
+            <input type="text" class="form-control form-control-sm" id="businessClassRate" aria-describedby="businessClassRateHelp" th:field="*{businessClassRate}">
+            <small id="businessClassRateHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
+        </div>
+    </form>
+
+
+
+<script  th:src="@{~/resources/js/jquery.min.js}"></script>
+<script type="text/javascript">
+
+$(function() {
+
+   $('#localParamsForm').submit(function(e) {
+
+      //Prevent default submission of form
+      e.preventDefault();
+
+      let json = {};
+      json.gapMax = $('#gapMax').val();
+      json.factorDevolucion = $('#factorDevolucion').val();
+      json.factorServicioVuelo = $('#factorServicioVuelo').val();
+      json.factorVueloEscala = $('#factorVueloEscala').val();
+      json.pesosPorPunto = $('#pesosPorPunto').val();
+      json.puntosPorPeso = $('#puntosPorPeso').val();
+      json.businessClassRate = $('#businessClassRate').val();
+      json.firstClassRate = $('#firstClassRate').val();
+
+      $.ajax({
+         type: "POST",
+         url : '/panel/admin/localParams',
+         data : JSON.stringify(json),
+         /*data: $('#localParamsForm').serialize(),*/
+         contentType: "application/json; charset=utf-8",
+         async: true,
+/*
+         async: true,
+*/
+         beforeSend: function(xhr){
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json");
+         },
+         success : function(res) {
+           //Set response
+           $('#resultContainer pre code').text(JSON.stringify(res));
+           $('#resultContainer').show();
+         }
+      })
+   });
+});
+
+
+</script>
 </div>
+
 
 </body>
 </html>

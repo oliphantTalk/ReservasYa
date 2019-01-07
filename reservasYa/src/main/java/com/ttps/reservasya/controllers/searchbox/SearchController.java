@@ -3,6 +3,7 @@ package com.ttps.reservasya.controllers.searchbox;
 import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
 import com.ttps.reservasya.models.businessitem.airline.flights.SeatClass;
+import com.ttps.reservasya.services.LocalParametersService;
 import com.ttps.reservasya.services.agencies.AgencyService;
 import com.ttps.reservasya.services.airlines.AirlineService;
 import com.ttps.reservasya.services.hotel.HotelService;
@@ -33,8 +34,12 @@ public class SearchController {
     @Autowired
     private AgencyService agencyService;
 
+    @Autowired
+    private LocalParametersService localParametersService;
+
     @PostMapping(value = "/fly")
     public String searchFly(@NotEmpty @Valid @ModelAttribute SearchFlyForm searchFlyForm, Errors errors, RedirectAttributes ra, Model model){
+        LocalParameters localParameters = localParametersService.getLocalParameters();
         if (errors.hasErrors()) {
             return "/";
         }
@@ -46,10 +51,10 @@ public class SearchController {
         }
         double precioClase = 1;
         if (searchFlyForm.getClase().equalsIgnoreCase("BUSINESS")) {
-            precioClase = 1 + LocalParameters.getBusinessClassRate();
+            precioClase = 1 + localParameters.getBusinessClassRate();
         }
         if (searchFlyForm.getClase().equalsIgnoreCase("FIRST")) {
-            precioClase = 1 + LocalParameters.getFirstClassRate();
+            precioClase = 1 + localParameters.getFirstClassRate();
         }
         model.addAttribute("precioClase", precioClase);
         model.addAttribute("form", searchFlyForm);

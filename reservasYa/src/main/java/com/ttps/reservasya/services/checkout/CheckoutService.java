@@ -10,6 +10,7 @@ import com.ttps.reservasya.models.user.history.UserTransactionHistory;
 import com.ttps.reservasya.models.user.settings.UserSettings;
 import com.ttps.reservasya.repository.transaction.UserTransactionHistoryRepository;
 import com.ttps.reservasya.repository.user.UserSettingsRepository;
+import com.ttps.reservasya.services.LocalParametersService;
 import com.ttps.reservasya.services.transaction.TransactionService;
 import com.ttps.reservasya.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,15 @@ public class CheckoutService {
     private TransactionService transactionService;
     private UserTransactionHistoryRepository historyRepository;
     private UserSettingsRepository userSettingsRepository;
+    private LocalParametersService localParametersService;
 
     @Autowired
-    public CheckoutService(UserService userService, TransactionService transactionService, UserTransactionHistoryRepository historyRepository, UserSettingsRepository userSettingsRepository) {
+    public CheckoutService(UserService userService, TransactionService transactionService, UserTransactionHistoryRepository historyRepository, UserSettingsRepository userSettingsRepository, LocalParametersService localParametersService) {
         this.userService = userService;
         this.transactionService = transactionService;
         this.historyRepository = historyRepository;
         this.userSettingsRepository = userSettingsRepository;
+        this.localParametersService = localParametersService;
     }
 
     public void startTransaction(String loggedUserName, List<BusinessItem> items, int passengers) {
@@ -58,6 +61,7 @@ public class CheckoutService {
     }
 
     public void cancelTransaction(String loggedUserName, Transaction transaction){
+        LocalParameters localParameters = localParametersService.getLocalParameters();
         User loggedUser = getLoggedUser(loggedUserName);
         if(transaction == null)
         {
@@ -65,7 +69,7 @@ public class CheckoutService {
             transaction = transactionService.findById(history.getLastTransactionId()).get();
         }
         transactionService.cancel(transaction);
-        double spentPoints = transaction.getConvertedPoints() * LocalParameters.factorDevolucion;
+        double spentPoints = transaction.getConvertedPoints() * localParameters.getFactorDevolucion();
         updateUserPointsAfterTransaction(loggedUser, spentPoints,0,  false);
     }
 
@@ -81,9 +85,10 @@ public class CheckoutService {
 
     private void finishSuccesfulTransaction(User loggedUser, Transaction lastTransaction, PaymentData paymentData){
         try {
+            LocalParameters localParameters = localParametersService.getLocalParameters();
             transactionService.finish(lastTransaction, paymentData);
             double pointsToSubstract = lastTransaction.getConvertedPoints();
-            double pointsToAdd = Double.valueOf(lastTransaction.getPaymentData().getCashAmount()) * LocalParameters.puntosPorPeso;
+            double pointsToAdd = Double.valueOf(lastTransaction.getPaymentData().getCashAmount()) * localParameters.getPuntosPorPeso();
             updateUserPointsAfterTransaction(loggedUser, pointsToSubstract, pointsToAdd, true);
         }
         catch (Exception e){

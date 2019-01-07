@@ -1,33 +1,33 @@
-package com.ttps.reservasya.models;
+package com.ttps.reservasya.controllers.panel;
 
+import com.ttps.reservasya.models.LocalParameters;
+import org.apache.tomcat.jni.Local;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+/**
+ * @author nahuelbarrena on 06/01/19
+ */
+public class LocalParamsForm {
 
-import javax.persistence.*;
+    private int gapMax;
+    private int factorServicioVuelo;
+    private double factorVueloEscala;
+    private double factorDevolucion;
+    private double pesosPorPunto;
+    private double puntosPorPeso;
+    private double firstClassRate;
+    private double businessClassRate;
 
-@Entity
-@Table
-public class LocalParameters {
+    public LocalParamsForm(){}
 
-    @JsonIgnore
-    private Long id;
-    private  int gapMax = 4;
-    private  int factorServicioVuelo = 10;
-    private  double factorVueloEscala = 0.5;
-    private  double factorDevolucion = 0.1;
-    private  double pesosPorPunto = 0.5;
-    private  double puntosPorPeso = 0.75;
-    private  double firstClassRate = 0.5;
-    private  double businessClassRate = 0.25;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public LocalParamsForm(LocalParameters localParameters) {
+        gapMax = localParameters.getGapMax();
+        factorDevolucion = localParameters.getFactorDevolucion();
+        factorServicioVuelo = localParameters.getFactorServicioVuelo();
+        factorVueloEscala = localParameters.getFactorVueloEscala();
+        pesosPorPunto = localParameters.getPesosPorPunto();
+        puntosPorPeso = localParameters.getPuntosPorPeso();
+        businessClassRate = localParameters.getBusinessClassRate();
+        firstClassRate = localParameters.getFirstClassRate();
     }
 
     public int getGapMax() {
@@ -93,4 +93,5 @@ public class LocalParameters {
     public void setBusinessClassRate(double businessClassRate) {
         this.businessClassRate = businessClassRate;
     }
+
 }

@@ -2,6 +2,7 @@ package com.ttps.reservasya.controllers.airline;
 
 import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
+import com.ttps.reservasya.services.LocalParametersService;
 import com.ttps.reservasya.services.airlines.AirlineService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,23 @@ import javax.validation.Valid;
 @Controller
 public class AirlineController {
 
-        @Autowired
-        private AirlineService airlineService;
+        private  AirlineService airlineService;
 
-        @GetMapping(value = "/{id}/{seatClass}/{passengers}")
+        private  LocalParametersService localParametersService;
+
+    @Autowired
+    public AirlineController(AirlineService airlineService, LocalParametersService localParametersService) {
+        this.airlineService = airlineService;
+        this.localParametersService = localParametersService;
+    }
+
+    @GetMapping(value = "/{id}/{seatClass}/{passengers}")
         public String flyDetails(
                 @Valid @PathVariable("id") Long id,
                 @PathVariable("seatClass") String seatClass,
                 @PathVariable("passengers") int passengers,
                 @RequestParam(value = "return_id", required = false) String returnId, Model model) {
+            LocalParameters localParameters = localParametersService.getLocalParameters();
             Flight flight = airlineService.getFlightBySeatClass(id, seatClass);
             model.addAttribute("flight", flight);
             model.addAttribute("seatClass", seatClass);
@@ -37,10 +46,10 @@ public class AirlineController {
             }
             double precioClase = 1;
             if (seatClass.equalsIgnoreCase("BUSINESS")) {
-                precioClase = 1 + LocalParameters.getBusinessClassRate();
+                precioClase = 1 + localParameters.getBusinessClassRate();
             }
             if (seatClass.equalsIgnoreCase("FIRST")) {
-                precioClase = 1 + LocalParameters.getFirstClassRate();
+                precioClase = 1 + localParameters.getFirstClassRate();
             }
             model.addAttribute("precioClase", precioClase);
 

@@ -157,19 +157,27 @@
 			<artifactId>jstl</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.9.7</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>2.9.7</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.8.7</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.8</version>
+		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
 		<!-- H2 -->
@@ -237,6 +245,7 @@
 		<thymeleaf-extras-java8time-version>3.0.1.RELEASE</thymeleaf-extras-java8time-version>
 		<!-- AssertJ is not a part of Spring IO platform, so the version must be provided explicitly -->
 		<assertj-core-version>3.6.2</assertj-core-version>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 
 	<build>
@@ -244,6 +253,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

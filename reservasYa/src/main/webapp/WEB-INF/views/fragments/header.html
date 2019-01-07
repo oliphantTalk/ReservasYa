@@ -55,7 +55,7 @@
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
         </form>
         <ul class="nav navbar-nav m-auto">
-            <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" sec:authentication="name"></a></li>
+            <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" sec:authentication="principal.username"></a></li>
             <li class="nav-item" sec:authorize="!isAuthenticated()">
                 <a class="nav-link" href="/signin" th:href="@{/signin}">
                     <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Iniciar Sesion

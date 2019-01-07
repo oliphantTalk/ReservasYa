@@ -74,8 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
             .csrf()
-                .ignoringAntMatchers("/h2-console/**", "/**")
-                .and()
+                .disable()
             .headers()
                 .frameOptions().sameOrigin()
                 .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.ORIGIN_WHEN_CROSS_ORIGIN)

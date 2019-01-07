@@ -5,6 +5,7 @@ import com.ttps.reservasya.models.transaction.PaymentData;
 import com.ttps.reservasya.models.transaction.Transaction;
 import com.ttps.reservasya.repository.transaction.TransactionRepository;
 import com.ttps.reservasya.services.BasicCrudService;
+import com.ttps.reservasya.services.LocalParametersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +15,16 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
 
     public TransactionService(){};
 
+    private LocalParametersService localParametersService;
+
     @Autowired
-    public TransactionService(TransactionRepository transactionRepository) {
+    public TransactionService(TransactionRepository transactionRepository, LocalParametersService localParametersService) {
         super(transactionRepository);
+        this.localParametersService = localParametersService;
     }
 
     public void start(Transaction transaction){
         transaction.start();
-        //transaction.buildStateTransaction();
         transaction.setPaymentData(new PaymentData());
         createOne(transaction);
     }
@@ -41,7 +44,8 @@ public class TransactionService extends BasicCrudService<Transaction, Transactio
     }
 
     private void usePointsToPay(Transaction transaction, int pointsToConvert) {
-        double cashByPoints = pointsToConvert * LocalParameters.pesosPorPunto;
+        LocalParameters localParameters = localParametersService.getLocalParameters();
+        double cashByPoints = pointsToConvert * localParameters.getPesosPorPunto();
         transaction.getPaymentData().setCashByPoints(String.valueOf(cashByPoints));
         transaction.getPaymentData().setCashAmount(String.valueOf(transaction.getAmount() - cashByPoints));
     }

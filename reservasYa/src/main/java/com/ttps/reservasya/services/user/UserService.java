@@ -67,8 +67,9 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         if (user.getRole() == null) {
             user.setRole(this.roleService.findById(1L).orElseThrow(NoElementInDBException::new));
         }
+        repository.save(user);
         createUserSettings(user);
-        return repository.save(user);
+        return user;
     }
 
     private void createUserSettings(User user) {

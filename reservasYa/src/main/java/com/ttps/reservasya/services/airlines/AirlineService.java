@@ -8,6 +8,7 @@ import com.ttps.reservasya.models.businessitem.airline.flights.SeatClass;
 import com.ttps.reservasya.repository.airline.AirlineRepository;
 import com.ttps.reservasya.repository.airline.FlightRepository;
 import com.ttps.reservasya.services.BasicCrudService;
+import com.ttps.reservasya.services.LocalParametersService;
 import com.ttps.reservasya.utils.DateParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,14 @@ public class AirlineService extends BasicCrudService<Airline, AirlineRepository>
 
     private FlightRepository flightRepository;
 
+    private LocalParametersService localParametersService;
+
     public AirlineService(){};
     @Autowired
-    public AirlineService(AirlineRepository airlineRepository, FlightRepository flightRepository){
+    public AirlineService(AirlineRepository airlineRepository, FlightRepository flightRepository, LocalParametersService localParametersService){
         super(airlineRepository);
         this.flightRepository = flightRepository;
+        this.localParametersService = localParametersService;
     }
 
     public Flight findFligth(Long id){
@@ -54,7 +58,8 @@ public class AirlineService extends BasicCrudService<Airline, AirlineRepository>
     }
 
     public List<Flight> findOneWayFlights(String departureDate, String from, String to, SeatClass seatClass){
-        List<Flight> flights = this.flightRepository.findFlightsByDepartureDateGreaterThanEqualAndFromAndToAndGapMaxLessThanOrderByAirline(DateParser.parse(departureDate), from, to, LocalParameters.gapMax).orElse(new ArrayList<>());
+        LocalParameters localParameters = localParametersService.getLocalParameters();
+        List<Flight> flights = this.flightRepository.findFlightsByDepartureDateGreaterThanEqualAndFromAndToAndGapMaxLessThanOrderByAirline(DateParser.parse(departureDate), from, to, localParameters.getGapMax()).orElse(new ArrayList<>());
         flights.forEach(f -> f.setSeats(f.getSeats().stream().filter(s -> s.getSeatClass().equals(seatClass)).collect(Collectors.toList())));
         return flights;
 

@@ -1,6 +1,5 @@
 package com.ttps.reservasya.error;
 
-import com.google.common.base.Throwables;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +38,7 @@ class CustomErrorController {
 
 	private String getExceptionMessage(Throwable throwable, Integer statusCode) {
 		if (throwable != null) {
-			return Throwables.getRootCause(throwable).getMessage();
+			return throwable.getMessage();
 		}
 		HttpStatus httpStatus = HttpStatus.valueOf(statusCode);
 		return httpStatus.getReasonPhrase();

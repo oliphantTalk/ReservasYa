@@ -1,6 +1,5 @@
 package com.ttps.reservasya.error;
 
-import com.google.common.base.Throwables;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,9 +18,8 @@ class ExceptionHandler {
 	@org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
 	public ModelAndView exception(Exception exception, WebRequest request) {
 		ModelAndView modelAndView = new ModelAndView("error/general");
-        Throwable rootCause = Throwables.getRootCause(exception);
-        modelAndView.addObject("errorMessage", rootCause);
-        LOGGER.error(rootCause.toString(), exception);
+        modelAndView.addObject("errorMessage", exception.getMessage());
+        LOGGER.error(exception.toString(), exception);
 		return modelAndView;
 	}
 }

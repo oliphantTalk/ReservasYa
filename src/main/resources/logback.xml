@@ -14,11 +14,10 @@
             <Pattern>%d{yyyy-dd-HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
         </encoder>
         <append>true</append>
-
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
     </appender>
-
-
-
 
     <logger name="chapters.configuration" level="INFO" />
     <logger name="chapters.configuration.Foo" level="DEBUG" />

@@ -3,14 +3,7 @@
 <head>
     <title>ReservasYa!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
-    <link href="../../../resources/css/bootstrap.css" rel="stylesheet" media="screen"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-    <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
+    <th:block th:replace="fragments/commons/styles :: link-styles">Links</th:block>
 </head>
 <body class="home-body">
 <div th:replace="~{fragments/header :: header}">Header</div>
@@ -26,46 +19,11 @@
     </div>
 </div>
 
-<div th:replace="searchbox/searchbox :: fly-searchbox"></div>
-<div th:replace="searchbox/searchbox :: car-searchbox"></div>
-<div th:replace="searchbox/searchbox :: hotel-searchbox"></div>
+<th:block th:replace="searchbox/searchbox :: boxes">Cajas de busquedas</th:block>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Registrate</h4>
-            </div>
-            <div class="modal-body" id="myModalBody">Lorem ipsum</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<th:block th:replace="fragments/commons/script :: link-scripts">Links</th:block>
+<th:block th:replace="signin/modal :: modal">Modal inicio sesion</th:block>
+
 <footer class="eva-3-footer bottom-footer" th:insert="~{fragments/footer :: footer}">&copy; 2018 The Static Templates</footer>
-<script  th:src="@{~/resources/js/jquery.min.js}"></script>
-<script  th:src="@{~/resources/js/bootstrap.min.js}"></script>
-<script th:inline="javascript" type="text/javascript">
-    /* Fill in modal with content loaded with Ajax */
-    $(document).ready(function () {
-        $('#signup').on('click', function (e) {
-            $("#myModal").modal();
-            $("#myModalBody").text("");
-            $.ajax({
-                url: "signup",
-                cache: false
-            }).done(function (html) {
-                $("#myModalBody").append(html);
-            });
-        })
-    });
-
-</script>
-<script src="../../../resources/js/bootstrap.min.js"></script>
-<script  src="../../../resources/js/displayOrHideFragment.js"> </script>
-<script  th:src="@{~/resources/js/searchBoxDisplay.js}"> </script>
 </body>
 </html>

@@ -40,7 +40,6 @@ class SignupController {
 		}
 		User user = signupForm.createAccount();
 		userService.signin(user);
-        // see /WEB-INF/i18n/messages.properties and /WEB-INF/views/homeSignedIn.html
         MessageHelper.addSuccessAttribute(ra, "signup.success");
 		return "redirect:/";
 	}

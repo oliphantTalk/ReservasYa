@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-      <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
-       <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
-       <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
-       <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
-       <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-       <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-       <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
 </head>
 <body>
 
 <!--/*  Multiple fragments may be defined in one file */-->
-<div class="container" id="local_params-panel" th:fragment="local_params-panel" style="display: none" >
+<div class="container" id="localParams-panel" th:fragment="local_params-panel" style="display: none" >
 
     <div class="text-center"><h3>Parámetros Locales</h3></div>
 
@@ -79,55 +72,6 @@
         </div>
     </form>
 
-
-
-<script  th:src="@{~/resources/js/jquery.min.js}"></script>
-<script type="text/javascript">
-
-$(function() {
-
-   $('#localParamsForm').submit(function(e) {
-
-      //Prevent default submission of form
-      e.preventDefault();
-
-      let json = {};
-      json.gapMax = $('#gapMax').val();
-      json.factorDevolucion = $('#factorDevolucion').val();
-      json.factorServicioVuelo = $('#factorServicioVuelo').val();
-      json.factorVueloEscala = $('#factorVueloEscala').val();
-      json.pesosPorPunto = $('#pesosPorPunto').val();
-      json.puntosPorPeso = $('#puntosPorPeso').val();
-      json.businessClassRate = $('#businessClassRate').val();
-      json.firstClassRate = $('#firstClassRate').val();
-
-      $.ajax({
-         type: "POST",
-         url : '/panel/admin/localParams',
-         data : JSON.stringify(json),
-         /*data: $('#localParamsForm').serialize(),*/
-         contentType: "application/json; charset=utf-8",
-         async: true,
-/*
-         async: true,
-*/
-         beforeSend: function(xhr){
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.setRequestHeader("Content-Type", "application/json");
-         },
-         success : function(res) {
-           //Set response
-           $('#resultContainer pre code').text(JSON.stringify(res));
-           $('#resultContainer').show();
-         }
-      })
-   });
-});
-
-
-</script>
 </div>
-
-
 </body>
 </html>

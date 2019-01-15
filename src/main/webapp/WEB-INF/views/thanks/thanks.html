@@ -3,13 +3,7 @@
 <head>
     <title>ReservasYa!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-    <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
+    <th:block th:replace="fragments/commons/styles :: link-styles">Links</th:block>
 </head>
 <body class="home-body">
 <div th:replace="~{fragments/header :: header}">Header</div>
@@ -27,25 +21,8 @@
 
 
 <footer class="eva-3-footer bottom-footer" th:insert="~{fragments/footer :: footer}">&copy; 2018 The Static Templates</footer>
-<script>
-    function displayCarBox() {
-        document.getElementById("fly-searchbox").style.display = "none";
-        document.getElementById("car-searchbox").style.display = "inherit";
-        document.getElementById("hotel-searchbox").style.display = "none";
-    }
-    function displayHotelBox() {
-        document.getElementById("fly-searchbox").style.display = "none";
-        document.getElementById("hotel-searchbox").style.display = "inherit";
-        document.getElementById("car-searchbox").style.display = "none";
-    }
-    function displayFlyBox() {
-        document.getElementById("fly-searchbox").style.display = "inherit";
-        document.getElementById("car-searchbox").style.display = "none";
-        document.getElementById("hotel-searchbox").style.display = "none";
-    }
-    document.getElementById("link-autos").addEventListener("click", displayCarBox);
-    document.getElementById("link-hoteles").addEventListener("click", displayHotelBox);
-    document.getElementById("link-vuelos").addEventListener("click", displayFlyBox);
-</script>
+<th:block th:replace="fragments/commons/script :: link-scripts">Links</th:block>
+<script  th:src="@{~/resources/js/displayOrHideFragment.js}"> </script>
+<script  th:src="@{~/resources/js/searchBoxDisplay.js}"> </script>
 </body>
 </html>

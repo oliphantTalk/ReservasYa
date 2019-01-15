@@ -3,14 +3,7 @@
 <head>
     <title>ReservasYa!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-    <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
-</head>
+    <th:block th:replace="fragments/commons/styles :: link-styles">Links</th:block>
 <body class="home-body">
 <div th:replace="~{fragments/header :: header}">Header</div>
 
@@ -28,11 +21,11 @@
                   Admin
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Agregar Admin</a>
-                  <a class="dropdown-item" href="#" id="">Cambiar rol</a>
+                  <a class="dropdown-item" href="#" id="add-admin">Agregar Admin</a>
+                  <a class="dropdown-item" href="#" id="rol-change">Cambiar rol</a>
                   <a class="dropdown-item text-info" href="#" id="local-params">Parametros de negocio</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-danger" href="#">Eliminar Admin</a>
+                  <a class="dropdown-item text-danger" id="remove-admin" href="#">Eliminar Admin</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -40,10 +33,10 @@
                     Comercial
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Agregar Comercial</a>
-                    <a class="dropdown-item" href="#">Cambiar rol</a>
+                    <a class="dropdown-item" id="add-comercial" href="#">Agregar Comercial</a>
+                    <a class="dropdown-item" id="rol-change" href="#">Cambiar rol</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="#">Eliminar Comercial</a>
+                    <a class="dropdown-item text-danger" id="remove-comercial" href="#">Eliminar Comercial</a>
                   </div>
                 </li>
               <li class="nav-item dropdown">
@@ -51,10 +44,10 @@
                   Usuario
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Agregar Usuario</a>
-                  <a class="dropdown-item" href="#">Cambiar rol</a>
+                  <a class="dropdown-item" id="add-user" href="#">Agregar Usuario</a>
+                  <a class="dropdown-item" id="rol-change" href="#">Cambiar rol</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-danger" href="#">Eliminar Usuario</a>
+                  <a class="dropdown-item text-danger" id="remove-user" href="#">Eliminar Usuario</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -62,11 +55,11 @@
                   Aerolinea
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Agregar Aerolinea</a>
-                  <a class="dropdown-item" href="#">Agregar Vuelo</a>
+                  <a class="dropdown-item" id="add-airline" href="#">Agregar Aerolinea</a>
+                  <a class="dropdown-item" id="add-flight" href="#">Agregar Vuelo</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-danger" href="#">Eliminar Aerolinea</a>
-                  <a class="dropdown-item text-danger" href="#">Eliminar Vuelo</a>
+                  <a class="dropdown-item text-danger" id="remove-airline" href="#">Eliminar Aerolinea</a>
+                  <a class="dropdown-item text-danger" id="remove-flight" href="#">Eliminar Vuelo</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -74,11 +67,11 @@
                     Agencia
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Agregar Agencia</a>
-                    <a class="dropdown-item" href="#">Agregar Auto</a>
+                    <a class="dropdown-item" id="add-agency" href="#">Agregar Agencia</a>
+                    <a class="dropdown-item" id="add-car" href="#">Agregar Auto</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="#">Eliminar Agencia</a>
-                    <a class="dropdown-item text-danger" href="#">Eliminar Auto</a>
+                    <a class="dropdown-item text-danger" id="remove-agency" href="#">Eliminar Agencia</a>
+                    <a class="dropdown-item text-danger" id="remove-car" href="#">Eliminar Auto</a>
                   </div>
                 </li>
               <li class="nav-item dropdown">
@@ -86,30 +79,26 @@
                   Hotel
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Agregar Hotel</a>
-                    <a class="dropdown-item" href="#">Agregar Habitacion</a>
+                    <a class="dropdown-item" id="add-hotel" href="#">Agregar Hotel</a>
+                    <a class="dropdown-item" id="add-room" href="#">Agregar Habitacion</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="#">Eliminar Hotel</a>
-                    <a class="dropdown-item text-danger" href="#">Eliminar Habitacion</a>
+                    <a class="dropdown-item text-danger" id="remove-hotel" href="#">Eliminar Hotel</a>
+                    <a class="dropdown-item text-danger" id="remove-room" href="#">Eliminar Habitacion</a>
                   </div>
               </li>
             </ul>
           </div>
         </nav>
         <div th:replace="panel/components/localParameters :: local_params-panel"></div>
-
-
-
-
-
-
-
+        <div th:replace="panel/components/changeRol :: rolChange-panel"></div>
   </div>
 
+
+<th:block th:replace="fragments/commons/script :: link-scripts">Links</th:block>
+<script type="text/javascript" th:src="@{~/resources/js/formsByAjax/localParameters.js}"></script>
+<script  th:src="@{~/resources/js/displayOrHideFragment.js}"> </script>
+<script  th:src="@{~/resources/js/menu/admin/menuAdmin.js}"> </script>
+
 <footer class="eva-3-footer bottom-footer" th:insert="~{fragments/footer :: footer}">&copy; 2018 The Static Templates</footer>
-<script  th:src="@{~/resources/js/jquery.min.js}"></script>
-<script  th:src="@{~/resources/js/bootstrap.min.js}"></script>
-<script  src="../../../resources/js/displayOrHideFragment.js"> </script>
-<script  src="../../../resources/js/menu/admin/menuAdmin.js"> </script>
 </body>
 </html>

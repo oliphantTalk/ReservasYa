@@ -23,6 +23,8 @@
 
 <th:block th:replace="fragments/commons/script :: link-scripts">Links</th:block>
 <th:block th:replace="signin/modal :: modal">Modal inicio sesion</th:block>
+<script  th:src="@{~/resources/js/displayOrHideFragment.js}"> </script>
+<script  th:src="@{~/resources/js/searchBoxDisplay.js}"> </script>
 
 <footer class="eva-3-footer bottom-footer" th:insert="~{fragments/footer :: footer}">&copy; 2018 The Static Templates</footer>
 </body>

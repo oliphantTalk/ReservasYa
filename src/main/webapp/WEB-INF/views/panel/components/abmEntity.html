@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<!--/*  Multiple fragments may be defined in one file */-->
+<th:block th:fragment="entity-panel">
+<div class="container" id="addEntity-panel" style="display: none" >
+
+    <div class="text-center"><h3>Agregar Entidad</h3></div>
+
+      <div id="resultContainer" style="display: none;">
+         <hr/>
+         <h4 style="color: green;">Se ha guardado correctamente. </h4>
+          <pre style="color: green;">
+            <code></code>
+           </pre>
+        </div>
+
+    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
+
+        <div class="form-group">
+            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
+            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
+            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
+            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
+            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+
+
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
+        </div>
+    </form>
+
+</div>
+<div class="container" id="editEntity-panel" style="display: none" >
+
+    <div class="text-center"><h3>Editar Entidad</h3></div>
+
+      <div id="resultContainer" style="display: none;">
+         <hr/>
+         <h4 style="color: green;">Se ha guardado correctamente. </h4>
+          <pre style="color: green;">
+            <code></code>
+           </pre>
+        </div>
+
+    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
+
+        <div class="form-group">
+            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
+            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
+            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
+            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
+            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+
+
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
+        </div>
+    </form>
+
+</div>
+<div class="container" id="removeEntity-panel"  style="display: none" >
+
+    <div class="text-center"><h3>Eliminar Entidad</h3></div>
+
+      <div id="resultContainer" style="display: none;">
+         <hr/>
+         <h4 style="color: green;">Se ha guardado correctamente. </h4>
+          <pre style="color: green;">
+            <code></code>
+           </pre>
+        </div>
+
+    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
+
+        <div class="form-group">
+            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
+            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
+            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
+            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
+            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+        </div>
+
+
+
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
+        </div>
+    </form>
+
+</div>
+</th:block>
+</body>
+</html>

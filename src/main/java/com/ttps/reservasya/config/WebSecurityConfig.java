@@ -69,10 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .failureUrl("/signin?error=1")
                 .loginProcessingUrl("/authenticate")
-
                 .successHandler(redirecter())
                 .and()
-
             .csrf()
                 .disable()
             .headers()

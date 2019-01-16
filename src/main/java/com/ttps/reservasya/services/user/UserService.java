@@ -1,6 +1,7 @@
 package com.ttps.reservasya.services.user;
 
 
+import com.ttps.reservasya.controllers.panel.AddUserForm;
 import com.ttps.reservasya.error.exceptions.NoElementInDBException;
 import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.user.User;
@@ -67,6 +68,16 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         if (user.getRole() == null) {
             user.setRole(this.roleService.findById(1L).orElseThrow(NoElementInDBException::new));
         }
+        repository.save(user);
+        createUserSettings(user);
+        return user;
+    }
+
+    public User addUser(AddUserForm userForm){
+        User user = new User();
+        user.setUsername(userForm.getUserName());
+        user.setPassword(bCryptPasswordEncoder.encode(userForm.getPassword()));
+        user.setRole(this.roleService.findById(userForm.getRoleId()).orElseThrow(NoElementInDBException::new));
         repository.save(user);
         createUserSettings(user);
         return user;

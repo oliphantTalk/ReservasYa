@@ -16,86 +16,87 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mr-auto">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Admin
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#" id="add-admin">Agregar Admin</a>
-                  <a class="dropdown-item" href="#" id="rol-change">Cambiar rol</a>
-                  <a class="dropdown-item text-info" href="#" id="local-params">Parametros de negocio</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-danger" id="remove-admin" href="#">Eliminar Admin</a>
-                </div>
+              <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="nav-link text-info"  href="#" id="local-params">Parametros de negocio</a>
               </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Comercial
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="add-comercial" href="#">Agregar Comercial</a>
-                    <a class="dropdown-item" id="rol-change" href="#">Cambiar rol</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" id="remove-comercial" href="#">Eliminar Comercial</a>
-                  </div>
-                </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Usuario
+                  ABM Usuarios
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" id="add-user" href="#">Agregar Usuario</a>
-                  <a class="dropdown-item" id="rol-change" href="#">Cambiar rol</a>
+                  <a class="dropdown-item" href="#" id="add-user">Agregar Usuario</a>
+                  <a class="dropdown-item" href="#" id="edit-user">Editar Usuario</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item text-danger" id="remove-user" href="#">Eliminar Usuario</a>
                 </div>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ABM Entidades
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" id="add-entity" href="#">Agregar Entidad</a>
+                    <a class="dropdown-item" id="edit-entity" href="#">Editar Entidad</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" id="remove-entity" href="#">Eliminar Entidad</a>
+                  </div>
+                </li>
+              <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Aerolinea
+                  ABM Vuelos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" id="add-airline" href="#">Agregar Aerolinea</a>
                   <a class="dropdown-item" id="add-flight" href="#">Agregar Vuelo</a>
+                  <a class="dropdown-item" id="edit-flight" href="#">Editar Vuelo</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-danger" id="remove-airline" href="#">Eliminar Aerolinea</a>
                   <a class="dropdown-item text-danger" id="remove-flight" href="#">Eliminar Vuelo</a>
                 </div>
               </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Agencia
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="add-agency" href="#">Agregar Agencia</a>
-                    <a class="dropdown-item" id="add-car" href="#">Agregar Auto</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" id="remove-agency" href="#">Eliminar Agencia</a>
-                    <a class="dropdown-item text-danger" id="remove-car" href="#">Eliminar Auto</a>
-                  </div>
-                </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Hotel
+                  ABM Habitacion
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="add-hotel" href="#">Agregar Hotel</a>
-                    <a class="dropdown-item" id="add-room" href="#">Agregar Habitacion</a>
+                  <a class="dropdown-item" id="add-room" href="#">Agregar Habitacion</a>
+                  <a class="dropdown-item" id="edit-room" href="#">Editar Habitacion</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item text-danger" id="remove-room" href="#">Eliminar Habitacion</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ABM Auto
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" id="add-car" href="#">Agregar Auto</a>
+                    <a class="dropdown-item" id="edit-car" href="#">Editar Auto</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" id="remove-hotel" href="#">Eliminar Hotel</a>
-                    <a class="dropdown-item text-danger" id="remove-room" href="#">Eliminar Habitacion</a>
+                    <a class="dropdown-item text-danger" id="remove-car" href="#">Eliminar Auto</a>
                   </div>
               </li>
             </ul>
           </div>
         </nav>
-        <div th:replace="panel/components/localParameters :: local_params-panel"></div>
-        <div th:replace="panel/components/changeRol :: rolChange-panel"></div>
+        <div id="resultContainer" style="display: none;">
+                 <hr/>
+                 <h4 style="color: green;">Se ha guardado correctamente. </h4>
+                  <pre style="color: green;">
+                    <code></code>
+                   </pre>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')" th:replace="panel/components/localParameters :: localParams-panel"></div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')" th:replace="panel/components/abmUser :: user-panel"></div>
+        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmEntity :: entity-panel"></div>
+        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmFlight :: flight-panel"></div>
+        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmRoom :: room-panel"></div>
+        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmCar :: car-panel"></div>
   </div>
 
 
 <th:block th:replace="fragments/commons/script :: link-scripts">Links</th:block>
 <script type="text/javascript" th:src="@{~/resources/js/formsByAjax/localParameters.js}"></script>
+<script type="text/javascript" th:src="@{~/resources/js/formsByAjax/abmUser/addUser.js}"></script>
+<script type="text/javascript" th:src="@{~/resources/js/formsByAjax/abmUser/editUser.js}"></script>
 <script  th:src="@{~/resources/js/displayOrHideFragment.js}"> </script>
 <script  th:src="@{~/resources/js/menu/admin/menuAdmin.js}"> </script>
 

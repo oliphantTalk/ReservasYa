@@ -25,7 +25,7 @@ public class UserSettings implements Serializable {
     }
 
     @JoinColumn(name = "USER_ID")
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.LAZY)
     public User getUser() {
         return user;
     }

@@ -3,6 +3,7 @@ package com.ttps.reservasya.models.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ttps.reservasya.models.user.role.Role;
+import com.ttps.reservasya.models.user.settings.UserSettings;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -124,6 +125,7 @@ public class User implements Serializable {
                 && Objects.equals(email, user.email)
                 && Objects.equals(username, user.username);
     }
+
 
     @Override
     public int hashCode() {

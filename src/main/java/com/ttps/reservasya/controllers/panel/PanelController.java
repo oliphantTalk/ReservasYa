@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -32,7 +31,7 @@ public class PanelController {
     public String showAdminPanel(Model model){
         LocalParameters localParameters = localParametersService.getLocalParameters();
         List<User> users = userService.findAll();
-        model.addAttribute("addUserForm", new AddUserForm());
+        model.addAttribute("addUserForm", new ABMUserForm());
         model.addAttribute("users", users);
         model.addAttribute("params", localParameters);
         model.addAttribute("localParamsForm", new LocalParamsForm(localParameters));
@@ -60,8 +59,20 @@ public class PanelController {
 
     @PostMapping(value = "/admin/user/add", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
-    public User createUser(Model model, @RequestBody AddUserForm userForm, BindingResult result){
+    public User createUser(Model model, @RequestBody ABMUserForm userForm, BindingResult result){
         return userService.addUser(userForm);
+    }
+
+    @PostMapping(value = "/admin/user/edit", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public User editUser(Model model, @RequestBody ABMUserForm userForm, BindingResult result){
+        return userService.editUser(userForm);
+    }
+
+    @PostMapping(value = "/admin/user/delete", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public User deleteUser(Model model, @RequestBody ABMUserForm userForm, BindingResult result){
+        return userService.deleteUser(userForm);
     }
 
 }

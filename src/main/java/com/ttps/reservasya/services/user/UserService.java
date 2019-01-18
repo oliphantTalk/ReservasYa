@@ -1,7 +1,7 @@
 package com.ttps.reservasya.services.user;
 
 
-import com.ttps.reservasya.controllers.panel.AddUserForm;
+import com.ttps.reservasya.controllers.panel.ABMUserForm;
 import com.ttps.reservasya.error.exceptions.NoElementInDBException;
 import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.user.User;
@@ -23,10 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.Email;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserService extends BasicCrudService<User, UserRepository> implements UserDetailsService {
@@ -73,7 +70,7 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         return user;
     }
 
-    public User addUser(AddUserForm userForm){
+    public User addUser(ABMUserForm userForm){
         User user = new User();
         user.setUsername(userForm.getUserName());
         user.setPassword(bCryptPasswordEncoder.encode(userForm.getPassword()));
@@ -81,6 +78,25 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         repository.save(user);
         createUserSettings(user);
         return user;
+    }
+
+    public User editUser(ABMUserForm userForm){
+        User user = repository.findById(userForm.getUserId()).orElseThrow(NoElementInDBException::new);
+        if(!Objects.equals(user.getRole().getId(), userForm.getRoleId())) {
+            user.setRole(this.roleService.findById(userForm.getRoleId()).orElseThrow(NoElementInDBException::new));
+        }
+        user.setPassword(bCryptPasswordEncoder.encode(userForm.getPassword()));
+        return updateOne(user);
+    }
+
+    public User deleteUser(ABMUserForm userForm){
+        User userToDelete = repository.findById(userForm.getDeleteUserId()).orElseThrow(NoElementInDBException::new);
+        UserSettings userSettings = getUserSettingsByUserName(userToDelete.getUsername());
+        userSettings.setUser(null);
+        settingsRepository.save(userSettings);
+        settingsRepository.delete(userSettings);
+        repository.delete(userToDelete);
+        return userToDelete;
     }
 
     private void createUserSettings(User user) {

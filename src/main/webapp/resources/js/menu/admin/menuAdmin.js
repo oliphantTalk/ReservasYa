@@ -14,9 +14,6 @@ const removeRoomPanel = document.getElementById("removeRoom-panel");
 const addCarPanel = document.getElementById("addCar-panel");
 const editCarPanel = document.getElementById("editCar-panel");
 const removeCarPanel = document.getElementById("removeCar-panel");
-/*const addPanel = document.getElementById("add-panel");
-const editPanel = document.getElementById("edit-panel");
-const removePanel = document.getElementById("remove-panel");*/
 
 const elementos = [localParamsPanel, addUserPanel, addEntityPanel,
     addFlightPanel, addRoomPanel, addCarPanel, editUserPanel, editEntityPanel,

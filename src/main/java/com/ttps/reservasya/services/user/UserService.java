@@ -1,7 +1,7 @@
 package com.ttps.reservasya.services.user;
 
 
-import com.ttps.reservasya.controllers.panel.ABMUserForm;
+import com.ttps.reservasya.controllers.panel.form.ABMUserForm;
 import com.ttps.reservasya.error.exceptions.NoElementInDBException;
 import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.user.User;

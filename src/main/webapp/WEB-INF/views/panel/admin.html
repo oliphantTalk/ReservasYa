@@ -21,7 +21,7 @@
               </li>
               <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  ABM Usuarios
+                  Usuarios
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#" id="add-user">Agregar Usuario</a>
@@ -32,18 +32,40 @@
               </li>
               <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ABM Entidades
+                    Aerolinea
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="add-entity" href="#">Agregar Entidad</a>
-                    <a class="dropdown-item" id="edit-entity" href="#">Editar Entidad</a>
+                    <a class="dropdown-item" id="add-airline" href="#">Agregar Aerolinea</a>
+                    <a class="dropdown-item" id="edit-airline" href="#">Editar Aerolinea</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" id="remove-entity" href="#">Eliminar Entidad</a>
+                    <a class="dropdown-item text-danger" id="remove-airline" href="#">Eliminar Aerolinea</a>
                   </div>
-                </li>
+              </li>
+              <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Agencia
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" id="add-agency" href="#">Agregar Agencia</a>
+                    <a class="dropdown-item" id="edit-agency" href="#">Editar Agencia</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" id="remove-agency" href="#">Eliminar Agencia</a>
+                  </div>
+              </li>
+              <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hotel
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" id="add-hotel" href="#">Agregar Hotel</a>
+                    <a class="dropdown-item" id="edit-hotel" href="#">Editar Hotel</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" id="remove-hotel" href="#">Eliminar Hotel</a>
+                  </div>
+              </li>
               <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  ABM Vuelos
+                  Vuelo
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" id="add-flight" href="#">Agregar Vuelo</a>
@@ -54,7 +76,7 @@
               </li>
               <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  ABM Habitacion
+                  Habitacion
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" id="add-room" href="#">Agregar Habitacion</a>
@@ -65,7 +87,7 @@
               </li>
               <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_USER')">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ABM Auto
+                    Auto
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" id="add-car" href="#">Agregar Auto</a>
@@ -77,16 +99,12 @@
             </ul>
           </div>
         </nav>
-        <div id="resultContainer" style="display: none;">
-                 <hr/>
-                 <h4 style="color: green;">Se ha guardado correctamente. </h4>
-                  <pre style="color: green;">
-                    <code></code>
-                   </pre>
-        </div>
+
         <div sec:authorize="hasRole('ROLE_ADMIN')" th:replace="panel/components/localParameters :: localParams-panel"></div>
         <div sec:authorize="hasRole('ROLE_ADMIN')" th:replace="panel/components/abmUser :: user-panel"></div>
-        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmEntity :: entity-panel"></div>
+        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmAirline :: airline-panel"></div>
+        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmAgency :: agency-panel"></div>
+        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmHotel :: hotel-panel"></div>
         <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmFlight :: flight-panel"></div>
         <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmRoom :: room-panel"></div>
         <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmCar :: car-panel"></div>

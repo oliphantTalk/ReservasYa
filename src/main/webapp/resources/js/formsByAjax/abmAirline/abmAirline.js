@@ -1,18 +1,18 @@
 $(function() {
 
-    $('#addUserForm').submit(function(e) {
+    $('#addAirlineForm').submit(function(e) {
 
         //Prevent default submission of form
         e.preventDefault();
 
         let json = {};
         json.roleId = $('#rol').val();
-        json.userName = $('#userName').val();
+        json.airlineName = $('#airlineName').val();
         json.password = $('#password').val();
 
         $.ajax({
             type: "POST",
-            url : '/panel/admin/user/add',
+            url : '/panel/admin/airline/add',
             data : JSON.stringify(json),
             /*data: $('#localParamsForm').serialize(),*/
             contentType: "application/json; charset=utf-8",
@@ -34,19 +34,19 @@ $(function() {
 });
 $(function() {
 
-    $('#editUserForm').submit(function(e) {
+    $('#editAirlineForm').submit(function(e) {
 
         //Prevent default submission of form
         e.preventDefault();
 
         let json = {};
         json.roleId = $('#editRolId').val();
-        json.userId = $('#userId').val();
+        json.airlineId = $('#airlineId').val();
         json.password = $('#passwordEdit').val();
 
         $.ajax({
             type: "POST",
-            url : '/panel/admin/user/edit',
+            url : '/panel/admin/airline/edit',
             data : JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             async: true,
@@ -64,13 +64,13 @@ $(function() {
 });
 $(function() {
 
-    $('#deleteUserForm').submit(function(e) {
+    $('#deleteAirlineForm').submit(function(e) {
         e.preventDefault();
         let json = {};
-        json.deleteUserId = $('#deleteUserId').val();
+        json.deleteAirlineId = $('#deleteAirlineId').val();
         $.ajax({
             type: "POST",
-            url : '/panel/admin/user/delete',
+            url : '/panel/admin/airline/delete',
             data : JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             async: true,

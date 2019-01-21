@@ -1,6 +1,6 @@
 package com.ttps.reservasya.services;
 
-import com.ttps.reservasya.controllers.panel.LocalParamsForm;
+import com.ttps.reservasya.controllers.panel.form.LocalParamsForm;
 import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.repository.LocalParametersRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,9 +5,9 @@
 <body>
 
 <!--/*  Multiple fragments may be defined in one file */-->
-<th:block th:fragment="user-panel">
-<div class="container" id="addUser-panel" style="display: none" >
-
+<th:block th:fragment="agency-panel">
+<div class="container" id="addAirline-panel" style="display: none" >
+    <div class="text-center"><h3>Agregar Aerolinea</h3></div>
     <div id="resultContainer" style="display: none;">
          <hr/>
          <h4 style="color: green;">Se ha guardado correctamente. </h4>
@@ -16,8 +16,7 @@
          </pre>
     </div>
 
-    <div class="text-center"><h3>Agregar Usuarios</h3></div>
-    <form id="addUserForm" method="post"  th:object="${abmUserForm}" th:action="@{/panel/admin/user/add}">
+    <form id="addAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/panel/admin/airline/add}">
 
         <div class="form-group">
             <label for="rol"><strong th:text="Rol"></strong></label>
@@ -30,9 +29,9 @@
         </div>
 
         <div class="form-group">
-            <label for="userName"><strong>Nombre de Usuario</strong></label>
-            <input type="text" class="form-control form-control-sm" id="userName" aria-describedby="factorDevolucionHelp" th:field="*{userName}">
-            <small id="userNameHelp" class="form-text text-muted">Nombre del usuario a crear.</small>
+            <label for="airlineName"><strong>Nombre de Usuario</strong></label>
+            <input type="text" class="form-control form-control-sm" id="airlineName" aria-describedby="factorDevolucionHelp" th:field="*{airlineName}">
+            <small id="airlineNameHelp" class="form-text text-muted">Nombre del usuario a crear.</small>
         </div>
 
         <div class="form-group">
@@ -48,9 +47,9 @@
     </form>
 
 </div>
-<div class="container" id="editUser-panel" style="display: none" >
+<div class="container" id="editAirline-panel" style="display: none" >
 
-    <div class="text-center"><h3>Editar Usuarios</h3></div>
+    <div class="text-center"><h3>Editar Aerolinea</h3></div>
     <div id="resultContainer" style="display: none;">
          <hr/>
          <h4 style="color: green;">Se ha guardado correctamente. </h4>
@@ -58,13 +57,13 @@
             <code></code>
          </pre>
     </div>
-    <form id="editUserForm" method="post"  th:object="${abmUserForm}" th:action="@{/panel/admin/user/edit}">
+    <form id="editAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/panel/admin/airline/edit}">
           <div class="form-group">
-              <label for="userId"><strong th:text="Usuario"></strong></label>
-              <select type="text" class="form-control form-control-sm" aria-describedby="userIdHelp" th:id="userId" th:field="*{userId}">
-                <option th:each="u : ${users}" th:value="${u.id}" th:text="${u.username}"></option>
+              <label for="airlineId"><strong th:text="Usuario"></strong></label>
+              <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp" th:id="airlineId" th:field="*{airlineId}">
+                <option th:each="u : ${airlines}" th:value="${u.id}" th:text="${u.airlinename}"></option>
               </select>
-              <small id="userIdHelp" class="form-text text-muted">Elija el usuario que quiera modificar</small>
+              <small id="airlineIdHelp" class="form-text text-muted">Elija el usuario que quiera modificar</small>
           </div>
 
           <div class="form-group">
@@ -79,9 +78,9 @@
             </div>
 
             <div class="form-group">
-                <label for="userName"><strong>Nombre de Usuario</strong></label>
-                <input type="text" class="form-control form-control-sm" id="userName" aria-describedby="userNameHelp" th:field="*{userName}">
-                <small id="userNameHelp" class="form-text text-muted">Nombre del usuario a crear.</small>
+                <label for="airlineName"><strong>Nombre de Usuario</strong></label>
+                <input type="text" class="form-control form-control-sm" id="airlineName" aria-describedby="airlineNameHelp" th:field="*{airlineName}">
+                <small id="airlineNameHelp" class="form-text text-muted">Nombre del usuario a crear.</small>
             </div>
 
             <div class="form-group">
@@ -96,9 +95,9 @@
     </form>
 
 </div>
-<div class="container" id="removeUser-panel"  style="display: none" >
+<div class="container" id="removeAirline-panel"  style="display: none" >
 
-    <div class="text-center"><h3>Eliminar Usuarios</h3></div>
+    <div class="text-center"><h3>Eliminar Aerolinea</h3></div>
     <div id="resultContainer" style="display: none;">
          <hr/>
          <h4 style="color: green;">Se ha guardado correctamente. </h4>
@@ -106,13 +105,13 @@
             <code></code>
          </pre>
     </div>
-        <form th:id="deleteUserForm" method="post"  th:object="${abmUserForm}" th:action="@{/panel/admin/user/delete}">
+       <form th:id="deleteAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/panel/admin/airline/delete}">
              <div class="form-group">
-                 <label for="userId"><strong th:text="Usuario"></strong></label>
-                 <select type="text" class="form-control form-control-sm" aria-describedby="userIdHelp" th:id="deleteUserId" th:field="*{deleteUserId}">
-                   <option th:each="u : ${users}" th:value="${u.id}" th:text="${u.username}"></option>
+                 <label for="airlineId"><strong th:text="Usuario"></strong></label>
+                 <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp" th:id="deleteairlineId" th:field="*{deleteairlineId}">
+                   <option th:each="u : ${airlines}" th:value="${u.id}" th:text="${u.airlinename}"></option>
                  </select>
-                 <small id="userIdHelp" class="form-text text-muted">Elija el usuario que quiera eliminar</small>
+                 <small id="airlineIdHelp" class="form-text text-muted">Elija el usuario que quiera eliminar</small>
              </div>
 
            <div class="text-center">

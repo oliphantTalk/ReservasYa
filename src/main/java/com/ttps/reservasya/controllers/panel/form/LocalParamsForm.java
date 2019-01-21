@@ -1,4 +1,4 @@
-package com.ttps.reservasya.controllers.panel;
+package com.ttps.reservasya.controllers.panel.form;
 
 import com.ttps.reservasya.models.LocalParameters;
 import org.apache.tomcat.jni.Local;

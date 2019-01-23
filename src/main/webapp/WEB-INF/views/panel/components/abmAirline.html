@@ -19,27 +19,16 @@
     <form id="addAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/panel/admin/airline/add}">
 
         <div class="form-group">
-            <label for="rol"><strong th:text="Rol"></strong></label>
-            <select type="text" class="form-control form-control-sm" id="rol" aria-describedby="rolHelp" th:field="*{}">
-                <option th:value="1">Usuario Comun</option>
-                <option th:value="2">Usuario Admin</option>
-                <option th:value="3" th:selected="selected">Usuario Comercial</option>
-            </select>
-            <small id="rolHelp" class="form-text text-muted">Elija el rol del usuario entre Usuario Admin o Usuario Comercial</small>
+            <label for="airlineName"><strong>Nombre de la aerolinea</strong></label>
+            <input type="text" class="form-control form-control-sm" id="airlineName" aria-describedby="airlineNameHelp" th:field="*{addName}">
+            <small id="airlineNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>
         </div>
 
         <div class="form-group">
-            <label for="airlineName"><strong>Nombre de Usuario</strong></label>
-            <input type="text" class="form-control form-control-sm" id="airlineName" aria-describedby="factorDevolucionHelp" th:field="*{airlineName}">
-            <small id="airlineNameHelp" class="form-text text-muted">Nombre del usuario a crear.</small>
+            <label for="shortName"><strong>Nombre corto de la aerolinea</strong></label>
+            <input type="text" class="form-control form-control-sm" id="shortName" aria-describedby="shortNameHelp" th:field="*{addShortName}">
+            <small id="shortNameHelp" class="form-text text-muted">Nombre corto de la aerolinea.</small>
         </div>
-
-        <div class="form-group">
-            <label for="password"><strong>Password</strong></label>
-            <input type="text" class="form-control form-control-sm" id="password" aria-describedby="factorDevolucionHelp"  th:value="easyPass" disabled="disabled" th:placeholder="easyPass">
-            <small id="passwordHelp" class="form-text text-muted">Password por defecto</small>
-        </div>
-
 
         <div class="text-center">
           <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
@@ -59,35 +48,25 @@
     </div>
     <form id="editAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/panel/admin/airline/edit}">
           <div class="form-group">
-              <label for="airlineId"><strong th:text="Usuario"></strong></label>
-              <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp" th:id="airlineId" th:field="*{airlineId}">
-                <option th:each="u : ${airlines}" th:value="${u.id}" th:text="${u.airlinename}"></option>
+              <label for="airlineId"><strong th:text="Aerolinea"></strong></label>
+              <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp" th:id="airlineId" th:field="*{editId}">
+                <option th:each="u : ${airlines}" th:value="${u.id}" th:text="${u.name}"></option>
               </select>
-              <small id="airlineIdHelp" class="form-text text-muted">Elija el usuario que quiera modificar</small>
+              <small id="airlineIdHelp" class="form-text text-muted">Elija la aerolinea que quiera modificar</small>
           </div>
 
-          <div class="form-group">
-                <label for="rol"><strong th:text="Rol"></strong></label>
-                <select type="text" class="form-control form-control-sm" th:id="editRolId" aria-describedby="rolHelp" th:field="*{}" required>
-                    <option th:value="''"></option>
-                    <option th:value="'1'">Usuario Comun</option>
-                    <option th:value="'2'">Usuario Admin</option>
-                    <option th:value="'3'">Usuario Comercial</option>
-                </select>
-                <small id="rolHelp" class="form-text text-muted">Elija el rol del usuario entre Usuario Admin o Usuario Comercial</small>
-            </div>
+        <div class="form-group">
+            <label for="airlineName"><strong>Nombre de la aerolinea</strong></label>
+            <input type="text" class="form-control form-control-sm" id="airlineName" aria-describedby="airlineNameHelp" th:field="*{editName}">
+            <small id="airlineNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>
+        </div>
 
-            <div class="form-group">
-                <label for="airlineName"><strong>Nombre de Usuario</strong></label>
-                <input type="text" class="form-control form-control-sm" id="airlineName" aria-describedby="airlineNameHelp" th:field="*{airlineName}">
-                <small id="airlineNameHelp" class="form-text text-muted">Nombre del usuario a crear.</small>
-            </div>
+        <div class="form-group">
+            <label for="shortName"><strong>Nombre corto de la aerolinea</strong></label>
+            <input type="text" class="form-control form-control-sm" id="shortName" aria-describedby="shortNameHelp" th:field="*{editShortName}">
+            <small id="shortNameHelp" class="form-text text-muted">Nombre corto de la aerolinea.</small>
+        </div>
 
-            <div class="form-group">
-                <label for="password"><strong>Password</strong></label>
-                <input type="text" class="form-control form-control-sm" id="passwordEdit" aria-describedby="passwordHelp" >
-                <small id="passwordHelp" class="form-text text-muted">Password por defecto: <span th:text="easyPass"></span></small>
-            </div>
 
         <div class="text-center">
           <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
@@ -107,9 +86,9 @@
     </div>
        <form th:id="deleteAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/panel/admin/airline/delete}">
              <div class="form-group">
-                 <label for="airlineId"><strong th:text="Usuario"></strong></label>
-                 <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp" th:id="deleteairlineId" th:field="*{deleteairlineId}">
-                   <option th:each="u : ${airlines}" th:value="${u.id}" th:text="${u.airlinename}"></option>
+                 <label for="airlineId"><strong th:text="Aerolinea"></strong></label>
+                 <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp" th:id="deleteAirlineId" th:field="*{deleteId}">
+                   <option th:each="u : ${airlines}" th:value="${u.id}" th:text="${u.name}"></option>
                  </select>
                  <small id="airlineIdHelp" class="form-text text-muted">Elija el usuario que quiera eliminar</small>
              </div>

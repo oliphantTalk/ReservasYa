@@ -4,7 +4,9 @@ import com.ttps.reservasya.controllers.panel.form.*;
 import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.user.User;
 import com.ttps.reservasya.services.LocalParametersService;
+import com.ttps.reservasya.services.agencies.AgencyService;
 import com.ttps.reservasya.services.airlines.AirlineService;
+import com.ttps.reservasya.services.hotel.HotelService;
 import com.ttps.reservasya.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -32,6 +34,12 @@ public class PanelController {
     @Autowired
     private AirlineService airlineService;
 
+    @Autowired
+    private AgencyService agencyService;
+
+    @Autowired
+    private HotelService hotelService;
+
     @GetMapping(value = "/admin")
     public String showAdminPanel(Model model){
         LocalParameters localParameters = localParametersService.getLocalParameters();
@@ -40,6 +48,9 @@ public class PanelController {
         model.addAttribute("abmAirlineForm", new ABMAirlineForm());
         model.addAttribute("abmAgencyForm", new ABMAgencyForm());
         model.addAttribute("abmHotelForm", new ABMHotelForm());
+        model.addAttribute("airlines", airlineService.findAll());
+        model.addAttribute("agencies", agencyService.findAll());
+        model.addAttribute("hotels", hotelService.findAll());
         model.addAttribute("users", users);
         model.addAttribute("params", localParameters);
         model.addAttribute("localParamsForm", new LocalParamsForm(localParameters));

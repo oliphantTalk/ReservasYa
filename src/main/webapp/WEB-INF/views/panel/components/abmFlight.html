@@ -7,110 +7,49 @@
 <!--/*  Multiple fragments may be defined in one file */-->
 <th:block th:fragment="flight-panel">
 <div class="container" id="addFlight-panel" style="display: none" >
-
-    <div class="text-center"><h3>Agregar Vuelo</h3></div>
-
-      <div id="resultContainer" style="display: none;">
+    <div class="text-center"><h3>Agregar Aerolinea</h3></div>
+    <div id="resultContainer" style="display: none;">
          <hr/>
          <h4 style="color: green;">Se ha guardado correctamente. </h4>
-          <pre style="color: green;">
+         <pre style="color: green;">
             <code></code>
-           </pre>
+         </pre>
+    </div>
+
+    <form th:id="addFlight" method="get">
+        <div class="form-group">
+            <label for="airlineName"><strong>Nombre de la aerolinea</strong></label>
+            <input type="text" class="form-control form-control-sm"  aria-describedby="airlineNameHelp" id="idfly">
+            <small id="airlineNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>
         </div>
 
-    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
+        <div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Buscar Vuelos</button>
+        </div>
+    </form>
+
+    <th:block th:if="${abmFlightForm != null}">
+    <form id="addFlightForm" method="post"  th:object="${abmFlightForm}" th:action="@{/airline/flight/add}">
 
         <div class="form-group">
-            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
-            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
-            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+            <label for="airlineName"><strong>Nombre de la aerolinea</strong></label>
+            <input type="text" class="form-control form-control-sm"  aria-describedby="airlineNameHelp" th:field="*{addAirlineName}">
+            <small id="airlineNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>
         </div>
 
         <div class="form-group">
-            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
-            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
-            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+            <label for="shortName"><strong>Nombre corto de la aerolinea</strong></label>
+            <input type="text" class="form-control form-control-sm"  aria-describedby="shortNameHelp" th:field="*{addAirlineShortName}">
+            <small id="shortNameHelp" class="form-text text-muted">Nombre corto de la aerolinea.</small>
         </div>
-
-
-
 
         <div class="text-center">
           <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
         </div>
     </form>
-
+    </th:block>
 </div>
-<div class="container" id="editFlight-panel" style="display: none" >
 
-    <div class="text-center"><h3>Editar Vuelo</h3></div>
-
-      <div id="resultContainer" style="display: none;">
-         <hr/>
-         <h4 style="color: green;">Se ha guardado correctamente. </h4>
-          <pre style="color: green;">
-            <code></code>
-           </pre>
-        </div>
-
-    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
-
-        <div class="form-group">
-            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
-            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
-            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-        <div class="form-group">
-            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
-            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
-            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-
-
-
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
-        </div>
-    </form>
-
-</div>
-<div class="container" id="removeFlight-panel"  style="display: none" >
-
-    <div class="text-center"><h3>Eliminar Vuelo</h3></div>
-
-      <div id="resultContainer" style="display: none;">
-         <hr/>
-         <h4 style="color: green;">Se ha guardado correctamente. </h4>
-          <pre style="color: green;">
-            <code></code>
-           </pre>
-        </div>
-
-    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
-
-        <div class="form-group">
-            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
-            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
-            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-        <div class="form-group">
-            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
-            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
-            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-
-
-
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
-        </div>
-    </form>
-
-</div>
 </th:block>
 </body>
 </html>

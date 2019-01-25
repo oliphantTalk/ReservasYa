@@ -7,12 +7,11 @@ $(function() {
 
         let json = {};
         json.addAirlineName = $('#addAirlineName').val();
-        json.addAirlineShortName = $('#addAirlineShortName').val();
+        //json.addAirlineShortName = $('#addAirlineShortName').val();
         $.ajax({
             type: "POST",
-            url : '/panel/airline/add',
+            url : '/airline/add',
             data : JSON.stringify(json),
-            /*data: $('#localParamsForm').serialize(),*/
             contentType: "application/json; charset=utf-8",
             async: true,
             /*
@@ -44,7 +43,7 @@ $(function() {
 
         $.ajax({
             type: "POST",
-            url : '/panel/airline/edit',
+            url : '/airline/edit',
             data : JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             async: true,
@@ -68,10 +67,45 @@ $(function() {
         json.deleteAirlineId = $('#deleteAirlineId').val();
         $.ajax({
             type: "POST",
-            url : '/panel/airline/delete',
+            url : '/airline/delete',
             data : JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             async: true,
+            beforeSend: function(xhr){
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+            },
+            success : function(res) {
+                //Set response
+                $('#resultContainer pre code').text(JSON.stringify(res));
+                $('#resultContainer').show();
+            }
+        })
+    });
+});
+
+$(function() {
+
+    $('#addFlight').submit(function(e) {
+
+        //Prevent default submission of form
+        e.preventDefault();
+
+        let json = {};
+        json.idfly = $('#idfly').val();
+        //json.addAirlineShortName = $('#addAirlineShortName').val();
+        $.ajax({
+            type: "GET",
+            url : '/airline/add',
+            //data : JSON.stringify(json),
+            data: {
+                idfly: json.idfly
+            },
+            contentType: "application/json; charset=utf-8",
+            async: true,
+            /*
+                     async: true,
+            */
             beforeSend: function(xhr){
                 xhr.setRequestHeader("Accept", "application/json");
                 xhr.setRequestHeader("Content-Type", "application/json");

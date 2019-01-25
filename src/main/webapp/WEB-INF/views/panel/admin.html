@@ -105,8 +105,8 @@
         <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmAirline :: airline-panel"></div>
         <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmAgency :: agency-panel"></div>
         <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmHotel :: hotel-panel"></div>
-        <!--<div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmFlight :: flight-panel"></div>
-        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmRoom :: room-panel"></div>
+        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmFlight :: flight-panel"></div>
+        <!--<div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmRoom :: room-panel"></div>
         <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmCar :: car-panel"></div>-->
   </div>
 

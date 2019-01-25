@@ -76,7 +76,5 @@ public class PanelController {
         return localParametersService.saveLocalParameters(localParamsForm);
 
     }
-    /////////////pasasr al user controller
-
 
 }

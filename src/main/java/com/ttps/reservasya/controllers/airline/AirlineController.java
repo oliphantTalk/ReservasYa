@@ -76,6 +76,12 @@ public class AirlineController {
         return airlineService.deleteAirline(airlineForm);
     }
 
+    @GetMapping(value = "/airline/add", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public void addFlight(@RequestParam("idfly") String idFly, Model model){
+        Boolean b = true;
+    }
+
 
 }
 

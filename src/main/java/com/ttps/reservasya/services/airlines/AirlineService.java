@@ -1,5 +1,7 @@
 package com.ttps.reservasya.services.airlines;
 
+import com.ttps.reservasya.controllers.panel.form.ABMAirlineForm;
+import com.ttps.reservasya.error.exceptions.NoElementInDBException;
 import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.businessitem.airline.Airline;
@@ -32,9 +34,29 @@ public class AirlineService extends BasicCrudService<Airline, AirlineRepository>
         this.localParametersService = localParametersService;
     }
 
+    public Airline addAirline(ABMAirlineForm airlineForm){
+        Airline airline = new Airline();
+        airline.setName(airlineForm.getAddAirlineName());
+        airline.setShortName(airlineForm.getAddAirlineShortName());
+        return createOne(airline);
+    }
+
+    public Airline editAirline(ABMAirlineForm airlineForm){
+        Airline airline = repository.findById(airlineForm.getEditAirlineId()).orElseThrow(NoElementInDBException::new);
+        airline.setName(airlineForm.getEditAirlineName());
+        airline.setShortName(airlineForm.getEditAirlineShortName());
+        return updateOne(airline);
+    }
+
+    public Airline deleteAirline(ABMAirlineForm airlineForm){
+        Airline airline = repository.findById(airlineForm.getDeleteAirlineId()).orElseThrow(NoElementInDBException::new);
+        repository.delete(airline);
+        return airline;
+    }
+
     public Flight findFligth(Long id){
         // esta mal esta excepcion
-        return flightRepository.findById(id).orElseThrow(UserNotFoundException::new);
+        return flightRepository.findById(id).orElseThrow(NoElementInDBException::new);
     }
 
     public List<Flight> findFligths(){

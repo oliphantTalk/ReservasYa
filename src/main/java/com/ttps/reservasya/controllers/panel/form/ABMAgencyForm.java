@@ -1,62 +1,20 @@
 package com.ttps.reservasya.controllers.panel.form;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * @author nahuelbarrena on 20/01/19
  */
+@Getter @Setter @NoArgsConstructor
 public class ABMAgencyForm {
 
-    private String addName;
-    private String addCity;
-    private String editName;
-    private String editCity;
-    private Long editId;
-    private Long deleteId;
+    private String addAgencyName;
+    private String addAgencyCity;
+    private String editAgencyName;
+    private String editAgencyCity;
+    private Long editAgencyId;
+    private Long deleteAgencyId;
 
-    public String getAddName() {
-        return addName;
-    }
-
-    public void setAddName(String addName) {
-        this.addName = addName;
-    }
-
-    public String getEditName() {
-        return editName;
-    }
-
-    public void setEditName(String editName) {
-        this.editName = editName;
-    }
-
-    public String getAddCity() {
-        return addCity;
-    }
-
-    public void setAddCity(String addCity) {
-        this.addCity = addCity;
-    }
-
-    public String getEditCity() {
-        return editCity;
-    }
-
-    public void setEditCity(String editCity) {
-        this.editCity = editCity;
-    }
-
-    public Long getEditId() {
-        return editId;
-    }
-
-    public void setEditId(Long editId) {
-        this.editId = editId;
-    }
-
-    public Long getDeleteId() {
-        return deleteId;
-    }
-
-    public void setDeleteId(Long deleteId) {
-        this.deleteId = deleteId;
-    }
 }

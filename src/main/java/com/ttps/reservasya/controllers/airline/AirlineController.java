@@ -1,21 +1,22 @@
 package com.ttps.reservasya.controllers.airline;
 
+import com.ttps.reservasya.controllers.panel.form.ABMAirlineForm;
 import com.ttps.reservasya.models.LocalParameters;
+import com.ttps.reservasya.models.businessitem.airline.Airline;
 import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
 import com.ttps.reservasya.services.LocalParametersService;
 import com.ttps.reservasya.services.airlines.AirlineService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RequestMapping(value = "/search/fly")
+
 @Controller
 public class AirlineController {
 
@@ -29,7 +30,7 @@ public class AirlineController {
         this.localParametersService = localParametersService;
     }
 
-    @GetMapping(value = "/{id}/{seatClass}/{passengers}")
+    @GetMapping(value = "/search/fly/{id}/{seatClass}/{passengers}")
         public String flyDetails(
                 @Valid @PathVariable("id") Long id,
                 @PathVariable("seatClass") String seatClass,
@@ -56,7 +57,24 @@ public class AirlineController {
             return "/details/details";
         }
 
+    @PostMapping(value = "/airline/add", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public Airline createAirline(Model model, @RequestBody ABMAirlineForm airlineForm, BindingResult result){
+        return airlineService.addAirline(airlineForm);
 
+    }
+
+    @PostMapping(value = "/airline/edit", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public Airline editAirline(Model model, @RequestBody ABMAirlineForm airlineForm, BindingResult result){
+        return airlineService.editAirline(airlineForm);
+    }
+
+    @PostMapping(value = "/airline/delete", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public Airline deleteAirline(Model model, @RequestBody ABMAirlineForm airlineForm, BindingResult result){
+        return airlineService.deleteAirline(airlineForm);
+    }
 
 
 }

@@ -12,7 +12,7 @@ $(function() {
 
         $.ajax({
             type: "POST",
-            url : '/panel/admin/user/add',
+            url : '/user/add',
             data : JSON.stringify(json),
             /*data: $('#localParamsForm').serialize(),*/
             contentType: "application/json; charset=utf-8",
@@ -46,7 +46,7 @@ $(function() {
 
         $.ajax({
             type: "POST",
-            url : '/panel/admin/user/edit',
+            url : '/user/edit',
             data : JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             async: true,
@@ -70,7 +70,7 @@ $(function() {
         json.deleteUserId = $('#deleteUserId').val();
         $.ajax({
             type: "POST",
-            url : '/panel/admin/user/delete',
+            url : '/user/delete',
             data : JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             async: true,

@@ -17,7 +17,7 @@
     </div>
 
     <div class="text-center"><h3>Agregar Usuarios</h3></div>
-    <form id="addUserForm" method="post"  th:object="${abmUserForm}" th:action="@{/panel/admin/user/add}">
+    <form id="addUserForm" method="post"  th:object="${abmUserForm}" th:action="@{/user/add}">
 
         <div class="form-group">
             <label for="rol"><strong th:text="Rol"></strong></label>
@@ -58,7 +58,7 @@
             <code></code>
          </pre>
     </div>
-    <form id="editUserForm" method="post"  th:object="${abmUserForm}" th:action="@{/panel/admin/user/edit}">
+    <form id="editUserForm" method="post"  th:object="${abmUserForm}" th:action="@{/user/edit}">
           <div class="form-group">
               <label for="userId"><strong th:text="Usuario"></strong></label>
               <select type="text" class="form-control form-control-sm" aria-describedby="userIdHelp" th:id="userId" th:field="*{userId}">
@@ -106,7 +106,7 @@
             <code></code>
          </pre>
     </div>
-        <form th:id="deleteUserForm" method="post"  th:object="${abmUserForm}" th:action="@{/panel/admin/user/delete}">
+        <form th:id="deleteUserForm" method="post"  th:object="${abmUserForm}" th:action="@{/user/delete}">
              <div class="form-group">
                  <label for="userId"><strong th:text="Usuario"></strong></label>
                  <select type="text" class="form-control form-control-sm" aria-describedby="userIdHelp" th:id="deleteUserId" th:field="*{deleteUserId}">

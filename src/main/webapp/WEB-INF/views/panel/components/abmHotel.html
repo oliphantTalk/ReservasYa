@@ -7,7 +7,7 @@
 <!--/*  Multiple fragments may be defined in one file */-->
 <th:block th:fragment="hotel-panel">
 <div class="container" id="addHotel-panel" style="display: none" >
-    <div class="text-center"><h3>Agregar Aerolinea</h3></div>
+    <div class="text-center"><h3>Agregar Hotel</h3></div>
     <div id="resultContainer" style="display: none;">
          <hr/>
          <h4 style="color: green;">Se ha guardado correctamente. </h4>
@@ -16,18 +16,24 @@
          </pre>
     </div>
 
-    <form id="addHotelForm" method="post"  th:object="${abmHotelForm}" th:action="@{/panel/admin/hotel/add}">
+    <form id="addHotelForm" method="post"  th:object="${abmHotelForm}" th:action="@{/hotel/add}">
 
         <div class="form-group">
-            <label for="hotelName"><strong>Nombre de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm" id="hotelName" aria-describedby="hotelNameHelp" th:field="*{addName}">
-            <small id="hotelNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>
+            <label for="hotelName"><strong>Nombre del Hotel</strong></label>
+            <input type="text" class="form-control form-control-sm" aria-describedby="hotelNameHelp" th:field="*{addHotelName}">
+            <small id="hotelNameHelp" class="form-text text-muted">Nombre del Hotel a crear.</small>
         </div>
 
         <div class="form-group">
-            <label for="stars"><strong>Nombre corto de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm" id="stars" aria-describedby="starsHelp" th:field="*{addStars}">
-            <small id="starsHelp" class="form-text text-muted">Nombre corto de la aerolinea.</small>
+            <label for="city"><strong>Ciudad</strong></label>
+            <input type="text" class="form-control form-control-sm" aria-describedby="starsHelp" th:field="*{addHotelCity}">
+            <small id="cityHelp" class="form-text text-muted">Ciudad donde radica el hotel</small>
+        </div>
+
+        <div class="form-group">
+            <label for="stars"><strong>Estrellas</strong></label>
+            <input type="number" th:min="0" th:max="5" class="form-control form-control-sm" aria-describedby="starsHelp" th:field="*{addHotelStars}">
+            <small id="starsHelp" class="form-text text-muted">Estrellas del hotel</small>
         </div>
 
         <div class="text-center">
@@ -38,34 +44,40 @@
 </div>
 <div class="container" id="editHotel-panel" style="display: none" >
 
-    <div class="text-center"><h3>Editar Aerolinea</h3></div>
+    <div class="text-center"><h3>Editar Hotel</h3></div>
     <div id="resultContainer" style="display: none;">
          <hr/>
-         <h4 style="color: green;">Se ha guardado correctamente. </h4>
+         <h4 style="color: green;">Se ha guardado correctamente.</h4>
          <pre style="color: green;">
             <code></code>
          </pre>
     </div>
-    <form id="editHotelForm" method="post"  th:object="${abmHotelForm}" th:action="@{/panel/admin/hotel/edit}">
+    <form id="editHotelForm" method="post"  th:object="${abmHotelForm}" th:action="@{/hotel/edit}">
           <div class="form-group">
-              <label for="hotelId"><strong th:text="Aerolinea"></strong></label>
-              <select type="text" class="form-control form-control-sm" aria-describedby="hotelIdHelp" th:id="hotelId" th:field="*{editId}">
+              <label for="hotelId"><strong th:text="Hotel"></strong></label>
+              <select type="text" class="form-control form-control-sm" aria-describedby="hotelIdHelp" th:field="*{editHotelId}">
                 <option th:each="u : ${hotels}" th:value="${u.id}" th:text="${u.name}"></option>
               </select>
-              <small id="hotelIdHelp" class="form-text text-muted">Elija la aerolinea que quiera modificar</small>
+              <small id="hotelIdHelp" class="form-text text-muted">Elija la Hotel que quiera modificar</small>
           </div>
 
         <div class="form-group">
-            <label for="hotelName"><strong>Nombre de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm" id="hotelName" aria-describedby="hotelNameHelp" th:field="*{editName}">
-            <small id="hotelNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>
-        </div>
+                    <label for="hotelName"><strong>Nombre del Hotel</strong></label>
+                    <input type="text" class="form-control form-control-sm" aria-describedby="hotelNameHelp" th:field="*{editHotelName}">
+                    <small id="hotelNameHelp" class="form-text text-muted">Nombre del Hotel a crear.</small>
+                </div>
 
-        <div class="form-group">
-            <label for="stars"><strong>Nombre corto de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm" id="stars" aria-describedby="starsHelp" th:field="*{editStars}">
-            <small id="starsHelp" class="form-text text-muted">Nombre corto de la aerolinea.</small>
-        </div>
+                <div class="form-group">
+                    <label for="city"><strong>Ciudad</strong></label>
+                    <input type="text" class="form-control form-control-sm" aria-describedby="cityHelp" th:field="*{editHotelCity}">
+                    <small id="cityHelp" class="form-text text-muted">Ciudad donde radica el hotel</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="stars"><strong>Estrellas</strong></label>
+                    <input type="number" th:min="0" th:max="5" class="form-control form-control-sm" aria-describedby="starsHelp" th:field="*{editHotelStars}">
+                    <small id="starsHelp" class="form-text text-muted">Estrellas del hotel</small>
+                </div>
 
 
         <div class="text-center">
@@ -76,7 +88,7 @@
 </div>
 <div class="container" id="removeHotel-panel"  style="display: none" >
 
-    <div class="text-center"><h3>Eliminar Aerolinea</h3></div>
+    <div class="text-center"><h3>Eliminar Hotel</h3></div>
     <div id="resultContainer" style="display: none;">
          <hr/>
          <h4 style="color: green;">Se ha guardado correctamente. </h4>
@@ -84,10 +96,10 @@
             <code></code>
          </pre>
     </div>
-       <form th:id="deleteHotelForm" method="post"  th:object="${abmHotelForm}" th:action="@{/panel/admin/hotel/delete}">
+       <form th:id="deleteHotelForm" method="post"  th:object="${abmHotelForm}" th:action="@{/hotel/delete}">
              <div class="form-group">
-                 <label for="hotelId"><strong th:text="Aerolinea"></strong></label>
-                 <select type="text" class="form-control form-control-sm" aria-describedby="hotelIdHelp" th:id="deletehotelId" th:field="*{deleteId}">
+                 <label for="hotelId"><strong th:text="Hotel"></strong></label>
+                 <select type="text" class="form-control form-control-sm" aria-describedby="hotelIdHelp"  th:field="*{deleteHotelId}">
                    <option th:each="u : ${hotels}" th:value="${u.id}" th:text="${u.name}"></option>
                  </select>
                  <small id="hotelIdHelp" class="form-text text-muted">Elija el Hotel que quiera eliminar</small>

@@ -1,18 +1,18 @@
 $(function() {
 
-    $('#addAirlineForm').submit(function(e) {
+    $('#addHotelForm').submit(function(e) {
 
         //Prevent default submission of form
         e.preventDefault();
 
         let json = {};
-        json.addAirlineName = $('#addAirlineName').val();
-        json.addAirlineShortName = $('#addAirlineShortName').val();
+        json.addHotelName = $('#addHotelName').val();
+        json.addHotelCity = $('#addHotelCity').val();
+        json.addHotelStars = $('#addHotelStars').val();
         $.ajax({
             type: "POST",
-            url : '/panel/airline/add',
+            url : '/hotel/add',
             data : JSON.stringify(json),
-            /*data: $('#localParamsForm').serialize(),*/
             contentType: "application/json; charset=utf-8",
             async: true,
             /*
@@ -32,19 +32,20 @@ $(function() {
 });
 $(function() {
 
-    $('#editAirlineForm').submit(function(e) {
+    $('#editHotelForm').submit(function(e) {
 
         //Prevent default submission of form
         e.preventDefault();
 
         let json = {};
-        json.editAirlineId = $('#editAirlineId').val();
-        json.editAirlineName = $('#editAirlineName').val();
-        json.editAirlineShortName = $('#editAirlineShortName').val();
+        json.editHotelId = $('#editHotelId').val();
+        json.editHotelName = $('#editHotelName').val();
+        json.editHotelCity = $('#editHotelCity').val();
+        json.editHotelStars = $('#editHotelStars').val();
 
         $.ajax({
             type: "POST",
-            url : '/panel/airline/edit',
+            url : '/hotel/edit',
             data : JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             async: true,
@@ -62,13 +63,13 @@ $(function() {
 });
 $(function() {
 
-    $('#deleteAirlineForm').submit(function(e) {
+    $('#deleteHotelForm').submit(function(e) {
         e.preventDefault();
         let json = {};
-        json.deleteAirlineId = $('#deleteAirlineId').val();
+        json.deleteHotelId = $('#deleteHotelId').val();
         $.ajax({
             type: "POST",
-            url : '/panel/airline/delete',
+            url : '/hotel/delete',
             data : JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             async: true,

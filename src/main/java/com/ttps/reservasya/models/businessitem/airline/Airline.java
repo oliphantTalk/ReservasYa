@@ -5,6 +5,7 @@ import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,7 +14,9 @@ import java.util.List;
 public class Airline implements Serializable {
 
     private long id;
+    @NotNull
     private String name;
+    @NotNull
     @JsonProperty("short_name")
     private String shortName;
     private List<Flight> flights;

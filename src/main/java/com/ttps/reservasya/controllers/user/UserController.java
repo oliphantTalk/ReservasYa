@@ -1,12 +1,17 @@
 package com.ttps.reservasya.controllers.user;
 
+import com.ttps.reservasya.controllers.panel.form.ABMUserForm;
 import com.ttps.reservasya.error.exceptions.UserNotFoundException;
+import com.ttps.reservasya.models.user.User;
 import com.ttps.reservasya.models.user.dto.UserDTO;
 import com.ttps.reservasya.services.user.UserService;
 import com.ttps.reservasya.transformers.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -65,5 +70,24 @@ public class UserController {
     @PutMapping(value = "/user")
     public void addUser(@RequestBody @Valid final UserDTO userDTO){
         this.userService.createOne(UserTransformer.toUser(userDTO));
+    }
+
+
+    @PostMapping(value = "/user/add", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public User createUser(Model model, @RequestBody ABMUserForm userForm, BindingResult result){
+        return userService.addUser(userForm);
+    }
+
+    @PostMapping(value = "/user/edit", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public User editUser(Model model, @RequestBody ABMUserForm userForm, BindingResult result){
+        return userService.editUser(userForm);
+    }
+
+    @PostMapping(value = "/user/delete", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public User deleteUser(Model model, @RequestBody ABMUserForm userForm, BindingResult result){
+        return userService.deleteUser(userForm);
     }
 }

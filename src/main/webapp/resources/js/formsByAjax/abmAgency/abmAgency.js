@@ -1,16 +1,17 @@
 $(function() {
 
-    $('#addAirlineForm').submit(function(e) {
+    $('#addAgencyForm').submit(function(e) {
 
         //Prevent default submission of form
         e.preventDefault();
 
         let json = {};
-        json.addAirlineName = $('#addAirlineName').val();
-        json.addAirlineShortName = $('#addAirlineShortName').val();
+        json.addAgencyName = $('#addAgencyName').val();
+        json.addAgencyCity = $('#addAgencyCity').val();
+
         $.ajax({
             type: "POST",
-            url : '/panel/airline/add',
+            url : '/agency/add',
             data : JSON.stringify(json),
             /*data: $('#localParamsForm').serialize(),*/
             contentType: "application/json; charset=utf-8",
@@ -32,19 +33,20 @@ $(function() {
 });
 $(function() {
 
-    $('#editAirlineForm').submit(function(e) {
+    $('#editAgencyForm').submit(function(e) {
 
         //Prevent default submission of form
         e.preventDefault();
 
         let json = {};
-        json.editAirlineId = $('#editAirlineId').val();
-        json.editAirlineName = $('#editAirlineName').val();
-        json.editAirlineShortName = $('#editAirlineShortName').val();
+
+        json.editAgencyId = $('#editAgencyId').val();
+        json.editAgencyName = $('#editAgencyName').val();
+        json.editAgencyCity = $('#editAgencyCity').val();
 
         $.ajax({
             type: "POST",
-            url : '/panel/airline/edit',
+            url : '/agency/edit',
             data : JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             async: true,
@@ -62,13 +64,13 @@ $(function() {
 });
 $(function() {
 
-    $('#deleteAirlineForm').submit(function(e) {
+    $('#deleteAgencyForm').submit(function(e) {
         e.preventDefault();
         let json = {};
-        json.deleteAirlineId = $('#deleteAirlineId').val();
+        json.deleteAgencyId = $('#deleteAgencyId').val();
         $.ajax({
             type: "POST",
-            url : '/panel/airline/delete',
+            url : '/agency/delete',
             data : JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             async: true,

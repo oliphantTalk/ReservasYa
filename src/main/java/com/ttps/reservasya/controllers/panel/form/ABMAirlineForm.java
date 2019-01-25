@@ -1,62 +1,20 @@
 package com.ttps.reservasya.controllers.panel.form;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * @author nahuelbarrena on 20/01/19
  */
+@Getter @Setter @NoArgsConstructor
 public class ABMAirlineForm {
 
-    private String addName;
-    private String addShortName;
-    private Long editId;
-    private String editName;
-    private String editShortName;
-    private Long deleteId;
+    private String addAirlineName;
+    private String editAirlineName;
+    private String addAirlineShortName;
+    private String editAirlineShortName;
+    private long editAirlineId;
+    private long deleteAirlineId;
 
-    public String getAddName() {
-        return addName;
-    }
-
-    public void setAddName(String addName) {
-        this.addName = addName;
-    }
-
-    public String getAddShortName() {
-        return addShortName;
-    }
-
-    public void setAddShortName(String addShortName) {
-        this.addShortName = addShortName;
-    }
-
-    public Long getEditId() {
-        return editId;
-    }
-
-    public void setEditId(Long editId) {
-        this.editId = editId;
-    }
-
-    public String getEditName() {
-        return editName;
-    }
-
-    public void setEditName(String editName) {
-        this.editName = editName;
-    }
-
-    public String getEditShortName() {
-        return editShortName;
-    }
-
-    public void setEditShortName(String editShortName) {
-        this.editShortName = editShortName;
-    }
-
-    public Long getDeleteId() {
-        return deleteId;
-    }
-
-    public void setDeleteId(Long deleteId) {
-        this.deleteId = deleteId;
-    }
 }

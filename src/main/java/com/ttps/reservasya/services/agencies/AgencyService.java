@@ -1,5 +1,7 @@
 package com.ttps.reservasya.services.agencies;
 
+import com.ttps.reservasya.controllers.panel.form.ABMAgencyForm;
+import com.ttps.reservasya.error.exceptions.NoElementInDBException;
 import com.ttps.reservasya.models.businessitem.agency.Agency;
 import com.ttps.reservasya.models.businessitem.agency.cars.Car;
 import com.ttps.reservasya.repository.agency.AgencyRepository;
@@ -61,6 +63,26 @@ public class AgencyService extends BasicCrudService<Agency, AgencyRepository> {
                 )
                 );
         return carList;
-
     }
+
+    public Agency addAgency(ABMAgencyForm agencyForm){
+        Agency agency = new Agency();
+        agency.setName(agencyForm.getAddAgencyName());
+        agency.setCity(agencyForm.getAddAgencyCity());
+        return createOne(agency);
+    }
+
+    public Agency editAgency(ABMAgencyForm agencyForm){
+        Agency agency = repository.findById(agencyForm.getEditAgencyId()).orElseThrow(NoElementInDBException::new);
+        agency.setName(agencyForm.getEditAgencyName());
+        agency.setCity(agencyForm.getEditAgencyCity());
+        return updateOne(agency);
+    }
+
+    public Agency deleteAgency(ABMAgencyForm agencyForm){
+        Agency agency = repository.findById(agencyForm.getDeleteAgencyId()).orElseThrow(NoElementInDBException::new);
+        repository.delete(agency);
+        return agency;
+    }
+
 }

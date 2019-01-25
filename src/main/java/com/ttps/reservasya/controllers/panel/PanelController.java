@@ -2,6 +2,7 @@ package com.ttps.reservasya.controllers.panel;
 
 import com.ttps.reservasya.controllers.panel.form.*;
 import com.ttps.reservasya.models.LocalParameters;
+import com.ttps.reservasya.models.businessitem.airline.Airline;
 import com.ttps.reservasya.models.user.User;
 import com.ttps.reservasya.services.LocalParametersService;
 import com.ttps.reservasya.services.agencies.AgencyService;
@@ -76,68 +77,6 @@ public class PanelController {
 
     }
     /////////////pasasr al user controller
-    @PostMapping(value = "/admin/user/add", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public User createUser(Model model, @RequestBody ABMUserForm userForm, BindingResult result){
-        return userService.addUser(userForm);
-    }
-
-    @PostMapping(value = "/admin/user/edit", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public User editUser(Model model, @RequestBody ABMUserForm userForm, BindingResult result){
-        return userService.editUser(userForm);
-    }
-
-    @PostMapping(value = "/admin/user/delete", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public User deleteUser(Model model, @RequestBody ABMUserForm userForm, BindingResult result){
-        return userService.deleteUser(userForm);
-    }
-    /////////////////////////////
-
-    ///////// pasar al airline controller
-
-    @PostMapping(value = "/airline/add", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public void createAirline(Model model, @RequestBody ABMAirlineForm airlineForm, BindingResult result){
-
-    }
-
-    @PostMapping(value = "/airline/edit", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public void editAirline(Model model, @RequestBody ABMAirlineForm airlineForm, BindingResult result){
-
-    }
-
-    @PostMapping(value = "/airline/delete", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public void deleteAirline(Model model, @RequestBody ABMAirlineForm airlineForm, BindingResult result){
-
-    }
-
-    /////////////////
-
-
-    /*
-    *
-    @PostMapping(value = "/airline/add", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public void createUser(Model model, @RequestBody ABMAirlineForm airlineForm, BindingResult result){
-
-    }
-
-    @PostMapping(value = "/airline/edit", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public void editUser(Model model, @RequestBody ABMAirlineForm airlineForm, BindingResult result){
-
-    }
-
-    @PostMapping(value = "/airline/delete", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public void deleteUser(Model model, @RequestBody ABMAirlineForm airlineForm, BindingResult result){
-
-    }
-    */
 
 
 }

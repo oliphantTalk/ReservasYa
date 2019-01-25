@@ -16,17 +16,17 @@
          </pre>
     </div>
 
-    <form id="addAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/panel/admin/airline/add}">
+    <form id="addAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/airline/add}">
 
         <div class="form-group">
             <label for="airlineName"><strong>Nombre de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm" id="airlineName" aria-describedby="airlineNameHelp" th:field="*{addName}">
+            <input type="text" class="form-control form-control-sm"  aria-describedby="airlineNameHelp" th:field="*{addAirlineName}">
             <small id="airlineNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>
         </div>
 
         <div class="form-group">
             <label for="shortName"><strong>Nombre corto de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm" id="shortName" aria-describedby="shortNameHelp" th:field="*{addShortName}">
+            <input type="text" class="form-control form-control-sm"  aria-describedby="shortNameHelp" th:field="*{addAirlineShortName}">
             <small id="shortNameHelp" class="form-text text-muted">Nombre corto de la aerolinea.</small>
         </div>
 
@@ -46,10 +46,10 @@
             <code></code>
          </pre>
     </div>
-    <form id="editAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/panel/admin/airline/edit}">
+    <form id="editAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/airline/edit}">
           <div class="form-group">
               <label for="airlineId"><strong th:text="Aerolinea"></strong></label>
-              <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp" th:id="airlineId" th:field="*{editId}">
+              <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp"  th:field="*{editAirlineId}">
                 <option th:each="u : ${airlines}" th:value="${u.id}" th:text="${u.name}"></option>
               </select>
               <small id="airlineIdHelp" class="form-text text-muted">Elija la aerolinea que quiera modificar</small>
@@ -57,13 +57,13 @@
 
         <div class="form-group">
             <label for="airlineName"><strong>Nombre de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm" id="airlineName" aria-describedby="airlineNameHelp" th:field="*{editName}">
-            <small id="airlineNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>
+            <input type="text" class="form-control form-control-sm"  aria-describedby="airlineNameHelp" th:field="*{editAirlineName}">
+            <small id="airlineNameHelp" class="form-text text-muted">Nombre de la aerolinea a modificar.</small>
         </div>
 
         <div class="form-group">
             <label for="shortName"><strong>Nombre corto de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm" id="shortName" aria-describedby="shortNameHelp" th:field="*{editShortName}">
+            <input type="text" class="form-control form-control-sm"  aria-describedby="shortNameHelp" th:field="*{editAirlineShortName}">
             <small id="shortNameHelp" class="form-text text-muted">Nombre corto de la aerolinea.</small>
         </div>
 
@@ -84,13 +84,13 @@
             <code></code>
          </pre>
     </div>
-       <form th:id="deleteAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/panel/admin/airline/delete}">
+       <form th:id="deleteAirlineForm" method="post"  th:object="${abmAirlineForm}" th:action="@{/airline/delete}">
              <div class="form-group">
                  <label for="airlineId"><strong th:text="Aerolinea"></strong></label>
-                 <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp" th:id="deleteAirlineId" th:field="*{deleteId}">
+                 <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp" th:field="*{deleteAirlineId}">
                    <option th:each="u : ${airlines}" th:value="${u.id}" th:text="${u.name}"></option>
                  </select>
-                 <small id="airlineIdHelp" class="form-text text-muted">Elija el usuario que quiera eliminar</small>
+                 <small id="airlineIdHelp" class="form-text text-muted">Elija la aerolinea que quiera eliminar</small>
              </div>
 
            <div class="text-center">

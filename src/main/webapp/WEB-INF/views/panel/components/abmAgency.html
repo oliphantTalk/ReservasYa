@@ -16,18 +16,18 @@
          </pre>
     </div>
 
-    <form id="addAgencyForm" method="post"  th:object="${abmAgencyForm}" th:action="@{/panel/admin/agency/add}">
+    <form id="addAgencyForm" method="post"  th:object="${abmAgencyForm}" th:action="@{/agency/add}">
 
         <div class="form-group">
             <label for="agencyName"><strong>Nombre de la agencia</strong></label>
-            <input type="text" class="form-control form-control-sm" id="agencyName" aria-describedby="agencyNameHelp" th:field="*{addName}">
+            <input type="text" class="form-control form-control-sm" aria-describedby="agencyNameHelp" th:field="*{addAgencyName}">
             <small id="agencyNameHelp" class="form-text text-muted">Nombre de la agencia a crear.</small>
         </div>
 
         <div class="form-group">
-            <label for="city"><strong>Nombre corto de la agencia</strong></label>
-            <input type="text" class="form-control form-control-sm" id="city" aria-describedby="cityHelp" th:field="*{addCity}">
-            <small id="cityHelp" class="form-text text-muted">Nombre corto de la agencia.</small>
+            <label for="city"><strong>Ciudad</strong></label>
+            <input type="text" class="form-control form-control-sm" aria-describedby="cityHelp" th:field="*{addAgencyCity}">
+            <small id="cityHelp" class="form-text text-muted">Ciudad donde radica la agencia.</small>
         </div>
 
         <div class="text-center">
@@ -46,10 +46,10 @@
             <code></code>
          </pre>
     </div>
-    <form id="editAgencyForm" method="post"  th:object="${abmAgencyForm}" th:action="@{/panel/admin/agency/edit}">
+    <form id="editAgencyForm" method="post"  th:object="${abmAgencyForm}" th:action="@{/agency/edit}">
           <div class="form-group">
               <label for="agencyId"><strong th:text="agencia"></strong></label>
-              <select type="text" class="form-control form-control-sm" aria-describedby="agencyIdHelp" th:id="agencyId" th:field="*{editId}">
+              <select type="text" class="form-control form-control-sm" aria-describedby="agencyIdHelp" th:field="*{editAgencyId}">
                 <option th:each="u : ${agencies}" th:value="${u.id}" th:text="${u.name}"></option>
               </select>
               <small id="agencyIdHelp" class="form-text text-muted">Elija la agencia que quiera modificar</small>
@@ -57,14 +57,14 @@
 
         <div class="form-group">
             <label for="agencyName"><strong>Nombre de la agencia</strong></label>
-            <input type="text" class="form-control form-control-sm" id="agencyName" aria-describedby="agencyNameHelp" th:field="*{editName}">
+            <input type="text" class="form-control form-control-sm" aria-describedby="agencyNameHelp" th:field="*{editAgencyName}">
             <small id="agencyNameHelp" class="form-text text-muted">Nombre de la agencia a crear.</small>
         </div>
 
         <div class="form-group">
-            <label for="city"><strong>Nombre corto de la agencia</strong></label>
-            <input type="text" class="form-control form-control-sm" id="city" aria-describedby="cityHelp" th:field="*{editCity}">
-            <small id="cityHelp" class="form-text text-muted">Nombre corto de la agencia.</small>
+            <label for="city"><strong>Ciudad</strong></label>
+            <input type="text" class="form-control form-control-sm" aria-describedby="cityHelp" th:field="*{editAgencyCity}">
+            <small id="cityHelp" class="form-text text-muted">Ciudad donde radica la agencia</small>
         </div>
 
 
@@ -84,10 +84,10 @@
             <code></code>
          </pre>
     </div>
-       <form th:id="deleteAgencyForm" method="post"  th:object="${abmAgencyForm}" th:action="@{/panel/admin/agency/delete}">
+       <form th:id="deleteAgencyForm" method="post"  th:object="${abmAgencyForm}" th:action="@{/agency/delete}">
              <div class="form-group">
                  <label for="agencyId"><strong th:text="agencia"></strong></label>
-                 <select type="text" class="form-control form-control-sm" aria-describedby="agencyIdHelp" th:id="deleteAgencyId" th:field="*{deleteId}">
+                 <select type="text" class="form-control form-control-sm" aria-describedby="agencyIdHelp"  th:field="*{deleteAgencyId}">
                    <option th:each="u : ${agencies}" th:value="${u.id}" th:text="${u.name}"></option>
                  </select>
                  <small id="agencyIdHelp" class="form-text text-muted">Elija el agencia que quiera eliminar</small>

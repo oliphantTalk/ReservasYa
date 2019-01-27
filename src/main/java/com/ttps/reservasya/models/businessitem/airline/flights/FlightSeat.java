@@ -1,11 +1,14 @@
 package com.ttps.reservasya.models.businessitem.airline.flights;
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 @Embeddable
 public class FlightSeat implements Serializable {
 
-    private String seatId;
+    private String seatId = RandomStringUtils.randomAlphanumeric(10);
     private SeatClass seatClass;
     private Double priceClass;
 

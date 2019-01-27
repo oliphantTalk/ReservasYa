@@ -7,7 +7,7 @@
 <!--/*  Multiple fragments may be defined in one file */-->
 <th:block th:fragment="flight-panel">
 <div class="container" id="addFlight-panel" style="display: none" >
-    <div class="text-center"><h3>Agregar Aerolinea</h3></div>
+    <div class="text-center"><h3>Agregar Vuelo</h3></div>
     <div id="resultContainer" style="display: none;">
          <hr/>
          <h4 style="color: green;">Se ha guardado correctamente. </h4>
@@ -16,38 +16,85 @@
          </pre>
     </div>
 
-    <form th:id="addFlight" method="get">
+    <form th:id="addFlightForm" th:method="post" th:object="${abmFlightForm}" th:action="@{/airline/flight/add}">
         <div class="form-group">
-            <label for="airlineName"><strong>Nombre de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm"  aria-describedby="airlineNameHelp" id="idfly">
-            <small id="airlineNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>
+          <label for="airlineId"><strong th:text="Aerolinea"></strong></label>
+          <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp"  th:id="addAirlineId">
+            <option th:each="a : ${airlines}" th:value="${a.id}" th:text="${a.name}"></option>
+          </select>
+          <small id="airlineIdHelp" class="form-text text-muted">Elija la aerolinea a la cual agregarle vuelos.</small>
         </div>
 
+        <div class="form-group">
+            <label for="flightName"><strong>Origen</strong></label>
+            <input type="text" class="form-control form-control-sm"  aria-describedby="flightNameHelp" th:field="*{addFlightFrom}">
+            <small id="flightNameHelp" class="form-text text-muted">Lugar de origen del vuelo</small>
+        </div>
+
+        <div class="form-group">
+            <label for="flightName"><strong>Fecha y hora de partida</strong></label>
+            <input type="date" class="form-control form-control-sm"  aria-describedby="flightNameHelp" id="addFlightDepDate" required>
+            <small id="flightNameHelp" class="form-text text-muted">Fecha de partida del vuelo</small>
+            <input type="time" class="form-control form-control-sm"  aria-describedby="flightNameHelp" id="addFlightDepTime" required>
+            <small id="flightNameHelp" class="form-text text-muted">Hora de partida del vuelo.</small>
+        </div>
+
+        <div class="form-group">
+                    <label for="flightName"><strong>Destino</strong></label>
+                    <input type="text" class="form-control form-control-sm"  aria-describedby="flightNameHelp" th:field="*{addFlightTo}">
+                    <small id="flightNameHelp" class="form-text text-muted">Lugar de arrivo del vuelo</small>
+        </div>
+
+        <div class="form-group">
+            <label for="flightName"><strong>Fecha y hora de llegada</strong></label>
+            <input type="date" class="form-control form-control-sm"  aria-describedby="flightNameHelp" id="addFlightArrDate" required>
+            <small id="flightNameHelp" class="form-text text-muted">Fecha de llegada del vuelo</small>
+            <input type="time" class="form-control form-control-sm"  aria-describedby="flightNameHelp" id="addFlightArrTime" required>
+            <small id="flightNameHelp" class="form-text text-muted">Hora de llegada del vuelo.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="flightName"><strong>Capacidad Economica</strong></label>
+            <input type="number" class="form-control form-control-sm"  aria-describedby="flightNameHelp" th:field="*{addEconomic}" min="0">
+            <small id="flightNameHelp" class="form-text text-muted">Asientos Economicos</small>
+        </div>
+
+        <div class="form-group">
+            <label for="flightName"><strong>Capacidad Business</strong></label>
+            <input type="number" class="form-control form-control-sm"  aria-describedby="flightNameHelp" th:field="*{addBusiness}" min="0">
+            <small id="flightNameHelp" class="form-text text-muted">Asientos Business</small>
+        </div>
+
+        <div class="form-group">
+            <label for="flightName"><strong>Capacidad Primera</strong></label>
+            <input type="number" class="form-control form-control-sm"  aria-describedby="flightNameHelp" th:field="*{addFirst}" min="0">
+            <small id="flightNameHelp" class="form-text text-muted">Asientos Primera clase</small>
+        </div>
+
+        <div class="form-group">
+            <label for="flightName"><strong>Precio</strong></label>
+            <input type="number" step="0.01" class="form-control form-control-sm"  aria-describedby="flightNameHelp" th:field="*{addFlightPrice}" min="0">
+            <small id="flightNameHelp" class="form-text text-muted">Precio del vuelo.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="flightName"><strong>Precio</strong></label>
+            <input type="number" class="form-control form-control-sm"  aria-describedby="flightNameHelp" th:field="*{addScales}" min="0">
+            <small id="flightNameHelp" class="form-text text-muted">Precio del vuelo.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="flightName"><strong>Precio</strong></label>
+            <input type="number" class="form-control form-control-sm"  aria-describedby="flightNameHelp" th:field="*{addGapMax}" min="0">
+            <small id="flightNameHelp" class="form-text text-muted">Precio del vuelo.</small>
+        </div>
+
+
         <div class="text-center">
-                  <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Buscar Vuelos</button>
+                  <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Agregar Vuelo</button>
         </div>
     </form>
 
-    <th:block th:if="${abmFlightForm != null}">
-    <form id="addFlightForm" method="post"  th:object="${abmFlightForm}" th:action="@{/airline/flight/add}">
-
-        <div class="form-group">
-            <label for="airlineName"><strong>Nombre de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm"  aria-describedby="airlineNameHelp" th:field="*{addAirlineName}">
-            <small id="airlineNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>
-        </div>
-
-        <div class="form-group">
-            <label for="shortName"><strong>Nombre corto de la aerolinea</strong></label>
-            <input type="text" class="form-control form-control-sm"  aria-describedby="shortNameHelp" th:field="*{addAirlineShortName}">
-            <small id="shortNameHelp" class="form-text text-muted">Nombre corto de la aerolinea.</small>
-        </div>
-
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
-        </div>
-    </form>
-    </th:block>
 </div>
 
 </th:block>

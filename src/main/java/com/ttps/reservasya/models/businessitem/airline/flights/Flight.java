@@ -1,7 +1,10 @@
 package com.ttps.reservasya.models.businessitem.airline.flights;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ttps.reservasya.models.businessitem.BusinessItem;
 import com.ttps.reservasya.models.businessitem.airline.Airline;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,7 +21,7 @@ import java.util.stream.Collectors;
 public class Flight extends BusinessItem implements Serializable {
 
     private Long id;
-    private String flyCode;
+    private String flyCode = RandomStringUtils.randomAlphanumeric(10);
     private String from;
     private String to;
     private LocalDate departureDate;
@@ -29,6 +32,7 @@ public class Flight extends BusinessItem implements Serializable {
     private String days;
     private int scales = 1;
     private int gapMax = 1;
+
     private Airline airline;
     @Embedded
     private List<FlightSeat> seats;
@@ -122,7 +126,8 @@ public class Flight extends BusinessItem implements Serializable {
         this.scales = scales;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "airline_id")
     public Airline getAirline() {
         return airline;
     }

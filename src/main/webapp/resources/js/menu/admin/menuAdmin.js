@@ -13,15 +13,15 @@ const editHotelPanel = document.getElementById("editHotel-panel");
 const removeHotelPanel = document.getElementById("removeHotel-panel");
 
 const addFlightPanel = document.getElementById("addFlight-panel");
-/*const editFlightPanel = document.getElementById("editFlight-panel");
-const removeFlightPanel = document.getElementById("removeFlight-panel");
+//const editFlightPanel = document.getElementById("editFlight-panel");
+//const removeFlightPanel = document.getElementById("removeFlight-panel");
 const addRoomPanel = document.getElementById("addRoom-panel");
-const editRoomPanel = document.getElementById("editRoom-panel");
-const removeRoomPanel = document.getElementById("removeRoom-panel");
+//const editRoomPanel = document.getElementById("editRoom-panel");
+//const removeRoomPanel = document.getElementById("removeRoom-panel");
 const addCarPanel = document.getElementById("addCar-panel");
-const editCarPanel = document.getElementById("editCar-panel");
-const removeCarPanel = document.getElementById("removeCar-panel");
-*/
+//const editCarPanel = document.getElementById("editCar-panel");
+//const removeCarPanel = document.getElementById("removeCar-panel");
+
 //addFlightPanel, addRoomPanel, addCarPanel,editFlightPanel, editRoomPanel, editCarPanel,removeFlightPanel, removeRoomPanel, removeCarPanel
 const elementos = [localParamsPanel, addUserPanel, addAirlinePanel, addAgencyPanel, addHotelPanel,
      editUserPanel, editAirlinePanel, editAgencyPanel, editHotelPanel,

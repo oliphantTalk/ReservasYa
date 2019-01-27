@@ -49,6 +49,7 @@ public class PanelController {
         model.addAttribute("abmAirlineForm", new ABMAirlineForm());
         model.addAttribute("abmAgencyForm", new ABMAgencyForm());
         model.addAttribute("abmHotelForm", new ABMHotelForm());
+        model.addAttribute("abmFlightForm", new ABMFlightForm());
         model.addAttribute("airlines", airlineService.findAll());
         model.addAttribute("agencies", agencyService.findAll());
         model.addAttribute("hotels", hotelService.findAll());

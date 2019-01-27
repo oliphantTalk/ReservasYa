@@ -1,5 +1,7 @@
 package com.ttps.reservasya.models.businessitem.airline;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
 import org.hibernate.annotations.NaturalId;
@@ -48,8 +50,9 @@ public class Airline implements Serializable {
         this.shortName = shortName;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "airline")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "airline")
     @ElementCollection(targetClass = Flight.class)
+    @JsonBackReference
     public List<Flight> getFlights() {
         return flights;
     }

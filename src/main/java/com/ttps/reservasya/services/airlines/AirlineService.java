@@ -1,11 +1,13 @@
 package com.ttps.reservasya.services.airlines;
 
 import com.ttps.reservasya.controllers.panel.form.ABMAirlineForm;
+import com.ttps.reservasya.controllers.panel.form.ABMFlightForm;
 import com.ttps.reservasya.error.exceptions.NoElementInDBException;
 import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.businessitem.airline.Airline;
 import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
+import com.ttps.reservasya.models.businessitem.airline.flights.FlightSeat;
 import com.ttps.reservasya.models.businessitem.airline.flights.SeatClass;
 import com.ttps.reservasya.repository.airline.AirlineRepository;
 import com.ttps.reservasya.repository.airline.FlightRepository;
@@ -93,4 +95,44 @@ public class AirlineService extends BasicCrudService<Airline, AirlineRepository>
         return flight;
     }
 
+    public Flight addFlight(ABMFlightForm flightForm) {
+        Flight flight = new Flight();
+        flight.setAirline(repository.findById(flightForm.getAddAirlineId()).orElseThrow(NoElementInDBException::new));
+        flight.setFrom(flightForm.getAddFlightFrom());
+        flight.setTo(flightForm.getAddFlightTo());
+        flight.setDepartureDate(flightForm.getAddFlightDepartureDate().toLocalDate());
+        flight.setDepartureTime(flightForm.getAddFlightDepartureDate());
+        flight.setArrivalDate(flightForm.getAddFlightArrivalDate().toLocalDate());
+        flight.setArrivalTime(flightForm.getAddFlightArrivalDate());
+        flight.setPrice(flightForm.getAddFlightPrice());
+        flight.setEconomicCapacity(flightForm.getAddEconomic());
+        flight.setBusinessCapacity(flightForm.getAddBusiness());
+        flight.setFirstCapacity(flightForm.getAddFirst());
+        List<FlightSeat> seats = buildSeats(flightForm);
+        flight.setSeats(seats);
+        return createFligth(flight);
+    }
+
+    private List<FlightSeat> buildSeats(ABMFlightForm flightForm) {
+        List<FlightSeat> seats = new ArrayList<>();
+        for (int i = 0; i < flightForm.getAddBusiness(); i++) {
+            FlightSeat seat = new FlightSeat();
+            seat.setPriceClass(flightForm.getAddFlightPrice());
+            seat.setSeatClass(SeatClass.BUSINESS);
+            seats.add(seat);
+        }
+        for (int i = 0; i < flightForm.getAddEconomic(); i++) {
+            FlightSeat seat = new FlightSeat();
+            seat.setPriceClass(flightForm.getAddFlightPrice());
+            seat.setSeatClass(SeatClass.ECONOMIC);
+            seats.add(seat);
+        }
+        for (int i = 0; i < flightForm.getAddFirst(); i++) {
+            FlightSeat seat = new FlightSeat();
+            seat.setPriceClass(flightForm.getAddFlightPrice());
+            seat.setSeatClass(SeatClass.FIRST);
+            seats.add(seat);
+        }
+        return seats;
+    }
 }

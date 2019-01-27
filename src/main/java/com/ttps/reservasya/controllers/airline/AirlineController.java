@@ -89,15 +89,21 @@ public class AirlineController {
         return airlineService.addFlight(flightForm);
     }
 
-    @PostMapping(value = "/airline/addF", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/airline/flights", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
-    public String addFlight2(@RequestBody Map<String, Long> getAirlineId, ModelMap model) throws JsonProcessingException {
-
+    public String getAirlineById(@RequestBody Map<String, Long> getAirlineId, ModelMap model) throws JsonProcessingException {
         Airline airline = airlineService.findById(getAirlineId.get("getAirlineId")).orElseThrow(NoElementInDBException::new);
         List<Flight> flights = airline.getFlights();
         model.addAttribute("airline", airline);
         model.addAttribute("flights", flights);
         return CustomObjectMapper.getMapper().writeValueAsString(flights);
+    }
+
+    @PostMapping(value = "/airline/flight/delete", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public String removeFlight(@RequestBody Map<String, Long> deleteFlightId, ModelMap model) throws JsonProcessingException {
+        Flight flight = airlineService.removeFlight(deleteFlightId.get("deleteFlightId"));
+        return CustomObjectMapper.getMapper().writeValueAsString(flight);
     }
 
 

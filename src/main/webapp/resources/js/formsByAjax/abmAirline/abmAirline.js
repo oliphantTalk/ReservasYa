@@ -125,8 +125,8 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#resultAddFlight pre code').text(JSON.stringify(res));
+                $('#resultAddFlight').show();
             }
         })
     });
@@ -135,56 +135,75 @@ $(function() {
 
 $(function() {
 
-    $('#getAirlineForm').submit(function(e) {
-
-        //Prevent default submission of form
+    $('#getAirlineIdForm').submit(function(e) {
         e.preventDefault();
-
         let json = {};
         json.getAirlineId = $('#getAirlineId').val();
-        //json.addAirlineShortName = $('#addAirlineShortName').val();
+        let airlineName = $("#getAirlineId option:selected").text();
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url : '/airline/addF',
+            url : '/airline/flights',
             data : JSON.stringify(json),
             dataType: 'json',
             async: true,
-            /*
-                     async: true,
-            */
             beforeSend: function(xhr){
                 xhr.setRequestHeader("Accept", "application/json");
                 xhr.setRequestHeader("Content-Type", "application/json");
             },
             success : function(res) {
                 //Set response
-                console.log(res);
-                document.getElementById('pipi').innerHTML += '  <form id="addFlightForm" method="post"  th:object="${abmFlightForm}" th:action="@{/airline/flight/add}">\n' +
-                    '\n' +
-                    '        <div class="form-group" >\n' +
-                    '            <label for="airlineName"><strong>Nombre de la aerolinea</strong></label>\n' +
-                    '            <input type="text" class="form-control form-control-sm"  aria-describedby="airlineNameHelp" th:field="*{addAirlineName}">\n' +
-                    '            <small id="airlineNameHelp" class="form-text text-muted">Nombre de la aerolinea a crear.</small>\n' +
-                    '        </div>\n' +
-                    '\n' +
+                document.getElementById('deleteFlight').innerHTML = "";
+                let displayFlyOptions = function(result){
+                    let content = ``;
+                    for (r in result){
+                        content += `<option value="${result[r].id}">Codigo: ${result[r].flyCode} Origen: ${result[r].from} Destino: ${result[r].to} Salida: ${result[r].departureTime} LLegada: ${result[r].arrivalTime}</option>`
+                    }
+                    return content;
+                };
+                document.getElementById('deleteFlight').innerHTML += '<form id="deleteFlightForm" method="post" action="">\n' +
                     '        <div class="form-group">\n' +
-                    '            <label for="shortName"><strong>Nombre corto de la aerolinea</strong></label>\n' +
-                    '            <input type="text" class="form-control form-control-sm"  aria-describedby="shortNameHelp" th:field="*{addAirlineShortName}">\n' +
-                    '            <small id="shortNameHelp" class="form-text text-muted">Nombre corto de la aerolinea.</small>\n' +
+                    '          <label for="deleteFlightId"><strong>Vuelos para ' +`${airlineName}` + ' </strong></label>\n' +
+                    '          <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp"  id="deleteFlightId">\n' + `${displayFlyOptions(res)}` +
+                    '          </select>\n' +
+                    '          <small id="airlineIdHelp" class="form-text text-muted">Elija el vuelo a eliminar.</small>\n' +
                     '        </div>\n' +
                     '\n' +
                     '        <div class="text-center">\n' +
-                    '          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>\n' +
+                    '                  <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Borrar Vuelo</button>\n' +
                     '        </div>\n' +
                     '    </form>';
-                document.getElementById('pipi').innerHTML += `${JSON.stringify(res[0])}`;
 
                 $('#resultContainer pre code').text("");
                 $('#resultContainer').show();
             }
         })
     });
+});
+
+$(function() {
+    $('body').on("submit", "#deleteFlightForm",function(e) {
+        e.preventDefault();
+        let json = {};
+        json.getAirlineId = $('#getAirlineId').val();
+        $.ajax({
+            type: "POST",
+            url : '/airline/flight/delete',
+            contentType: "application/json; charset=utf-8",
+            data : JSON.stringify(json),
+            async: true,
+            beforeSend: function(xhr){
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+            },
+            success : function(res) {
+                //Set response
+                console.log(res)
+                $('#resultContainer pre code').text(JSON.stringify(res));
+                $('#resultContainer').show();
+            }
+        })
+    })
 });
 
 /*$('#location').change(

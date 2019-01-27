@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -134,5 +135,11 @@ public class AirlineService extends BasicCrudService<Airline, AirlineRepository>
             seats.add(seat);
         }
         return seats;
+    }
+
+    public Flight removeFlight(Long id){
+        Flight flight = flightRepository.findById(id).orElseThrow(NoElementInDBException::new);
+        deleteFlight(flight.getId());
+        return flight;
     }
 }

@@ -8,7 +8,7 @@
 <th:block th:fragment="flight-panel">
 <div class="container" id="addFlight-panel" style="display: none" >
     <div class="text-center"><h3>Agregar Vuelo</h3></div>
-    <div id="resultContainer" style="display: none;">
+    <div id="resultAddFlight" style="display: none;">
          <hr/>
          <h4 style="color: green;">Se ha guardado correctamente. </h4>
          <pre style="color: green;">
@@ -94,6 +94,36 @@
                   <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Agregar Vuelo</button>
         </div>
     </form>
+
+</div>
+
+<div class="container" id="removeFlight-panel" style="display: none" >
+    <div class="text-center"><h3>Agregar Vuelo</h3></div>
+    <div id="resultDeleteFlight" style="display: none;">
+         <hr/>
+         <h4 style="color: green;">Se ha guardado correctamente. </h4>
+         <pre style="color: green;">
+            <code></code>
+         </pre>
+    </div>
+
+    <form th:id="getAirlineIdForm" th:method="post">
+        <div class="form-group">
+          <label for="airlineId"><strong th:text="Aerolinea"></strong></label>
+          <select type="text" class="form-control form-control-sm" aria-describedby="airlineIdHelp"  th:id="getAirlineId">
+            <option th:each="a : ${airlines}" th:value="${a.id}" th:text="${a.name}"></option>
+          </select>
+          <small id="airlineIdHelp" class="form-text text-muted">Elija la aerolinea para luego seleccionar un vuelo.</small>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Buscar Vuelos</button>
+        </div>
+    </form>
+
+    <div id="deleteFlight">
+
+    </div>
 
 </div>
 

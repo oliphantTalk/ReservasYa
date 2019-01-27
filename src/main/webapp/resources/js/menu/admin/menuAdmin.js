@@ -14,7 +14,7 @@ const removeHotelPanel = document.getElementById("removeHotel-panel");
 
 const addFlightPanel = document.getElementById("addFlight-panel");
 //const editFlightPanel = document.getElementById("editFlight-panel");
-//const removeFlightPanel = document.getElementById("removeFlight-panel");
+const removeFlightPanel = document.getElementById("removeFlight-panel");
 const addRoomPanel = document.getElementById("addRoom-panel");
 //const editRoomPanel = document.getElementById("editRoom-panel");
 //const removeRoomPanel = document.getElementById("removeRoom-panel");
@@ -22,10 +22,10 @@ const addCarPanel = document.getElementById("addCar-panel");
 //const editCarPanel = document.getElementById("editCar-panel");
 //const removeCarPanel = document.getElementById("removeCar-panel");
 
-//addFlightPanel, addRoomPanel, addCarPanel,editFlightPanel, editRoomPanel, editCarPanel,removeFlightPanel, removeRoomPanel, removeCarPanel
+//addFlightPanel, addRoomPanel, addCarPanel,editFlightPanel, editRoomPanel, editCarPanel, removeRoomPanel, removeCarPanel
 const elementos = [localParamsPanel, addUserPanel, addAirlinePanel, addAgencyPanel, addHotelPanel,
      editUserPanel, editAirlinePanel, editAgencyPanel, editHotelPanel,
-     removeUserPanel, addFlightPanel,
+     removeUserPanel, addFlightPanel, removeFlightPanel,
     removeAirlinePanel, removeAgencyPanel, removeHotelPanel, ];
 
 document.getElementById("local-params").addEventListener("click", displayFragment(localParamsPanel, elementos).display);
@@ -47,6 +47,6 @@ document.getElementById("remove-user").addEventListener("click", displayFragment
 document.getElementById("remove-agency").addEventListener("click", displayFragment(removeAgencyPanel, elementos).display);
 document.getElementById("remove-hotel").addEventListener("click", displayFragment(removeHotelPanel, elementos).display);
 document.getElementById("remove-airline").addEventListener("click", displayFragment(removeAirlinePanel, elementos).display);
-/*document.getElementById("remove-flight").addEventListener("click", displayFragment(removeFlightPanel, elementos).display);
-document.getElementById("remove-room").addEventListener("click", displayFragment(removeRoomPanel, elementos).display);
+document.getElementById("remove-flight").addEventListener("click", displayFragment(removeFlightPanel, elementos).display);
+/*document.getElementById("remove-room").addEventListener("click", displayFragment(removeRoomPanel, elementos).display);
 document.getElementById("remove-car").addEventListener("click", displayFragment(removeCarPanel, elementos).display);*/

@@ -2,6 +2,7 @@ package com.ttps.reservasya.services.user;
 
 
 import com.ttps.reservasya.controllers.panel.form.ABMUserForm;
+import com.ttps.reservasya.controllers.panel.form.ProfileForm;
 import com.ttps.reservasya.error.exceptions.NoElementInDBException;
 import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.user.User;
@@ -66,7 +67,7 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
             user.setRole(this.roleService.findById(1L).orElseThrow(NoElementInDBException::new));
         }
         repository.save(user);
-        createUserSettings(user);
+        createUserSettings(user, 0);
         return user;
     }
 
@@ -76,7 +77,7 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         user.setPassword(bCryptPasswordEncoder.encode(userForm.getPassword()));
         user.setRole(this.roleService.findById(userForm.getRoleId()).orElseThrow(NoElementInDBException::new));
         repository.save(user);
-        createUserSettings(user);
+        createUserSettings(user, userForm.getAddPoints());
         return user;
     }
 
@@ -86,6 +87,15 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
             user.setRole(this.roleService.findById(userForm.getRoleId()).orElseThrow(NoElementInDBException::new));
         }
         user.setPassword(bCryptPasswordEncoder.encode(userForm.getPassword()));
+        this.updateUserSettings(user, userForm.getEditPoints());
+        return updateOne(user);
+    }
+
+    public User editUserProfile(ProfileForm form, Long userId){
+        User user = repository.findById(userId).orElseThrow(NoElementInDBException::new);
+        user.setName(form.getPName());
+        user.setEmail(form.getPEmail());
+        user.setPassword(bCryptPasswordEncoder.encode(form.getPPassword()));
         return updateOne(user);
     }
 
@@ -99,10 +109,17 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         return userToDelete;
     }
 
-    private void createUserSettings(User user) {
+    private void createUserSettings(User user, int points) {
         UserSettings userSettings = new UserSettings();
         userSettings.setUser(user);
+        userSettings.setPointsToUse(points);
         settingsRepository.save(userSettings);
+    }
+
+    private void updateUserSettings(User user, int points){
+        UserSettings settings = settingsRepository.findByUser(user).orElseThrow(NoElementInDBException::new);
+        settings.setPointsToUse(points);
+        settingsRepository.save(settings);
     }
 
     public Optional<User> findByEmail(@Email String email){
@@ -121,8 +138,6 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
-
-
 
     private GrantedAuthority createAuthority(User user) {
         return new SimpleGrantedAuthority(user.getRole().getName());

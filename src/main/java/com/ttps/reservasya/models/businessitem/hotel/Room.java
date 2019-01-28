@@ -48,7 +48,8 @@ public class Room extends BusinessItem implements Serializable {
         this.beds = beds;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hotel_id")
     public Hotel getHotel() {
         return hotel;
     }

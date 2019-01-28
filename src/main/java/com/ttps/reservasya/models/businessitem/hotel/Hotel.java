@@ -1,5 +1,7 @@
 package com.ttps.reservasya.models.businessitem.hotel;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -36,8 +38,10 @@ public class Hotel implements Serializable {
         this.name = name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "hotel")
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "hotel")
     @ElementCollection(targetClass = Room.class, fetch = FetchType.EAGER)
+    @JsonBackReference
     public List<Room> getRooms() {
         return rooms;
     }

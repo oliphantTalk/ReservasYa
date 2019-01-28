@@ -1,5 +1,6 @@
 package com.ttps.reservasya.models.businessitem.agency;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ttps.reservasya.models.businessitem.agency.cars.Car;
 import org.hibernate.annotations.NaturalId;
 
@@ -38,8 +39,9 @@ public class Agency implements Serializable {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "agency", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "agency", orphanRemoval = true, cascade = CascadeType.ALL)
     @ElementCollection(targetClass = Car.class)
+    @JsonBackReference
     public List<Car> getCars() {
         return cars;
     }

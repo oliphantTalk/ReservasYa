@@ -41,6 +41,12 @@
             <small id="passwordHelp" class="form-text text-muted">Password por defecto</small>
         </div>
 
+        <div class="form-group">
+            <label for="password"><strong>Puntos</strong></label>
+            <input type="number" class="form-control form-control-sm" id="password" aria-describedby="factorDevolucionHelp"  th:field="*{addPoints}" min="0">
+            <small id="passwordHelp" class="form-text text-muted">Puntos para canjear</small>
+        </div>
+
 
         <div class="text-center">
           <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
@@ -89,6 +95,12 @@
                 <input type="text" class="form-control form-control-sm" id="passwordEdit" aria-describedby="passwordHelp" >
                 <small id="passwordHelp" class="form-text text-muted">Password por defecto: <span th:text="easyPass"></span></small>
             </div>
+
+        <div class="form-group">
+            <label for="password"><strong>Puntos</strong></label>
+            <input type="number" class="form-control form-control-sm" id="password" aria-describedby="factorDevolucionHelp"  th:field="*{editPoints}" min="0">
+            <small id="passwordHelp" class="form-text text-muted">Puntos para canjear</small>
+        </div>
 
         <div class="text-center">
           <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>

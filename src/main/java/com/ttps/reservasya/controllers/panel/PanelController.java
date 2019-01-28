@@ -2,8 +2,8 @@ package com.ttps.reservasya.controllers.panel;
 
 import com.ttps.reservasya.controllers.panel.form.*;
 import com.ttps.reservasya.models.LocalParameters;
-import com.ttps.reservasya.models.businessitem.airline.Airline;
 import com.ttps.reservasya.models.user.User;
+import com.ttps.reservasya.models.user.settings.UserSettings;
 import com.ttps.reservasya.services.LocalParametersService;
 import com.ttps.reservasya.services.agencies.AgencyService;
 import com.ttps.reservasya.services.airlines.AirlineService;
@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -41,6 +42,8 @@ public class PanelController {
     @Autowired
     private HotelService hotelService;
 
+
+
     @GetMapping(value = "/admin")
     public String showAdminPanel(Model model){
         LocalParameters localParameters = localParametersService.getLocalParameters();
@@ -50,6 +53,8 @@ public class PanelController {
         model.addAttribute("abmAgencyForm", new ABMAgencyForm());
         model.addAttribute("abmHotelForm", new ABMHotelForm());
         model.addAttribute("abmFlightForm", new ABMFlightForm());
+        model.addAttribute("abmCarForm", new ABMCarForm());
+        model.addAttribute("abmRoomForm", new ABMRoomForm());
         model.addAttribute("airlines", airlineService.findAll());
         model.addAttribute("agencies", agencyService.findAll());
         model.addAttribute("hotels", hotelService.findAll());
@@ -60,22 +65,20 @@ public class PanelController {
     }
 
     @GetMapping(value = "/user")
-    public String showUserPanel(){
+    public String showUserPanel(Model model, Principal principal) {
+        User user = userService.findByUserName(principal.getName());
+        UserSettings settings = userService.getUserSettingsByUserName(principal.getName());
+        model.addAttribute("profileForm", new ProfileForm());
+        model.addAttribute("settings", settings);
+        model.addAttribute("user", user);
         return "panel/user";
-    }
-
-    @GetMapping(value = "/comercial")
-    public String showComercialPanel(){
-        return "panel/comercial";
     }
 
 
     @PostMapping(value = "/admin/localParams", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
-    public LocalParameters updateLocalParams(Model model, /*@ModelAttribute LocalParamsForm localParamsForm*/ @RequestBody LocalParamsForm localParamsForm, BindingResult result){
-
+    public LocalParameters updateLocalParams(Model model, @RequestBody LocalParamsForm localParamsForm, BindingResult result){
         return localParametersService.saveLocalParameters(localParamsForm);
-
     }
 
 }

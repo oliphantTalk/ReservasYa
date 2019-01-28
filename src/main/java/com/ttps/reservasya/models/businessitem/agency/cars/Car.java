@@ -65,7 +65,8 @@ public class Car extends BusinessItem implements Serializable {
         this.patent = patent;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "agency_id")
     public Agency getAgency() {
         return agency;
     }

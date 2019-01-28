@@ -69,7 +69,6 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" id="add-flight" href="#">Agregar Vuelo</a>
-                  <!--<a class="dropdown-item" id="edit-flight" href="#">Editar Vuelo</a>-->
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item text-danger" id="remove-flight" href="#">Eliminar Vuelo</a>
                 </div>
@@ -80,7 +79,6 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" id="add-room" href="#">Agregar Habitacion</a>
-                  <!--<a class="dropdown-item" id="edit-room" href="#">Editar Habitacion</a>-->
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item text-danger" id="remove-room" href="#">Eliminar Habitacion</a>
                 </div>
@@ -91,7 +89,6 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" id="add-car" href="#">Agregar Auto</a>
-                    <!--<a class="dropdown-item" id="edit-car" href="#">Editar Auto</a>-->
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" id="remove-car" href="#">Eliminar Auto</a>
                   </div>
@@ -106,8 +103,10 @@
         <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmAgency :: agency-panel"></div>
         <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmHotel :: hotel-panel"></div>
         <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmFlight :: flight-panel"></div>
-        <!--<div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmRoom :: room-panel"></div>
-        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmCar :: car-panel"></div>-->
+        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmRoom :: room-panel"></div>
+        <div sec:authorize="!hasRole('ROLE_USER')" th:replace="panel/components/abmCar :: car-panel"></div>
+        <!--<div sec:authorize="!hasRole('ROLE_ADMIN')" th:replace="panel/components/userProfile :: user-profile"></div>-->
+
   </div>
 
 

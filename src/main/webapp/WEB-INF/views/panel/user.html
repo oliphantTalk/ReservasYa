@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+    <title>ReservasYa!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <th:block th:replace="fragments/commons/styles :: link-styles">Links</th:block>
+<body class="home-body">
+<div th:replace="~{fragments/header :: header}">Header</div>
 
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+          <a class="navbar-brand" href="#">Menu admin</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mr-auto">
+              <li class="nav-item dropdown" sec:authorize="!hasRole('ROLE_ADMIN')">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Editar perfil
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#" id="edit-profile">Editar Perfil</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item text-danger" id="remove-profile" href="#">Eliminar Cuenta</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>NOMBRE</th>
+                <th>NOMBRE USUARIO</th>
+                <th>EMAIL</th>
+                <th>PUNTOS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td th:text="${user.name}">John</td>
+                <td th:text="${user.username}">John</td>
+                <td th:text="${user.email}">John</td>
+                <td th:text="${settings.pointsToUse}">John</td>
+              </tr>
+            </tbody>
+        </table>
+
+        <div sec:authorize="!hasRole('ROLE_ADMIN')" th:replace="panel/components/userProfile :: user-profile"></div>
+
+  </div>
+
+
+<th:block th:replace="fragments/commons/script :: link-scripts">Links</th:block>
+<script type="text/javascript" th:src="@{~/resources/js/formsByAjax/abmUser/abmProfile.js}"></script>
+<script  th:src="@{~/resources/js/displayOrHideFragment.js}"> </script>
+<script  th:src="@{~/resources/js/menu/user/menuUser.js}"> </script>
+
+<footer class="eva-3-footer bottom-footer" th:insert="~{fragments/footer :: footer}">&copy; 2018 The Static Templates</footer>
 </body>
 </html>

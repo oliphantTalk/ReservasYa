@@ -1,6 +1,7 @@
 package com.ttps.reservasya.services.hotel;
 
 import com.ttps.reservasya.controllers.panel.form.ABMHotelForm;
+import com.ttps.reservasya.controllers.panel.form.ABMRoomForm;
 import com.ttps.reservasya.error.exceptions.NoElementInDBException;
 import com.ttps.reservasya.models.businessitem.hotel.Hotel;
 import com.ttps.reservasya.models.businessitem.hotel.Room;
@@ -84,5 +85,20 @@ public class HotelService extends BasicCrudService<Hotel, HotelRepository> {
         repository.delete(hotel);
         return hotel;
 
+    }
+
+    public Room addRoom(ABMRoomForm roomForm) {
+        Room room = new Room();
+        room.setHotel(repository.findById(roomForm.getAddHotelId()).orElseThrow(NoElementInDBException::new));
+        room.setBeds(roomForm.getAddRoomBeds());
+        room.setRoomId(roomForm.getAddRoomId());
+        room.setPrice(roomForm.getAddRoomPrice());
+        return createRoom(room);
+    }
+
+    public Room removeRoom(Long deleteRoomId) {
+        Room room = roomRepository.findById(deleteRoomId).orElseThrow(NoElementInDBException::new);
+        deleteRoom(deleteRoomId);
+        return room;
     }
 }

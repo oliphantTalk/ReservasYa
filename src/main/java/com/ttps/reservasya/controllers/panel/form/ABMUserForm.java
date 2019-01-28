@@ -16,5 +16,6 @@ public class ABMUserForm {
     private Long roleId;
     private String userName;
     private String password;
-
+    private int addPoints;
+    private int editPoints;
 }

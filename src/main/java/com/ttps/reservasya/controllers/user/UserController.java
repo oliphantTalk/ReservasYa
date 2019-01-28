@@ -1,6 +1,7 @@
 package com.ttps.reservasya.controllers.user;
 
 import com.ttps.reservasya.controllers.panel.form.ABMUserForm;
+import com.ttps.reservasya.controllers.panel.form.ProfileForm;
 import com.ttps.reservasya.error.exceptions.UserNotFoundException;
 import com.ttps.reservasya.models.user.User;
 import com.ttps.reservasya.models.user.dto.UserDTO;
@@ -14,9 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -89,5 +93,26 @@ public class UserController {
     @ResponseBody
     public User deleteUser(Model model, @RequestBody ABMUserForm userForm, BindingResult result){
         return userService.deleteUser(userForm);
+    }
+
+    @PostMapping(value = "/user/profile/edit", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public User editUserProfile(Model model, @RequestBody Map<String, String> profileForm, BindingResult result, Principal principal){
+        User user = userService.findByUserName(principal.getName());
+        ProfileForm profileForm1 = new ProfileForm();
+        profileForm1.setPName(profileForm.get("pName"));
+        profileForm1.setPEmail(profileForm.get("pEmail"));
+        profileForm1.setPPassword(profileForm.get("pPassword"));
+        return userService.editUserProfile(profileForm1, user.getId());
+    }
+
+    @GetMapping(value = "/user/profile/delete")
+    public String deleteUserPrincipal(HttpSession httpSession, Model model, Principal principal){
+        User user = userService.findByUserName(principal.getName());
+        ABMUserForm form = new ABMUserForm();
+        form.setDeleteUserId(user.getId());
+        userService.deleteUser(form);
+        httpSession.invalidate();
+        return "redirect:/login";
     }
 }

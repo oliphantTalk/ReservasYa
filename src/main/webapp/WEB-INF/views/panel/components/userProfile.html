@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<!--/*  Multiple fragments may be defined in one file */-->
+<th:block th:fragment="user-profile">
+<div class="container" id="editProfile-panel" style="display: none" >
+    <div class="text-center"><h3>Mi Perfil</h3></div>
+    <div id="resultEditProfile" style="display: none;">
+         <hr/>
+         <h4 style="color: green;">Se ha guardado correctamente. </h4>
+         <pre style="color: green;">
+            <code></code>
+         </pre>
+    </div>
+
+    <form th:id="editProfileForm" th:method="post" th:object="${profileForm}" th:action="@{/user/profile/edit}">
+
+         <div class="form-group">
+            <label for="userName"><strong th:text="${'Nombre (actual): ' + user?.name}"></strong></label>
+            <input type="text" class="form-control form-control-sm"  aria-describedby="userNameHelp" required th:field="*{pName}">
+            <small id="userNameHelp" class="form-text text-muted">Nombre.</small>
+         </div>
+
+         <div class="form-group">
+            <label for="userName"><strong th:text="${'Email (actual): ' + user?.email}"></strong></label>
+            <input type="email" class="form-control form-control-sm"  aria-describedby="userNameHelp" required th:field="*{pEmail}">
+            <small id="userNameHelp" class="form-text text-muted">Email de usuario. (tiene que ser por ejemplo abc@abc.com, de otra forma es invalido.)</small>
+         </div>
+
+         <div class="form-group">
+            <label for="userName"><strong th:text="Password"></strong></label>
+            <input type="text" class="form-control form-control-sm"  aria-describedby="userNameHelp" required th:field="*{pPassword}">
+            <small id="userNameHelp" class="form-text text-muted">Nuevo Password.</small>
+         </div>
+
+        <div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Confirmar</button>
+        </div>
+    </form>
+
+</div>
+
+<div class="container" id="removeProfile-panel" style="display: none" >
+    <div class="text-center"><h3>Borrar Cuenta</h3></div>
+
+    <form th:id="deleteAccountForm" th:method="get" th:action="@{/user/profile/delete}">
+        <div class="text-center">
+          <button type="submit" class="btn btn-danger btn-lg" id="btnParams" onclick="alert('Esta a punto de borrar su cuenta.')">BORRAR CUENTA</button>
+        </div>
+    </form>
+
+</div>
+
+</th:block>
+</body>
+</html>

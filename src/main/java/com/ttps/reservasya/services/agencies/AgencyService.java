@@ -1,6 +1,7 @@
 package com.ttps.reservasya.services.agencies;
 
 import com.ttps.reservasya.controllers.panel.form.ABMAgencyForm;
+import com.ttps.reservasya.controllers.panel.form.ABMCarForm;
 import com.ttps.reservasya.error.exceptions.NoElementInDBException;
 import com.ttps.reservasya.models.businessitem.agency.Agency;
 import com.ttps.reservasya.models.businessitem.agency.cars.Car;
@@ -85,4 +86,21 @@ public class AgencyService extends BasicCrudService<Agency, AgencyRepository> {
         return agency;
     }
 
+    public Car addCar(ABMCarForm carForm) {
+        Car car = new Car();
+        car.setAgency(repository.findById(carForm.getAddAgencyId()).orElseThrow(NoElementInDBException::new));
+        car.setPrice(carForm.getAddCarPrice());
+        car.setCapacity(carForm.getAddCarCapacity());
+        car.setDescription(carForm.getAddCarDescription());
+        car.setModel(carForm.getAddCarModel());
+        car.setPatent(carForm.getAddCarPatent());
+        car.setYear(carForm.getAddCarYear());
+        return createCar(car);
+    }
+
+    public Car removeCar(Long deleteCarId) {
+        Car car = carRepository.findById(deleteCarId).orElseThrow(NoElementInDBException::new);
+        deleteCar(deleteCarId);
+        return car;
+    }
 }

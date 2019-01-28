@@ -8,72 +8,64 @@
 <th:block th:fragment="car-panel">
 <div class="container" id="addCar-panel" style="display: none" >
 
-    <div class="text-center"><h3>Agregar Auto</h3></div>
-
-      <div id="resultContainer" style="display: none;">
-         <hr/>
-         <h4 style="color: green;">Se ha guardado correctamente. </h4>
-          <pre style="color: green;">
-            <code></code>
-           </pre>
-        </div>
-
-    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
-
-        <div class="form-group">
-            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
-            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
-            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-        <div class="form-group">
-            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
-            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
-            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-
-
-
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
-        </div>
-    </form>
-
-</div>
-<div class="container" id="editCar-panel" style="display: none" >
-
-    <div class="text-center"><h3>Editar Auto</h3></div>
-
-      <div id="resultContainer" style="display: none;">
-         <hr/>
-         <h4 style="color: green;">Se ha guardado correctamente. </h4>
-          <pre style="color: green;">
-            <code></code>
-           </pre>
-        </div>
-
-    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
-
-        <div class="form-group">
-            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
-            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
-            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-        <div class="form-group">
-            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
-            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
-            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-
-
-
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
-        </div>
-    </form>
+     <div class="text-center"><h3>Agregar Auto</h3></div>
+       <div id="resultAddCar" style="display: none;">
+            <hr/>
+            <h4 style="color: green;">Se ha guardado correctamente. </h4>
+            <pre style="color: green;">
+               <code></code>
+            </pre>
+       </div>
+   
+       <form th:id="addCarForm" th:method="post" th:object="${abmCarForm}" th:action="@{/agency/car/add}">
+           <div class="form-group">
+             <label for="agencyId"><strong th:text="Agencia"></strong></label>
+             <select type="text" class="form-control form-control-sm" aria-describedby="agencyIdHelp"  th:id="addAgencyId">
+               <option th:each="a : ${agencies}" th:value="${a.id}" th:text="${a.name}"></option>
+             </select>
+             <small id="agencyIdHelp" class="form-text text-muted">Elija la agencia a la cual agregarle autos.</small>
+           </div>
+   
+           <div class="form-group">
+               <label for="carName"><strong>Descripcion</strong></label>
+               <input type="text" class="form-control form-control-sm"  aria-describedby="carNameHelp" th:field="*{addCarDescription}">
+               <small id="carNameHelp" class="form-text text-muted">Ingrese una breve descripcion del auto.</small>
+           </div>
+   
+           <div class="form-group">
+                       <label for="carName"><strong>Modelo</strong></label>
+                       <input type="text" class="form-control form-control-sm"  aria-describedby="carNameHelp" th:field="*{addCarModel}">
+                       <small id="carNameHelp" class="form-text text-muted">Marca y modelo del auto</small>
+           </div>
+   
+           <div class="form-group">
+               <label for="carName"><strong>Año</strong></label>
+               <input type="number" class="form-control form-control-sm"  aria-describedby="carNameHelp" th:field="*{addCarYear}" min="0">
+               <small id="carNameHelp" class="form-text text-muted">Año del auto</small>
+           </div>
+   
+           <div class="form-group">
+               <label for="carName"><strong>Capacidad Auto</strong></label>
+               <input type="number" class="form-control form-control-sm"  aria-describedby="carNameHelp" th:field="*{addCarCapacity}" min="0">
+               <small id="carNameHelp" class="form-text text-muted">Capacidad Auto</small>
+           </div>
+   
+           <div class="form-group">
+               <label for="carName"><strong>Patente Auto</strong></label>
+               <input type="text" class="form-control form-control-sm"  aria-describedby="carNameHelp" th:field="*{addCarPatent}" min="0">
+               <small id="carNameHelp" class="form-text text-muted">Patente Auto</small>
+           </div>
+   
+           <div class="form-group">
+               <label for="carName"><strong>Precio</strong></label>
+               <input type="number" step="0.01" class="form-control form-control-sm"  aria-describedby="carNameHelp" th:field="*{addCarPrice}" min="0">
+               <small id="carNameHelp" class="form-text text-muted">Precio del auto.</small>
+           </div>
+   
+           <div class="text-center">
+                     <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Agregar Auto</button>
+           </div>
+       </form>
 
 </div>
 <div class="container" id="removeCar-panel"  style="display: none" >
@@ -88,27 +80,23 @@
            </pre>
         </div>
 
-    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
+     <form th:id="getAgencyIdForm" th:method="post">
+            <div class="form-group">
+              <label for="agencyId"><strong th:text="Agencia"></strong></label>
+              <select type="text" class="form-control form-control-sm" aria-describedby="agencyIdHelp"  th:id="getAgencyId">
+                <option th:each="a : ${agencies}" th:value="${a.id}" th:text="${a.name}"></option>
+              </select>
+              <small id="agencyIdHelp" class="form-text text-muted">Elija la agencia para luego seleccionar un auto.</small>
+            </div>
 
-        <div class="form-group">
-            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
-            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
-            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Buscar Autos</button>
+            </div>
+        </form>
+
+        <div id="deleteCar">
+
         </div>
-
-        <div class="form-group">
-            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
-            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
-            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-
-
-
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
-        </div>
-    </form>
 
 </div>
 </th:block>

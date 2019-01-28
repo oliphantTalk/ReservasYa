@@ -186,6 +186,7 @@ $(function() {
         e.preventDefault();
         let json = {};
         json.getAirlineId = $('#getAirlineId').val();
+        json.deleteFlightId = $('#deleteFlightId').val();
         $.ajax({
             type: "POST",
             url : '/airline/flight/delete',
@@ -198,7 +199,6 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                console.log(res)
                 $('#resultContainer pre code').text(JSON.stringify(res));
                 $('#resultContainer').show();
             }
@@ -206,20 +206,3 @@ $(function() {
     })
 });
 
-/*$('#location').change(
-        function() {
-            $.getJSON("http://localhost:8181/appointment/agencies", {
-                cityId : $(this).val(),
-                ajax : 'true'
-            }, function(data) {
-                var html = '<option value="">--alege agentia--</option>';
-                var len = data.length;
-                for ( var i = 0; i < len; i++) {
-                    html += '<option value="' + data[i].nume + '">'
-                            + data[i].nume + '</option>';
-                }
-                html += '</option>';
-                $('#agency').html(html);
-            });
-        });
-*/

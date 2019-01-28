@@ -59,17 +59,11 @@
                     <span class="caret"></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" sec:authorize="hasRole('ROLE_USER')" href="/localParameters" th:href="@{/panel/user}">
-                          Perfil
+                      <a class="dropdown-item" sec:authorize="!hasRole('ROLE_ADMIN')" href="/panel/user" th:href="@{/panel/user}">
+                          Perfil Usuario
                       </a>
-                      <a class="dropdown-item" sec:authorize="hasRole('ROLE_USER')" href="/panel/user" th:href="@{/panel/user}">
-                            Mi Cuenta
-                      </a>
-                      <a class="dropdown-item" sec:authorize="hasRole('ROLE_COMERCIAL')" href="/panel/comercial" th:href="@{/panel/comercial}">
-                              Panel Comercial
-                      </a>
-                      <a class="dropdown-item" sec:authorize="hasRole('ROLE_ADMIN')" href="/panel/admin" th:href="@{/panel/admin}">
-                            Panel Administrador
+                      <a class="dropdown-item" sec:authorize="!hasRole('ROLE_USER')" href="/panel/admin" th:href="@{/panel/admin}">
+                            Panel Administrador / Comercial
                       </a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="/logout" th:href="@{#}" onclick="$('#formLogout').submit();">

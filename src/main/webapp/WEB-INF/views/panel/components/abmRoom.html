@@ -8,72 +8,46 @@
 <th:block th:fragment="room-panel">
 <div class="container" id="addRoom-panel" style="display: none" >
 
-    <div class="text-center"><h3>Agregar Habitacion</h3></div>
+     <div class="text-center"><h3>Agregar Habitacion</h3></div>
+       <div id="resultAddRoom" style="display: none;">
+            <hr/>
+            <h4 style="color: green;">Se ha guardado correctamente. </h4>
+            <pre style="color: green;">
+               <code></code>
+            </pre>
+       </div>
 
-      <div id="resultContainer" style="display: none;">
-         <hr/>
-         <h4 style="color: green;">Se ha guardado correctamente. </h4>
-          <pre style="color: green;">
-            <code></code>
-           </pre>
-        </div>
+       <form th:id="addRoomForm" th:method="post" th:object="${abmRoomForm}" th:action="@{/hotel/room/add}">
+           <div class="form-group">
+             <label for="hotelId"><strong th:text="Hotel"></strong></label>
+             <select type="text" class="form-control form-control-sm" aria-describedby="hotelIdHelp"  th:id="addHotelId">
+               <option th:each="a : ${hotels}" th:value="${a.id}" th:text="${a.name}"></option>
+             </select>
+             <small id="hotelIdHelp" class="form-text text-muted">Elija la hotel a la cual agregarle habitaciones.</small>
+           </div>
+   
+           <div class="form-group">
+               <label for="roomName"><strong>Numero Habitacion</strong></label>
+               <input type="text" class="form-control form-control-sm"  aria-describedby="roomNameHelp" th:field="*{addRoomId}">
+               <small id="roomNameHelp" class="form-text text-muted">Ingrese una identificacion de la habitacion.</small>
+           </div>
+   
+           <div class="form-group">
+                       <label for="roomName"><strong>Capacidad</strong></label>
+                       <input type="number" class="form-control form-control-sm"  aria-describedby="roomNameHelp" th:field="*{addRoomBeds}" min="0">
+                       <small id="roomNameHelp" class="form-text text-muted">Numero de camas o turistas a alojar</small>
+           </div>
 
-    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
-
-        <div class="form-group">
-            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
-            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
-            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-        <div class="form-group">
-            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
-            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
-            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-
-
-
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
-        </div>
-    </form>
-
-</div>
-<div class="container" id="editRoom-panel" style="display: none" >
-
-    <div class="text-center"><h3>Editar Habitacion</h3></div>
-
-      <div id="resultContainer" style="display: none;">
-         <hr/>
-         <h4 style="color: green;">Se ha guardado correctamente. </h4>
-          <pre style="color: green;">
-            <code></code>
-           </pre>
-        </div>
-
-    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
-
-        <div class="form-group">
-            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
-            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
-            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-        <div class="form-group">
-            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
-            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
-            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-
-
-
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
-        </div>
-    </form>
+           <div class="form-group">
+               <label for="roomName"><strong>Precio</strong></label>
+               <input type="number" step="0.01" class="form-control form-control-sm"  aria-describedby="roomNameHelp" th:field="*{addRoomPrice}" min="0">
+               <small id="roomNameHelp" class="form-text text-muted">Precio de la habitacion.</small>
+           </div>
+   
+           <div class="text-center">
+                     <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Agregar Habitacion</button>
+           </div>
+       </form>
 
 </div>
 <div class="container" id="removeRoom-panel"  style="display: none" >
@@ -88,27 +62,23 @@
            </pre>
         </div>
 
-    <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
+     <form th:id="getHotelIdForm" th:method="post">
+            <div class="form-group">
+              <label for="hotelId"><strong th:text="Hotel"></strong></label>
+              <select type="text" class="form-control form-control-sm" aria-describedby="hotelIdHelp"  th:id="getHotelId">
+                <option th:each="a : ${hotels}" th:value="${a.id}" th:text="${a.name}"></option>
+              </select>
+              <small id="hotelIdHelp" class="form-text text-muted">Elija la hotel para luego seleccionar un habitacion.</small>
+            </div>
 
-        <div class="form-group">
-            <label for="gapMax"><strong th:text="${'Gap Maximo. Valor actual: ' + params?.gapMax}"></strong></label>
-            <input type="text" class="form-control form-control-sm" id="gapMax" aria-describedby="gapHelp" th:field="*{gapMax}">
-            <small id="gapHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Buscar Habitaciones</button>
+            </div>
+        </form>
+
+        <div id="deleteRoom">
+
         </div>
-
-        <div class="form-group">
-            <label for="factorDevolucion"><strong th:text="${'Factor Devolucion. Valor actual: ' + params?.gapMax}">Factor Devolucion</strong></label>
-            <input type="text" class="form-control form-control-sm" id="factorDevolucion" aria-describedby="factorDevolucionHelp" th:field="*{factorDevolucion}">
-            <small id="factorDevolucionHelp" class="form-text text-muted">Valor del gap maximo entre escalas.</small>
-        </div>
-
-
-
-
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary btn-lg" id="btnParams">Guardar</button>
-        </div>
-    </form>
 
 </div>
 </th:block>

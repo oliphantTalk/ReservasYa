@@ -22,12 +22,9 @@ import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWrite
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-   private final UserService userService;
+   @Autowired
+   private  UserService userService;
 
-    @Autowired
-    public WebSecurityConfig(UserService userService) {
-        this.userService = userService;
-    }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -43,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public SimpleUrlAuthenticationSuccessHandler redirecter(){
         SimpleUrlAuthenticationSuccessHandler redirecter = new SimpleUrlAuthenticationSuccessHandler();
         redirecter.setAlwaysUseDefaultTargetUrl(true);
-        redirecter.setDefaultTargetUrl("http://localhost:8080/");
+        redirecter.setDefaultTargetUrl("http://localhost:5000/");
         return redirecter;
     }
 

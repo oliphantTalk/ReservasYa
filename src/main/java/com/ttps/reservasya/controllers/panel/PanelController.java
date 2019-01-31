@@ -1,5 +1,6 @@
 package com.ttps.reservasya.controllers.panel;
 
+import com.ttps.reservasya.config.DataLoader;
 import com.ttps.reservasya.controllers.panel.form.*;
 import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.user.User;
@@ -10,7 +11,10 @@ import com.ttps.reservasya.services.airlines.AirlineService;
 import com.ttps.reservasya.services.hotel.HotelService;
 import com.ttps.reservasya.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,7 +46,14 @@ public class PanelController {
     @Autowired
     private HotelService hotelService;
 
+    @Autowired
+    private DataLoader dataLoader;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/admin/resetDb")
+    public void resetDataBase() throws Exception{
+        dataLoader.run(new DefaultApplicationArguments(new String[]{"Algo", "Otro"}));
+    }
 
     @GetMapping(value = "/admin")
     public String showAdminPanel(Model model){

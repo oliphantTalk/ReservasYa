@@ -29,3 +29,20 @@ $(function() {
         })
     });
 });
+
+/*
+$(function() {
+    $('#resetdb').on("click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url : '/panel/admin/resetDb',
+            async: true,
+            success : function(res) {
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    });
+});*/

@@ -5,7 +5,16 @@ const hsb = document.getElementById("hotel-searchbox");
 
 const elementos = [fsb, csb, hsb];
 
-document.getElementById("link-autos").addEventListener("click", displayFragment(csb, elementos).display);
-document.getElementById("link-hoteles").addEventListener("click", displayFragment(hsb, elementos).display);
-document.getElementById("link-vuelos").addEventListener("click", displayFragment(fsb, elementos).display);
+let linkCar = document.getElementById("link-autos");
+let linkHotel = document.getElementById("link-hoteles");
+let linkFly = document.getElementById("link-vuelos");
+if(linkCar != null) {
+    linkCar.addEventListener("click", displayFragment(csb, elementos).display);
+}
+if(linkHotel != null){
+    linkHotel.addEventListener("click", displayFragment(hsb, elementos).display);
+}
+if(linkFly != null) {
+    linkFly.addEventListener("click", displayFragment(fsb, elementos).display);
+}
 

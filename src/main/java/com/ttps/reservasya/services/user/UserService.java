@@ -86,9 +86,11 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
         if(!Objects.equals(user.getRole().getId(), userForm.getRoleId())) {
             user.setRole(this.roleService.findById(userForm.getRoleId()).orElseThrow(NoElementInDBException::new));
         }
-        user.setPassword(bCryptPasswordEncoder.encode(userForm.getPassword()));
+        if(userForm.getEditPassword() != null && !userForm.getEditPassword().equals("")) {
+            user.setPassword(bCryptPasswordEncoder.encode(userForm.getEditPassword()));
+        }
         this.updateUserSettings(user, userForm.getEditPoints());
-        return updateOne(user);
+            return updateOne(user);
     }
 
     public User editUserProfile(ProfileForm form, Long userId){
@@ -112,13 +114,13 @@ public class UserService extends BasicCrudService<User, UserRepository> implemen
     private void createUserSettings(User user, int points) {
         UserSettings userSettings = new UserSettings();
         userSettings.setUser(user);
-        userSettings.setPointsToUse(points);
+        userSettings.setPointsToUse(points + userSettings.getPointsToUse());
         settingsRepository.save(userSettings);
     }
 
     private void updateUserSettings(User user, int points){
         UserSettings settings = settingsRepository.findByUser(user).orElseThrow(NoElementInDBException::new);
-        settings.setPointsToUse(points);
+        settings.setPointsToUse(points + settings.getPointsToUse());
         settingsRepository.save(settings);
     }
 

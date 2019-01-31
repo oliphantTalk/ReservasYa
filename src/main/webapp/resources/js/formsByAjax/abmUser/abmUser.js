@@ -9,6 +9,7 @@ $(function() {
         json.roleId = $('#rol').val();
         json.userName = $('#userName').val();
         json.password = $('#password').val();
+        json.addPoints = $('#addPoints').val();
 
         $.ajax({
             type: "POST",
@@ -43,7 +44,8 @@ $(function() {
         let json = {};
         json.roleId = $('#editRolId').val();
         json.userId = $('#userId').val();
-        json.password = $('#passwordEdit').val();
+        json.editPassword = $('#editPassword').val();
+        json.editPoints = $('#editPoints').val();
 
         $.ajax({
             type: "POST",

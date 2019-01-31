@@ -3,13 +3,8 @@
 <head>
     <title>Iniciar Sesion</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
-        <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
-        <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-        <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-        <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
+           <th:block th:replace="fragments/commons/styles :: link-styles">Links</th:block>
+
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}">Header</div>

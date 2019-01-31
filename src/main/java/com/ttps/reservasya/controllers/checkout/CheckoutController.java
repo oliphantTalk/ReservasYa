@@ -1,6 +1,7 @@
 package com.ttps.reservasya.controllers.checkout;
 
 import com.ttps.reservasya.models.businessitem.BusinessItem;
+import com.ttps.reservasya.models.user.settings.UserSettings;
 import com.ttps.reservasya.repository.transaction.UserTransactionHistoryRepository;
 import com.ttps.reservasya.services.airlines.AirlineService;
 import com.ttps.reservasya.services.checkout.CheckoutService;
@@ -61,7 +62,13 @@ public class CheckoutController {
         if(errors.hasErrors()){
             return "/";
         }
+        UserSettings userSettings = userService.getUserSettingsByUserName(principal.getName());
+        int pointsBefore = userSettings.getPointsToUse();
+        model.addAttribute("pointsBefore", pointsBefore);
+        model.addAttribute("pointsConverted", form.getPointsToConvert());
         checkoutService.approveTransaction(principal.getName(), form.getPointsToConvert(), form);
+        model.addAttribute("newPoints", userSettings.getPointsToUse());
+        model.addAttribute("earnedPoints", form.getPointsToConvert() + userSettings.getPointsToUse() - pointsBefore);
         return "thanks/thanks";
     }
 

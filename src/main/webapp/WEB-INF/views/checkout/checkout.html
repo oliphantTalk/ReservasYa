@@ -3,16 +3,11 @@
 <head>
     <title>ReservasYa!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="icon" type="image/png" href="../../../resources/images/favicon.ico" th:href="@{~/favicon.ico}">
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-    <link  rel="stylesheet" media="screen" th:href="@{~/resources/css/core.css}" />
+       <th:block th:replace="fragments/commons/styles :: link-styles">Links</th:block>
+
 </head>
 <body class="home-body">
-<div th:replace="~{fragments/header :: header}">Header</div>
+<div th:replace="~{fragments/header :: header-wp}">Header</div>
 
 <div class="container yellow-rectangle">
 <form class="form-narrow form-horizontal" method="post" th:action="@{/checkout/fly}" th:object="${checkoutForm}" th:fragment="checkoutForm">
@@ -23,37 +18,37 @@
 
         <div class="form-group" >
             <label for="passengerName">Nombre Pasajero</label>
-                <input type="text" class="form-control" id="passengerName" placeholder="Nombre Pasajero" th:field="*{passengerName}" />
+                <input type="text" class="form-control" id="passengerName" placeholder="Nombre Pasajero" th:field="*{passengerName}" required/>
         </div>
 
         <div class="form-group" >
             <label for="passengerLastName" >Apellido Pasajero</label>
-                    <input type="text" class="form-control" id="passengerLastName" placeholder="Apellido" th:field="*{passengerLastName}" />
+                    <input type="text" class="form-control" id="passengerLastName" placeholder="Apellido" th:field="*{passengerLastName}" required/>
         </div>
 
         <div class="form-group" >
             <label for="dni" >Dni</label>
-                    <input type="number" class="form-control" id="dni" placeholder="Numero de dni" th:field="*{dni}"/>
+                    <input type="number" class="form-control" id="dni" placeholder="Numero de dni" th:field="*{dni}" th:min="0" th:max="99999999" required/>
         </div>
 
         <div class="form-group" >
             <label for="creditCardNumber" >Numero de tarjeta de credito</label>
-                    <input type="number" class="form-control" id="creditCardNumber" placeholder="Numero de tarjeta" th:field="*{creditCard}"/>
+                    <input type="number" class="form-control" id="creditCardNumber" placeholder="Numero de tarjeta" th:field="*{creditCard}" th:min="0" required />
         </div>
 
         <div class="form-group" >
             <label for="expirationDate" >Fecha Expiracion</label>
-                    <input type="number" class="form-control" id="expirationDate" placeholder="Fecha expiracion" th:field="*{expirationDate}"/>
+                    <input type="number" class="form-control" id="expirationDate" placeholder="Fecha expiracion" th:field="*{expirationDate}" th:min="0" required/>
         </div>
 
         <div class="form-group" >
             <label for="securityCode" >Codigo de seguridad</label>
-                    <input type="number" th:min="0" th:max="999" class="form-control" id="securityCode" placeholder="Numero de seguridad" th:field="*{securityCode}"/>
+                    <input type="number" th:min="0" th:max="999" class="form-control" id="securityCode" placeholder="Numero de seguridad" th:field="*{securityCode}" required/>
         </div>
 
         <div class="form-group" >
             <label for="points" th:text="${'Puntos a convertir ##(usted tiene ' + availablePoints} + ' puntos disponibles)##'">Puntos a convertir</label>
-                    <input type="range" th:min="0" th:max="${availablePoints}" class="form-control" id="slider" placeholder="Puntos a convertir" th:field="*{pointsToConvert}"/>
+                    <input type="range" th:min="0" th:max="${availablePoints}" class="form-control" id="slider" placeholder="Puntos a convertir" th:field="*{pointsToConvert}" required/>
                     <output id="output"></output>
         </div>
 

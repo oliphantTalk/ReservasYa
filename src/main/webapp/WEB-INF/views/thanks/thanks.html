@@ -9,6 +9,21 @@
 <div th:replace="~{fragments/header :: header}">Header</div>
 <div class="container">
     <div class="text-center">
+    <div class="text">
+             <hr/>
+             <h4 style="color: green;">Se ha guardado correctamente. </h4>
+             <pre style="color: green;">
+                <code>
+                    <span th:if="${pointsBefore != null}" th:text="${'Tenia ' + pointsBefore + ' puntos.'}"></span>
+                    <span th:if="${pointsConverted != null}" th:text="${'Convirtio ' + pointsConverted + ' puntos.'}"></span>
+                    <span th:if="${newPoints != null}" th:text="${'Tiene ' + newPoints + ' puntos.'}"></span>
+                    <span th:if="${earnedPoints != null}" th:text="${'Gano ' + earnedPoints + ' puntos.'}"></span>
+                </code>
+             </pre>
+    </div>
+
+
+
 
         <h1>GRACIAS POR SU COMPRA</h1>
         <p>

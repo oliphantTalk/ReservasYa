@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/main.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/css/eva.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva-core.min.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.min.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../../resources/eva/eva.css"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+       <th:block th:replace="fragments/commons/styles :: link-styles">Links</th:block>
+
 </head>
 <body>
 

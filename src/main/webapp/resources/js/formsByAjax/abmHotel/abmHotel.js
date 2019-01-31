@@ -24,8 +24,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#addHotelResult pre code').text("");
+                $('#addHotelResult pre code').text(JSON.stringify(res));
+                $('#addHotelResult').show();
             }
         })
     });
@@ -55,8 +56,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#editHotelResult pre code').text("");
+                $('#editHotelResult pre code').text(JSON.stringify(res));
+                $('#editHotelResult').show();
             }
         })
     });
@@ -79,8 +81,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#removeHotelResult pre code').text("");
+                $('#removeHotelResult pre code').text(JSON.stringify(res));
+                $('#removeHotelResult').show();
             }
         })
     });
@@ -108,8 +111,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultAddRoom pre code').text(JSON.stringify(res));
-                $('#resultAddRoom').show();
+                $('#addRoomResult pre code').text("");
+                $('#addRoomResult pre code').text(JSON.stringify(res));
+                $('#addRoomResult').show();
             }
         })
     });
@@ -160,8 +164,8 @@ $(function() {
                     '        </div>\n' +
                     '    </form>';
 
-                $('#resultContainer pre code').text("");
-                $('#resultContainer').show();
+                $('#addRoomResult pre code').text("");
+                $('#addRoomResult').show();
             }
         })
     });
@@ -186,8 +190,9 @@ $(function() {
             success : function(res) {
                 //Set response
                 console.log(res)
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#removeRoomResult pre code').text("");
+                $('#removeRoomResult pre code').text(JSON.stringify(res));
+                $('#removeRoomResult').show();
             }
         })
     })

@@ -22,8 +22,9 @@ $(function() {
                 xhr.setRequestHeader("Content-Type", "application/json");
             },
             success : function(res) {
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#localParamsResult pre code').text("");
+                $('#localParamsResult pre code').text(JSON.stringify(res));
+                $('#localParamsResult').show();
             }
         })
     });

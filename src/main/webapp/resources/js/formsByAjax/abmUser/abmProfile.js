@@ -20,9 +20,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                console.log(res);
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#editProfileResult pre code').text("");
+                $('#editProfileResult pre code').text(JSON.stringify(res));
+                $('#editProfileResult').show();
             }
         })
     });

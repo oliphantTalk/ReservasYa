@@ -9,6 +9,14 @@
 
     <div class="text-center"><h3>Parámetros Locales</h3></div>
 
+    <div id="localParamsResult" style="display: none;">
+         <hr/>
+         <h4 style="color: green;">Se ha guardado correctamente. </h4>
+         <pre style="color: green;">
+            <code></code>
+         </pre>
+    </div>
+
     <form id="localParamsForm" method="post"  th:object="${localParamsForm}" th:action="@{/panel/admin/localParams}">
 
         <div class="form-group">

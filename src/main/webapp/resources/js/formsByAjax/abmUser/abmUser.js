@@ -26,8 +26,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#addUserResult pre code').text("");
+                $('#addUserResult pre code').text(JSON.stringify(res));
+                $('#addUserResult').show();
             }
         })
     });
@@ -56,8 +57,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#editUserResult pre code').text("");
+                $('#editUserResult pre code').text(JSON.stringify(res));
+                $('#editUserResult').show();
             }
         })
     });
@@ -80,8 +82,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#removeUserResult pre code').text("");
+                $('#removeUserResult pre code').text(JSON.stringify(res));
+                $('#removeUserResult').show();
             }
         })
     });

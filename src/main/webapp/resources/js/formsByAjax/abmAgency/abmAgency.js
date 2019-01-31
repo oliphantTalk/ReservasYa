@@ -25,8 +25,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#addAgencyResult pre code').text("");
+                $('#addAgencyResult pre code').text(JSON.stringify(res));
+                $('#addAgencyResult').show();
             }
         })
     });
@@ -56,8 +57,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#editAgencyResult pre code').text("");
+                $('#editAgencyResult pre code').text(JSON.stringify(res));
+                $('#editAgencyResult').show();
             }
         })
     });
@@ -80,8 +82,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#removeAgencyResult pre code').text("");
+                $('#removeAgencyResult pre code').text(JSON.stringify(res));
+                $('#removeAgencyResult').show();
             }
         })
     });
@@ -112,8 +115,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultAddCar pre code').text(JSON.stringify(res));
-                $('#resultAddCar').show();
+                $('#addCarResult pre code').text("");
+                $('#addCarResult pre code').text(JSON.stringify(res));
+                $('#addCarResult').show();
             }
         })
     });
@@ -164,8 +168,8 @@ $(function() {
                     '        </div>\n' +
                     '    </form>';
 
-                $('#resultContainer pre code').text("");
-                $('#resultContainer').show();
+                $('#addCarResult pre code').text("");
+                $('#addCarResult').show();
             }
         })
     });
@@ -189,9 +193,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                console.log(res)
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#removeCarResult pre code').text("");
+                $('#removeCarResult pre code').text(JSON.stringify(res));
+                $('#removeCarResult').show();
             }
         })
     })

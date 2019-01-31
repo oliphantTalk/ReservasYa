@@ -23,8 +23,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#addAirlineResult pre code').text("");
+                $('#addAirlineResult pre code').text(JSON.stringify(res));
+                $('#addAirlineResult').show();
             }
         })
     });
@@ -53,8 +54,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#editAirlineResult pre code').text("");
+                $('#editAirlineResult pre code').text(JSON.stringify(res));
+                $('#editAirlineResult').show();
             }
         })
     });
@@ -77,8 +79,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#removeAirlineResult pre code').text("");
+                $('#removeAirlineResult pre code').text(JSON.stringify(res));
+                $('#removeAirlineResult').show();
             }
         })
     });
@@ -125,8 +128,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultAddFlight pre code').text(JSON.stringify(res));
-                $('#resultAddFlight').show();
+                $('#addFlightResult pre code').text("");
+                $('#addFlightResult pre code').text(JSON.stringify(res));
+                $('#addFlightResult').show();
             }
         })
     });
@@ -174,8 +178,8 @@ $(function() {
                     '        </div>\n' +
                     '    </form>';
 
-                $('#resultContainer pre code').text("");
-                $('#resultContainer').show();
+                $('#addFlightResult pre code').text("");
+                $('#addFlightResult').show();
             }
         })
     });
@@ -199,8 +203,9 @@ $(function() {
             },
             success : function(res) {
                 //Set response
-                $('#resultContainer pre code').text(JSON.stringify(res));
-                $('#resultContainer').show();
+                $('#removeFlightResult pre code').text("");
+                $('#removeFlightResult pre code').text(JSON.stringify(res));
+                $('#removeFlightResult').show();
             }
         })
     })

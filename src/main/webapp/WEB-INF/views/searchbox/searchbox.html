@@ -18,7 +18,7 @@
                                                 <label class="radio-label-container">
                                                     <input
                                                             type="radio"
-                                                            name="fly-way"
+                                                            th:name="fly-way"
                                                             class="radio-tag"
                                                             id="fly-way-goReturn"
                                                             checked="checked"
@@ -34,7 +34,7 @@
                                                 <label class="radio-label-container">
                                                     <input
                                                             type="radio"
-                                                            name="fly-way"
+                                                            th:name="fly-way"
                                                             class="radio-tag"
                                                             id="fly-way-go"
                                                     />
@@ -63,9 +63,9 @@
                                                     type="text"
                                                     placeholder="Desde donde viajas"
                                                     id="fly-from"
-                                                    name="from"
+                                                    th:name="from"
                                                     class="input-tag"
-                                                    required
+                                                    reqreq
                                             />
 
                                             <span
@@ -92,9 +92,9 @@
                                                 type="text"
                                                 placeholder="Hacia donde viajas"
                                                 id="fly-to"
-                                                name="to"
+                                                th:name="to"
                                                 class="input-tag"
-                                                required
+                                                reqreq
                                         />
 
                                         <span
@@ -115,8 +115,8 @@
                                  <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
                                          id="fly-dateGo-input">
                                      <div class="input-container">
-                                        <input type="date" placeholder="yyyy-mm-dd - Ida" id="fly-dateGo" name="departureDate"
-                                                   class="input-tag" required/>
+                                        <input type="date" placeholder="yyyy-mm-dd - Ida" id="fly-dateGo" th:name="departureDate"
+                                                   class="input-tag" reqreq/>
                                             <span class="validation-msg" id="fly-dateGo-msg"></span>
                                             <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
                                      </div>
@@ -133,7 +133,7 @@
                                      id="fly-dateReturn-input">
                                     <div class="input-container">
                                         <input type="date" placeholder="yyyy-mm-dd - Vuelta" id="fly-dateReturn"
-                                               name="returnDate" class="input-tag"/>
+                                               th:name="returnDate" class="input-tag"/>
                                         <span class="validation-msg" id="fly-dateReturn-msg"></span>
 
                                         <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
@@ -153,7 +153,7 @@
                                 <div class="eva-3-select -no-border -lg input-border-separator -icon-left eva-3-validation  -bottom-right"
                                      id="persons-select">
                                     <div class="select-container">
-                                        <select id="select-passenger" name="passenger" class="select-tag">
+                                        <select id="select-passenger" th:name="flyPassenger" class="select-tag">
 
                                             <option
                                                     value="1"
@@ -175,13 +175,13 @@
                                             </option>
 
                                             <option
-                                                    value="2"
+                                                    value="4"
                                                     class="select-option"
                                             >4 Personas
                                             </option>
 
                                             <option
-                                                    value="3"
+                                                    value="5"
                                                     class="select-option"
                                             >5 Personas
                                             </option>
@@ -200,7 +200,7 @@
                                 <div class="eva-3-select -no-border -lg input-border-separator -icon-left eva-3-validation  -bottom-right"
                                                              id="persons-select">
                                     <div class="select-container">
-                                    <select id="clase" name="clase" class="select-tag">
+                                    <select id="clase" th:name="clase" class="select-tag">
                                         <option class="select-option" selected=selected th:value="'ECONOMIC'">ECONOMICA</option>
                                         <option th:value="'BUSINESS'">BUSINESS</option>
                                         <option th:value="'FIRST'">PRIMERA</option>
@@ -233,7 +233,7 @@
 <div class="eva-3-container" id="car-searchbox" th:fragment="car-searchbox" style="display: none" >
     <!-- BEGIN SEARCH BOX ++++++++++++++++++++++++++++++++++ -->
     <div class="eva-3-row -no-gutter">
-        <div class="col -sm-12 -md-6 -xlg-6">
+        <div class="col -sm-12 -md-12 -xlg-12">
             <section>
                 <article class="yellow-rectangle">
                     <form method="post" action="#" th:action="@{/search/car}" id="carBox">
@@ -241,158 +241,98 @@
                         <div class="eva-3-row -no-gutter common-row-container">
                             <div class="col -sm-12 -md-6">
                                 <label class="eva-3-label-form label-form-block -md">
-                                        <span class="label-container">
-                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Lugar de retiro</span>
-                                        </span>
-
-                                    <div
-                                            class="eva-3-input -no-border  input-border-separator -lg eva-3-validation -top-right"
-                                            id="car-from-input"
-                                    >
+                                    <span class="label-container">
+                                        <span class="-eva-3-bold -eva-3-tc-black label-text">Lugar de retiro</span>
+                                    </span>
+                                    <div class="eva-3-input -no-border  input-border-separator -lg eva-3-validation -top-right" id="car-from-input">
                                         <div class="input-container">
-                                            <input
-                                                    type="text"
-                                                    placeholder="Ingresa una ciudad"
-                                                    id="car-from"
-                                                    name="from"
-                                                    class="input-tag"
-                                            />
-
-                                            <span
-                                                    class="validation-msg"
-                                                    id="car-from-msg"
-                                            ></span>
+                                            <input type="text" placeholder="Ingresa una ciudad" id="car-from" th:name="pickup" class="input-tag" reqreq/>
+                                            <span class="validation-msg" id="car-from-msg"></span>
                                         </div>
                                     </div>
                                 </label>
                             </div>
-
                             <div class="col -sm-12 -md-6">
                                 <label class="eva-3-label-form label-form-block -md">
-                                        <span class="label-container">
-                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Lugar de devolución</span>
-                                        </span>
-
-                                    <div
-                                            class="eva-3-input -no-border  input-border-separator  -lg eva-3-validation  -top-right"
-                                            id="car-to-input"
-                                    >
+                                    <span class="label-container">
+                                        <span class="-eva-3-bold -eva-3-tc-black label-text">Lugar de devolución</span>
+                                    </span>
+                                    <div class="eva-3-input -no-border  input-border-separator  -lg eva-3-validation  -top-right" id="car-to-input">
                                         <div class="input-container">
-                                            <input
-                                                    type="text"
-                                                    placeholder="Hacia donde viajas"
-                                                    id="car-to"
-                                                    name="to"
-                                                    class="input-tag"
-                                            />
-
-                                            <span
-                                                    class="validation-msg"
-                                                    id="car-to-msg"
-                                            ></span>
+                                            <input type="text" placeholder="Hacia donde viajas" id="car-to" th:name="retrieve" class="input-tag"/>
+                                            <span class="validation-msg" id="car-to-msg"></span>
                                         </div>
                                     </div>
                                 </label>
                             </div>
                         </div>
-
                         <div class="eva-3-row -no-gutter common-row-container">
-                            <div class="col -sm-12 -md-8 no-padding">
-                                <label class="col -sm-8 -md-8 no-padding eva-3-label-form label-form-block  -md">
+                            <div class="col -sm-12 -md-6">
+                                <label class="eva-3-label-form label-form-block -md">
                                         <span class="label-container">
                                             <span class="-eva-3-bold -eva-3-tc-black label-text">Fecha de alquiler</span>
                                         </span>
                                 </label>
-
-                                <div class="col -sm-6 -md-6  no-padding">
-                                    <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
-                                         id="fly-dateGo-input">
-                                        <div class="input-container">
-                                            <input type="text" placeholder="dd/mm/yyyy" id="fly-dateGo" name="departureDate"
-                                                   class="input-tag"
-/>
-                                            <span class="validation-msg" id="fly-dateGo-msg"></span>
-
-                                            <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
-                                        </div>
+                                <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
+                                     id="car-dateGo-input">
+                                    <div class="input-container">
+                                        <input type="date" placeholder="dd/mm/yyyy" id="car-dateGo" th:name="dateFrom"
+                                               class="input-tag" reqreq/>
+                                        <span class="validation-msg" id="car-dateGo-msg"></span>
+                                        <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
                                     </div>
                                 </div>
-
-                                <label class="col -sm-8 -md-8 no-padding eva-3-label-form label-form-block  -md">
+                            </div>
+                            <div class="col -sm-12 -md-6">
+                                <label class="eva-3-label-form label-form-block -md">
                                         <span class="label-container">
                                             <span class="-eva-3-bold -eva-3-tc-black label-text">Fecha de devolución</span>
                                         </span>
                                 </label>
-
-                                <div class="col -sm-6 -md-6 no-padding">
-                                    <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
-                                         id="fly-dateReturn-input">
-                                        <div class="input-container">
-                                            <input type="text" placeholder="dd/mm/yyyy" id="fly-dateReturn"
-                                                   name="returnDate" class="input-tag"
-/>
-                                            <span class="validation-msg" id="fly-dateReturn-msg"></span>
-
-                                            <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
-                                        </div>
+                                <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
+                                     id="car-dateReturn-input">
+                                    <div class="input-container">
+                                        <input type="date" placeholder="dd/mm/yyyy" id="car-dateReturn"
+                                               th:name="dateTo" class="input-tag"/>
+                                        <span class="validation-msg" id="car-dateReturn-msg"></span>
+                                        <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
                                     </div>
                                 </div>
-
-                                <div class="col -sm-12 -md-12 no-padding">
-                                        <span class="eva-3-checkbox custom-checkbox">
-                                            <label class="checkbox-label">
-                                                <input
-                                                        type="checkbox"
-                                                        class="checkbox-tag"
-                                                        id="fly-dontKnowDate"
-                                                />
-
-                                                <i class="checkbox-check eva-3-icon-checkmark"></i>
-                                                Devolver en otro destino
-                                            </label>
-                                        </span>
-                                </div>
                             </div>
-
-                            <div class="col -sm-12 -md-4">
+                            <div class="col -sm-12 -md-12">
                                 <label for="" class="eva-3-label-form  label-form-block -md">
-                                        <span class="label-container">
-                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Pasajeros</span>
-                                        </span>
+                                    <span class="label-container">
+                                        <span class="-eva-3-bold -eva-3-tc-black label-text">Pasajeros</span>
+                                    </span>
                                 </label>
-
                                 <div class="eva-3-select -no-border -lg input-border-separator -icon-left eva-3-validation  -bottom-right"
                                      id="persons-select">
                                     <div class="select-container">
-                                        <select id="select-passenger" name="passenger" class="select-tag">
-
+                                        <select id="select-car-passenger" th:name="carPassenger" class="select-tag">
                                             <option
                                                     value="1"
                                                     class="select-option"
                                             >1 Persona
                                             </option>
-
                                             <option
                                                     value="2"
                                                     selected="selected"
                                                     class="select-option"
                                             >2 Personas
                                             </option>
-
                                             <option
                                                     value="3"
                                                     class="select-option"
                                             >3 Personas
                                             </option>
-
                                             <option
-                                                    value="2"
+                                                    value="4"
                                                     class="select-option"
                                             >4 Personas
                                             </option>
 
                                             <option
-                                                    value="3"
+                                                    value="5"
                                                     class="select-option"
                                             >5 Personas
                                             </option>
@@ -407,7 +347,7 @@
                         <div class="eva-3-row -no-gutter common-row-container">
                             <div class="col -sm-12 -md-12">
                                 <div class="button-container">
-                                    <button class="search-button eva-3-btn -secondary -md" id="fly-button" disabled="disabled">
+                                    <button class="search-button eva-3-btn -secondary -md" id="car-button">
                                         <em class="btn-text">Buscar</em>
                                     </button>
                                 </div>
@@ -447,7 +387,7 @@
                                                     type="text"
                                                     placeholder="Ingresa una ciudad"
                                                     id="hotel-to"
-                                                    name="to"
+                                                    th:name="to"
                                                     class="input-tag"
                                             />
 
@@ -473,7 +413,7 @@
                                     <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
                                          id="hotel-dateGo-input">
                                         <div class="input-container">
-                                            <input type="text" placeholder="dd/mm/yyyy" id="hotel-dateGo" name="inDate"
+                                            <input type="text" placeholder="dd/mm/yyyy" id="hotel-dateGo" th:name="inDate"
                                                    class="input-tag"/>
 
                                             <span class="validation-msg" id="hote-dateGo-msg"></span>
@@ -494,7 +434,7 @@
                                          id="hotel-dateReturn-input">
                                         <div class="input-container">
                                             <input type="text" placeholder="dd-mm-yyyy" id="hotel-dateReturn"
-                                                   name="returnDate" class="input-tag"/>
+                                                   th:name="returnDate" class="input-tag"/>
                                             <span class="validation-msg" id="hotel-dateReturn-msg"></span>
 
                                             <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
@@ -514,7 +454,7 @@
                                 <div class="eva-3-select -no-border -lg input-border-separator -icon-left eva-3-validation  -bottom-right"
                                      id="hotel-room-select">
                                     <div class="select-container">
-                                        <select id="hotel-room" name="beds" class="select-tag">
+                                        <select id="hotel-room" th:name="beds" class="select-tag">
 
                                             <option
                                                     value="1"

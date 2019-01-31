@@ -59,7 +59,7 @@ public class SearchController {
         model.addAttribute("precioClase", precioClase);
         model.addAttribute("form", searchFlyForm);
         model.addAttribute("seatClass", searchFlyForm.getClase());
-        model.addAttribute("passengers", searchFlyForm.getPassenger());
+        model.addAttribute("passengers", searchFlyForm.getFlyPassenger());
         return "/result/result";
     }
 
@@ -77,7 +77,7 @@ public class SearchController {
         if (errors.hasErrors()) {
             return "/";
         }
-        model.addAttribute("cars", agencyService.searchCarForDestination(searchCarForm.getPickup(), searchCarForm.getPassenger()));
+        model.addAttribute("cars", agencyService.searchCarForDestination(searchCarForm.getPickup(), searchCarForm.getCarPassenger()));
         return "/result/result";
     }
 

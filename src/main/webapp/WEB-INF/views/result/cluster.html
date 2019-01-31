@@ -2,10 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
        <th:block th:replace="fragments/commons/styles :: link-styles">Links</th:block>
-
 <body>
-
-<!--/*  Multiple fragments may be defined in one file */-->
     <div class="eva-3-container" >
         <div class="eva-3-cluster-basic">
             <div class="cluster-container cluster-white-background" id="fly-cluster" th:fragment="fly-cluster">
@@ -122,17 +119,12 @@
                                   </table>
                 </th:block>
             </div>
-            <div class="cluster-container cluster-white-background" id="fly-cluster" th:fragment="car-cluster">
-
-
-
-
-            <div class="cluster-container cluster-white-background" id="fly-cluster" th:fragment="hotel-cluster">
-
-
-
-                                    </div>
-
+            <div class="cluster-container cluster-white-background" id="car-cluster" th:fragment="car-cluster">
+            HOLA AUTO
+            </div>
+            <div class="cluster-container cluster-white-background" id="hotel-cluster" th:fragment="hotel-cluster">
+            HOLA HOTEL
+            </div>
         </div>
     </div>
 </div>

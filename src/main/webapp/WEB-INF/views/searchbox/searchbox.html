@@ -366,20 +366,20 @@
 <div class="eva-3-container" id="hotel-searchbox" th:fragment="hotel-searchbox" style="display: none" >
     <!-- BEGIN SEARCH BOX ++++++++++++++++++++++++++++++++++ -->
     <div class="eva-3-row -no-gutter">
-        <div class="col -sm-12 -md-6 -xlg-6">
+        <div class="col -sm-12 -md-12 -xlg-12">
             <section>
                 <article class="yellow-rectangle">
                     <form method="post" action="#" th:action="@{/search/hotel}" id="hotelBox">
                         <div class="eva-3-h3 box-title">Buscá tu hotel</div>
                         <div class="eva-3-row -no-gutter common-row-container">
-                            <div class="col -sm-12 -md-6">
+                            <div class="col -sm-12 -md-12">
                                 <label class="eva-3-label-form label-form-block -md">
                                         <span class="label-container">
                                             <span class="-eva-3-bold -eva-3-tc-black label-text">Destino</span>
                                         </span>
 
                                     <div
-                                            class="eva-3-input -no-border  input-border-separator -lg eva-3-validation -top-right"
+                                            class="eva-3-input -no-border input-border-separator -lg eva-3-validation -top-right"
                                             id="hotel-to-input"
                                     >
                                         <div class="input-container">
@@ -387,8 +387,9 @@
                                                     type="text"
                                                     placeholder="Ingresa una ciudad"
                                                     id="hotel-to"
-                                                    th:name="to"
+                                                    th:name="hotelTo"
                                                     class="input-tag"
+                                                    reqreq
                                             />
 
                                             <span
@@ -402,49 +403,45 @@
                         </div>
 
                         <div class="eva-3-row -no-gutter common-row-container">
-                            <div class="col -sm-12 -md-8 no-padding">
-                                <label class="col -sm-8 -md-8 no-padding eva-3-label-form label-form-block  -md">
+                            <div class="col -sm-12 -md-6">
+                                <label class="eva-3-label-form label-form-block  -md">
                                         <span class="label-container">
-                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Fechas</span>
+                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Fecha CheckIn</span>
                                         </span>
                                 </label>
-
-                                <div class="col -sm-6 -md-6  no-padding">
-                                    <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
+                                <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
                                          id="hotel-dateGo-input">
                                         <div class="input-container">
-                                            <input type="text" placeholder="dd/mm/yyyy" id="hotel-dateGo" th:name="inDate"
-                                                   class="input-tag"/>
+                                            <input type="date" placeholder="dd/mm/yyyy" id="hotel-dateGo" th:name="hotelDateFrom"
+                                                   class="input-tag" reqreq/>
 
                                             <span class="validation-msg" id="hote-dateGo-msg"></span>
 
                                             <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
                                         </div>
-                                    </div>
                                 </div>
-
-                                <label class="col -sm-8 -md-8 no-padding eva-3-label-form label-form-block  -md">
+                            </div>
+                            <div class="col -sm-12 -md-6">
+                                <label class="eva-3-label-form label-form-block  -md">
                                         <span class="label-container">
-                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Salida</span>
+                                            <span class="-eva-3-bold -eva-3-tc-black label-text">FechaCheckout</span>
                                         </span>
                                 </label>
 
-                                <div class="col -sm-6 -md-6 no-padding">
-                                    <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
-                                         id="hotel-dateReturn-input">
-                                        <div class="input-container">
-                                            <input type="text" placeholder="dd-mm-yyyy" id="hotel-dateReturn"
-                                                   th:name="returnDate" class="input-tag"/>
-                                            <span class="validation-msg" id="hotel-dateReturn-msg"></span>
+                                <div class="eva-3-input -no-border -lg input-border-separator -icon-left eva-3-validation  -top-right"
+                                     id="hotel-dateReturn-input">
+                                    <div class="input-container">
+                                        <input type="date" placeholder="dd-mm-yyyy" id="hotel-dateReturn"
+                                               th:name="hotelDateTo" class="input-tag" reqreq/>
+                                        <span class="validation-msg" id="hotel-dateReturn-msg"></span>
 
-                                            <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
-                                        </div>
+                                        <i class="input-icon -eva-3-icon-sm eva-3-icon-calendar"></i>
                                     </div>
                                 </div>
-
                             </div>
-
-                            <div class="col -sm-12 -md-4">
+                        </div>
+                        <div class="eva-3-row -no-gutter common-row-container">
+                            <div class="col -sm-12 -md-6">
                                 <label for="persons-select" class="eva-3-label-form  label-form-block -md">
                                         <span class="label-container">
                                             <span class="-eva-3-bold -eva-3-tc-black label-text">Pasajeros</span>
@@ -454,11 +451,10 @@
                                 <div class="eva-3-select -no-border -lg input-border-separator -icon-left eva-3-validation  -bottom-right"
                                      id="hotel-room-select">
                                     <div class="select-container">
-                                        <select id="hotel-room" th:name="beds" class="select-tag">
+                                        <select id="hotel-room" th:name="hotelPassenger" class="select-tag">
 
                                             <option
                                                     value="1"
-                                                    selected="selected"
                                                     class="select-option"
                                             >1 Persona
                                             </option>
@@ -466,6 +462,7 @@
                                             <option
                                                     value="2"
                                                     class="select-option"
+                                                    selected="selected"
                                             >2 Personas
                                             </option>
 
@@ -492,12 +489,59 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col -sm-12 -md-6">
+                                <label for="persons-select" class="eva-3-label-form  label-form-block -md">
+                                        <span class="label-container">
+                                            <span class="-eva-3-bold -eva-3-tc-black label-text">Estrellas</span>
+                                        </span>
+                                </label>
 
+                                <div class="eva-3-select -no-border -lg input-border-separator -icon-left eva-3-validation  -bottom-right"
+                                     id="hotel-stars-select">
+                                    <div class="select-container">
+                                        <select id="hotel-stars" th:name="hotelStars" class="select-tag">
+
+                                            <option
+                                                    value="1"
+                                                    class="select-option"
+                                            >1 estrella
+                                            </option>
+
+                                            <option
+                                                    value="2"
+                                                    class="select-option"
+                                            >2 estrellas
+                                            </option>
+
+                                            <option
+                                                    value="3"
+                                                    class="select-option"
+                                                    selected="selected"
+                                            >3 estrellas
+                                            </option>
+
+                                            <option
+                                                    value="4"
+                                                    class="select-option"
+                                            >4 estrellas
+                                            </option>
+
+                                            <option
+                                                    value="5"
+                                                    class="select-option"
+                                            >5 estrellas
+                                            </option>
+                                        </select>
+
+                                        <span class="validation-msg">Campo invalido</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="eva-3-row -no-gutter common-row-container">
                             <div class="col -sm-12 -md-12">
                                 <div class="button-container">
-                                    <button class="search-button eva-3-btn -secondary -md" id="hotel-button" disabled="disabled">
+                                    <button class="search-button eva-3-btn -secondary -md" id="hotel-button">
                                         <em class="btn-text">Buscar</em>
                                     </button>
                                 </div>

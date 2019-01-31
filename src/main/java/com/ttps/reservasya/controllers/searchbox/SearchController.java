@@ -25,17 +25,21 @@ import java.util.List;
 @Controller
 public class SearchController {
 
-    @Autowired
     private AirlineService airlineService;
 
-    @Autowired
     private HotelService hotelService;
 
-    @Autowired
     private AgencyService agencyService;
 
-    @Autowired
     private LocalParametersService localParametersService;
+
+    @Autowired
+    public SearchController(AirlineService airlineService, HotelService hotelService, AgencyService agencyService, LocalParametersService localParametersService) {
+        this.airlineService = airlineService;
+        this.hotelService = hotelService;
+        this.agencyService = agencyService;
+        this.localParametersService = localParametersService;
+    }
 
     @PostMapping(value = "/fly")
     public String searchFly(@NotEmpty @Valid @ModelAttribute SearchFlyForm searchFlyForm, Errors errors, RedirectAttributes ra, Model model){
@@ -68,7 +72,8 @@ public class SearchController {
         if (errors.hasErrors()) {
             return "/";
         }
-        model.addAttribute("hotels", hotelService.searchHotelForDestination(searchHotelForm.getTo(), searchHotelForm.getPassenger()));
+        //model.addAttribute("hotels", hotelService.searchHotelForDestination(searchHotelForm.getHotelTo(), searchHotelForm.getHotelPassenger()));
+        model.addAttribute("hotels", hotelService.findAll());
         return "/result/result";
     }
 
@@ -77,7 +82,8 @@ public class SearchController {
         if (errors.hasErrors()) {
             return "/";
         }
-        model.addAttribute("cars", agencyService.searchCarForDestination(searchCarForm.getPickup(), searchCarForm.getCarPassenger()));
+//        model.addAttribute("cars", agencyService.searchCarForDestination(searchCarForm.getPickup(), searchCarForm.getCarPassenger()));
+        model.addAttribute("cars", agencyService.findAll());
         return "/result/result";
     }
 

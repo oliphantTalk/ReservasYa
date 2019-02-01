@@ -1,24 +1,242 @@
 [
   {
     "roomId": "2a",
-    "beds": 3,
+    "beds": 2,
     "hotel": {
-      "id": 1,
-      "name": "Hotel Carisimo",
-      "stars": 4,
-      "roomsAvailable": 10
+      "id": 1
     },
-    "price": 1400.0
+    "price": 900.0
   },
   {
     "roomId": "3a",
     "beds": 3,
     "hotel": {
-      "id": 1,
-      "name": "Hotel Carisimo",
-      "stars": 4,
-      "roomsAvailable": 10
+      "id": 1
     },
-    "price": 1400.0
+    "price": 2000.0
+  },
+  {
+    "roomId": "2d",
+    "beds": 4,
+    "hotel": {
+      "id": 2
+    },
+    "price": 2030.0
+  },
+  {
+    "roomId": "5g",
+    "beds": 5,
+    "hotel": {
+      "id": 1
+    },
+    "price": 2102.0
+  },
+  {
+    "roomId": "d3",
+    "beds": 2,
+    "hotel": {
+      "id": 1
+    },
+    "price": 1034.0
+  },
+  {
+    "roomId": "1r",
+    "beds": 2,
+    "hotel": {
+      "id": 3
+    },
+    "price": 300.0
+  },
+  {
+    "roomId": "22",
+    "beds": 3,
+    "hotel": {
+      "id": 2
+    },
+    "price": 300.0
+  },
+  {
+    "roomId": "55",
+    "beds": 4,
+    "hotel": {
+      "id": 3
+    },
+    "price": 3002.0
+  },
+  {
+    "roomId": "12",
+    "beds": 2,
+    "hotel": {
+      "id": 1
+    },
+    "price": 3200.0
+  },
+  {
+    "roomId": "14",
+    "beds": 2,
+    "hotel": {
+      "id": 2
+    },
+    "price": 100.0
+  },
+  {
+    "roomId": "17",
+    "beds": 3,
+    "hotel": {
+      "id": 3
+    },
+    "price": 100.0
+  },
+  {
+    "roomId": "22",
+    "beds": 4,
+    "hotel": {
+      "id": 2
+    },
+    "price": 1300.0
+  },
+  {
+    "roomId": "33",
+    "beds": 1,
+    "hotel": {
+      "id": 3
+    },
+    "price": 1500.0
+  },
+  {
+    "roomId": "1",
+    "beds": 5,
+    "hotel": {
+      "id": 1
+    },
+    "price": 1523.0
+  },
+  {
+    "roomId": "2",
+    "beds": 5,
+    "hotel": {
+      "id": 2
+    },
+    "price": 1503.0
+  },
+  {
+    "roomId": "6",
+    "beds": 2,
+    "hotel": {
+      "id": 4
+    },
+    "price": 2010.0
+  },
+  {
+    "roomId": "8",
+    "beds": 3,
+    "hotel": {
+      "id": 2
+    },
+    "price": 2012.0
+  },
+  {
+    "roomId": "3r",
+    "beds": 1,
+    "hotel": {
+      "id": 3
+    },
+    "price": 2014.0
+  },
+  {
+    "roomId": "27",
+    "beds": 2,
+    "hotel": {
+      "id": 1
+    },
+    "price": 2012.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 2
+    },
+    "price": 230.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 2
+    },
+    "price": 2300.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 6
+    },
+    "price": 1203.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 7
+    },
+    "price": 500.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 5
+    },
+    "price": 900.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 4
+    },
+    "price": 2031.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 8
+    },
+    "price": 2031.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 9
+    },
+    "price": 2033.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 10
+    },
+    "price": 2201.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 11
+    },
+    "price": 1200.0
+  },
+  {
+    "roomId": "34",
+    "beds": 3,
+    "hotel": {
+      "id": 12
+    },
+    "price": 1200.0
   }
 ]

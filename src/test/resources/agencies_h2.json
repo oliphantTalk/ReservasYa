@@ -1,11 +1,18 @@
 [
   {
-    "name": "AVIS"
+    "name": "AVIS",
+    "city": "Buenos Aires"
   },
   {
-    "name": "RentaCar"
+    "name": "RentaCar",
+    "city": "Rosario"
   },
   {
-    "name": "LoDeWalter"
+    "name": "LoDeWalter",
+    "city": "Buenos Aires"
+  },
+  {
+  "name": "LoDeWalter",
+  "city": "Cordoba"
   }
 ]

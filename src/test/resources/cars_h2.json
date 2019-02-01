@@ -5,9 +5,75 @@
     "year": 2018,
     "patent": "asd123",
     "agency": {
-      "id": 1,
-      "name": "AVIS"
+      "id": 1
     },
-    "price": 1234.0
+    "capacity": 5,
+    "price": 1300.0
+  },
+  {
+    "description": "TestCar 1",
+    "model": "Renaul Clio",
+    "year": 2015,
+    "patent": "test1",
+    "agency": {
+      "id": 1
+    },
+    "capacity": 3,
+    "price": 800.0
+  },
+  {
+    "description": "TestCar 2",
+    "model": "Renaul Megane",
+    "year": 2018,
+    "patent": "test2",
+    "agency": {
+      "id": 2
+    },
+    "capacity": 5,
+    "price": 900.0
+  },
+  {
+    "description": "TestCar 3",
+    "model": "Renaul 4",
+    "year": 2012,
+    "patent": "test3",
+    "agency": {
+      "id": 3
+    },
+    "capacity": 1,
+    "price": 5421.0
+  },
+  {
+    "description": "TestCar 4",
+    "model": "Citroen 3cv",
+    "year": 2016,
+    "patent": "test4",
+    "agency": {
+      "id": 2
+    },
+    "capacity": 2,
+    "price": 321.0
+  },
+  {
+    "description": "TestCar 5",
+    "model": "Hilux sw4",
+    "year": 2014,
+    "patent": "test5",
+    "agency": {
+      "id": 3
+    },
+    "capacity": 6,
+    "price": 500.0
+  },
+  {
+    "description": "TestCar 6",
+    "model": "Fiat Duna",
+    "year": 2013,
+    "patent": "test6",
+    "agency": {
+      "id": 4
+    },
+    "capacity": 4,
+    "price": 700.0
   }
 ]

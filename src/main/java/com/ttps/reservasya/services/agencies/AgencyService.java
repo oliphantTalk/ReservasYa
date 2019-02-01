@@ -58,7 +58,7 @@ public class AgencyService extends BasicCrudService<Agency, AgencyRepository> {
                 .forEach( cars ->  carList.addAll(
                         cars.getCars()
                                 .stream()
-                                .filter(car -> passenger >= car.getCapacity())
+                                .filter(car -> passenger <= car.getCapacity())
                                 .collect(Collectors.toList()
                                 )
                 )

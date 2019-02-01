@@ -1,8 +1,6 @@
 package com.ttps.reservasya.models.businessitem.hotel;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.ttps.reservasya.models.businessitem.airline.flights.Flight;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -29,7 +27,6 @@ public class Hotel implements Serializable {
         this.id = id;
     }
 
-    @NaturalId(mutable = true)
     public String getName() {
         return name;
     }

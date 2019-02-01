@@ -72,8 +72,7 @@ public class SearchController {
         if (errors.hasErrors()) {
             return "/";
         }
-        //model.addAttribute("hotels", hotelService.searchHotelForDestination(searchHotelForm.getHotelTo(), searchHotelForm.getHotelPassenger()));
-        model.addAttribute("hotels", hotelService.findAll());
+        model.addAttribute("rooms", hotelService.searchHotelForDestination(searchHotelForm.getHotelTo(), searchHotelForm.getHotelPassenger()));
         return "/result/result";
     }
 
@@ -82,8 +81,7 @@ public class SearchController {
         if (errors.hasErrors()) {
             return "/";
         }
-//        model.addAttribute("cars", agencyService.searchCarForDestination(searchCarForm.getPickup(), searchCarForm.getCarPassenger()));
-        model.addAttribute("cars", agencyService.findAll());
+        model.addAttribute("cars", agencyService.searchCarForDestination(searchCarForm.getPickup(), searchCarForm.getCarPassenger()));
         return "/result/result";
     }
 

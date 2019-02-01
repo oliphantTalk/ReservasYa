@@ -14,8 +14,18 @@
 <div th:replace="searchbox/searchbox :: hotel-searchbox"></div>
 
 <div class="eva-3-cluster-basic">
-    <div th:if="${flights != null }" th:replace="result/cluster :: fly-cluster">
-    </div>
+    <th:block th:if="${flights != null }">
+        <div th:replace="result/cluster :: fly-cluster">
+        </div>
+    </th:block>
+    <th:block th:if="${cars != null}">
+        <div th:replace="result/cluster :: car-cluster">
+        </div>
+    </th:block>
+    <th:block th:if="${rooms != null}">
+        <div th:replace="result/cluster :: hotel-cluster">
+        </div>
+    </th:block>
 </div>
 
 <footer class="eva-3-footer bottom-footer" th:insert="~{fragments/footer :: footer}">&copy; 2018 The Static Templates</footer>

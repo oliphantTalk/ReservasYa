@@ -1,5 +1,10 @@
 package com.ttps.reservasya.controllers.searchbox;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter @Setter @NoArgsConstructor
 public class SearchFlyForm {
 
     private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
@@ -9,54 +14,6 @@ public class SearchFlyForm {
     private String departureDate;
     private String returnDate;
     private String clase;
-    private int passenger;
+    private int flyPassenger;
 
-
-    public String getClase() {
-        return clase;
-    }
-
-    public void setClase(String clase) {
-        this.clase = clase;
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    public String getDepartureDate() {
-        return departureDate;
-    }
-
-    public void setDepartureDate(String departureDate) {
-        this.departureDate = departureDate;
-    }
-
-    public String getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(String returnDate) {
-        this.returnDate = returnDate;
-    }
-
-    public int getPassenger() {
-        return passenger;
-    }
-
-    public void setPassenger(int passenger) {
-        this.passenger = passenger;
-    }
 }

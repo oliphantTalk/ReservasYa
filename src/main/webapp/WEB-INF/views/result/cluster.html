@@ -2,10 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
        <th:block th:replace="fragments/commons/styles :: link-styles">Links</th:block>
-
 <body>
-
-<!--/*  Multiple fragments may be defined in one file */-->
     <div class="eva-3-container" >
         <div class="eva-3-cluster-basic">
             <div class="cluster-container cluster-white-background" id="fly-cluster" th:fragment="fly-cluster">
@@ -122,17 +119,28 @@
                                   </table>
                 </th:block>
             </div>
-            <div class="cluster-container cluster-white-background" id="fly-cluster" th:fragment="car-cluster">
-
-
-
-
-            <div class="cluster-container cluster-white-background" id="fly-cluster" th:fragment="hotel-cluster">
-
-
-
-                                    </div>
-
+            <div class="cluster-container cluster-white-background" id="car-cluster" th:fragment="car-cluster">
+            SECTOR RESULTADOS AUTOS EN CONSTRUCCION. SE MUESTRAN TODOS LOS VALORES QUE MATCHEAN
+            <th:block th:each="c: ${cars}">
+                <div th:text="${'ID Auto: ' + c.id}"></div>
+                <div th:text="${'Auto Año: ' + c.year}"></div>
+                <div th:text="${'Auto Descripcion: ' + c.description}"></div>
+                <div th:text="${'Auto Modelo: ' + c.model}"></div>
+                <div th:text="${'Auto Capacidad: ' + c.capacity}"></div>
+                <div th:text="${'Auto Patente: ' + c.patent}"></div>
+                <div th:text="${'Auto Agencia: ' + c.agency.name}"></div>
+            </th:block>
+            </div>
+            <div class="cluster-container cluster-white-background" id="hotel-cluster" th:fragment="hotel-cluster">
+            SECTOR RESULTADOS HOTELES EN CONSTRUCCION. SE MUESTRAN TODOS LOS VALORES QUE MATCHEAN
+            <th:block th:each="r: ${rooms}">
+                <div th:text="${'ID Habitacion: ' + r.id}"></div>
+                <div th:text="${'Habitacion ID: ' + r.roomId}"></div>
+                <div th:text="${'Habitacion Camas: ' + r.beds}"></div>
+                <div th:text="${'Hotel Id: ' + r.hotel.id}"></div>
+                <div th:text="${'Hotel Nombre: ' + r.hotel.name}"></div>
+            </th:block>
+            </div>
         </div>
     </div>
 </div>

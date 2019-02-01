@@ -59,7 +59,7 @@ public class HotelService extends BasicCrudService<Hotel, HotelRepository> {
                 .forEach(hotel -> roomList.addAll(
                         hotel.getRooms()
                                 .stream()
-                                .filter(room -> passenger >= room.getBeds())
+                                .filter(room -> passenger <= room.getBeds())
                                 .collect(Collectors.toList())
                 )
                 );

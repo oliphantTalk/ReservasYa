@@ -1,22 +1,74 @@
 [
   {
-    "name": "Hotel Carisimo",
+    "name": "Hotel Test 1",
     "stars": 4,
-    "roomsAvailable": 10
+    "roomsAvailable": 30,
+    "city": "Buenos Aires"
   },
   {
-    "name": "Hotel Baratisimo",
-    "stars": 4,
-    "roomsAvailable": 10
+    "name": "Hotel Test 2",
+    "stars": 2,
+    "roomsAvailable": 25,
+    "city": "Buenos Aires"
   },
   {
-    "name": "Hotel Deplorable",
+    "name": "Hotel Test 3",
     "stars": 4,
-    "roomsAvailable": 10
+    "roomsAvailable": 32,
+    "city": "Buenos Aires"
   },
   {
-    "name": "Hotel Astronomico",
-    "stars": 4,
-    "roomsAvailable": 10
+    "name": "Hotel Test 4",
+    "stars": 1,
+    "roomsAvailable": 12,
+    "city": "Buenos Aires"
+  },
+  {
+    "name": "Hotel Test 5",
+    "stars": 5,
+    "roomsAvailable": 17,
+    "city": "Buenos Aires"
+  },
+  {
+    "name": "Hotel Test 6",
+    "stars": 5,
+    "roomsAvailable": 15,
+    "city": "Miami"
+  },
+  {
+    "name": "Hotel Test 7",
+    "stars": 3,
+    "roomsAvailable": 45,
+    "city": "Miami"
+  },
+  {
+    "name": "Hotel Test 8",
+    "stars": 3,
+    "roomsAvailable": 3,
+    "city": "Miami"
+  },
+  {
+    "name": "Hotel Test 9",
+    "stars": 1,
+    "roomsAvailable": 6,
+    "city": "Miami"
+  },
+  {
+    "name": "Hotel Test 10",
+    "stars": 1,
+    "roomsAvailable": 18,
+    "city": "New York"
+  },
+  {
+    "name": "Hotel Test 11",
+    "stars": 2,
+    "roomsAvailable": 12,
+    "city": "New York"
+  },
+  {
+    "name": "Hotel Test 12",
+    "stars": 3,
+    "roomsAvailable": 15,
+    "city": "New York"
   }
 ]

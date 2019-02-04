@@ -3,7 +3,9 @@ package com.ttps.reservasya.controllers.hotel;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ttps.reservasya.controllers.panel.form.ABMRoomForm;
 import com.ttps.reservasya.controllers.panel.form.ABMHotelForm;
+import com.ttps.reservasya.controllers.searchbox.SearchHotelForm;
 import com.ttps.reservasya.error.exceptions.NoElementInDBException;
+import com.ttps.reservasya.models.LocalParameters;
 import com.ttps.reservasya.models.businessitem.hotel.Hotel;
 import com.ttps.reservasya.models.businessitem.hotel.Room;
 import com.ttps.reservasya.services.LocalParametersService;
@@ -15,12 +17,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class HotelController {
@@ -76,5 +78,25 @@ public class HotelController {
         Room room = hotelService.removeRoom(deleteRoomId.get("deleteRoomId"));
         return CustomObjectMapper.getMapper().writeValueAsString(room);
     }
+
+    @GetMapping(value = "/search/room/{id}/details")
+    public String flyDetails(
+            @Valid @PathVariable("id") Long roomId,
+            @RequestParam("city") String city,
+            @RequestParam("date_from") String dateFrom,
+            @RequestParam("date_to") String dateTo,
+            @RequestParam("rent_days") int rentDays,
+            Model model) {
+        SearchHotelForm hotelForm = new SearchHotelForm();
+        hotelForm.setHotelTo(city);
+        hotelForm.setHotelDateFrom(dateFrom);
+        hotelForm.setHotelDateTo(dateTo);
+        Optional<Room> room = hotelService.findRoom(roomId);
+        model.addAttribute("room", room.orElseThrow(NoElementInDBException::new));
+        model.addAttribute("hotelForm", hotelForm);
+        model.addAttribute("rentDays", rentDays);
+        return "/details/details";
+    }
+
 
 }

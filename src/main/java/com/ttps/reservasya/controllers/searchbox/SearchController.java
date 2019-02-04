@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 import java.util.List;
 
 @RequestMapping(value = "/search")
@@ -72,7 +73,10 @@ public class SearchController {
         if (errors.hasErrors()) {
             return "/";
         }
-        model.addAttribute("rooms", hotelService.searchHotelForDestination(searchHotelForm.getHotelTo(), searchHotelForm.getHotelPassenger()));
+        int hotelRentDays = Math.abs((LocalDate.parse(searchHotelForm.getHotelDateFrom()).getDayOfYear()) - LocalDate.parse(searchHotelForm.getHotelDateTo()).getDayOfYear());
+        model.addAttribute("rooms", hotelService.searchHotelForDestination(searchHotelForm.getHotelTo(), searchHotelForm.getHotelPassenger(), searchHotelForm.getHotelStars()));
+        model.addAttribute("hotelForm", searchHotelForm);
+        model.addAttribute("hotelRentDays", hotelRentDays);
         return "/result/result";
     }
 
@@ -81,7 +85,10 @@ public class SearchController {
         if (errors.hasErrors()) {
             return "/";
         }
+        int rentDays = Math.abs((LocalDate.parse(searchCarForm.getDateTo()).getDayOfYear()) - LocalDate.parse(searchCarForm.getDateFrom()).getDayOfYear());
         model.addAttribute("cars", agencyService.searchCarForDestination(searchCarForm.getPickup(), searchCarForm.getCarPassenger()));
+        model.addAttribute("carForm", searchCarForm);
+        model.addAttribute("rentDays", rentDays);
         return "/result/result";
     }
 

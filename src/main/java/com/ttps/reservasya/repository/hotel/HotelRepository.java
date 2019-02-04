@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface HotelRepository extends JpaRepository<Hotel, Long> {
 
     Optional<List<Hotel>> findHotelsByCity(String city);
+    Optional<List<Hotel>> findHotelsByCityAndStarsGreaterThanEqualOrderByStarsAsc(String city, int stars);
 
 }

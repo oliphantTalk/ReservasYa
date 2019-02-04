@@ -52,8 +52,8 @@ public class CheckoutController {
         items.forEach(i -> i.setPrice(price));
         checkoutService.startTransaction(principal.getName(), items, passengers);
         model.addAttribute(new CheckoutForm() );
-        int userAvailbalePoints = userService.getUserSettingsByUserName(principal.getName()).getPointsToUse();
-        model.addAttribute("availablePoints", userAvailbalePoints);
+        int userAvailabalePoints = userService.getUserSettingsByUserName(principal.getName()).getPointsToUse();
+        model.addAttribute("availablePoints", userAvailabalePoints);
         return "checkout/checkout";
     }
 

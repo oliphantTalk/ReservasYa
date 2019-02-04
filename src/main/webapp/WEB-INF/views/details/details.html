@@ -10,9 +10,18 @@
 <div th:replace="~{fragments/header :: header-wp}">Header</div>
 
 <div class="eva-3-cluster-basic">
-    <div th:if="${flight != null }" th:replace="details/itemDetail :: fly-detail">
-
-    </div>
+    <th:block th:if="${flight != null }">
+        <div  th:replace="details/itemDetail :: fly-detail">
+        </div>
+    </th:block>
+    <th:block th:if="${car != null }">
+        <div  th:replace="details/itemDetail :: car-detail">
+        </div>
+    </th:block>
+    <th:block th:if="${room != null }">
+        <div  th:replace="details/itemDetail :: room-detail">
+        </div>
+    </th:block>
 
 </div>
 

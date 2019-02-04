@@ -94,7 +94,6 @@ public class AgencyController {
             @RequestParam("rent_days") int rentDays,
             Model model) {
         SearchCarForm carForm = new SearchCarForm();
-        LocalParameters localParameters = localParametersService.getLocalParameters();
         carForm.setPickup(from);
         carForm.setRetrieve(to);
         carForm.setDateFrom(dateFrom);

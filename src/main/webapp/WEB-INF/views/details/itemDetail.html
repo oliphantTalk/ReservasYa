@@ -269,27 +269,23 @@
                </thead>
                <tbody>
                  <tr>
-                   <td>AGENCIA</td>
-                   <td th:text="${car.agency.name}">John</td>
+                   <td>HOTEL</td>
+                   <td th:text="${room.hotel.name}">John</td>
                  </tr>
                  <tr>
-                   <td>CIUDAD RETIRO</td>
-                   <td th:text="${#strings.capitalize(carForm.pickup)}">Origen</td>
+                   <td>CIUDAD</td>
+                   <td th:text="${#strings.capitalize(hotelForm.hotelTo)}">Origen</td>
                  </tr>
                  <tr>
-                    <td>FECHA RETIRO</td>
+                    <td>FECHA CHECKIN</td>
                     <td>
-                        <span th:text="${carForm.dateFrom}"></span>
+                        <span th:text="${hotelForm.hotelDateFrom}"></span>
                     </td>
                  </tr>
                  <tr>
-                    <td>CIUDAD DEVOLUCION</td>
-                    <td th:text="${#strings.capitalize(carForm.retrieve)}">Destino</td>
-                 </tr>
-                 <tr>
-                   <td>FECHA DEVOLUCION</td>
+                   <td>FECHA CHECKOUT</td>
                    <td>
-                     <span th:text="${carForm.dateTo}"></span>
+                     <span th:text="${hotelForm.hotelDateTo}"></span>
                    </td>
                  </tr>
                  <tr>
@@ -302,36 +298,32 @@
                     <td>Precio por dia</td>
                     <td>
                        <span class="pesos-sign">$</span>
-                       <span class="current-price" th:text="${car.price}">$8000</span>
+                       <span class="current-price" th:text="${room.price}">$8000</span>
                    </td>
                  </tr>
                  <tr>
                      <td>Precio total</td>
                      <td>
                         <span class="pesos-sign">$</span>
-                        <span class="current-price" th:text="${car.price * rentDays}">$8000</span>
+                        <span class="current-price" th:text="${room.price * rentDays}">$8000</span>
                     </td>
                   </tr>
                  <tr>
-                    <td>Descripcion</td>
+                    <td>CAMAS</td>
                     <td>
-                       <span th:text="${car.description}"></span>
+                       <span th:text="${room.beds}"></span>
                     </td>
                    </th:block>
                  </tr>
                  <tr>
-                   <td>MODELO</td>
-                   <td th:text="${car.model}"></td>
+                   <td>ESTRELLAS</td>
+                   <td th:text="${room.hotel.stars}"></td>
                  </tr>
-                  <tr>
-                    <td>CAPACIDAD</td>
-                    <td th:text="${car.capacity}"></td>
-                  </tr>
                  <tr>
                     <td></td>
                    <td class="button-container">
                        <span >
-                          <a class="eva-3-btn btn-danger -lg" th:href="@{/checkout/car(car_id=${car.id}, rentDays=${rentDays}, price=${car.price})}">
+                          <a class="eva-3-btn btn-danger -lg" th:href="@{/checkout/room(room_id=${room.id}, rentDays=${rentDays}, price=${room.price})}">
                             <em class="btn-text">COMPRAR</em>
                           </a>
                       </span>

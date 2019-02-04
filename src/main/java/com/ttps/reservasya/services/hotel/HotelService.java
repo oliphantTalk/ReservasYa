@@ -52,9 +52,9 @@ public class HotelService extends BasicCrudService<Hotel, HotelRepository> {
         roomRepository.deleteById(id);
     }
 
-    public List<Room> searchHotelForDestination(String city, int passenger){
+    public List<Room> searchHotelForDestination(String city, int passenger, int stars){
         List<Room> roomList = new ArrayList<>();
-        repository.findHotelsByCity(city)
+        repository.findHotelsByCityAndStarsGreaterThanEqualOrderByStarsAsc(city, stars)
                 .orElse(new ArrayList<>())
                 .forEach(hotel -> roomList.addAll(
                         hotel.getRooms()

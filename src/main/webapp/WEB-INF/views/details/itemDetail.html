@@ -6,13 +6,13 @@
 </head>
 <body>
 
-<div th:fragment="fly-detail">
+<div th:fragment="fly-detail" class="container">
     <div class="cluster-container cluster-white-background" id="fly-cluster">
-       <table class="table table-hover ">
+       <table class="table table-hover table-striped">
            <thead class="">
              <tr>
                <th>
-                 <span>Detalles Vuelo</span>
+                 <span class="eva-3-h1">Detalles Compra Vuelo</span>
                    <span class="fly-way">
                      <i class="eva-3-icon-airplane-going"></i>
                        IDA
@@ -82,9 +82,10 @@
                <td th:text="${seatClass}"></td>
              </tr>
              <tr th:if="${flightReturn == null}">
+                <td></td>
                <td class="button-container">
                    <span >
-                      <a class="eva-3-btn btn-danger -sm" th:href="@{/checkout/fly(flight_id=${flight.id}, passengers=${passengers}, price=${flight.price * precioClase})}">
+                      <a class="eva-3-btn btn-danger -lg" th:href="@{/checkout/fly(flight_id=${flight.id}, passengers=${passengers}, price=${flight.price * precioClase})}">
                         <em class="btn-text">COMPRAR</em>
                       </a>
                   </span>
@@ -94,7 +95,7 @@
            </tbody>
          </table>
        <th:block th:if="${flightReturn != null}">
-       <table class="table table-hover ">
+       <table class="table table-hover table-striped ">
                    <thead class="">
                      <tr>
                        <th>
@@ -174,6 +175,170 @@
                  </table>
        </th:block>
     </div>
+</div>
+<div th:fragment="car-detail" class="container">
+    <table class="table table-hover table-striped ">
+               <thead class="">
+                 <tr>
+                   <th>
+                     <span class="eva-3-h1">Detalles Alquiler Auto</span>
+                   </th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>AGENCIA</td>
+                   <td th:text="${car.agency.name}">John</td>
+                 </tr>
+                 <tr>
+                   <td>CIUDAD RETIRO</td>
+                   <td th:text="${#strings.capitalize(carForm.pickup)}">Origen</td>
+                 </tr>
+                 <tr>
+                    <td>FECHA RETIRO</td>
+                    <td>
+                        <span th:text="${carForm.dateFrom}"></span>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>CIUDAD DEVOLUCION</td>
+                    <td th:text="${#strings.capitalize(carForm.retrieve)}">Destino</td>
+                 </tr>
+                 <tr>
+                   <td>FECHA DEVOLUCION</td>
+                   <td>
+                     <span th:text="${carForm.dateTo}"></span>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>Dias</td>
+                   <td>
+                       <span th:text="${rentDays}"></span>
+                   </td>
+                 </tr>
+                 <tr>
+                    <td>Precio por dia</td>
+                    <td>
+                       <span class="pesos-sign">$</span>
+                       <span class="current-price" th:text="${car.price}">$8000</span>
+                   </td>
+                 </tr>
+                 <tr>
+                     <td>Precio total</td>
+                     <td>
+                        <span class="pesos-sign">$</span>
+                        <span class="current-price" th:text="${car.price * rentDays}">$8000</span>
+                    </td>
+                  </tr>
+                 <tr>
+                    <td>Descripcion</td>
+                    <td>
+                       <span th:text="${car.description}"></span>
+                    </td>
+                   </th:block>
+                 </tr>
+                 <tr>
+                   <td>MODELO</td>
+                   <td th:text="${car.model}"></td>
+                 </tr>
+                  <tr>
+                    <td>CAPACIDAD</td>
+                    <td th:text="${car.capacity}"></td>
+                  </tr>
+                 <tr>
+                    <td></td>
+                   <td class="button-container">
+                       <span >
+                          <a class="eva-3-btn btn-danger -lg" th:href="@{/checkout/car(car_id=${car.id}, rentDays=${rentDays}, price=${car.price})}">
+                            <em class="btn-text">COMPRAR</em>
+                          </a>
+                      </span>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>
+</div>
+<div th:fragment="room-detail" class="container">
+    <table class="table table-hover table-striped ">
+               <thead class="">
+                 <tr>
+                   <th>
+                     <span class="eva-3-h1">Detalles Alquiler Habitacion</span>
+                   </th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>AGENCIA</td>
+                   <td th:text="${car.agency.name}">John</td>
+                 </tr>
+                 <tr>
+                   <td>CIUDAD RETIRO</td>
+                   <td th:text="${#strings.capitalize(carForm.pickup)}">Origen</td>
+                 </tr>
+                 <tr>
+                    <td>FECHA RETIRO</td>
+                    <td>
+                        <span th:text="${carForm.dateFrom}"></span>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>CIUDAD DEVOLUCION</td>
+                    <td th:text="${#strings.capitalize(carForm.retrieve)}">Destino</td>
+                 </tr>
+                 <tr>
+                   <td>FECHA DEVOLUCION</td>
+                   <td>
+                     <span th:text="${carForm.dateTo}"></span>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>Dias</td>
+                   <td>
+                       <span th:text="${rentDays}"></span>
+                   </td>
+                 </tr>
+                 <tr>
+                    <td>Precio por dia</td>
+                    <td>
+                       <span class="pesos-sign">$</span>
+                       <span class="current-price" th:text="${car.price}">$8000</span>
+                   </td>
+                 </tr>
+                 <tr>
+                     <td>Precio total</td>
+                     <td>
+                        <span class="pesos-sign">$</span>
+                        <span class="current-price" th:text="${car.price * rentDays}">$8000</span>
+                    </td>
+                  </tr>
+                 <tr>
+                    <td>Descripcion</td>
+                    <td>
+                       <span th:text="${car.description}"></span>
+                    </td>
+                   </th:block>
+                 </tr>
+                 <tr>
+                   <td>MODELO</td>
+                   <td th:text="${car.model}"></td>
+                 </tr>
+                  <tr>
+                    <td>CAPACIDAD</td>
+                    <td th:text="${car.capacity}"></td>
+                  </tr>
+                 <tr>
+                    <td></td>
+                   <td class="button-container">
+                       <span >
+                          <a class="eva-3-btn btn-danger -lg" th:href="@{/checkout/car(car_id=${car.id}, rentDays=${rentDays}, price=${car.price})}">
+                            <em class="btn-text">COMPRAR</em>
+                          </a>
+                      </span>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>
 </div>
 
 </body>

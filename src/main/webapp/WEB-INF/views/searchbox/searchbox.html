@@ -5,6 +5,20 @@
 <body>
 <th:block th:fragment="boxes">
 <div class="eva-3-container" id="fly-searchbox" th:fragment="fly-searchbox" >
+    <th:block th:if="${sFlights != null}">
+        <div class="eva-3-row">
+            <div class="col -sm-8 -md-8">
+            <label for="sFlightId"><strong th:text="'MODO TEST: ELIJA VUELO'"></strong></label>
+                 <select type="text" class="form-control form-control-sm" aria-describedby="userIdHelp" th:id="sflightId">
+                    <option value="0"></option>
+                    <option th:each="f : ${sFlights}" th:value="${f.id}" th:text="'DESDE=' + ${f.from} + ', HASTA=' + ${f.to} + ', SALIDA=' + ${f.departureDate} + ', LLEGADA=' + ${f.arrivalDate}"></option>
+                  </select>
+                <small id="sFlightIdHelp" class="form-text text-danger">MODO TEST: Elija un vuelo para completar la caja de busqueda automaticamente, o llenela manualmente
+                <button id="btn-complete-fly" class="btn btn-danger btn-sm">COMPLETAR</button></small>
+            </div>
+        </div>
+    </th:block>
+
     <!-- BEGIN SEARCH BOX ++++++++++++++++++++++++++++++++++ -->
     <div class="eva-3-row -no-gutter">
         <div class="col -sm-12 -md-12 -xlg-12">
@@ -231,6 +245,19 @@
     <!-- END SEARCH BOX ++++++++++++++++++++++++++++++++++ -->
 </div>
 <div class="eva-3-container" id="car-searchbox" th:fragment="car-searchbox" style="display: none" >
+    <th:block th:if="${sAgency != null}">
+            <div class="eva-3-row">
+                <div class="col -sm-8 -md-8">
+                <label for="sCarId"><strong th:text="'MODO TEST: ELIJA AUTO'"></strong></label>
+                     <select type="text" class="form-control form-control-sm" aria-describedby="sCarIdHelp" th:id="sCarId">
+                        <option value="0"></option>
+                        <option th:each="a : ${sAgency}" th:value="${a.id}" th:text="'AGENCIA=' + ${a.name} + ', CIUDAD=' + ${a.city}"></option>
+                      </select>
+                    <small id="sCarIdHelp" class="form-text text-danger">MODO TEST: Elija un auto para completar la caja de busqueda automaticamente, o llenela manualmente. Las fechas pueden ser cualquiera.
+                    <button id="btn-complete-car" class="btn btn-danger btn-sm">COMPLETAR</button></small>
+                </div>
+            </div>
+        </th:block>
     <!-- BEGIN SEARCH BOX ++++++++++++++++++++++++++++++++++ -->
     <div class="eva-3-row -no-gutter">
         <div class="col -sm-12 -md-12 -xlg-12">
@@ -364,6 +391,19 @@
     <!-- END SEARCH BOX ++++++++++++++++++++++++++++++++++ -->
 </div>
 <div class="eva-3-container" id="hotel-searchbox" th:fragment="hotel-searchbox" style="display: none" >
+    <th:block th:if="${sHotels != null}">
+            <div class="eva-3-row">
+                <div class="col -sm-8 -md-8">
+                <label for="sHotelId"><strong th:text="'MODO TEST: ELIJA HOTEL'"></strong></label>
+                     <select type="text" class="form-control form-control-sm" aria-describedby="sHotelIdHelp" th:id="sRoomId">
+                        <option value="0"></option>
+                        <option th:each="h : ${sHotels}" th:value="${h.id}" th:text="'HOTEL=' + ${h.name} + ', CIUDAD=' + ${h.city}"></option>
+                      </select>
+                    <small id="sHotelIdHelp" class="form-text text-danger">MODO TEST: Elija una ciudad para completar la caja de busqueda automaticamente, o llenela manualmente. Las fechas pueden ser cualquiera.
+                    <button id="btn-complete-room" class="btn btn-danger btn-sm">COMPLETAR</button></small>
+                </div>
+            </div>
+        </th:block>
     <!-- BEGIN SEARCH BOX ++++++++++++++++++++++++++++++++++ -->
     <div class="eva-3-row -no-gutter">
         <div class="col -sm-12 -md-12 -xlg-12">

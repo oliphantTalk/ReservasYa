@@ -16,7 +16,9 @@
 <div class="eva-3-cluster-basic">
     <th:block th:if="${flights != null }">
         <th:block th:if="${#arrays.isEmpty(flights)}">
-            <div th:text="${'No se encontraron resultados para Vuelos con los parametros solicitados'}"></div>
+            <div th:class="container">
+                <span class="h3 text-danger" th:text="${'No se encontraron resultados para Vuelos con los parametros solicitados'}"></span>
+            </div>
         </th:block>
         <th:block th:if="${!#arrays.isEmpty(flights)}">
             <div th:replace="result/cluster :: fly-cluster">
@@ -25,7 +27,9 @@
     </th:block>
     <th:block th:if="${cars != null}">
         <th:block th:if="${#arrays.isEmpty(cars)}">
-            <div th:text="${'No se encontraron resultados para Autos con los parametros solicitados'}"></div>
+            <div th:class="container">
+                <span class="h3 text-danger" th:text="${'No se encontraron resultados para Autos con los parametros solicitados'}"></span>
+            </div>
         </th:block>
         <th:block th:if="${!#arrays.isEmpty(cars)}">
             <div th:replace="result/cluster :: car-cluster">
@@ -34,7 +38,9 @@
     </th:block>
     <th:block th:if="${rooms != null}">
         <th:block th:if="${#arrays.isEmpty(rooms)}">
-            <div th:text="${'No se encontraron resultados para Hoteles con los parametros solicitados'}"></div>
+            <div th:class="container">
+                <span class="h3 text-danger" th:text="${'No se encontraron resultados para Hoteles con los parametros solicitados'}"></span>
+            </div>
         </th:block>
         <th:block th:if="${!#arrays.isEmpty(rooms)}">
             <div th:replace="result/cluster :: hotel-cluster">

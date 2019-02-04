@@ -14,6 +14,10 @@
              <h4 style="color: green;">Se ha guardado correctamente. </h4>
              <pre style="color: green;">
                 <code>
+                    <th:block th:if="${lastTransaction != null}">
+                        <span th:text="'Ultima transaccion: #' + ${lastTransaction.id}"></span>
+                        <span th:text="'Se gasto ' + ${lastTransaction.amount} + ' pesos.'"></span>
+                    </th:block>
                     <span th:if="${pointsBefore != null}" th:text="${'Tenia ' + pointsBefore + ' puntos.'}"></span>
                     <span th:if="${pointsConverted != null}" th:text="${'Convirtio ' + pointsConverted + ' puntos.'}"></span>
                     <span th:if="${newPoints != null}" th:text="${'Tiene ' + newPoints + ' puntos.'}"></span>

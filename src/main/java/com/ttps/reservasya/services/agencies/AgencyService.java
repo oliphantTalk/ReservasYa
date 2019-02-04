@@ -29,8 +29,8 @@ public class AgencyService extends BasicCrudService<Agency, AgencyRepository> {
         this.carRepository = carRepository;
     }
 
-    public Optional<Car> findCar(Long id){
-        return this.carRepository.findById(id);
+    public Car findCar(Long id){
+        return this.carRepository.findById(id).orElseThrow(NoElementInDBException::new);
     }
 
     public List<Car> findCars(){ return carRepository.findAll();}

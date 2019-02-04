@@ -28,8 +28,8 @@ public class HotelService extends BasicCrudService<Hotel, HotelRepository> {
         this.roomRepository = roomRepository;
     }
 
-    public Optional<Room> findRoom(Long id){
-        return roomRepository.findById(id);
+    public Room findRoom(Long id){
+        return roomRepository.findById(id).orElseThrow(NoElementInDBException::new);
     }
 
     public List<Room> findRooms(){

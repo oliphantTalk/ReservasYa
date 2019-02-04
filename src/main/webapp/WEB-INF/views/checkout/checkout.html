@@ -10,11 +10,13 @@
 <div th:replace="~{fragments/header :: header-wp}">Header</div>
 
 <div class="container yellow-rectangle">
-<form class="form-narrow form-horizontal" method="post" th:action="@{/checkout/fly}" th:object="${checkoutForm}" th:fragment="checkoutForm">
+<form class="form-narrow form-horizontal" method="post" th:action="@{/checkout/confirm(transaction_id=${checkoutForm.tId})}" th:object="${checkoutForm}" th:fragment="checkoutForm">
     <!--/* Show general error message when form contains errors */-->
 
     <fieldset>
         <legend>Por favor, completa el formulario</legend>
+
+        <input type="hidden" class="form-control" id="tId" th:field="*{tId}" required/>
 
         <div class="form-group" >
             <label for="passengerName">Nombre Pasajero</label>

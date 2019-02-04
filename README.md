@@ -6,16 +6,9 @@
 * El servidor donde corre la aplicacion es: https://resya.herokuapp.com/. Tener en cuenta que la base de datos en el servidor NO se actualiza cada vez que se accede.
 
 ##
+ACLARACIONES
 
-DATOS VUELOS
-
-
-##
-
-DATOS AUTOS
-
-
-##
-
-
-DATOS HABITACIONES
+* Para comprar pasaje de vuelta, debe realizarse una nueva busqueda. 
+* FALTA FEATURE DE FILTROS DE PRECIO, ETC.
+* FALTA FEATURE DE CARRITO DE COMPRAS.
+* FALTA FEATURE DE INFORME DE COMPRAS POR USUARIO. 

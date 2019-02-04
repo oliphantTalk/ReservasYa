@@ -91,8 +91,8 @@ public class HotelController {
         hotelForm.setHotelTo(city);
         hotelForm.setHotelDateFrom(dateFrom);
         hotelForm.setHotelDateTo(dateTo);
-        Optional<Room> room = hotelService.findRoom(roomId);
-        model.addAttribute("room", room.orElseThrow(NoElementInDBException::new));
+        Room room = hotelService.findRoom(roomId);
+        model.addAttribute("room", room);
         model.addAttribute("hotelForm", hotelForm);
         model.addAttribute("rentDays", rentDays);
         return "/details/details";

@@ -1,6 +1,6 @@
 let roomTo = document.getElementById("hotel-to");
 
-function fillC(){
+function fillR(){
     let select = document.getElementById("sRoomId");
     let roomText = select.options[select.selectedIndex].text.split(",");
     roomTo.value = "";
@@ -10,4 +10,4 @@ function fillC(){
 }
 
 let btnCompleteR = document.getElementById("btn-complete-room");
-btnCompleteR.addEventListener("click", function () {fillC()});
+btnCompleteR.addEventListener("click", function () {fillR()});

@@ -98,8 +98,8 @@ public class AgencyController {
         carForm.setRetrieve(to);
         carForm.setDateFrom(dateFrom);
         carForm.setDateTo(dateTo);
-        Optional<Car> car = agencyService.findCar(carId);
-        model.addAttribute("car", car.orElseThrow(NoElementInDBException::new));
+        Car car = agencyService.findCar(carId);
+        model.addAttribute("car", car);
         model.addAttribute("carForm", carForm);
         model.addAttribute("rentDays", rentDays);
         return "/details/details";

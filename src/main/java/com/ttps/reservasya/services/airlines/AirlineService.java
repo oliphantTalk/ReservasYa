@@ -84,7 +84,7 @@ public class AirlineService extends BasicCrudService<Airline, AirlineRepository>
 
     public List<Flight> findOneWayFlights(String departureDate, String from, String to, SeatClass seatClass){
         LocalParameters localParameters = localParametersService.getLocalParameters();
-        List<Flight> flights = this.flightRepository.findFlightsByDepartureDateGreaterThanEqualAndFromAndToAndGapMaxLessThanOrderByAirline(DateParser.parse(departureDate), from, to, localParameters.getGapMax()).orElse(new ArrayList<>());
+        List<Flight> flights = this.flightRepository.findFlightsByDepartureDateGreaterThanEqualAndFromAndToAndGapMaxLessThanOrderByPriceAsc(DateParser.parse(departureDate), from, to, localParameters.getGapMax()).orElse(new ArrayList<>());
         flights.forEach(f -> f.setSeats(f.getSeats().stream().filter(s -> s.getSeatClass().equals(seatClass)).collect(Collectors.toList())));
         return flights;
 

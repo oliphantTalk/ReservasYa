@@ -38,10 +38,11 @@ public class CheckoutService {
         this.localParametersService = localParametersService;
     }
 
-    public void startTransaction(String loggedUserName, List<BusinessItem> items, int passengers) {
+    public Transaction startTransaction(String loggedUserName, List<BusinessItem> items, int passengers) {
         User loggedUser = userService.findByUserName(loggedUserName);
         Transaction transaction = createTransaction(loggedUser, items, passengers);
         createTransactionHistory(loggedUser, transaction);
+        return transaction;
     }
 
 

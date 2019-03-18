@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public SimpleUrlAuthenticationSuccessHandler redirecter(){
         SimpleUrlAuthenticationSuccessHandler redirecter = new SimpleUrlAuthenticationSuccessHandler();
         redirecter.setAlwaysUseDefaultTargetUrl(true);
-        redirecter.setDefaultTargetUrl("http://localhost:5000/");
+        //redirecter.setDefaultTargetUrl("http://localhost:5000/");
         return redirecter;
     }
 

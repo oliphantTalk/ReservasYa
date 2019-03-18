@@ -18,7 +18,8 @@ public class SigninController {
 
 	@RequestMapping(value = "signin")
 	public String signin(@RequestHeader(value = "Referer",required = false) String referer) {
-	    if(!StringUtils.isBlank(referer) && !referer.contains("signin")){
+        int barras = StringUtils.countMatches(referer, "/");
+        if(!StringUtils.isBlank(referer) && !referer.contains("signin") && barras > 4){
 	        simpleUrlAuthenticationSuccessHandler.setDefaultTargetUrl(referer);
         }
         return "signin/signin";
